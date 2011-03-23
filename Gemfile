@@ -40,4 +40,7 @@ group :development, :test, :production do
 	gem "bson_ext"
 	gem "devise"
 	gem 'omniauth'
+	gem 'oa-openid', :require => 'omniauth/openid'
+	# OpenID has some problems with long URLs in WEBrick.
+	gem 'mongrel', '1.2.0.pre2'
 end
