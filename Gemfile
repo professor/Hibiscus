@@ -1,6 +1,3 @@
-require "rubygems"
-require "mongo"
-source "http://gemcutter.org"
 source "http://rubygems.org"
 
 gem "rails", "3.0.5"
@@ -12,6 +9,8 @@ end
 group :test do
 	gem "cover_me"
 	gem "factory_girl_rails"
+	gem "database_cleaner"
+	gem "mongoid-rspec"
 
 	# Next gems are not required in the application, but are needed for testing. These should be in the "global" gemset of RVM.
   # gem "autotest"
@@ -37,5 +36,8 @@ group :test, :production do
 end
 
 group :development, :test, :production do
-	gem "mongo_mapper"
+	gem "mongoid", ">= 2.0.0.rc.7"
+	gem "bson_ext"
+	gem "devise"
+	gem 'omniauth'
 end
