@@ -1,14 +1,23 @@
+class EmailFormatValidator < ActiveModel::EachValidator  
+  def validate_each(object, attribute, value)  
+    unless value =~ /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i  
+      object.errors[attribute] << (options[:message] || "is not formatted properly")  
+    end  
+  end  
+end
+
 class User
   include Mongoid::Document
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable, :lockable and :timeoutable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable
+  devise :database_authenticatable, :registerable, :rememberable, :trackable
   
   field :name, :type => String
   
-  validates_presence_of :name
-  validates_uniqueness_of :email, :case_sensitive => false   
+  validates :name, :presence => true, :uniqueness => true
+  
+  validates :email, :presence => true, :uniqueness => { :case_sensitive => false }, :email_format => true
+  
   attr_accessible :name, :email
   
   references_many :authentications, :dependent => :delete

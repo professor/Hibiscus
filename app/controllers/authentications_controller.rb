@@ -1,4 +1,8 @@
 class AuthenticationsController < ApplicationController
+  before_filter :authenticate_user!, :except => ["placeholder", "create"]
+  
+  def placeholder
+  end
   
   # Load user's authentications. Currently only Google thru OpenID, but potentially more in types of authentication in the future.
   def index

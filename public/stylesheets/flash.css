@@ -1,0 +1,60 @@
+.flash {
+  text-align: center;
+  padding: 6px 10px;
+  border: 1px solid black;
+  margin: 20px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+}
+
+.notice {
+  font-size: 14px;
+  /*font-weight: bold;*/
+  color: #275215;
+  text-shadow: 0 1px 1px #74B459;
+  border-color: #275215;
+  
+  background: #519136;
+  background: -webkit-gradient(linear, left top, left bottom, from(#74B459), to(#46842C));
+  background: -moz-linear-gradient(top, #74B459, #46842C);
+  
+  /* Shadow for inner single pixel white shadow along top/bottom border (depending on pressed or not). */
+  -webkit-box-shadow: inset 0 -1px 0 rgba(116, 180, 89, 0.5);
+  -moz-box-shadow: inset 0 -1px 0 rgba(116, 180, 89, 0.5);
+  box-shadow: inset 0 -1px 0 rgba(116, 180, 89, 0.5);
+}
+
+.warning {
+  font-size: 16px;
+  /*font-weight: bold;*/
+  color: #574D19;
+  text-shadow: 0 1px 1px #FFE148;
+  border-color: #574D19;
+  
+  background: #FDE94E;
+  background: -webkit-gradient(linear, left top, left bottom, from(#FFE94D), to(#B4A436));
+  background: -moz-linear-gradient(top, #FFE94D, #B4A436);
+  
+  /* Shadow for inner single pixel white shadow along top/bottom border (depending on pressed or not). */
+  -webkit-box-shadow: inset 0 -1px 0 rgba(255, 224, 71, 0.5);
+  -moz-box-shadow: inset 0 -1px 0 rgba(255, 224, 71, 0.5);
+  box-shadow: inset 0 -1px 0 rgba(255, 224, 71, 0.5);
+}
+
+.error {
+  font-size: 18px;
+  /*font-weight: bold;*/
+  color: #68020A;
+  text-shadow: 0 1px 1px #E70416;
+  border-color: #5B0209;
+  
+  background: #C71019;
+  background: -webkit-gradient(linear, left top, left bottom, from(#ED1C23), to(#9B020E));
+  background: -moz-linear-gradient(top, #FFE94D, #9B020E);
+  
+  /* Shadow for inner single pixel white shadow along top/bottom border (depending on pressed or not). */
+  -webkit-box-shadow: inset 0 -1px 0 rgba(255, 84, 85, 0.5);
+  -moz-box-shadow: inset 0 -1px 0 rgba(255, 84, 85, 0.5);
+  box-shadow: inset 0 -1px 0 rgba(255, 84, 85, 0.5);
+}

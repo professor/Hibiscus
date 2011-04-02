@@ -5,7 +5,7 @@ CraftWiki::Application.routes.draw do
   
   resources :authentications
   
-  root :to => 'projects#index' 
+  root :to => 'authentications#placeholder' 
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

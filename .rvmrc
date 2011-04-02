@@ -1,1 +1,1 @@
-rvm --create use default@craftwiki
+rvm --create use 1.9.2@craftwiki
