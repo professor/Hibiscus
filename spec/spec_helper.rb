@@ -35,4 +35,9 @@ RSpec.configure do |config|
   config.before(:each) do
     DatabaseCleaner.clean
   end
+  
+  def login
+    @user = Factory(:user)
+    sign_in @user
+  end
 end

@@ -1,4 +1,14 @@
 CraftWiki::Application.routes.draw do
+  resources :authentications
+  match 'users/show'
+
+  devise_for :users
+
+  match '/auth/:provider/callback', :to => 'authentications#create'
+  match '/auth/failure', :to => 'authentications#failure'
+  
+  root :to => 'authentications#placeholder'
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
