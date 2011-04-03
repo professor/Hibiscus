@@ -7,8 +7,26 @@
   <%= csrf_meta_tag %>
 </head>
 <body>
-
-<%= yield %>
-
+	<section id="container">
+		<nav id="site_nav">
+			<li><%= link_to "Home", root_path %></li>
+		</nav>
+		<nav id="user_controls">
+			<% if current_user %>
+				<li>Logged in as <%= link_to current_user.name, current_user %></li>
+	    	<li><%= link_to "Logout", :logout %></li>
+	    <% else %>
+	    	<li><%= link_to "Login", 'auth/github' %></li>
+	    <% end %>
+		</nav>
+		<section id="content">
+			<section id="notifications">
+				<% flash.each do |key, value| %>
+					<div class="flash <%= key %>"><%= value %></div>
+				<% end %>
+			</section>
+			<%= yield %>
+		</section>
+	</section>
 </body>
 </html>

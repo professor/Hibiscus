@@ -16,8 +16,12 @@ class User
   field :name, :type => String
   field :email, :type => String
   
+  references_many :authentications, :dependent => :delete
+  references_many :posts
+  references_many :likes
+  # FIXME: Figure out how to make this reference work out.
+  # references_many :comments, :through => :posts
+  
   validates :name, :presence => true
   validates :email, :presence => true, :email => true
-  
-  references_many :authentications, :dependent => :delete
 end

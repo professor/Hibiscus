@@ -1,0 +1,51 @@
+<p>
+  <b>Title:</b>
+  <%= @post.title %>
+</p>
+
+<p>
+  <b>Posted by:</b>
+  <%= link_to @post.user.name, @post.user %>
+</p>
+
+<p>
+  <b>Content:</b>
+  <%= @post.content %>
+</p>
+
+<p>
+  <b>Published on:</b>
+  <%= @post.created_at.to_formatted_s(:long) %>
+</p>
+
+<p>
+  <b>Last updated on:</b>
+  <%= @post.updated_at.to_formatted_s(:long) %>
+</p>
+
+<% if @post.likes.any? %>
+	<%= @post.likes.count %> Likes
+	
+	<p>This post was liked by:</p>
+	<% @post.likes.each do |l| %>
+		<p><%= link_to l.user.name, l.user %></p>
+	<% end %>
+<% end %>
+
+<%= form_for Like.new do |f| %>
+	<p><%= f.hidden_field :post_id, :value => @post.id %>
+  <p><%= f.submit "Like this post?" %></p>  
+<% end %>
+
+<% if @post.comments.any? %>
+	<h2>Comments</h2>
+	<% for comment in @post.comments %>
+		<p><%= comment.content %> Posted by: <%= link_to comment.user.name, comment.user %> <%= link_to 'Edit', edit_post_comment_path(@post, comment) %></p>
+	<% end %>
+<% end %>
+
+<h3>New Comment</h3>
+<%= render 'comments/form' %>
+
+<%= link_to 'Edit', edit_post_path(@post) %> |
+<%= link_to 'Back', posts_path %>

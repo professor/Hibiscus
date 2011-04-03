@@ -1,13 +1,20 @@
 CraftWiki::Application.routes.draw do
+
+  devise_for :user do
+    match 'logout', :to => 'devise/sessions#destroy', :as => :logout
+  end
+  
   resources :authentications
-  match 'users/show'
-
-  devise_for :users
-
+  resources :users
+  resources :likes
+  resources :posts do
+    resources :comments
+  end
+  
   match '/auth/:provider/callback', :to => 'authentications#create'
   match '/auth/failure', :to => 'authentications#failure'
   
-  root :to => 'authentications#placeholder'
+  root :to => 'posts#index'
   
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -1,8 +1,5 @@
 class AuthenticationsController < ApplicationController
-  before_filter :authenticate_user!, :except => [:create]
-  
-  def placeholder
-  end
+  before_filter :authenticate_user!, :except => [:create, :placeholder]
   
   # Load user's authentications (Twitter, Facebook, ....)
   def index
