@@ -24,7 +24,7 @@ RSpec.configure do |config|
   # examples within a transaction, remove the following line or assign false
   # instead of true.
   # config.use_transactional_fixtures = true
-  
+    
   # Clean up the database
   require 'database_cleaner'
   config.before(:suite) do
@@ -37,7 +37,8 @@ RSpec.configure do |config|
   end
   
   def login
-    @user = Factory(:user)
+    @request.env["devise.mapping"] = Devise.mappings[:user]
+    @user = Factory.create(:user)
     sign_in @user
   end
 end

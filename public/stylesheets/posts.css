@@ -1,0 +1,61 @@
+#post, #comments {
+	padding: 5px 10px;
+	margin: 0;
+	margin-bottom: 10px;
+	width: 75%;
+}
+
+#sidebar {
+	padding: 5px 10px;
+	width: 20%;
+	height: 100%;
+	float: right;
+}
+
+#postTitle {
+	margin: 0;
+}
+
+#postAuthor {
+	font-size: 12px;
+}
+
+#postUpdatedOn {
+	font-size: 9px;
+	padding-bottom: 5px;
+	border-bottom: 1px solid black;
+}
+
+#postEdit {
+	display: inline-block;
+	float: right;
+	font-style: italic;
+	text-decoration: none;
+}
+
+#postContent {
+	margin-top: 10px;
+	margin-bottom: 30px;
+}
+
+#commentsCount {
+	margin-bottom: 15px;
+	border-bottom: 2px solid black;
+}
+
+.comment {
+	margin-bottom: 10px;
+	border-bottom: 1px dashed black;
+}
+
+.commentContent, .commentEdit, .commentPoster {
+	font-size: 12px;
+}
+
+.commentEdit, .commentPoster {
+	display: inline-block;
+}
+
+.commentPoster {
+	float: right;
+}

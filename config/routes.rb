@@ -1,11 +1,12 @@
 CraftWiki::Application.routes.draw do
-
-  devise_for :user do
+  devise_for :users do
+    match 'users/:id', :to => 'users#show'
+    # get :show, :to => 'users#show'
     match 'logout', :to => 'devise/sessions#destroy', :as => :logout
   end
   
-  resources :authentications
   resources :users
+  resources :authentications
   resources :likes
   resources :posts do
     resources :comments

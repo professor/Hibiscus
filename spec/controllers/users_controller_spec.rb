@@ -6,17 +6,16 @@ require 'spec_helper'
 
 describe UsersController do
 
-  before(:each) do    
+  before(:each) do
     login
   end
 
   describe 'GET show' do
     # FIXME: NEED TO WRITE THIS.
-    pending 'NEED TO WRITE THIS.'
-    # it "should set the user's info" do
-    #   get :show
-    #   assigns(:user).should == @user
-    #   response.should be_success
-    # end
+    it "should set the user's info" do
+      get :show, :id => @user.id
+      assigns(:user).should == @user
+      response.should be_success
+    end
   end
 end

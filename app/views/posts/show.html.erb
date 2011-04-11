@@ -1,51 +1,42 @@
-<p>
-  <b>Title:</b>
-  <%= @post.title %>
-</p>
+<section id="sidebar">
+	<section id="postLikes">
+		<% if @post.likes.any? %>
+			<p id="postLikesCount"><%= @post.likes.count %> Likes</p>
+		
+			<%= form_for Like.new do |f| %>
+				<%= f.hidden_field :post_id, :value => @post.id %>
+			  <p><%= f.submit "Like this post?" %></p>  
+			<% end %>
+		
+			<p>This post was liked by:</p>
+			<% @post.likes.each do |l| %>
+				<p><%= link_to l.user.name, l.user %></p>
+			<% end %>
+		<% end %>
+	</section>
+</section>
 
-<p>
-  <b>Posted by:</b>
-  <%= link_to @post.user.name, @post.user %>
-</p>
+<section id="post">
+	<h1 id="postTitle"><%= @post.title %></h1>
 
-<p>
-  <b>Content:</b>
-  <%= @post.content %>
-</p>
+	<h3 id="postAuthor">Posted by: <%= link_to @post.user.name, @post.user %> on <%= @post.created_at.to_formatted_s(:long) %></h3> <p id="postEdit"><%= link_to 'Edit', edit_post_path(@post) %></p>
 
-<p>
-  <b>Published on:</b>
-  <%= @post.created_at.to_formatted_s(:long) %>
-</p>
+	<p id="postUpdatedOn">Last updated on: <%= @post.updated_at.to_formatted_s(:long) %></p>
 
-<p>
-  <b>Last updated on:</b>
-  <%= @post.updated_at.to_formatted_s(:long) %>
-</p>
+	<p id="postContent"><%= @post.content %></p>
+</section>
 
-<% if @post.likes.any? %>
-	<%= @post.likes.count %> Likes
-	
-	<p>This post was liked by:</p>
-	<% @post.likes.each do |l| %>
-		<p><%= link_to l.user.name, l.user %></p>
+<section id="comments">
+	<% if @post.comments.any? %>
+		<h2 id="commentsCount"><%= @post.comments.size %> Comments</h2>
+		<% for comment in @post.comments %>
+			<section class="comment">
+				<p class="commentContent"><%= comment.content %></p>
+				<p class="commentEdit"><%= link_to 'Edit', edit_post_comment_path(@post, comment) %></p> <p class="commentPoster">Posted by: <%= link_to comment.user.name, comment.user %></p>
+			</section>
+		<% end %>
 	<% end %>
-<% end %>
 
-<%= form_for Like.new do |f| %>
-	<p><%= f.hidden_field :post_id, :value => @post.id %>
-  <p><%= f.submit "Like this post?" %></p>  
-<% end %>
-
-<% if @post.comments.any? %>
-	<h2>Comments</h2>
-	<% for comment in @post.comments %>
-		<p><%= comment.content %> Posted by: <%= link_to comment.user.name, comment.user %> <%= link_to 'Edit', edit_post_comment_path(@post, comment) %></p>
-	<% end %>
-<% end %>
-
-<h3>New Comment</h3>
-<%= render 'comments/form' %>
-
-<%= link_to 'Edit', edit_post_path(@post) %> |
-<%= link_to 'Back', posts_path %>
+	<h3>New Comment</h3>
+	<%= render 'comments/form' %>
+</section>

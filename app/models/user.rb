@@ -11,7 +11,7 @@ class User
   # :token_authenticatable, :confirmable, :lockable and :timeoutable
   # devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable
   
-  devise :omniauthable, :rememberable, :trackable
+  devise :omniauthable, :rememberable, :trackable, :database_authenticatable
   
   field :name, :type => String
   field :email, :type => String

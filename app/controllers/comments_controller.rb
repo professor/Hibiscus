@@ -5,7 +5,7 @@ class CommentsController < ApplicationController
     @comment = @post.comments.build(params[:comment])
     @comment.user = current_user
     
-    if @comment.save!
+    if @comment.save
       redirect_to(@post, :notice => 'Thank you for your comment.')
     else
       redirect_to(@post, :flash => { :error => 'Your comment could not be saved.' })
