@@ -42,7 +42,7 @@
   box-shadow: inset 0 -1px 0 rgba(255, 224, 71, 0.5);
 }
 
-.error {
+.alert {
   font-size: 18px;
   /*font-weight: bold;*/
   color: #68020A;

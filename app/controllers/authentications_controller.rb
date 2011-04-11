@@ -1,5 +1,5 @@
 class AuthenticationsController < ApplicationController
-  before_filter :authenticate_user!, :except => [:create, :placeholder]
+  before_filter :authenticate_user!, :except => [:create]
   
   # Load user's authentications (Twitter, Facebook, ....)
   def index
@@ -23,7 +23,7 @@ class AuthenticationsController < ApplicationController
         flash[:notice] = "Welcome to CraftWiki!"
         sign_in_and_redirect(:user, user)
       else
-        flash[:error] = "Something went wrong during account creation."
+        flash[:alert] = "Something went wrong during account creation."
         redirect_to(root_url)
       end
     end

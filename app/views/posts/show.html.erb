@@ -1,12 +1,12 @@
 <section id="sidebar">
 	<section id="postLikes">
+		<%= form_for Like.new do |f| %>
+			<%= f.hidden_field :post_id, :value => @post.id %>
+		  <p><%= f.submit "Like this post?" %></p>  
+		<% end %>
+		
 		<% if @post.likes.any? %>
 			<p id="postLikesCount"><%= @post.likes.count %> Likes</p>
-		
-			<%= form_for Like.new do |f| %>
-				<%= f.hidden_field :post_id, :value => @post.id %>
-			  <p><%= f.submit "Like this post?" %></p>  
-			<% end %>
 		
 			<p>This post was liked by:</p>
 			<% @post.likes.each do |l| %>

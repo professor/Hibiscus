@@ -6,16 +6,30 @@ require 'spec_helper'
 
 describe UsersController do
 
-  before(:each) do
-    login
+  def mock_user(stubs={})
+    @mock_user ||= mock_model(User, stubs).as_null_object
   end
 
-  describe 'GET show' do
-    # FIXME: NEED TO WRITE THIS.
-    it "should set the user's info" do
-      get :show, :id => @user.id
-      assigns(:user).should == @user
-      response.should be_success
+  context "Unauthenticated user: " do
+    it "should not allow access to show a user" do
+      get :show, :id => mock_user.id
+      flash[:alert].should == "You need to sign in before continuing."
+      response.should redirect_to("/users/sign_in")
+    end
+  end
+
+  context "Authenticated user: " do
+    before(:each) do
+      login
+    end
+
+    describe 'GET show' do
+      # FIXME: NEED TO WRITE THIS.
+      it "should set the user's info" do
+        get :show, :id => @user.id
+        assigns(:user).should == @user
+        response.should be_success
+      end
     end
   end
 end

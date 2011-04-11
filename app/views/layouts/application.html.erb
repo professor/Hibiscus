@@ -16,7 +16,7 @@
 				<li>Logged in as <%= link_to current_user.name, current_user %></li>
 	    	<li><%= link_to "Logout", :logout %></li>
 	    <% else %>
-	    	<li><%= link_to "Login", 'auth/github' %></li>
+	    	<li><%= link_to "Login", '/auth/github' %></li>
 	    <% end %>
 		</nav>
 		<section id="content">

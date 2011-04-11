@@ -10,34 +10,35 @@ describe AuthenticationsController do
     @mock_authentication ||= mock_model(Authentication, stubs).as_null_object
   end
 
-  describe "GET index" do
-    before(:each) do    
-      login
-    end
+  context "Authenticated user"
+    describe "GET index" do
+      before(:each) do    
+        login
+      end
     
-    it "should assign the current user's authentications as @authentications" do
-      controller.current_user.should_receive(:authentications).and_return(mock_authentication)
-      get :index
-      assigns(:authentications).should eq(mock_authentication)
+      it "should assign the current user's authentications as @authentications" do
+        controller.current_user.should_receive(:authentications).and_return(mock_authentication)
+        get :index
+        assigns(:authentications).should eq(mock_authentication)
+      end
     end
-  end
   
-  describe "POST create" do    
-    context "Existing user" do
-      # FIXME: NEED TO WRITE THIS.
-      pending 'NEED TO WRITE THIS.'
-      # it "should set a flash message, sign the user in, and redirect to the user's page" do
-      #   Authentication.should_receive(:where).and_return(mock_authentication)
-      #   mock_authentication.should_receive(:user).and_return(@user)
-      #   flash[:error].should == "You are now signed in."
-      #   response.should redirect_to(@user)
-      # end
-    end
+    describe "POST create" do    
+      context "Existing user" do
+        # FIXME: NEED TO WRITE THIS.
+        pending 'NEED TO WRITE THIS.'
+        # it "should set a flash message, sign the user in, and redirect to the user's page" do
+        #   Authentication.should_receive(:where).and_return(mock_authentication)
+        #   mock_authentication.should_receive(:user).and_return(@user)
+        #   flash[:alert].should == "You are now signed in."
+        #   response.should redirect_to(@user)
+        # end
+      end
     
-    context "New user" do
-      # FIXME: NEED TO WRITE THIS.
-      pending 'NEED TO WRITE THIS.'
+      context "New user" do
+        # FIXME: NEED TO WRITE THIS.
+        pending 'NEED TO WRITE THIS.'
+      end
     end
-  end
 
 end
