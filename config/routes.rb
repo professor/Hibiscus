@@ -1,22 +1,22 @@
 CraftWiki::Application.routes.draw do
   devise_for :users do
     match 'users/sign_in', :to => "devise/sessions#new"
-    match 'users/:id', :to => 'users#show'    
+    match 'users/:id', :to => 'users#show'
     match 'logout', :to => 'devise/sessions#destroy', :as => :logout
   end
-  
+
   resources :users
   resources :authentications
   resources :likes
   resources :posts do
     resources :comments
   end
-  
+
   match '/auth/:provider/callback', :to => 'authentications#create'
   match '/auth/failure', :to => 'authentications#failure'
-  
+
   root :to => 'posts#index'
-  
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

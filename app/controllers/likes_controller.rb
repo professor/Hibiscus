@@ -1,11 +1,11 @@
 class LikesController < ApplicationController
   before_filter :authenticate_user!
-  
+
   def create
     @post = Post.find(params[:like][:post_id])
     @like = Like.new(params[:like])
     @like.user = current_user
-    
+
     if @like.save
       redirect_to(@post, :notice => 'You liked this post.')
     else

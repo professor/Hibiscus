@@ -11,6 +11,7 @@ group :test do
 	gem "factory_girl_rails"
 	gem "database_cleaner"
 	gem "mongoid-rspec"
+	gem "metrical"
 
 	# Next gems are not required in the application, but are needed for testing. These should be in the "global" gemset of RVM.
   # gem "autotest"

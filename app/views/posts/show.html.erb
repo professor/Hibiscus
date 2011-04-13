@@ -2,7 +2,7 @@
 	<section id="postLikes">
 		<%= form_for Like.new do |f| %>
 			<%= f.hidden_field :post_id, :value => @post.id %>
-		  <p><%= f.submit "Like this post?" %></p>  
+	  	<p><%= f.submit "Like this post?" %></p>
 		<% end %>
 		
 		<% if @post.likes.any? %>

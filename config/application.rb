@@ -44,7 +44,7 @@ module CraftWiki
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password]
     config.filter_parameters += [:password_confirmation]
-    
+
     # Configure generators to create Rspec test files as well as TestUnit test files.
     config.generators do |g|
       g.test_framework :rspec
