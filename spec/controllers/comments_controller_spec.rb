@@ -1,11 +1,11 @@
 require 'spec_helper'
 
 describe CommentsController do
-  def mock_post(stubs={})
+  def mock_post(stubs = {})
     @mock_post ||= mock_model(Post, stubs).as_null_object
   end
   
-  def mock_comment(stubs={})
+  def mock_comment(stubs = {})
     @mock_comment ||= mock_model(Comment, stubs).as_null_object
   end
   

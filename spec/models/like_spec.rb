@@ -26,4 +26,8 @@ describe Like do
       @like.should be_valid
     end
   end
+  
+  it "should not allow liking if the user has already liked the post" do
+    @like.should validate_uniqueness_of(:user_id)
+  end
 end

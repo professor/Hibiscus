@@ -6,7 +6,7 @@ require 'spec_helper'
 
 describe UsersController do
 
-  def mock_user(stubs={})
+  def mock_user(stubs = {})
     @mock_user ||= mock_model(User, stubs).as_null_object
   end
 

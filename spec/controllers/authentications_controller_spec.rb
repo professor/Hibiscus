@@ -6,11 +6,56 @@ require 'spec_helper'
 
 describe AuthenticationsController do
 
-  def mock_authentication(stubs={})
+  def mock_authentication(stubs = {})
     @mock_authentication ||= mock_model(Authentication, stubs).as_null_object
   end
+  
+  context "Unauthenticated user: " do
+    it "should not allow access to get the index page" do
+      get :index
+      flash[:alert].should == "You need to sign in before continuing."
+      response.should redirect_to("/users/sign_in")
+    end
+    
+    describe "POST create" do    
+      before(:each) do
+        @authentication = Factory(:authentication)
+        @user = @authentication.user
+        request.env['omniauth.auth'] = "Stubbed."
+        Authentication.should_receive(:where).and_return(@authentication)
+      end
+      
+      context "Existing user" do
+        before(:each) do
+          @authentication.should_receive(:first).and_return(@authentication)
+          post :create
+        end
+        
+        it "should sign the user in and redirect to the posts page." do
+          flash[:notice].should == "You are now signed in."
+          response.should redirect_to(root_path)
+        end
+      end
+    
+      context "New user" do
+        before(:each) do
+          @authentication.should_receive(:first).and_return(nil)
+          # post :create
+          # User.should_receive(:create).and_return(@user)
+        end
+        
+        it "should create a new user"
+        
+        it "should build an authentication for that user"
+        
+        it "should sign the user in and redirect to the posts page on success"
+        
+        it "should display an error flash and redirect to the posts page on failure"
+      end
+    end
+  end
 
-  context "Authenticated user"
+  context "Authenticated user: " do
     describe "GET index" do
       before(:each) do    
         login
@@ -22,23 +67,5 @@ describe AuthenticationsController do
         assigns(:authentications).should eq(mock_authentication)
       end
     end
-  
-    describe "POST create" do    
-      context "Existing user" do
-        # FIXME: NEED TO WRITE THIS.
-        pending 'NEED TO WRITE THIS.'
-        # it "should set a flash message, sign the user in, and redirect to the user's page" do
-        #   Authentication.should_receive(:where).and_return(mock_authentication)
-        #   mock_authentication.should_receive(:user).and_return(@user)
-        #   flash[:alert].should == "You are now signed in."
-        #   response.should redirect_to(@user)
-        # end
-      end
-    
-      context "New user" do
-        # FIXME: NEED TO WRITE THIS.
-        pending 'NEED TO WRITE THIS.'
-      end
-    end
-
+  end
 end
