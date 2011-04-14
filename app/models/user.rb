@@ -17,8 +17,10 @@ class User
   field :email, :type => String
 
   references_many :authentications, :dependent => :delete
-  references_many :posts
-  references_many :likes
+  references_many :posts, :dependent => :delete
+  references_many :likes, :dependent => :delete
+  embeds_one :plan
+
   # FIXME: Figure out how to make this reference work out.
   # references_many :comments, :through => :posts
 

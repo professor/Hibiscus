@@ -1,3 +1,4 @@
+/* Posts show page styling */
 #post, #comments {
 	padding: 5px 10px;
 	margin: 0;
@@ -58,4 +59,35 @@
 
 .commentPoster {
 	float: right;
+}
+
+/* Posts index page styling */
+.post {
+	margin: 20px 0;
+	width: 75%;
+	border-bottom: 1px solid black;
+}
+
+.postInfo {
+	font-size: 11px;
+}
+
+.postContent {
+	margin-top: 10px;
+}
+
+.links {
+	font-size: 11px;
+	display: inline-block;
+}
+
+.postCommentsCount {
+	font-size: 11px;
+	display: inline-block;
+	padding-bottom: 5px;
+}
+
+.recentTitle {
+	margin: 10px 0;
+	border-bottom: 1px dashed black;
 }

@@ -1,0 +1,15 @@
+#maidenSpeech {
+	padding-top: 30px;
+}
+
+#activities {
+	padding-top: 30px;
+}
+
+.activity {
+	list-style-type: none;
+}
+
+#newActivity, #newLearningPlan {
+	padding: 30px 0;
+}
