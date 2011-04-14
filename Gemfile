@@ -41,4 +41,5 @@ group :development, :test, :production do
 	gem "bson_ext"
 	gem "devise"
 	gem 'omniauth'
+        gem 'heroku'
 end
