@@ -1,4 +1,4 @@
 #Welcome to Hibiscus
      
 
-![Hibiscus Logo](/public/images/hibiscus.jpg)
+![Hibiscus Logo](https://github.com/professor/Hibiscus/raw/master/public/images/hibiscus.jpg)
