@@ -1,3 +1,4 @@
+#Welcome to Hibiscus
+     
 
-
-link:public/images/hibiscus.jpg
+![Hibiscus Logo](/public/images/hibiscus.jpg)
