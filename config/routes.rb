@@ -5,7 +5,12 @@ CraftWiki::Application.routes.draw do
     match 'logout', :to => 'devise/sessions#destroy', :as => :logout
   end
 
-  resources :users
+  resources :users do
+    resources :plans do
+      resources :activities
+    end
+  end
+  resources :katas
   resources :authentications
   resources :likes
   resources :posts do

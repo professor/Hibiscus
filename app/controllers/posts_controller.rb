@@ -5,6 +5,7 @@ class PostsController < ApplicationController
   # GET /posts.xml
   def index
     @posts = Post.all
+    @katas = Kata.all
 
     respond_to do |format|
       format.html # index.html.erb
