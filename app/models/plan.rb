@@ -1,5 +1,6 @@
 class Plan
   include Mongoid::Document
+  include Mongoid::Timestamps
 
   field :maidenSpeech, :type => String
 

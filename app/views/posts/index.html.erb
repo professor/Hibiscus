@@ -20,6 +20,11 @@
 	</section>
 <% end %>
 
+<% @katas.each do |kata| %>
+	<%= link_to kata.title, kata_path(kata) %>
+<% end %>
+
 <br />
 
 <%= link_to 'New Post', new_post_path %>
+<%= link_to 'New Kata', new_kata_path %>

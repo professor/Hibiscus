@@ -10,6 +10,7 @@ CraftWiki::Application.routes.draw do
       resources :activities
     end
   end
+  resources :katas
   resources :authentications
   resources :likes
   resources :posts do
