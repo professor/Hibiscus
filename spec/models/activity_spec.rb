@@ -12,7 +12,7 @@ describe Activity do
     end
     
     it "should be valid with a name" do
-      @activity.should be_valid
+      @activity.should be_valid_verbose
     end
   end
 end

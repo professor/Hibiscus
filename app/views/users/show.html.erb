@@ -4,7 +4,7 @@
 <% if @user.plan %>
 	<section id="maidenSpeech">
 		<h3>Maiden Speech:</h3>
-		<p><%= @user.plan.maidenSpeech %></p>
+		<p><%= @user.plan.maidenSpeech.html_safe %></p>
 	</section>
 	<% if @user.plan.activities.any? %>
 		<ul id="activities">

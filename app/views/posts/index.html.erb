@@ -9,9 +9,9 @@
 
 <% @posts.each do |post| %>
 	<section class="post">
-		<h3 class="postTitle"><%= link_to post.title, post %></h3>
+		<h3 class="postTitle"><%= link_to post.isKata ? "KATA: " + post.title : post.title, post %></h3>
 		<p class="postInfo">Posted on <%= post.created_at.to_formatted_s(:short) %> by <%= link_to post.user.name, post.user %>
-    <p class="postContent"><%= post.content %></p>
+    <p class="postContent"><%= post.content.html_safe %></p>
     <section class="links">
 			<%= link_to 'Edit', edit_post_path(post) %>
     	<%= link_to 'Destroy', post, :confirm => 'Are you sure?', :method => :delete %>
@@ -20,11 +20,6 @@
 	</section>
 <% end %>
 
-<% @katas.each do |kata| %>
-	<%= link_to kata.title, kata_path(kata) %>
-<% end %>
-
 <br />
 
 <%= link_to 'New Post', new_post_path %>
-<%= link_to 'New Kata', new_kata_path %>

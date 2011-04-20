@@ -1,0 +1,47 @@
+<%= form_for [@post, @katacomment] do |f| %>
+  <% if @katacomment.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@katacomment.errors.count, "error") %> prohibited this kata comment from being saved:</h2>
+
+      <ul>
+      <% @katacomment.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :recommendation, 'Would you recommend this activity to a peer? (and why)' %><br />
+    <%= f.text_area :recommendation, :size => "80x30" %>
+  </div>
+
+	<div class="field">
+    <%= f.label :timeSpent, 'How much time did you spend on the activity?' %><br />
+    <%= f.text_field :timeSpent %>
+  </div>
+
+  <div class="field">
+    <%= f.label :good, 'What worked well?' %><br />
+    <%= f.text_area :good, :size => "80x30" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :bad, "What didn't work well? (Suggestions for improvement)" %><br />
+    <%= f.text_area :bad, :size => "80x30" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :language, 'What programming language did you use?' %><br />
+    <%= f.text_field :language %>
+  </div>
+
+  <div class="field">
+    <%= f.label :ahhah, 'Where there any "ah-hah!" moments or unintended consequences? (In other words, would you add something to the original goal list?)' %><br />
+    <%= f.text_area :ahhah, :size => "80x30" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

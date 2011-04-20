@@ -23,7 +23,7 @@ describe Comment do
     end
     
     it "should be valid with a valid title and some valid content" do
-      @comment.should be_valid
+      @comment.should be_valid_verbose
     end
   end
 end
