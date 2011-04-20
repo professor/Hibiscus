@@ -31,13 +31,6 @@
           <ul>
             <li class="current_page_item"><%= link_to "Home", root_url, :title =>"Home" %></li>
             <li class="page_item"><%= link_to "Katas", root_url, :title =>"Katas" %></li>
-            <li class="page_item">
-            <% if current_user %>
-              Logged in as <%= link_to current_user.name, current_user %><%= link_to "Logout", :logout %>
-            <% else %>
-              <%= link_to "Login", '/auth/github' %>
-            <% end %>
-            </li>
           </ul>
         </div>
 
@@ -69,21 +62,40 @@
           <% end %>
         </section>
 
-        <nav id="user_controls">
-          <% if current_user %>
-              <li>Logged in as <%= link_to current_user.name, current_user %></li>
-              <li><%= link_to "Logout", :logout %></li>
-          <% else %>
-              <li><%= link_to "Login", '/auth/github' %></li>
-          <% end %>
-        </nav>
-
         <%= yield %>
-
-
 
       </section>
     </section>
+    <div role="complementary" class="widget-area" id="primary">
+         <ul class="xoxo">
+
+            <li class="widget-container widget_search" id="search-2"><form action="#" id="searchform" method="get" role="search">
+                <div><label for="s" class="screen-reader-text">Search for:</label>
+                <input type="text" id="s" name="s" value="">
+                <input type="submit" value="Search" id="searchsubmit">
+                </div>
+                </form></li>		<li class="widget-container widget_recent_entries" id="recent-posts-2">		<h3 class="widget-title">Recent Posts</h3>		<ul>
+                            <li><a title="Hello&nbsp;world!" href="#">Hello&nbsp;world!</a></li>
+                            </ul>
+                    </li><li class="widget-container widget_archive" id="archives-2"><h3 class="widget-title">Archives</h3>		<ul>
+                        <li><a title="April 2011" href="">April 2012</a></li>
+                    </ul>
+            </li><li class="widget-container widget_categories" id="categories-2"><h3 class="widget-title">Categories</h3>		<ul>
+                        <li class="cat-item cat-item-1"><a title="View all posts filed under TagComing" href="#">TagComing</a>
+            </li>
+                    </ul>
+            </li><li class="widget-container widget_meta" id="meta-2"><h3 class="widget-title">Meta</h3>			<ul>
+                        <% if current_user %>
+                          <li>Logged in as <%= link_to current_user.name, current_user %></li>
+                          <li><%= link_to "Logout", :logout %></li>
+                        <% else %>
+                          <li><%= link_to "Login", '/auth/github' %></li>
+                        <% end %>
+                             </ul>
+            </li>			</ul>
+     </div>
+     <!-- #complementary -->
+
   </div><!-- #main -->
 
 	<div id="footer" role="contentinfo">
