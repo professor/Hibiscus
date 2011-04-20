@@ -23,7 +23,7 @@
 
 	<p id="postUpdatedOn">Last updated on: <%= @post.updated_at.to_formatted_s(:long) %></p>
 
-	<p id="postContent"><%= @post.content %></p>
+	<p id="postContent"><%= @post.content.html_safe %></p>
 </section>
 
 <section id="comments">
