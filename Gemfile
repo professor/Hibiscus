@@ -4,6 +4,8 @@ gem "rails", "3.0.5"
 
 group :development do
 	gem "rdoc"
+	gem "ruby-debug-ide"
+	gem "ruby-debug-base19x"
 end
 
 group :test do
