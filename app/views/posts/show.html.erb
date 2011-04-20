@@ -31,7 +31,7 @@
 		<h2 id="commentsCount"><%= @post.comments.size %> Comments</h2>
 		<% for comment in @post.comments %>
 			<section class="comment">
-				<p class="commentContent"><%= comment.content %></p>
+				<p class="comment-body"><%= comment.content %></p>
 				<p class="commentEdit"><%= link_to 'Edit', edit_post_comment_path(@post, comment) %></p> <p class="commentPoster">Posted by: <%= link_to comment.user.name, comment.user %></p>
 			</section>
 		<% end %>
