@@ -33,8 +33,13 @@ describe Post do
       @post.should be_invalid
     end
     
+    it "should be invalid without isKata" do
+      @post.isKata = nil
+      @post.should be_invalid
+    end
+    
     it "should be valid with a valid title and some valid content" do
-      @post.should be_valid
+      @post.should be_valid_verbose
     end
   end
 end

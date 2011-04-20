@@ -15,10 +15,17 @@
     <%= f.label :title %><br />
     <%= f.text_field :title %>
   </div>
+
   <div class="field">
     <%= f.label :content %><br />
-    <%= f.text_area :content, :size=>"80x30" %>
+    <%= f.text_area :content, :size => "80x30" %>
   </div>
+
+  <div class="field">
+    <%= f.label :isKata, "Is this a Kata?" %>
+    <%= f.check_box :isKata %>
+  </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>

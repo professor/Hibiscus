@@ -34,7 +34,7 @@ describe Authentication do
     end
     
     it "should be valid with a provider, a uid, and a user" do
-      @authentication.should be_valid
+      @authentication.should be_valid_verbose
     end
   end
 end

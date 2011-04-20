@@ -23,7 +23,7 @@ describe Like do
     end
     
     it "should be valid with a valid post associated" do
-      @like.should be_valid
+      @like.should be_valid_verbose
     end
   end
   

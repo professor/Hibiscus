@@ -12,7 +12,7 @@ describe Plan do
     end
     
     it "should be valid with a user" do
-      @plan.should be_valid
+      @plan.should be_valid_verbose
     end
   end
 end

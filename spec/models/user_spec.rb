@@ -43,7 +43,7 @@ describe User do
     end
     
     it "should be valid with a name and a proper email" do
-      @user.should be_valid
+      @user.should be_valid_verbose
     end
   end
 end
