@@ -1,32 +1,107 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>CraftWiki</title>
+  <title>Craftsmanship</title>
   <%= stylesheet_link_tag :all %>
   <%= javascript_include_tag :defaults %>
   <%= csrf_meta_tag %>
 </head>
-<body>
-	<section id="container">
-		<nav id="site_nav">
-			<li><%= link_to "Home", root_path %></li>
-		</nav>
-		<nav id="user_controls">
-			<% if current_user %>
-				<li>Logged in as <%= link_to current_user.name, current_user %></li>
-	    	<li><%= link_to "Logout", :logout %></li>
-	    <% else %>
-	    	<li><%= link_to "Login", '/auth/github' %></li>
-	    <% end %>
-		</nav>
-		<section id="content">
-			<section id="notifications">
-				<% flash.each do |key, value| %>
-					<div class="flash <%= key %>"><%= value %></div>
-				<% end %>
-			</section>
-			<%= yield %>
-		</section>
-	</section>
+<body class="home blog">
+<div id="wrapper" class="hfeed">
+  <div id="header">
+    <div id="masthead">
+      <div id="branding" role="banner">
+        <h1 id="site-title">
+                      <span>
+                      <%= link_to "Craftmanship", root_url, :title =>"Craftsmanship", :rel=>"home" %>
+                      </span>
+        </h1>
+
+        <div id="site-description">For software excellence</div>
+        <img src="http://2010dev.wordpress.com/wp-content/themes/pub/twentyten/images/headers/forestfloor.jpg" width="940" height="198" alt=""/>
+        <!img src="/images/748x205_level_header-14.jpg" width="748" height="205" alt=""/>
+
+      </div>
+      <!-- #branding -->
+
+      <div id="access" role="navigation">
+        <div class="skip-link screen-reader-text"><a href="#content" title="Skip to content">Skip to content</a></div>
+
+        <div class="menu">
+          <ul>
+            <li class="current_page_item"><%= link_to "Home", root_url, :title =>"Home" %></li>
+            <li class="page_item"><%= link_to "Katas", root_url, :title =>"Katas" %></li>
+            <li class="page_item">
+            <% if current_user %>
+              Logged in as <%= link_to current_user.name, current_user %><%= link_to "Logout", :logout %>
+            <% else %>
+              <%= link_to "Login", '/auth/github' %>
+            <% end %>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+      <!-- #access -->
+    </div>
+    <!-- #masthead -->
+  </div>
+  <!-- #header -->
+  <div id="main">
+
+    <section id="container">
+      <section id="content" role="main">
+
+
+        <div id="nav-above" class="navigation">
+
+          <div class="nav-previous">
+            <a href="<%= "#{root_url}" %>" ><span class="meta-nav">&larr;</span> Older posts</a></div>
+          <div class="nav-next">
+		    <a href="<%= "#{root_url}" %>" >Newer posts <span class="meta-nav">&rarr;</span></a>
+          </div>
+        </div>
+        <!-- #nav-above -->
+
+        <section id="notifications">
+          <% flash.each do |key, value| %>
+              <div class="flash <%= key %>"><%= value %></div>
+          <% end %>
+        </section>
+
+        <nav id="user_controls">
+          <% if current_user %>
+              <li>Logged in as <%= link_to current_user.name, current_user %></li>
+              <li><%= link_to "Logout", :logout %></li>
+          <% else %>
+              <li><%= link_to "Login", '/auth/github' %></li>
+          <% end %>
+        </nav>
+
+        <%= yield %>
+
+
+
+      </section>
+    </section>
+  </div><!-- #main -->
+
+	<div id="footer" role="contentinfo">
+		<div id="colophon">
+			<div id="site-info">
+				<a href="http://www.cmu.edu/silicon-valley/academics/silicon-valley/ft-ms/ft-se.html" title="Craftsmanship" rel="home">
+					Developing Software Leaders at Carngie Mellon University - Silicon Valley</a>
+
+			</div><!-- #site-info -->
+
+			<div id="site-generator">
+								<a href="https://github.com/hahuang65/Hibiscus" title="Hibiscus" rel="generator">Powered by Hibiscus.</a>
+			</div><!-- #site-generator -->
+
+		</div><!-- #colophon -->
+	</div><!-- #footer -->
+
+</div>
+
 </body>
 </html>
