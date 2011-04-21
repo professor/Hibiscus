@@ -11,6 +11,7 @@ CraftWiki::Application.routes.draw do
     end
   end
 
+  resources :achievements
   resources :authentications
   resources :likes
   resources :posts do
