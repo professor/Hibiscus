@@ -1,0 +1,11 @@
+defaults: &defaults
+  activity_name: Exercise
+
+development:
+  <<: *defaults
+
+production:
+  <<: *defaults
+
+test:
+  <<: *defaults
