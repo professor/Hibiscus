@@ -8,7 +8,7 @@ class Achievement
   field :level, :type => String
   field :description, :type => String
 
-  validates :name, :presence => true
+  validates :name, :presence => true, :uniqueness => true
   validates :level, :presence => true
   validates :description, :presence => true
 
