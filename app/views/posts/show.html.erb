@@ -16,15 +16,7 @@
 	</section>
 </section>
 
-<section id="post">
-	<h1 id="postTitle"><%= @post.title %></h1>
-
-	<h3 id="postAuthor">Posted by: <%= link_to @post.user.name, @post.user %> on <%= @post.created_at.to_formatted_s(:long) %></h3> <p id="postEdit"><%= link_to 'Edit', edit_post_path(@post) %></p>
-
-	<p id="postUpdatedOn">Last updated on: <%= @post.updated_at.to_formatted_s(:long) %></p>
-
-	<p id="postContent"><%= @post.content.html_safe %></p>
-</section>
+<%= render :partial => 'posts/post', :locals => {:post => @post} %>
 
 <section id="comments">
 	<% if @post.isKata %>

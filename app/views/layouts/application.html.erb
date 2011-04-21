@@ -6,27 +6,129 @@
   <%= javascript_include_tag :all %>
   <%= csrf_meta_tag %>
 </head>
-<body>
-	<section id="container">
-		<nav id="site_nav">
-			<li><%= link_to "Home", root_path %></li>
-		</nav>
-		<nav id="user_controls">
-			<% if current_user %>
-				<li>Logged in as <%= link_to current_user.name, current_user %></li>
-	    	<li><%= link_to "Logout", :logout %></li>
-	    <% else %>
-	    	<li><%= link_to "Login", '/auth/github' %></li>
-	    <% end %>
-		</nav>
-		<section id="content">
-			<section id="notifications">
-				<% flash.each do |key, value| %>
-					<div class="flash <%= key %>"><%= value %></div>
-				<% end %>
-			</section>
-			<%= yield %>
-		</section>
-	</section>
+<body class="home blog">
+<div id="wrapper" class="hfeed">
+  <div id="header">
+    <div id="masthead">
+      <div id="branding" role="banner">
+        <h1 id="site-title">
+					<span><%= link_to "Craftmanship", root_url, :title =>"Craftsmanship", :rel=>"home" %></span>
+        </h1>
+
+        <div id="site-description">For software excellence</div>
+        <img src="http://2010dev.wordpress.com/wp-content/themes/pub/twentyten/images/headers/forestfloor.jpg" width="940" height="198" alt=""/>
+
+      </div>
+      <!-- #branding -->
+
+      <div id="access" role="navigation">
+        <div class="skip-link screen-reader-text"><a href="#content" title="Skip to content">Skip to content</a></div>
+
+        <div class="menu">
+          <ul>
+            <li class="current_page_item"><%= link_to "Home", root_url, :title =>"Home" %></li>
+            <li class="page_item"><%= link_to "Katas", root_url, :title =>"Katas" %></li>
+          </ul>
+        </div>
+
+      </div>
+      <!-- #access -->
+    </div>
+    <!-- #masthead -->
+  </div>
+  <!-- #header -->
+  <div id="main">
+    <section id="container">
+      <section id="content" role="main">
+
+        <div id="nav-above" class="navigation">
+
+          <div class="nav-previous">
+            <a href="<%= "#{root_url}" %>" ><span class="meta-nav">&larr;</span>Older posts</a>
+					</div>
+          <div class="nav-next">
+		    		<a href="<%= "#{root_url}" %>" >Newer posts<span class="meta-nav">&rarr;</span></a>
+          </div>
+        </div>
+        <!-- #nav-above -->
+
+        <section id="notifications">
+          <% flash.each do |key, value| %>
+              <div class="flash <%= key %>"><%= value %></div>
+          <% end %>
+        </section>
+
+        <%= yield %>
+
+      </section>
+    </section>
+
+    <div role="complementary" class="widget-area" id="primary">
+         <ul class="xoxo">
+            <li class="widget-container widget_search" id="search-2">
+							<form action="#" id="searchform" method="get" role="search">
+                <div>
+									<label for="s" class="screen-reader-text">Search for:</label>
+                	<input type="text" id="s" name="s" value="">
+                	<input type="submit" value="Search" id="searchsubmit">
+                </div>
+							</form>
+						</li>
+						
+						<li class="widget-container widget_recent_entries" id="recent-posts-2">
+							<h3 class="widget-title">Recent Posts</h3>
+							<ul>
+								<% recent_posts.each do |post| %>
+									<li><%= link_to post.title, post %></li>
+								<% end %>
+							</ul>
+						</li>
+						
+						<li class="widget-container widget_archive" id="archives-2">
+							<h3 class="widget-title">Archives</h3>
+							<ul>
+								<li><a title="April 2011" href="">April 2012</a></li>
+              </ul>
+            </li>
+						
+						<li class="widget-container widget_categories" id="categories-2">
+							<h3 class="widget-title">Categories</h3>
+							<ul>
+								<li class="cat-item cat-item-1"><a title="View all posts filed under TagComing" href="#">TagComing</a></li>
+							</ul>
+            </li>
+						
+						<li class="widget-container widget_meta" id="meta-2">
+							<h3 class="widget-title">Meta</h3>
+							<ul>
+	              <% if current_user %>
+	                <li>Logged in as <%= link_to current_user.name, current_user %></li>
+	                <li><%= link_to "Logout", :logout %></li>
+	              <% else %>
+	                <li><%= link_to "Login", '/auth/github' %></li>
+	              <% end %>
+							</ul>
+            </li>
+					</ul>
+     </div>
+     <!-- #complementary -->
+  </div><!-- #main -->
+
+	<div id="footer" role="contentinfo">
+		<div id="colophon">
+			<div id="site-info">
+				<a href="http://www.cmu.edu/silicon-valley/academics/silicon-valley/ft-ms/ft-se.html" title="Craftsmanship" rel="home">Developing Software Leaders at Carnegie Mellon University - Silicon Valley</a>
+
+			</div><!-- #site-info -->
+
+			<div id="site-generator">
+				<a href="https://github.com/hahuang65/Hibiscus" title="Hibiscus" rel="generator">Powered by Hibiscus.</a>
+			</div><!-- #site-generator -->
+
+		</div><!-- #colophon -->
+	</div><!-- #footer -->
+
+</div>
+
 </body>
 </html>
