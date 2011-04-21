@@ -12,10 +12,10 @@
     <div id="masthead">
       <div id="branding" role="banner">
         <h1 id="site-title">
-					<span><%= link_to "Craftmanship", root_url, :title =>"Craftsmanship", :rel=>"home" %></span>
+					<span><%= link_to GlobalConfig.site_title, root_url, :title => GlobalConfig.site_title, :rel=>"home" %></span>
         </h1>
 
-        <div id="site-description">For software excellence</div>
+        <div id="site-description"><%= GlobalConfig.site_tag %></div>
         <img src="http://2010dev.wordpress.com/wp-content/themes/pub/twentyten/images/headers/forestfloor.jpg" width="940" height="198" alt=""/>
 
       </div>
@@ -27,7 +27,7 @@
         <div class="menu">
           <ul>
             <li class="current_page_item"><%= link_to "Home", root_url, :title =>"Home" %></li>
-            <li class="page_item"><%= link_to "Katas", root_url, :title =>"Katas" %></li>
+            <li class="page_item"><%= link_to "#{GlobalConfig.activity_name.pluralize}", root_url, :title =>"Katas" %></li>
           </ul>
         </div>
 
@@ -38,14 +38,6 @@
   </div>
   <!-- #header -->
   <div id="main">
-	
-		<a href="#" class="badge" title="Bronze Badge"><span class="bronze"></span> mortarboard</a>
-		<a href="#" class="badge" title="Silver Badge"><span class="silver"></span> enlightened</a>
-		<a href="#" class="badge" title="Gold Badge"><span class="gold"></span> legendary</a>
-
-		<%= GlobalConfig.activity_name %>   
-		<%= pluralize 2, GlobalConfig.activity_name %>
-	
     <section id="container">
       <section id="content" role="main">
 

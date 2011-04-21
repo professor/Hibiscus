@@ -1,10 +1,19 @@
 class GlobalConfig
 
-  DEFAULT_CONFIG = {'activity_name' => "Kata"}
+  DEFAULT_CONFIG = {'site_title' => "Craftsmanship", 
+  'site_tag' => "For software excellence",
+  'activity_name' => "Kata"}
 
   class << self
+    def site_title
+      config_hash['site_title']
+    end  
+    
+    def site_tag
+      config_hash['site_tag']
+    end    
+
     def activity_name
-      tmp = 1
       config_hash['activity_name']
     end
 
