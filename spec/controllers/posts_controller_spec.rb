@@ -69,6 +69,8 @@ describe PostsController do
     describe "GET show" do
       it "assigns the requested post as @post" do
         Post.stub(:find).with("37") { mock_post }
+        mock_post.should_receive(:listLikes)
+        mock_post.should_receive(:listDislikes)
         get :show, :id => "37"
         assigns(:post).should be(mock_post)
       end

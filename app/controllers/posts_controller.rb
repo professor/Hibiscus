@@ -18,6 +18,8 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     @comment = Comment.new
     @katacomment = Katacomment.new
+    @likes = @post.listLikes
+    @dislikes = @post.listDislikes
 
     respond_to do |format|
       format.html # show.html.erb

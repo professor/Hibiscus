@@ -4,13 +4,27 @@
 			<%= f.hidden_field :post_id, :value => @post.id %>
 	  	<p><%= f.submit "Like this post?" %></p>
 		<% end %>
+		<%= form_for Like.new do |f| %>
+			<%= f.hidden_field :post_id, :value => @post.id %>
+			<%= f.hidden_field :isDislike, :value => true %>
+	  	<p><%= f.submit "Dislike this post?" %></p>
+		<% end %>
 		
-		<% if @post.likes.any? %>
-			<p id="postLikesCount"><%= @post.likes.count %> Likes</p>
+		<% if @likes.any? %>
+			<p id="postLikesCount"><%= @likes.count %> Likes</p>
 		
 			<p>This post was liked by:</p>
-			<% @post.likes.each do |l| %>
+			<% @likes.each do |l| %>
 				<p><%= link_to l.user.name, l.user %></p>
+			<% end %>
+		<% end %>
+		
+		<% if @dislikes.any? %>
+			<p id="postLikesCount"><%= @dislikes.count %> Dislikes</p>
+		
+			<p>This post was disliked by:</p>
+			<% @dislikes.each do |d| %>
+				<p><%= link_to d.user.name, d.user %></p>
 			<% end %>
 		<% end %>
 	</section>
