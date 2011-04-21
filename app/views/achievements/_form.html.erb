@@ -1,0 +1,38 @@
+<%= form_for(@achievement) do |f| %>
+  <% if @achievement.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@achievement.errors.count, "error") %> prohibited this achievement from being saved:</h2>
+
+      <ul>
+      <% @achievement.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :description %><br />
+    <%= f.text_area :description, :size => "80x30" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :level %>
+    <%= f.select :level, ["bronze", "silver", "gold"] %>
+  </div>
+    <div class="buttonset">
+        <input type="radio" name="color" id="bronze" checked="checked" value="Bronze" /><label for="bronze">Bronze</label>
+        <input type="radio" name="color" id="silver" value="Silver" /><label for="silver">Silver</label>
+        <input type="radio" name="color" id="gold" value="Gold" /><label for="gold">Gold</label>
+    </div>    
+
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

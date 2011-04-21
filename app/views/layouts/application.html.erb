@@ -7,6 +7,15 @@
   <%= csrf_meta_tag %>
 </head>
 <body>
+
+
+ <a href="#" class="badge" title="Bronze Badge"><span class="bronze"></span> mortarboard</a>
+    <a href="#" class="badge" title="Silver Badge"><span class="silver"></span> enlightened</a>
+    <a href="#" class="badge" title="Gold Badge"><span class="gold"></span> legendary</a>
+
+<%= GlobalConfig.activity_name %>   
+<%= pluralize 2, GlobalConfig.activity_name %>
+
 	<section id="container">
 		<nav id="site_nav">
 			<li><%= link_to "Home", root_path %></li>

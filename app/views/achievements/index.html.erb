@@ -1,0 +1,10 @@
+<table>
+<% @achievements.each do |achievement| %>
+    <tr>
+      <td><%= render achievement %></td><td><%= achievement.description.html_safe %></td>
+      <td><%= link_to "Edit", edit_achievement_path(achievement) %>
+</td>
+    </tr>
+<% end %>
+</table>
+<%= link_to "New achievement", new_achievement_path %>
