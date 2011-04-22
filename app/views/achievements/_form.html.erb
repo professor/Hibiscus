@@ -17,19 +17,14 @@
   </div>
 
   <div class="field">
-    <%= f.label :description %><br />
-    <%= f.text_area :description, :size => "80x30" %>
-  </div>
-
-  <div class="field">
     <%= f.label :level %>
     <%= f.select :level, ["bronze", "silver", "gold"] %>
   </div>
-    <div class="buttonset">
-        <input type="radio" name="color" id="bronze" checked="checked" value="Bronze" /><label for="bronze">Bronze</label>
-        <input type="radio" name="color" id="silver" value="Silver" /><label for="silver">Silver</label>
-        <input type="radio" name="color" id="gold" value="Gold" /><label for="gold">Gold</label>
-    </div>    
+
+  <div class="field">
+    <%= f.label :description %><br />
+    <%= f.text_area :description, :size => "80x30" %>
+  </div>
 
 
   <div class="actions">

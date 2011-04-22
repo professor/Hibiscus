@@ -74,6 +74,38 @@
                 </div>
 							</form>
 						</li>
+
+						<% if @post %>
+							<li class="widget-container widget_likes" id="postLikes">
+								<%= form_for Like.new do |f| %>
+									<%= f.hidden_field :post_id, :value => @post.id %>
+							  	<p><%= f.submit "Like this post?" %></p>
+								<% end %>
+								<%= form_for Like.new do |f| %>
+									<%= f.hidden_field :post_id, :value => @post.id %>
+									<%= f.hidden_field :isDislike, :value => true %>
+							  	<p><%= f.submit "Dislike this post?" %></p>
+								<% end %>
+
+								<% if @post.listLikes.any? %>
+									<p id="postLikesCount"><%= @post.listLikes.count %> Likes</p>
+
+									<p>This post was liked by:</p>
+									<% @post.listLikes.each do |l| %>
+										<p><%= link_to l.user.name, l.user %></p>
+									<% end %>
+								<% end %>
+
+								<% if @post.listDislikes.any? %>
+									<p id="postLikesCount"><%= @post.listDislikes.count %> Dislikes</p>
+
+									<p>This post was disliked by:</p>
+									<% @post.listDislikes.each do |d| %>
+										<p><%= link_to d.user.name, d.user %></p>
+									<% end %>
+								<% end %>
+							</li>
+						<% end %>
 						
 						<li class="widget-container widget_recent_entries" id="recent-posts-2">
 							<h3 class="widget-title">Recent Posts</h3>
@@ -117,7 +149,7 @@
 	<div id="footer" role="contentinfo">
 		<div id="colophon">
 			<div id="site-info">
-				<a href="http://www.cmu.edu/silicon-valley/academics/silicon-valley/ft-ms/ft-se.html" title="Craftsmanship" rel="home">Developing Software Leaders at Carnegie Mellon University - Silicon Valley</a>
+				<a href="http://www.cmu.edu/silicon-valley/academics/silicon-valley/ft-ms/ft-se.html" title="Craftsmanship" rel="home">Carnegie Mellon University - Silicon Valley</a>
 
 			</div><!-- #site-info -->
 
