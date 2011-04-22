@@ -87,20 +87,20 @@
 							  	<p><%= f.submit "Dislike this post?" %></p>
 								<% end %>
 
-								<% if @likes.any? %>
-									<p id="postLikesCount"><%= @likes.count %> Likes</p>
+								<% if @post.listLikes.any? %>
+									<p id="postLikesCount"><%= @post.listLikes.count %> Likes</p>
 
 									<p>This post was liked by:</p>
-									<% @likes.each do |l| %>
+									<% @post.listLikes.each do |l| %>
 										<p><%= link_to l.user.name, l.user %></p>
 									<% end %>
 								<% end %>
 
-								<% if @dislikes.any? %>
-									<p id="postLikesCount"><%= @dislikes.count %> Dislikes</p>
+								<% if @post.listDislikes.any? %>
+									<p id="postLikesCount"><%= @post.listDislikes.count %> Dislikes</p>
 
 									<p>This post was disliked by:</p>
-									<% @dislikes.each do |d| %>
+									<% @post.listDislikes.each do |d| %>
 										<p><%= link_to d.user.name, d.user %></p>
 									<% end %>
 								<% end %>
