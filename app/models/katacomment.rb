@@ -1,6 +1,7 @@
 class Katacomment
   include Mongoid::Document
   include Mongoid::Timestamps
+  include Mongoid::Versioning
   
   embedded_in :post, :opposite => :katacomments
   referenced_in :user

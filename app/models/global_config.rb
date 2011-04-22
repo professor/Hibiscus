@@ -29,6 +29,4 @@ class GlobalConfig
       end
     end
   end
-
-
 end

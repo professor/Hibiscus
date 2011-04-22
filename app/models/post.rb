@@ -1,6 +1,7 @@
 class Post
   include Mongoid::Document
   include Mongoid::Timestamps
+  include Mongoid::Versioning
   
   field :title, :type => String
   field :content, :type => String
