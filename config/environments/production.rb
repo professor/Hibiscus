@@ -47,3 +47,8 @@ CraftWiki::Application.configure do
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
 end
+
+CraftWiki::Application.config.middleware.use ExceptionNotifier,
+  :email_prefix => "[Error-Hibiscus] ",
+  :sender_address => %{"Exception Notifier" <exception.notifier@default.com>},
+  :exception_recipients => %w{todd.sedano@sv.cmu.edu, howard.huang@sv.cmu.edu}
