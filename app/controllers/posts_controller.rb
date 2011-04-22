@@ -1,3 +1,5 @@
+require 'indextank'
+
 class PostsController < ApplicationController
   before_filter :authenticate_user!,  :except => [:index, :show]
 
@@ -49,6 +51,12 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       if @post.save
+
+        api = IndexTank::Client.new(ENV['INDEXTANK_API_URL'] || '<API_URL>')
+        index = api.indexes 'idx'
+        index.document(@post.title).add({ :title => @post.title, :timestamp => @post.created_at, :content => @post.content})
+
+        
         format.html { redirect_to(@post, :notice => 'Post was successfully created.') }
         format.xml  { render :xml => @post, :status => :created, :location => @post }
       else
