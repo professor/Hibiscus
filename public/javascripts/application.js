@@ -2,5 +2,7 @@
 // This file is automatically included by javascript_include_tag :defaults
 
 $(document).ready(function() {
-  $('textarea').wysiwyg();
+  $('textarea').wysiwyg({
+		initialContent: ""
+		});
 });

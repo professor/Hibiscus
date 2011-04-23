@@ -1,7 +1,7 @@
 <table>
 <% @achievements.each do |achievement| %>
     <tr>
-      <td><%= render achievement %></td><td><%= achievement.description.html_safe %></td>
+      <td width=175><%= render achievement %></td><td><%= achievement.description.html_safe %></td>
       <td><%= link_to "Edit", edit_achievement_path(achievement) %>
 </td>
     </tr>
