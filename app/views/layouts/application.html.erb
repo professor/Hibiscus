@@ -134,7 +134,7 @@
 							<h3 class="widget-title">Meta</h3>
 							<ul>
 	              <% if current_user %>
-	                <li>Logged in as <%= link_to current_user.name, current_user %></li>
+	                <li>Logged in as <%= link_to current_user.name.blank? ? current_user.username : current_user.name, current_user %></li>
 	                <li><%= link_to "Logout", :logout %></li>
 	              <% else %>
 	                <li><%= link_to "Login", '/auth/github' %></li>

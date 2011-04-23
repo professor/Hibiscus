@@ -15,6 +15,9 @@ class User
 
   field :name, :type => String
   field :email, :type => String
+  field :username, :type => String
+  
+  key :username
 
   references_many :authentications, :dependent => :delete
   references_many :posts, :dependent => :delete
