@@ -23,7 +23,7 @@ group :test do
 end
 
 group :production do
-	# Production gems here.
+  gem 'exception_notification', :require => 'exception_notifier'
 end
 
 group :development, :test do
