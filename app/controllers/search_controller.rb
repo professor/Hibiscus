@@ -14,6 +14,6 @@ class SearchController < ApplicationController
   end
 
   def index
-    @docs = self.search(params[:query]) if params[:query].present?
+    @docs = SearchController.search(params[:query]) if params[:query].present?
   end
 end
