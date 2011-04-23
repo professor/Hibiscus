@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Hibiscus</title>
+<head>                
+ <title><%= (title = yield :title) ? title : GlobalConfig.site_title%></title>                                          	
   <%= stylesheet_link_tag :all %>
   <%= javascript_include_tag :all %>
   <%= csrf_meta_tag %>
@@ -115,13 +115,13 @@
 								<% end %>
 							</ul>
 						</li>
-						
+						<!--
 						<li class="widget-container widget_archive" id="archives-2">
 							<h3 class="widget-title">Archives</h3>
 							<ul>
 								<li><a title="April 2011" href="">April 2012</a></li>
               </ul>
-            </li>
+            </li>-->
 						
 						<li class="widget-container widget_categories" id="categories-2">
 							<h3 class="widget-title">Categories</h3>
