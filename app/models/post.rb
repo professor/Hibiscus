@@ -13,6 +13,7 @@ class Post
   embeds_many :katacomments
   references_many :likes, :dependent => :destroy
   referenced_in :user
+  referenced_in :tag
 
   validates :title, :presence => true
   validates :content, :presence => true

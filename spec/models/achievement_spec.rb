@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Achievement do
   
-   it 'can be created' do
+  it 'can be created' do
     lambda {
       Factory(:achievement)
     }.should change(Achievement, :count).by(1)

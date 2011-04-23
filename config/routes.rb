@@ -14,6 +14,7 @@ CraftWiki::Application.routes.draw do
   resources :achievements
   resources :authentications
   resources :likes
+  resources :tags
   resources :posts do
     resources :comments
     resources :katacomments
