@@ -44,4 +44,8 @@ group :development, :test, :production do
 	gem "devise"
 	gem 'omniauth'
         gem 'heroku'
+  gem "indextank"
+#  gem "faraday_stack" #it appears that indextank needs this?
+#  gem 'json_pure', '1.4.6', :require => 'json'
+
 end
