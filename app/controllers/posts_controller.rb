@@ -57,7 +57,6 @@ class PostsController < ApplicationController
         api = IndexTank::Client.new(ENV['INDEXTANK_API_URL'] || '<API_URL>')
         index = api.indexes 'idx'
         index.document(@post.title).add({ :title => @post.title, :timestamp => @post.created_at.to_i, :content => @post.content})
-
         
         format.html { redirect_to(@post, :notice => 'Post was successfully created.') }
         format.xml  { render :xml => @post, :status => :created, :location => @post }
