@@ -43,7 +43,7 @@ class Post
     a = ENV['INDEXTANK_API_URL']
     api = IndexTank::Client.new(ENV['INDEXTANK_API_URL'] || '<API_URL>')
     index = api.indexes 'idx'
-    index.document(url).add({ :title => self.title, :timestamp => self.created_at.to_i, :text => self.title + " " + self.content, :url => url, :id => self.id})
+    index.document(url).add({ :title => self.title, :timestamp => self.created_at.to_i, :text => self.title.gsub(/<\/?[^>]*>/, "") + " " + self.content.gsub(/<\/?[^>]*>/, ""), :url => url, :id => self.id})
   end
 
 end

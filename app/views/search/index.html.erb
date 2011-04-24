@@ -18,7 +18,7 @@
 
       <li>
         <%= link_to @title, doc['docid'] %><br/>
-        <%= doc['snippet_text'].html_safe.gsub("&lt;","<").gsub("&gt;",">") %>
+        <%= doc['snippet_text'].html_safe %>
 
 <!--
 Title:  <%= simple_format doc['title'] %>
