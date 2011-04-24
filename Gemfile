@@ -43,9 +43,9 @@ group :development, :test, :production do
 	gem "bson_ext"
 	gem "devise", "1.1.8"
 	gem 'omniauth'
-        gem 'heroku'
+  gem 'heroku'
   gem "indextank"
-#  gem "faraday_stack" #it appears that indextank needs this?
+	gem "faraday-stack" #it appears that indextank needs this?
 #  gem 'json_pure', '1.4.6', :require => 'json'
 
 end
