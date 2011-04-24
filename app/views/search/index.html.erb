@@ -17,13 +17,16 @@
 %>
 
       <li>
-        <%= link_to @title, doc['docid'] %>
-        <%= simple_format doc['snippet_text'] %>
+        <%= link_to @title, doc['docid'] %><br/>
+        <%= doc['snippet_text'].html_safe.gsub("&lt;","<").gsub("&gt;",">") %>
 
 <!--
 Title:  <%= simple_format doc['title'] %>
 Text:   <%= simple_format doc['text'] %>
 Url:  <%= simple_format doc['url'] %>
+Snippet 1:        <%= doc['snippet_text'] %>
+Snippet 2:        <%= doc['snippet_text'].html_safe %>
+
 -->
       </li>
     <% end %>
