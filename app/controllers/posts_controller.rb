@@ -1,3 +1,4 @@
+
 class PostsController < ApplicationController
   before_filter :authenticate_user!,  :except => [:index, :show]
 
@@ -51,6 +52,7 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       if @post.save
+        @post.update_search_index(post_path @post)
         format.html { redirect_to(@post, :notice => 'Post was successfully created.') }
         format.xml  { render :xml => @post, :status => :created, :location => @post }
       else
@@ -67,6 +69,7 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       if @post.update_attributes(params[:post])
+        @post.update_search_index(post_path @post)
         format.html { redirect_to(@post, :notice => 'Post was successfully updated.') }
         format.xml  { head :ok }
       else

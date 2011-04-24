@@ -41,7 +41,11 @@ end
 group :development, :test, :production do
 	gem "mongoid", ">= 2.0.0.rc.7"
 	gem "bson_ext"
-	gem "devise"
+	gem "devise", "1.1.8"
 	gem 'omniauth'
-        gem 'heroku'
+  gem 'heroku'
+  gem "indextank"
+	gem "faraday-stack" #it appears that indextank needs this?
+#  gem 'json_pure', '1.4.6', :require => 'json'
+
 end
