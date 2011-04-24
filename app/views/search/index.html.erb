@@ -3,14 +3,28 @@
 
   <ul id="results">
     <% @docs['results'].each do |doc| %>
-      <li>
-         <%# link_to "http://plixi.com/p/#{doc['plixi_id']}" do %>
-          <%# image_tag doc['thumbnail_url'] %>
-          <%# doc['screen_name'] %> -
-          <%# time_ago_in_words Time.at(doc['timestamp'].to_i) %> ago
 
-          <%= simple_format doc['text'] %>
-        <%# end %>
+<%
+      (junk, type, id) = doc['docid'].split("/")
+      @title = "Show"
+      case type
+        when 'posts'
+          post = Post.find(id)
+          @title = post.title
+        else
+          @title = "Show"
+        end
+%>
+
+      <li>
+        <%= link_to @title, doc['docid'] %>
+        <%= simple_format doc['snippet_text'] %>
+
+<!--
+Title:  <%= simple_format doc['title'] %>
+Text:   <%= simple_format doc['text'] %>
+Url:  <%= simple_format doc['url'] %>
+-->
       </li>
     <% end %>
   </ul>
