@@ -41,7 +41,7 @@ end
 group :development, :test, :production do
 	gem "mongoid", ">= 2.0.0.rc.7"
 	gem "bson_ext"
-	gem "devise"
+	gem "devise", "1.1.8"
 	gem 'omniauth'
         gem 'heroku'
   gem "indextank"
