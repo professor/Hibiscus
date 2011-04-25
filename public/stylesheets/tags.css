@@ -1,0 +1,16 @@
+.tag {
+	display: inline-block;
+	border: 1px solid #646464;
+	background: #A4A4A4;
+	margin: 0;
+	padding: 0 10px;
+	font-size: 11px;
+	font-family: Helvetica;
+	font-weight: bold;
+	color: white;
+}
+
+.tag a:link, a:active, a:visited {
+	text-decoration: none;
+	color: white;
+}
