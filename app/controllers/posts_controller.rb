@@ -49,6 +49,14 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(params[:post])
     @post.user = current_user
+    
+    unless params[:post][:tempTags].blank?
+      tempTags = params[:post][:tempTags].split(",")
+    
+      tempTags.each do |tag|
+        @post.tags << Tag.find_or_create_by(:name => tag.strip.downcase)
+      end
+    end
 
     respond_to do |format|
       if @post.save

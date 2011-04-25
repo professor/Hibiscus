@@ -5,6 +5,8 @@ class Post
   include Mongoid::Timestamps
   include Mongoid::Versioning
   
+  attr_accessor :tempTags
+  
   field :title, :type => String
   field :content, :type => String
   field :isKata, :type => Boolean, :default => false
@@ -14,8 +16,8 @@ class Post
   embeds_many :comments
   embeds_many :katacomments
   references_many :likes, :dependent => :destroy
+  has_and_belongs_to_many :tags
   referenced_in :user
-  referenced_in :tag
 
   validates :title, :presence => true
   validates :content, :presence => true

@@ -5,5 +5,9 @@ class ApplicationController < ActionController::Base
     @recent_posts ||= Post.desc(:created_at).limit(5)
   end
   
-  helper_method :recent_posts
+  def all_tags
+    @all_tags ||= Tag.all
+  end
+    
+  helper_method :recent_posts, :all_tags
 end

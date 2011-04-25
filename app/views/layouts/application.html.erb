@@ -124,9 +124,11 @@
             </li>-->
 						
 						<li class="widget-container widget_categories" id="categories-2">
-							<h3 class="widget-title">Categories</h3>
+							<h3 class="widget-title">Tags</h3>
 							<ul>
-								<li class="cat-item cat-item-1"><a title="View all posts filed under TagComing" href="#">TagComing</a></li>
+								<% all_tags.each do |tag| %>
+									<li><%= link_to tag.name, tag %></li>
+								<% end %>
 							</ul>
             </li>
 						
