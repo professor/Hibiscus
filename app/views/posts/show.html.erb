@@ -1,41 +1,16 @@
 <%= render :partial => 'posts/post', :locals => {:post => @post} %>
 
 <section id="comments">
-	<% if @post.isKata %>
-		<% if @post.katacomments.any? %>
-			<h2 id="commentsCount"><%= @post.katacomments.size %> people have gave feedback on this Kata.</h2>
-			<% for katacomment in @post.katacomments %>
-				<section class="comment">
-					<p class="commentSubtitle">Would you recommend this activity to a peer? (and why)</p>
-					<p class="commentContent"><%= katacomment.recommendation.html_safe %></p>
-					<p class="commentSubtitle">How much time did you spend on the activity?</p>
-					<p class="commentContent"><%= katacomment.timeSpent %></p>
-					<p class="commentSubtitle">What worked well?</p>
-					<p class="commentContent"><%= katacomment.good.html_safe %></p>
-					<p class="commentSubtitle">What didn't work well? (Suggestions for improvement)</p>
-					<p class="commentContent"><%= katacomment.bad.html_safe %></p>
-					<p class="commentSubtitle">What programming language did you use?</p>
-					<p class="commentContent"><%= katacomment.language %></p>
-					<p class="commentSubtitle">Where there any "ah-hah!" moments or unintended consequences? (In other words, would you add something to the original goal list?)</p>
-					<p class="commentContent"><%= katacomment.ahhah.html_safe %></p>
-					<p class="commentEdit"><%= link_to 'Edit', edit_post_katacomment_path(@post, katacomment) %></p> <p class="commentPoster">Posted by: <%= link_to katacomment.user.name, katacomment.user %></p>
-				</section>
-			<% end %>
+	<% if @post.comments.any? %>
+		<h2 id="commentsCount"><%= @post.comments.size %> Comments</h2>
+		<% for comment in @post.comments %>
+			<section class="comment">
+				<p class="commentContent"><%= comment.content.html_safe %></p>
+				<p class="commentEdit"><%= link_to 'Edit', edit_post_comment_path(@post, comment) %></p> <p class="commentPoster">Posted by: <%= link_to comment.user.name, comment.user %></p>
+			</section>
 		<% end %>
-		<h3>New Kata Feedback</h3>
-		<%= render 'katacomments/form' %>
-	<% else %>
-		<% if @post.comments.any? %>
-			<h2 id="commentsCount"><%= @post.comments.size %> Comments</h2>
-			<% for comment in @post.comments %>
-				<section class="comment">
-					<p class="commentContent"><%= comment.content.html_safe %></p>
-					<p class="commentEdit"><%= link_to 'Edit', edit_post_comment_path(@post, comment) %></p> <p class="commentPoster">Posted by: <%= link_to comment.user.name, comment.user %></p>
-				</section>
-			<% end %>
-		<% end %>
-        <br/>
-		<h3>New Comment</h3>
-		<%= render 'comments/form' %>
 	<% end %>
+  <br/>
+	<h3>New Comment</h3>
+	<%= render 'comments/form' %>
 </section>

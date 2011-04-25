@@ -18,7 +18,6 @@ CraftWiki::Application.routes.draw do
   resources :tags
   resources :posts do
     resources :comments
-    resources :katacomments
   end
 
   match '/auth/:provider/callback', :to => 'authentications#create'

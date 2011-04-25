@@ -18,7 +18,6 @@ class PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @comment = Comment.new
-    @katacomment = Katacomment.new
     @likes = @post.listLikes
     @dislikes = @post.listDislikes
 

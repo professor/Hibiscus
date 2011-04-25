@@ -13,7 +13,17 @@
 
   <div class="field">
     <%= f.label :content, 'Comment' %><br />
-    <%= f.text_area :content, :size => "80x10" %>
+    <% if @post.isKata? %>
+			<%= f.text_area :content, :size => "80x10", :value => "<strong>1. Would you recommend this activity to a peer? (and why)</strong><br /><br />
+																															<strong>2. How many stars would you give it?</strong><br /><br />
+																															<strong>3. How much time did you spend on the activity?</strong><br /><br />
+																															<strong>4. What worked well?</strong><br /><br />
+																															<strong>5. What didn't work well?</strong><br /><br />
+																															<strong>6. What programming language did you use?</strong><br /><br />
+																															<strong>7. Where there any 'ah-hah!' moments or unintended consequences?</strong><br /><br />" %>
+		<% else %>
+			<%= f.text_area :content, :size => "80x10" %>
+		<% end %>
   </div>
   <div class="actions">
     <%= f.submit %>
