@@ -8,6 +8,10 @@
 	font-family: Helvetica;
 	font-weight: bold;
 	color: white;
+
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
 }
 
 .tag a:link, a:active, a:visited {
