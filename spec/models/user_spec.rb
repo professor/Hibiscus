@@ -17,21 +17,7 @@ describe User do
       @user.should be_invalid
     end
     
-    it "should be invalid without a proper email" do
-      @user.email = "ckent"
-      @user.should be_invalid
-      
-      @user.email = "ckent@"
-      @user.should be_invalid
-      
-      @user.email = "ckent@wiki"
-      @user.should be_invalid
-      
-      @user.email = "ckent@wiki.c"
-      @user.should be_invalid
-    end
-    
-    it "should be valid with a username and a proper email" do
+    it "should be valid with a username" do
       @user.should be_valid_verbose
     end
   end
