@@ -69,9 +69,11 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     @post.tempTags = params[:post][:tempTags]
     @post.setTags
+    @post.title = params[:post][:title]
+    @post.content = params[:post][:content]
 
     respond_to do |format|
-      if @post.update_attributes(params[:post])
+      if @post.save
         @post.update_search_index(post_path @post)
         format.html { redirect_to(@post, :notice => 'Post was successfully updated.') }
         format.xml  { head :ok }
