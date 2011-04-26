@@ -28,5 +28,5 @@ class User
   # references_many :comments, :through => :posts
 
   validates :username, :presence => true
-  validates :email, :email => true
+  # validates :email, :email => true
 end

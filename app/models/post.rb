@@ -71,15 +71,12 @@ class Post
   def setTags
     self.tags.nullify
     
-    self.tags = []
-    self.tag_ids = []
-    
     unless self.tempTags.blank?
       tempTags = self.tempTags.split(",")
     
       tempTags.each do |tag|
         self.tags << Tag.find_or_create_by(:name => tag.strip.downcase)
-        puts "TAGS: " + self.tags.to_s
+        # puts "TAGS: " + self.tags.to_s
       end
     end
   end

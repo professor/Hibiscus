@@ -18,14 +18,14 @@ class AuthenticationsController < ApplicationController
       sign_in_and_redirect(:user, authentication.user)
     else
       # User is new, create an authentication and a user.
-      user = User.create(:email => omniauth['user_info']['email'], :name => omniauth['user_info']['name'], :username => omniauth['user_info']['nickname'])
+      user = User.create(:username => omniauth['user_info']['nickname'], :email => omniauth['user_info']['email'], :name => omniauth['user_info']['name'])
       auth = user.authentications.build(:provider => omniauth['provider'], :uid => omniauth['uid'])
     
       if auth.save
         flash[:notice] = "Welcome to CraftWiki!"
         sign_in_and_redirect(:user, user)
       else
-        flash[:alert] = "Something went wrong during account creation."
+        flash[:alert] = "Something went wrong during account creation: " + user.errors.full_messages.to_s
         redirect_to(root_url)
       end
     end
