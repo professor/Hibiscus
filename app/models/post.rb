@@ -24,7 +24,7 @@ class Post
   def listLikes
     likes = []
     self.likes.each do |l|
-      likes << l unless l.isDislike
+      likes << l unless l.is_dislike
     end
     
     return likes
@@ -33,7 +33,7 @@ class Post
   def listDislikes
     dislikes = []
     self.likes.each do |l|
-      dislikes << l if l.isDislike
+      dislikes << l if l.is_dislike
     end
     
     return dislikes

@@ -7,7 +7,7 @@ class LikesController < ApplicationController
     @like.user = current_user
 
     if @like.save
-      redirect_to(@post, :notice => params[:like][:isDislike] ? 'You disliked this post.' : 'You liked this post.')
+      redirect_to(@post, :notice => params[:like][:is_dislike] ? 'You disliked this post.' : 'You liked this post.')
     else
       redirect_to(@post, :flash => { :alert => 'Your like could not be recorded.' })
     end

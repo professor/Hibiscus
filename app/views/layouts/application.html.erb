@@ -83,7 +83,7 @@
 								<% end %>
 								<%= form_for Like.new do |f| %>
 									<%= f.hidden_field :post_id, :value => @post.id %>
-									<%= f.hidden_field :isDislike, :value => true %>
+									<%= f.hidden_field :is_dislike, :value => true %>
 							  	<p><%= f.submit "Dislike this post?" %></p>
 								<% end %>
 
