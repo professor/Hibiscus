@@ -27,6 +27,6 @@ class User
   # FIXME: Figure out how to make this reference work out.
   # references_many :comments, :through => :posts
 
-  validates :name, :presence => true
-  validates :email, :presence => true, :email => true
+  validates :username, :presence => true
+  validates :email, :email => true
 end

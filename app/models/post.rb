@@ -59,7 +59,7 @@ class Post
     return false
   end
   
-  def join_tags
+  def joinTags
     tags = []
     self.tags.each do |tag|
       tags << tag.name
@@ -67,5 +67,20 @@ class Post
     
     return tags.join(", ")
   end
-
+  
+  def setTags
+    self.tags.nullify
+    
+    self.tags = []
+    self.tag_ids = []
+    
+    unless self.tempTags.blank?
+      tempTags = self.tempTags.split(",")
+    
+      tempTags.each do |tag|
+        self.tags << Tag.find_or_create_by(:name => tag.strip.downcase)
+        puts "TAGS: " + self.tags.to_s
+      end
+    end
+  end
 end

@@ -132,13 +132,13 @@ describe PostsController do
 
         it "assigns the requested post as @post" do
           Post.stub(:find) { mock_post(:update_attributes => true) }
-          put :update, :id => "1"
+          put :update, :id => "1", :post => {}
           assigns(:post).should be(mock_post)
         end
 
         it "redirects to the post" do
           Post.stub(:find) { mock_post(:update_attributes => true) }
-          put :update, :id => "1"
+          put :update, :id => "1", :post => {}
           response.should redirect_to(post_url(mock_post))
         end
       end
@@ -146,13 +146,13 @@ describe PostsController do
       describe "with invalid params" do
         it "assigns the post as @post" do
           Post.stub(:find) { mock_post(:update_attributes => false) }
-          put :update, :id => "1"
+          put :update, :id => "1", :post => {}
           assigns(:post).should be(mock_post)
         end
 
         it "re-renders the 'edit' template" do
           Post.stub(:find) { mock_post(:update_attributes => false) }
-          put :update, :id => "1"
+          put :update, :id => "1", :post => {}
           response.should render_template("edit")
         end
       end
