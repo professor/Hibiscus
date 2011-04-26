@@ -37,7 +37,7 @@ describe PlansController do
     
     describe "POST create" do
       it "should set a successful flash message and redirect to the user's page after creating a plan" do
-        post :create, :user_id => @user.id, :plan => { :maidenSpeech => "Some speech." }
+        post :create, :user_id => @user.id, :plan => { :maiden_speech => "Some speech." }
         flash[:notice].should == "Thank you for creating your learning plan."
         response.should redirect_to(@user)
       end

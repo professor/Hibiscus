@@ -3,9 +3,9 @@
 <p id="email">Email: <%= @user.email %></p>
 
 <% if @user.plan %>
-	<section id="maidenSpeech">
+	<section id="maiden_speech">
 		<h3>Maiden Speech:</h3>
-		<p><%= @user.plan.maidenSpeech.html_safe %></p>
+		<p><%= @user.plan.maiden_speech.html_safe %></p>
 	</section>
 	<% if @user.plan.activities.any? %>
 		<ul id="activities">
