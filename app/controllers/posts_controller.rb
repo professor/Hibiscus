@@ -41,6 +41,7 @@ class PostsController < ApplicationController
   # GET /posts/1/edit
   def edit
     @post = Post.find(params[:id])
+    @tags = @post.join_tags
   end
 
   # POST /posts
@@ -73,6 +74,14 @@ class PostsController < ApplicationController
   # PUT /posts/1.xml
   def update
     @post = Post.find(params[:id])
+    
+    unless params[:post][:tempTags].blank?
+      tempTags = params[:post][:tempTags].split(",")
+    
+      tempTags.each do |tag|
+        @post.tags << Tag.find_or_create_by(:name => tag.strip.downcase)
+      end
+    end
 
     respond_to do |format|
       if @post.update_attributes(params[:post])

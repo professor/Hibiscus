@@ -58,5 +58,14 @@ class Post
     
     return false
   end
+  
+  def join_tags
+    tags = []
+    self.tags.each do |tag|
+      tags << tag.name
+    end
+    
+    return tags.join(", ")
+  end
 
 end
