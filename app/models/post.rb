@@ -40,10 +40,15 @@ class Post
   end
 
   def update_search_index(url)
-    a = ENV['INDEXTANK_API_URL']
     api = IndexTank::Client.new(ENV['INDEXTANK_API_URL'] || '<API_URL>')
     index = api.indexes 'idx'
     index.document(url).add({ :title => self.title, :timestamp => self.created_at.to_i, :text => self.content.gsub(/<\/?[^>]*>/, ""), :url => url, :id => self.id})
+  end
+
+  def delete_from_search_index(url)
+    api = IndexTank::Client.new(ENV['INDEXTANK_API_URL'] || '<API_URL>')
+    index = api.indexes 'idx'
+    index.document(url).delete
   end
   
   def isKata?

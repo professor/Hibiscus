@@ -90,6 +90,7 @@ class PostsController < ApplicationController
   # DELETE /posts/1.xml
   def destroy
     @post = Post.find(params[:id])
+    @post.delete_from_search_index(post_path @post)
     @post.destroy
 
     respond_to do |format|
