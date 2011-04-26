@@ -3,6 +3,7 @@ class Comment
   include Mongoid::Timestamps
 
   field :content, :type => String
+  field :timeSpent, :type => String
 
   embedded_in :post, :opposite => :comments
   referenced_in :user
