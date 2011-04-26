@@ -6,25 +6,14 @@ describe User do
   end
   
   describe "Required fields: " do
-    it "should be invalid without a name" do
-      @user.name = nil
+    it "should be invalid without a username" do
+      @user.username = nil
       @user.should be_invalid
       
-      @user.name = ""
+      @user.username = ""
       @user.should be_invalid
       
-      @user.name = " "
-      @user.should be_invalid
-    end
-    
-    it "should be invalid without an email" do
-      @user.email = nil
-      @user.should be_invalid
-      
-      @user.email = ""
-      @user.should be_invalid
-      
-      @user.email = " "
+      @user.username = " "
       @user.should be_invalid
     end
     
@@ -42,7 +31,7 @@ describe User do
       @user.should be_invalid
     end
     
-    it "should be valid with a name and a proper email" do
+    it "should be valid with a username and a proper email" do
       @user.should be_valid_verbose
     end
   end
