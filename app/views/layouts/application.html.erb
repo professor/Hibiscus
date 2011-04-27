@@ -75,6 +75,9 @@
 							</form>
 						</li>
 
+                        <%= yield :sidebar %>
+
+
 						<% if @post %>
 							<li class="widget-container widget_likes" id="postLikes">
 								<%= form_for Like.new do |f| %>
