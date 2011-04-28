@@ -20,6 +20,10 @@
   <% end %>
 
   <br/>
-	<h3>New Comment</h3>
-	<%= render 'comments/form' %>
+	<% if current_user %>
+		<h3>New Comment</h3>
+		<%= render 'comments/form' %>
+	<% else %>
+		<h3>Please sign in to comment.</h3>
+	<% end %>
 </section>

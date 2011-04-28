@@ -1,5 +1,5 @@
-<% content_for :title, @user.name + " - Information"%>
-<h1><%= @user.name %></h1>
+<% content_for :title, @user.display_name + " - Information"%>
+<h1><%= @user.display_name %></h1>
 <p id="email">Email: <%= @user.email %></p>
 
 <% if @user.plan %>
