@@ -10,6 +10,15 @@
 			</section>
 		<% end %>
 	<% end %>
+
+  <% if @post.listLikes.any? %>
+      <p id="postLikesCount"><%= @post.listLikes.count %> Likes</p>
+  <% end %>
+
+  <% if @post.listDislikes.any? %>
+      <p id="postLikesCount"><%= @post.listDislikes.count %> Dislikes</p>
+  <% end %>
+
   <br/>
 	<h3>New Comment</h3>
 	<%= render 'comments/form' %>

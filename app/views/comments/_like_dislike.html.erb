@@ -1,0 +1,11 @@
+    <div class="widget-container widget_likes" id="postLikes">
+        <%= form_for Like.new, :remote => true  do |f| %>
+            <%= f.hidden_field :post_id, :value => @post.id %>
+          <p><%= f.submit "Like this #{label}?" %></p>
+        <% end %>
+        <%= form_for Like.new, :remote => true do |f| %>
+            <%= f.hidden_field :post_id, :value => @post.id %>
+            <%= f.hidden_field :isDislike, :value => true %>
+          <p><%= f.submit "Dislike this #{label}?" %></p>
+        <% end %>
+    </div>
