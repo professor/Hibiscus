@@ -29,4 +29,8 @@ class User
 
   validates :username, :presence => true
   # validates :email, :email => true
+  
+  def display_name
+    self.name.blank? ? self.username : self.name
+  end
 end
