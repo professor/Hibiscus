@@ -37,4 +37,38 @@ describe Post do
       @post.should be_valid_verbose
     end
   end
+  
+  describe "listLikes method" do
+    after(:each) do
+      @post.listLikes
+    end
+    
+    it "should look through all the likes" do
+      @post.should_receive(:likes).and_return([])
+    end
+  end
+  
+  describe "listDislikes method" do
+    after(:each) do
+      @post.listDislikes
+    end
+    
+    it "should look through all the likes" do
+      @post.should_receive(:likes).and_return([])
+    end
+    
+    it "should append to an array if the object is a like" do
+      @post.should_receive(:likes).and_return([Like.new, Like.new])
+    end
+  end
+  
+  describe "update_search_index method" do
+    after(:each) do
+      @post.update_search_index("someurl")
+    end
+    
+    it "should update the search index" do
+      @post.should_receive(:update_search_index)
+    end
+  end
 end

@@ -126,7 +126,7 @@ describe PostsController do
       describe "with valid params" do
         it "updates the requested post" do
           Post.stub(:find).with("37") { mock_post }
-          mock_post.should_receive(:update_attributes).with({'these' => 'params'})
+          mock_post.should_receive(:save)
           put :update, :id => "37", :post => {'these' => 'params'}
         end
 
@@ -151,7 +151,7 @@ describe PostsController do
         end
 
         it "re-renders the 'edit' template" do
-          Post.stub(:find) { mock_post(:update_attributes => false) }
+          Post.stub(:find) { mock_post(:save => false) }
           put :update, :id => "1", :post => {}
           response.should render_template("edit")
         end
