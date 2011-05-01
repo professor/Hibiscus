@@ -24,6 +24,6 @@
 		<h3>New Comment</h3>
 		<%= render 'comments/form' %>
 	<% else %>
-		<h3>Please sign in to comment.</h3>
+		<h3>Please <%= link_to "sign in", '/auth/github' %> to comment.</h3>
 	<% end %>
 </section>
