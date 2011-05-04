@@ -30,11 +30,11 @@
   <div class="field">
     <%= f.label :content, 'Comment' %><br />
     <% if @post.isKata? %>
-			<%= f.text_area :content, :size => "80x12", :value => "<strong>1. Why would you recommend (or not recommend) this activity to a peer?</strong><br /><br />
-																															<strong>2. What worked well?</strong><br /><br />
-																															<strong>3. What didn't work well?</strong><br /><br />
-																															<strong>4. What programming language did you use?</strong><br /><br />
-																															<strong>5. Where there any 'ah-hah!' moments or unintended consequences?</strong><br /><br />" %>
+			<%= f.text_area :content, :size => "80x12", :value => "1. Why would you recommend (or not recommend) this activity to a peer?<br /><br />
+																															2. What worked well?<br /><br />
+																															3. What didn't work well?<br /><br />
+																															4. What programming language did you use?<br /><br />
+																															5. Where there any 'ah-hah!' moments or unintended consequences?<br /><br />" %>
 		<% else %>
 			<%= f.text_area :content, :size => "80x10" %>
 		<% end %>
