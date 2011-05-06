@@ -14,13 +14,25 @@
 		<% end %>
 	<% end %>
 
-  <% if @post.listLikes.any? %>
-      <p id="postLikesCount"><%= @post.listLikes.count %> Likes</p>
-  <% end %>
+  <p id="postLikesCount">
+		<% if @post.listLikes.any? %>
+      <%= @post.listLikes.count %> Likes
+  	<% end %>
+	</p>
 
   <% if @post.listDislikes.any? %>
       <p id="postLikesCount"><%= @post.listDislikes.count %> Dislikes</p>
   <% end %>
+
+	<%= form_for Like.new do |f| %>
+		<%= f.hidden_field :post_id, :value => @post.id %>
+  	<p><%= f.submit "Like this post?" %></p>
+	<% end %>
+	<%= form_for Like.new, :html => { :id => "new_dislike" } do |f| %>
+		<%= f.hidden_field :post_id, :value => @post.id %>
+		<%= f.hidden_field :is_dislike, :value => true %>
+  	<p><%= f.submit "Dislike this post?" %></p>
+	<% end %>
 
   <br/>
 	<% if current_user %>
