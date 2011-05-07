@@ -15,14 +15,12 @@
 	<% end %>
 
   <p id="postLikesCount">
-		<% if @post.listLikes.any? %>
-      <%= @post.listLikes.count %> Likes
-  	<% end %>
+  	<%= pluralize(@post.listLikes.count, "Like") %>
 	</p>
-
-  <% if @post.listDislikes.any? %>
-      <p id="postLikesCount"><%= @post.listDislikes.count %> Dislikes</p>
-  <% end %>
+	
+	<p id="postDislikesCount">
+  	<%= pluralize(@post.listDislikes.count, "Dislike") %>
+	</p>
 
 	<%= form_for Like.new do |f| %>
 		<%= f.hidden_field :post_id, :value => @post.id %>

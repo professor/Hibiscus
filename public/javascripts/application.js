@@ -15,4 +15,9 @@ $(document).ready(function() {
     $.post($(this).attr('action'), $(this).serialize(), null, "script");  
     return false;
   });
+
+  $('#new_dislike').submit(function (){  
+    $.post($(this).attr('action'), $(this).serialize(), null, "script");  
+    return false;
+  });
 });

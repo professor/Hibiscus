@@ -1,1 +1,2 @@
 $('#postLikesCount').html('<%= pluralize(@post.listLikes.count, "Like") %>');
+$('#postDislikesCount').html('<%= pluralize(@post.listDislikes.count, "Dislike") %>');
