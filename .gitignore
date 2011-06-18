@@ -3,6 +3,8 @@ db/*.sqlite3
 log/*.log
 tmp/
 
+config/hibiscus.yml
+
 .idea/*
 .DS_Store
 */.DS_Store
