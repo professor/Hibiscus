@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>                
- <title><%= (title = yield :title) ? title : GlobalConfig.site_title%></title>                                          	
+ <title><%= (title = yield :title) ? title : GlobalConfig.site_title %></title>                                          	
   <%= stylesheet_link_tag :all %>
   <%= javascript_include_tag :all %>
   <%= csrf_meta_tag %>
@@ -75,13 +75,16 @@
 							</form>
 						</li>
 
+                        <%= yield :sidebar %>
+
+
 						<% if @post %>
 							<li class="widget-container widget_likes" id="postLikes">
 								<%= form_for Like.new do |f| %>
 									<%= f.hidden_field :post_id, :value => @post.id %>
 							  	<p><%= f.submit "Like this post?" %></p>
 								<% end %>
-								<%= form_for Like.new do |f| %>
+								<%= form_for Like.new, :html => { :id => "new_dislike" } do |f| %>
 									<%= f.hidden_field :post_id, :value => @post.id %>
 									<%= f.hidden_field :is_dislike, :value => true %>
 							  	<p><%= f.submit "Dislike this post?" %></p>
@@ -92,7 +95,7 @@
 
 									<p>This post was liked by:</p>
 									<% @post.listLikes.each do |l| %>
-										<p><%= link_to l.user.name, l.user %></p>
+										<p><%= link_to l.user.display_name, l.user %></p>
 									<% end %>
 								<% end %>
 
@@ -136,7 +139,7 @@
 							<h3 class="widget-title">Meta</h3>
 							<ul>
 	              <% if current_user %>
-	                <li>Logged in as <%= link_to current_user.name.blank? ? current_user.username : current_user.name, current_user %></li>
+	                <li>Logged in as <%= link_to current_user.display_name, current_user %></li>
 	                <li><%= link_to "Logout", :logout %></li>
 	              <% else %>
 	                <li><%= link_to "Login", '/auth/github' %></li>

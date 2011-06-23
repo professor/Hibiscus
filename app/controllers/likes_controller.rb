@@ -6,10 +6,14 @@ class LikesController < ApplicationController
     @like = Like.new(params[:like])
     @like.user = current_user
 
-    if @like.save
-      redirect_to(@post, :notice => params[:like][:is_dislike] ? 'You disliked this post.' : 'You liked this post.')
-    else
-      redirect_to(@post, :flash => { :alert => 'Your like could not be recorded.' })
+    respond_to do |format|
+      if @like.save
+        format.html { redirect_to(@post, :notice => params[:like][:is_dislike] ? 'You disliked this post.' : 'You liked this post.') }
+        format.js
+      else
+        format.html { redirect_to(@post, :flash => { :alert => 'Your like could not be recorded.' }) }
+        format.js
+      end
     end
   end
 end

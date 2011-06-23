@@ -10,4 +10,5 @@ class Comment
 
   validates :content, :presence => true
   validates :user_id, :presence => true
+  validates :time_spent, :numericality => true, :allow_blank => true, :allow_nil => true
 end

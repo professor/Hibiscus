@@ -5,12 +5,38 @@
 		<h2 id="commentsCount"><%= @post.comments.size %> Comments</h2>
 		<% for comment in @post.comments %>
 			<section class="comment">
+				<% if comment.time_spent.present? %>
+					<p class="commentTimeSpent"><%= comment.time_spent %> hours spent.</p>
+				<% end %>
 				<p class="commentContent"><%= comment.content.html_safe %></p>
-				<p class="commentEdit"><%= link_to 'Edit', edit_post_comment_path(@post, comment) %></p> <p class="commentPoster">Posted by: <%= link_to comment.user.name, comment.user %></p>
+				<p class="commentEdit"><%= link_to 'Edit', edit_post_comment_path(@post, comment) %></p> <p class="commentPoster">Posted by: <%= link_to comment.user.display_name, comment.user %></p>
 			</section>
 		<% end %>
 	<% end %>
+
+  <p id="postLikesCount">
+  	<%= pluralize(@post.listLikes.count, "Like") %>
+	</p>
+	
+	<p id="postDislikesCount">
+  	<%= pluralize(@post.listDislikes.count, "Dislike") %>
+	</p>
+
+	<%= form_for Like.new do |f| %>
+		<%= f.hidden_field :post_id, :value => @post.id %>
+  	<p><%= f.submit "Like this post?" %></p>
+	<% end %>
+	<%= form_for Like.new, :html => { :id => "new_dislike" } do |f| %>
+		<%= f.hidden_field :post_id, :value => @post.id %>
+		<%= f.hidden_field :is_dislike, :value => true %>
+  	<p><%= f.submit "Dislike this post?" %></p>
+	<% end %>
+
   <br/>
-	<h3>New Comment</h3>
-	<%= render 'comments/form' %>
+	<% if current_user %>
+		<h3>New Comment</h3>
+		<%= render 'comments/form' %>
+	<% else %>
+		<h3>Please <%= link_to "sign in", '/auth/github' %> to comment.</h3>
+	<% end %>
 </section>
