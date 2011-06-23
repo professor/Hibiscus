@@ -3,7 +3,12 @@ class GlobalConfig
   DEFAULT_CONFIG = {'site_title' => "Craftsmanship", 
   'site_tag' => "For software excellence",
   'activity_name' => "Kata",
-  'activity_tag' => "kata"}
+  'activity_tag' => "kata",
+  'comment_default' => "1. Why would you recommend (or not recommend) this activity to a peer?<br /><br />
+																															2. What worked well?<br /><br />
+																															3. What didn't work well?<br /><br />
+																															4. What programming language did you use?<br /><br />
+																															5. Where there any 'ah-hah!' moments or unintended consequences?<br /><br />"}
 
   class << self
     def site_title
@@ -20,6 +25,10 @@ class GlobalConfig
 
     def activity_tag
       config_hash['activity_tag']
+    end
+
+    def comment_default
+      config_hash['comment_default']
     end
 
     def config_hash
