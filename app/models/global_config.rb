@@ -1,7 +1,7 @@
 class GlobalConfig
 
   DEFAULT_CONFIG = {'site_title' => "Craftsmanship", 
-  'site_tag' => "For software excellence",
+  'site_tag' => "Reviewed katas for software excellence",
   'activity_name' => "Kata",
   'activity_tag' => "kata",
   'comment_default' => "1. Why would you recommend (or not recommend) this activity to a peer?<br /><br />
