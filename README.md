@@ -9,7 +9,8 @@ setup your environment variable for INDEXTANK_API_URL from http://indextank.com/
 setup your environment variable for GITHUB_ID, GITHUB_SECRET from http://......
 
 ##Local mongo database
-install mongo
+install mongo (See http://www.mongodb.org/display/DOCS/Quickstart+OS+X )
+
 
 ##Remote mongo database
 setup your environment variable for MONGOHQ_URL from https://www.mongohq.com/home
