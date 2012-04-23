@@ -12,13 +12,20 @@ class AuthenticationsController < ApplicationController
     # render :text => omniauth.to_yaml
     
     authentication = Authentication.where(:provider => omniauth['provider'], :uid => omniauth['uid']).first
+
     if authentication
       # If a user has already signed on with this authentication, just sign the user in.
       flash[:notice] = "You are now signed in."
       sign_in_and_redirect(:user, authentication.user)
     else
       # User is new, create an authentication and a user.
-      user = User.create(:username => omniauth['user_info']['nickname'], :email => omniauth['user_info']['email'], :name => omniauth['user_info']['name'])
+
+      #########################################################################################################
+      # Commented the below line as omniauth no longer uses 'user_info'. Instead it uses 'info'
+      # user = User.create(:username => omniauth['user_info']['nickname'], :email => omniauth['user_info']['email'], :name => omniauth['user_info']['name'])
+      #########################################################################################################
+
+      user = User.create(:username => omniauth['info']['nickname'], :email => omniauth['info']['email'], :name => omniauth['info']['name'])
       auth = user.authentications.build(:provider => omniauth['provider'], :uid => omniauth['uid'])
     
       if auth.save
