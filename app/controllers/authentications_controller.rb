@@ -8,8 +8,9 @@ class AuthenticationsController < ApplicationController
 
   # Create an authentication when this is called from the authentication provider callback
   def create
+    puts "in create"
     omniauth = request.env["omniauth.auth"]
-    # render :text => omniauth.to_yaml
+    #render :text => omniauth.to_yaml
     
     authentication = Authentication.where(:provider => omniauth['provider'], :uid => omniauth['uid']).first
 
@@ -21,6 +22,7 @@ class AuthenticationsController < ApplicationController
       # User is new, create an authentication and a user.
 
       #########################################################################################################
+      # NEHA SINHA
       # Commented the below line as omniauth no longer uses 'user_info'. Instead it uses 'info'
       # user = User.create(:username => omniauth['user_info']['nickname'], :email => omniauth['user_info']['email'], :name => omniauth['user_info']['name'])
       #########################################################################################################
