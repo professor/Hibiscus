@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>                
- <title><%= (title = yield :title) ? title : GlobalConfig.site_title %></title>                                          	
-  <%= stylesheet_link_tag :all %>
-  <%= javascript_include_tag :all %>
+ <title><%= (title = yield :title) ? title : GlobalConfig.site_title %></title>
+  <%= javascript_include_tag(:defaults) %>
   <%= csrf_meta_tag %>
+
+  <%= stylesheet_link_tag :all %>
+  <!--<%= javascript_include_tag :all %>-->
+  <!--<%= csrf_meta_tag %>-->
 </head>
 <body class="home blog">
 <div id="wrapper" class="hfeed">

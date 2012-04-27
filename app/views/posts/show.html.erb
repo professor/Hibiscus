@@ -1,5 +1,6 @@
 <%= render :partial => 'posts/post', :locals => {:post => @post} %>
 
+
 <section id="comments">
 	<% if @post.comments.any? %>
 		<h2 id="commentsCount"><%= @post.comments.size %> Comments</h2>
@@ -10,6 +11,8 @@
 				<% end %>
 				<p class="commentContent"><%= comment.content.html_safe %></p>
 				<p class="commentEdit"><%= link_to 'Edit', edit_post_comment_path(@post, comment) %></p> <p class="commentPoster">Posted by: <%= link_to comment.user.display_name, comment.user %></p>
+                <!--<p class="commentEdit"><%#= link_to 'Destroy', [@post, comment], :method => :delete ,:controller=> "comments", :action => "destroy" %>  -->
+                <p class="commentEdit"><%= link_to 'Delete', post_comment_path(@post, comment) , :confirm => "Are you sure you want to delete ?", :method => :delete %>
 			</section>
 		<% end %>
 	<% end %>
@@ -40,3 +43,4 @@
 		<h3>Please <%= link_to "sign in", '/auth/github' %> to comment.</h3>
 	<% end %>
 </section>
+<%= debug(params) if Rails.env.development? %>

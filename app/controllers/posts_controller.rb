@@ -88,11 +88,12 @@ class PostsController < ApplicationController
   # DELETE /posts/1.xml
   def destroy
     @post = Post.find(params[:id])
-    @post.delete_from_search_index(post_path @post)
+    #### the below statement needs to be looked at
+ #   @post.delete_from_search_index(post_path @post)
     @post.destroy
 
     respond_to do |format|
-      format.html { redirect_to(posts_url) }
+      format.html { redirect_to(posts_url, :notice => 'The post has been deleted') }
       format.xml  { head :ok }
     end
   end

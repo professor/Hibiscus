@@ -4,11 +4,11 @@ class GlobalConfig
   'site_tag' => "Reviewed katas for software excellence",
   'activity_name' => "Kata",
   'activity_tag' => "kata",
-  'comment_default' => "1. Why would you recommend (or not recommend) this activity to a peer?<br /><br />
-																															2. What worked well?<br /><br />
-																															3. What didn't work well?<br /><br />
+  'comment_default' => "1. Why would you recommend (or not recommend) this activity to a peer?    <br /><br />
+																															2. What worked well?   <br /><br />
+																															3. What didn't work well? <br /><br />
 																															4. What programming language did you use?<br /><br />
-																															5. Where there any 'ah-hah!' moments or unintended consequences?<br /><br />"}
+																															5. Where there any 'ah-hah!' moments or unintended consequences?"}
 
   class << self
     def site_title

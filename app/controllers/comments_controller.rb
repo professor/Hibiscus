@@ -27,4 +27,16 @@ class CommentsController < ApplicationController
       render :action => "edit"
     end
   end
+
+
+  def destroy
+    @post = Post.find(params[:post_id])
+    @comment = @post.comments.find(params[:id])
+    @comment.destroy
+
+    respond_to do |format|
+      format.html { redirect_to(posts_url, :notice => 'Your comment has been deleted') }
+      format.xml  { head :ok }
+    end
+  end
 end

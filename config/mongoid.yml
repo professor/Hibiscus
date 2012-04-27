@@ -7,7 +7,8 @@ defaults: &defaults
   #     port: 27019
 
 development:
-  <<: *defaults
+ # <<: *defaults
+  host: localhost
   database: craft_wiki_development
 
 test:

@@ -3,7 +3,7 @@ class Activity
 
   field :name, :type => String
 
-  embedded_in :plan, :opposite => :activities
+  embedded_in :plan #, :opposite => :activities
 
   validates :name, :presence => true
 end
