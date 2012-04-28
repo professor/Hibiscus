@@ -9,6 +9,7 @@ group :development do
 end
 
 group :test do
+	gem "ruby-debug19"
 	gem "cover_me"
 	gem "factory_girl_rails"
 	gem "database_cleaner"
@@ -49,4 +50,6 @@ group :development, :test, :production do
 #  gem 'json_pure', '1.4.6', :require => 'json'
   gem "omniauth-github"
   gem 'capybara'
+  gem 'launchy'
+  gem 'jquery-rails', '>= 1.0.12'
 end

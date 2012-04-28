@@ -133,7 +133,7 @@
 							<h3 class="widget-title">Tags</h3>
 							<ul>
 								<% all_tags.each do |tag| %>
-									<li><%= link_to tag.name, tag %></li>
+									<li><%= link_to "#{tag.name} (#{tag.posts.size})", tag, :class => "tag_name" %></li>
 								<% end %>
 							</ul>
             </li>

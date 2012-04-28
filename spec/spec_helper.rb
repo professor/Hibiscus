@@ -20,6 +20,7 @@ RSpec.configure do |config|
   # config.mock_with :flexmock
   # config.mock_with :rr
   config.mock_with :rspec
+  config.include IntegrationSpecHelper, :type => :request
 
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   # config.fixture_path = "#{::Rails.root}/spec/fixtures"
@@ -42,7 +43,16 @@ RSpec.configure do |config|
   
   def login
     @request.env["devise.mapping"] = Devise.mappings[:user]
-    @user = Factory.create(:user)
+#    @user = Factory.create(:user)
+     @user = FactoryGirl.create(:user)
     sign_in @user
   end
 end
+
+Capybara.default_host = 'http://example.org'
+
+OmniAuth.config.test_mode = true
+OmniAuth.config.add_mock(:github, {
+  :uid => '12345',
+  :nickname => 'zapnap'
+})

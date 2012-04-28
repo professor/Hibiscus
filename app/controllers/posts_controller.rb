@@ -89,7 +89,7 @@ class PostsController < ApplicationController
   def destroy
     @post = Post.find(params[:id])
     #### the below statement needs to be looked at
- #   @post.delete_from_search_index(post_path @post)
+    @post.delete_from_search_index(post_path @post)
     @post.destroy
 
     respond_to do |format|

@@ -15,5 +15,6 @@ FactoryGirl.define do
     name "Clark Kent"
     username "ckent"
     email "ckent@wiki.com"
+  #  password "password"
   end
 end
