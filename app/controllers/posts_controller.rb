@@ -53,7 +53,13 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       if @post.save
-        @post.update_search_index(post_path @post)
+    #########################################################################################################
+    # NEHA SINHA
+    # Commented the below line as there is some issue with indextank (that I have not been able to figure
+    # out yet). In-spite the error, the record is created successfully in the database.
+    #########################################################################################################
+
+        #@post.update_search_index(post_path @post)
         format.html { redirect_to(@post, :notice => 'Post was successfully created.') }
         format.xml  { render :xml => @post, :status => :created, :location => @post }
       else
@@ -74,7 +80,13 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       if @post.save
-        @post.update_search_index(post_path @post)
+    #########################################################################################################
+    # NEHA SINHA
+    # Commented the below line as there is some issue with indextank (that I have not been able to figure
+    # out yet). In-spite the error, the database record is updated successfully.
+    #########################################################################################################
+
+      #  @post.update_search_index(post_path @post)
         format.html { redirect_to(@post, :notice => 'Post was successfully updated.') }
         format.xml  { head :ok }
       else
@@ -88,8 +100,13 @@ class PostsController < ApplicationController
   # DELETE /posts/1.xml
   def destroy
     @post = Post.find(params[:id])
-    #### the below statement needs to be looked at
-    @post.delete_from_search_index(post_path @post)
+    #########################################################################################################
+    # NEHA SINHA
+    # Commented the below line as there is some issue with indextank (that I have not been able to figure
+    # out yet). In-spite the error, the database record is deleted successfully.
+    #########################################################################################################
+
+    #@post.delete_from_search_index(post_path @post)
     @post.destroy
 
     respond_to do |format|
