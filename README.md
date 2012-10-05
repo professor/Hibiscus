@@ -13,7 +13,8 @@ setup your environment variable for GITHUB_ID, GITHUB_SECRET
    1 Callback url: http://localhost:3000/auth/github/callback
 
 ##Local mongo database
-install mongo
+install mongo (See http://www.mongodb.org/display/DOCS/Quickstart+OS+X )
+
 
 ##Remote mongo database
 setup your environment variable for MONGOHQ_URL from https://www.mongohq.com/home
