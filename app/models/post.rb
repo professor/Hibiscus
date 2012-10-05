@@ -20,7 +20,10 @@ class Post
   validates :title, :presence => true
   validates :content, :presence => true
   validates :user_id, :presence => true
-  
+
+  after_save :update_search_index
+  before_destroy :delete_from_search
+
   def listLikes
     likes = []
     self.likes.each do |l|
@@ -39,15 +42,17 @@ class Post
     return dislikes
   end
 
-  def update_search_index(url)
-    api = IndexTank::Client.new(ENV['INDEXTANK_API_URL'] || '<API_URL>')
-    index = api.indexes 'idx'
-    index.document(url).add({ :title => self.title, :timestamp => self.created_at.to_i, :text => self.content.gsub(/<\/?[^>]*>/, ""), :url => url, :id => self.id})
+  def update_search_index
+    url = "posts/" + self.id
+    api = IndexTank::Client.new(ENV['SEARCHIFY_API_URL'] || '<API_URL>')
+    index = api.indexes(ENV['SEARCHIFY_HIBISCUS_INDEX'] || 'hibiscus')
+    index.document(self.id.to_s).add({ :title => self.title, :timestamp => self.created_at.to_i, :text => self.content.gsub(/<\/?[^>]*>/, ""), :url => url, :id => self.id})
   end
 
-  def delete_from_search_index(url)
-    api = IndexTank::Client.new(ENV['INDEXTANK_API_URL'] || '<API_URL>')
-    index = api.indexes 'idx'
+  def delete_from_search_index
+    url = "posts/" + self.id
+    api = IndexTank::Client.new(ENV['SEARCHIFY_API_URL'] || '<API_URL>')
+    index = api.indexes(ENV['SEARCHIFY_HIBISCUS_INDEX'] || 'hibiscus')
     index.document(url).delete
   end
   
