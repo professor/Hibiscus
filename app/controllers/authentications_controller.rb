@@ -31,8 +31,4 @@ class AuthenticationsController < ApplicationController
       end
     end
   end
-
-  def failure
-
-  end
 end
