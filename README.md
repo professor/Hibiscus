@@ -5,26 +5,31 @@
 Permission granted to use this image from Mahesh "Vyoma" Bhat | KalaaLog.com 
 
 #Installation directions for development environment
-setup your environment variable for GITHUB_ID, GITHUB_SECRET
-   1 Register your application with github at https://github.com/account/applications
-   1 Application name: Hibiscus development
-   1 Main url: http://locallost
-   1 Callback url: http://localhost:3000/auth/github/callback
-   1 add the following to .bash_profile
-    export GITHUB_ID="d8a90randomjunk1dasdsa"
+
+1. Setup your environment variable for GITHUB_ID, GITHUB_SECRET
+   1. Register your application with github at https://github.com/account/applications
+   1. Application name: Hibiscus development
+   1. Main url: http://locallost
+   1. Callback url: http://localhost:3000/auth/github/callback
+   1. add the following to .bash_profile
+
+    export GITHUB_ID="d8a90randomjunk1dasdsa"<br/>
     export GITHUB_SECRET="a89309adsrandomjunk1j9fajsJ"
-setup your environment variable for SEARCHIFY_API_URL from http://searchify.com/
-   1 add the following to .bash_profile
-    export SEARCHIFY_API_URL="http://something"
+    
+1. Setup your environment variable for SEARCHIFY_API_URL from http://searchify.com/
+   1. add the following to .bash_profile
+
+    export SEARCHIFY_API_URL="http://something"<br/>
     export SEARCHIFY_HIBISCUS_INDEX="hibiscus"
-   1 restart your terminal
+
+   1. restart your terminal
 
 ##Local mongo database
-install mongo (See http://www.mongodb.org/display/DOCS/Quickstart+OS+X )
+1. install mongo (See http://www.mongodb.org/display/DOCS/Quickstart+OS+X )
 
 
 ##Remote mongo database
-setup your environment variable for MONGOHQ_URL from https://www.mongohq.com/home
+1. setup your environment variable for MONGOHQ_URL from https://www.mongohq.com/home
 The url looks like mongodb://<user>:<password>@staff.mongohq.com:<port>/<databasename>
 
 #Installation directions for Heroku
