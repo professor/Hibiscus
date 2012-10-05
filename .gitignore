@@ -8,3 +8,4 @@ config/hibiscus.yml
 .idea/*
 .DS_Store
 */.DS_Store
+/coverage.data
