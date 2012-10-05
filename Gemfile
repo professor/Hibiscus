@@ -4,8 +4,8 @@ gem "rails", "3.0.5"
 
 group :development do
 	gem "rdoc"
-	gem "ruby-debug-ide"
-	gem "ruby-debug-base19x"
+	#gem "ruby-debug-ide"
+	#gem "ruby-debug-base19x"
 end
 
 group :test do
@@ -42,7 +42,8 @@ group :development, :test, :production do
 	gem "mongoid", ">= 2.0.0.rc.7"
 	gem "bson_ext"
 	gem "devise", "1.1.8"
-	gem 'omniauth'
+	gem 'omniauth', '>=0.3.2'
+	gem 'omniauth-github'
   gem 'heroku'
   gem "indextank"
 	gem "faraday-stack" #it appears that indextank needs this?
