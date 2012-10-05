@@ -6,7 +6,7 @@ Permission granted to use this image from Mahesh "Vyoma" Bhat | KalaaLog.com
 
 #Installation directions for development environment
 setup your environment variable for GITHUB_ID, GITHUB_SECRET
-   1 Register your application with github at https://github.com/account/applications
+   1 Register your application with github at https://github.com/settings/applications
    1 Application name: Hibiscus development
    1 Main url: http://locallost
    1 Callback url: http://localhost:3000/auth/github/callback
