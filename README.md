@@ -19,7 +19,7 @@ Permission granted to use this image from Mahesh "Vyoma" Bhat | KalaaLog.com
 1. Setup your environment variable for SEARCHIFY_API_URL from http://searchify.com/
    1. add the following to .bash_profile
 
-    export SEARCHIFY_API_URL="http://something"<br/>
+    export SEARCHIFY_HIBISCUS_API_URL="http://something"<br/>
     export SEARCHIFY_HIBISCUS_INDEX="hibiscus"
 
    1. restart your terminal
