@@ -8,7 +8,7 @@ namespace :hibiscus do
   end
 
   desc 'Iterate through all page objects and store content in searchify'
-  task :update_search_index do |t, args|
+  task :update_search_index => :environment  do |t, args|
     Post.all.each do |post|
       post.update_search_index
     end

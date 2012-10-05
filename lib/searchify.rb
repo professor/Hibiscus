@@ -4,7 +4,7 @@ require 'indextank'
 module Searchify
 
   def self.setup_indexes
-    api = IndexTank::Client.new(ENV['SEARCHIFY_API_URL'] || '<API_URL>')
+    api = IndexTank::Client.new(ENV['SEARCHIFY_HIBISCUS_API_URL'] || '<API_URL>')
 
     index_name = api.indexes(ENV['SEARCHIFY_HIBISCUS_INDEX'] || 'hibiscus')
 
