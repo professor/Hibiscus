@@ -53,7 +53,6 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       if @post.save
-        @post.update_search_index(post_path @post)
         format.html { redirect_to(@post, :notice => 'Post was successfully created.') }
         format.xml  { render :xml => @post, :status => :created, :location => @post }
       else
@@ -74,7 +73,6 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       if @post.save
-        @post.update_search_index(post_path @post)
         format.html { redirect_to(@post, :notice => 'Post was successfully updated.') }
         format.xml  { head :ok }
       else
@@ -88,7 +86,6 @@ class PostsController < ApplicationController
   # DELETE /posts/1.xml
   def destroy
     @post = Post.find(params[:id])
-    @post.delete_from_search_index(post_path @post)
     @post.destroy
 
     respond_to do |format|
