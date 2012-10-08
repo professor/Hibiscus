@@ -9,7 +9,11 @@ class Post
   
   field :title, :type => String
   field :content, :type => String
-  
+
+  #Adding new field source
+
+  field :source, :type => String
+
   key :title
 
   embeds_many :comments

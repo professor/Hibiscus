@@ -17,6 +17,11 @@
   </div>
 
   <div class="field">
+      <%= f.label :source %><br />
+      <%= f.text_field :source, :size => "81" %>
+  </div>
+
+  <div class="field">
     <%= f.label :tempTags, "Tags" %><br />
     <% if @post.tags.any? %>
 			<%= f.text_field :tempTags, :size => "81", :value => @tags %>
@@ -24,6 +29,8 @@
 			<%= f.text_field :tempTags, :size => "81" %>
 		<% end %>
   </div>
+
+
 
   <div class="field">
     <%= f.label :content %><br />
