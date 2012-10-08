@@ -34,4 +34,3 @@ The url looks like mongodb://<user>:<password>@staff.mongohq.com:<port>/<databas
 
 #Installation directions for Heroku
 
-
