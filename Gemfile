@@ -49,4 +49,5 @@ group :development, :test, :production do
   gem "indextank"
 	gem "faraday-stack" #it appears that indextank needs this?
 #  gem 'json_pure', '1.4.6', :require => 'json'
+  gem "feedzirra"
 end
