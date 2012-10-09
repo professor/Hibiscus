@@ -99,6 +99,22 @@ describe CommentsController do
           assigns(:comment).should be(mock_comment)
           response.should render_template("edit")
         end
+      end  
+    end
+
+    describe "DELETE destroy the comment" do
+      it "redirects to the posts list" do
+        Post.stub(:find) { mock_post }
+        delete :destroy, :id => "2", :post_id => 2
+        response.should redirect_to(posts_url)
+      end
+
+      it "should correctly delete the comment " do
+        Post.stub(:find) { mock_post }
+        mock_comment.stub(:user) { controller.current_user }
+        mock_post.stub_chain(:comments, :find) { mock_comment }
+        mock_comment.should_receive(:destroy)
+        delete :destroy, :id => mock_comment.id, :post_id => mock_post.id
       end
     end
   end
