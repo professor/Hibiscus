@@ -9,19 +9,19 @@ describe CommentsController do
     @mock_comment ||= mock_model(Comment, stubs).as_null_object
   end
   
-  context "Unauthenticated user: " do    
+  context "Unauthenticated user: " do
     it "should not allow access to create a comment" do
       post :create, :post_id => mock_post.id
       flash[:alert].should == "You need to sign in before continuing."
       response.should redirect_to("/users/sign_in")
     end
-    
+
     it "should not allow access to edit a comment" do
       get :edit, :post_id => mock_post.id, :id => mock_comment.id
       flash[:alert].should == "You need to sign in before continuing."
       response.should redirect_to("/users/sign_in")
     end
-    
+
     it "should not allow access to update a comment" do
       put :update, :post_id => mock_post.id, :id => mock_comment.id
       flash[:alert].should == "You need to sign in before continuing."
@@ -39,26 +39,6 @@ describe CommentsController do
         before(:each) do
           Post.stub(:find).and_return(mock_post)
           post :create, :post_id => mock_post.id, :comment => { :content => 'Some content.' }
-        end
-
-        it 'sets the flash notice' do
-          flash[:notice].should == 'Thank you for your comment.'
-        end
-
-        it 'redirects to the post URL' do
-          response.should redirect_to(post_url(mock_post))
-        end
-      end
-    
-      context "with invalid params" do
-        before(:each) do
-          Post.stub(:find).and_return(mock_post)
-          mock_post.comments.stub(:build) { mock_comment(:save => false) }
-          post :create, :post_id => mock_post.id, :comment => { }
-        end
-
-        it 'sets the flash alert' do
-          flash[:alert].should == 'Your comment could not be saved.'
         end
 
         it 'redirects to the post URL' do
@@ -88,16 +68,13 @@ describe CommentsController do
           flash[:notice].should == "Thank you for the update in your comment."
           response.should redirect_to(mock_post)
         end
-      end
-    
-      context "with invalid params" do
-        it "assigns the requested comment as @comment, and it's parent post as @post" do
-          Post.should_receive(:find).and_return(mock_post)
-          mock_post.should_receive(:comments).and_return(mock_comment(:update_attributes => false))
-          put :update, :post_id => mock_post.id, :id => mock_comment.id
-          assigns(:post).should be(mock_post)
-          assigns(:comment).should be(mock_comment)
-          response.should render_template("edit")
+
+        it "should correctly delete the comment " do
+          Post.stub(:find) { mock_post }
+          mock_comment.stub(:user) { controller.current_user }
+          mock_post.stub_chain(:comments, :find) { mock_comment }
+          mock_comment.should_receive(:destroy)
+          delete :destroy,  :id => mock_comment.id, :post_id => mock_post.id
         end
       end
     end

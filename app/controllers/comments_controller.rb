@@ -27,4 +27,22 @@ class CommentsController < ApplicationController
       render :action => "edit"
     end
   end
+
+  def destroy
+    @post = Post.find(params[:post_id])
+    @comment = @post.comments.find(params[:id])
+    tmp1 = current_user.id
+    tmp2 = @comment.user.id
+    if @comment.user == current_user
+      @comment.destroy
+      respond_to do |format|
+        format.html { redirect_to(posts_url, :notice => 'Your comment has been deleted') }
+        format.xml  { head :ok }
+      end
+    else
+      respond_to do |format|
+        format.html { redirect_to(posts_url, :notice => "You can't delete someone else's comment") }
+      end
+    end
+  end
 end
