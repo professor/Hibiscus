@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Authentication do
   before(:each) do
-    @authentication = Factory.build(:authentication)
+    @authentication = FactoryGirl.build(:authentication)
   end
   
   describe "Required fields: " do

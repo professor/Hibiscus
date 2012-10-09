@@ -1,4 +1,6 @@
-Factory.define(:activity) do |a|
-  a.name "Programming Project"
-  a.association :plan
+FactoryGirl.define do
+  factory :activity do
+    name "Programming Project"
+    association :plan
+  end
 end
