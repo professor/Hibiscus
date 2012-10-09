@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Post do
   before(:each) do
-    @post = Factory.build(:post)
+    @post = FactoryGirl.build(:post)
   end
   
   describe "Required fields: " do

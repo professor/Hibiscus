@@ -1,5 +1,7 @@
-Factory.define :comment do |c|
-  c.content "Comment Content Factory"
-  c.association :user
-  c.association :post
+FactoryGirl.define do
+  factory :comment do
+    content "Comment Content Factory"
+    association :user
+    association :post
+  end
 end
