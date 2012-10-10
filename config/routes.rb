@@ -6,9 +6,7 @@ CraftWiki::Application.routes.draw do
   end
 
   resources :users do
-    resources :plans do
-      resources :activities
-    end
+    resources :plans
   end
 
   resources :search, :only => [:index]
