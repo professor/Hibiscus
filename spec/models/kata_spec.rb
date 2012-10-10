@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Kata do
   before(:each) do
-    @kata = Factory.build(:kata)
+    @kata = FactoryGirl.build(:kata)
   end
 
   describe "Required fields: " do
