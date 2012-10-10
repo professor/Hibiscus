@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe User do
   before(:each) do
-    @user = Factory.build(:user)
+    @user = FactoryGirl.build(:user)
   end
   
   describe "Required fields: " do

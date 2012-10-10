@@ -4,7 +4,7 @@ describe Achievement do
   
   it 'can be created' do
     lambda {
-      Factory(:achievement)
+      FactoryGirl.create(:achievement)
     }.should change(Achievement, :count).by(1)
   end
 

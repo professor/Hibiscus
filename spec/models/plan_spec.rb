@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Plan do
   before(:each) do
-    @plan = Factory.build(:plan)
+    @plan = FactoryGirl.build(:plan)
   end
   
   describe "Required fields: " do
