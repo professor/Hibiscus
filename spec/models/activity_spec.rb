@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Activity do
   before(:each) do
-    @activity = Factory.build(:activity)
+    @activity = FactoryGirl.build(:activity)
   end
   
   describe "Required fields: " do

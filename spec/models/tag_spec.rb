@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Tag do
   before(:each) do
-    @tag = Factory.build(:tag)
+    @tag = FactoryGirl.build(:tag)
   end
   
   describe "Required fields: " do
