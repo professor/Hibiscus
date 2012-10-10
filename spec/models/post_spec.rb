@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Post do
   before(:each) do
-    @post = Factory.build(:post)
+    @post = FactoryGirl.build(:post)
   end
   
   describe "Required fields: " do
@@ -26,6 +26,16 @@ describe Post do
       
       @post.content = " "
       @post.should be_invalid
+    end
+
+    it "should be valid without a source" do
+      @post.source = nil
+      @post.should be_valid
+    end
+
+    it "should be valid without a rating" do
+      @post.rating = nil
+      @post.should be_valid
     end
     
     it "should be invalid without a user" do

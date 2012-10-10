@@ -1,3 +1,10 @@
-Factory.define(:tag) do |t|
-  t.name "Kata"
+FactoryGirl.define do
+  factory :kata_tag do
+    name "Kata"
+  end
+
+
+  factory :tag do
+    name "CHangeMe"
+  end
 end

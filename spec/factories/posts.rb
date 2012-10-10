@@ -1,5 +1,8 @@
-Factory.define :post do |p|
-  p.title "Post Title Factory"
-  p.content "Post Content Factory"
-  p.association :user
+FactoryGirl.define do
+  factory :post do
+    title "Post Title Factory"
+    content "Post Content Factory"
+    association :user
+  end
+
 end

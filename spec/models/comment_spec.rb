@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Comment do
   before(:each) do
-    @comment = Factory.build(:comment)
+    @comment = FactoryGirl.build(:comment)
   end
   
   describe "Required fields: " do    
