@@ -4,6 +4,7 @@
  <title><%= (title = yield :title) ? title : GlobalConfig.site_title %></title>                                          	
   <%= stylesheet_link_tag :all %>
   <%= javascript_include_tag :all %>
+  <%= javascript_include_tag :ckeditor %>
   <%= csrf_meta_tag %>
 </head>
 <body class="home blog">

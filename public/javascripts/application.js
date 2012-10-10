@@ -7,9 +7,9 @@ jQuery.ajaxSetup({
 
 
 $(document).ready(function() {
-  $('textarea').wysiwyg({
-		initialContent: ""
-	});
+  //$('textarea').wysiwyg({
+//		initialContent: ""
+//	});
 		
   $('#new_like').submit(function (){  
     $.post($(this).attr('action'), $(this).serialize(), null, "script");  
