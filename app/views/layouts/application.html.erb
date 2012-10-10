@@ -27,7 +27,7 @@
         <div class="menu">
           <ul>
             <li class="current_page_item"><%= link_to "Home", root_url, :title =>"Home" %></li>
-            <li class="page_item"><%= link_to "#{GlobalConfig.activity_name.pluralize}", "/tags/#{GlobalConfig.activity_tag}", :title =>"#{GlobalConfig.activity_name.pluralize}" %></li>
+            <li class="page_item"><%= link_to "#{GlobalConfig.activity_name.pluralize}", "/#{GlobalConfig.activity_type.pluralize}", :title =>"#{GlobalConfig.activity_name.pluralize}" %></li>
           </ul>
         </div>
 

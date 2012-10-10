@@ -3,7 +3,7 @@ class GlobalConfig
   DEFAULT_CONFIG = {'site_title' => "Craftsmanship", 
   'site_tag' => "Reviewed katas for software excellence",
   'activity_name' => "Kata",
-  'activity_tag' => "kata",
+  'activity_type' => "kata",
   'comment_default' => "1. Why would you recommend (or not recommend) this activity to a peer?<br /><br />
 																															2. What worked well?<br /><br />
 																															3. What didn't work well?<br /><br />
@@ -23,8 +23,8 @@ class GlobalConfig
       config_hash['activity_name']
     end
 
-    def activity_tag
-      config_hash['activity_tag']
+    def activity_type
+      config_hash['activity_type']
     end
 
     def comment_default

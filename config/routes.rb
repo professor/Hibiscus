@@ -19,6 +19,7 @@ CraftWiki::Application.routes.draw do
   resources :posts do
     resources :comments
   end
+  resources :katas, :controller => "posts", :type => "Kata"
 
   match '/auth/:provider/callback', :to => 'authentications#create'
   match '/auth/failure', :to => 'authentications#failure'
