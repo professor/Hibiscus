@@ -50,3 +50,8 @@ group :development, :test, :production do
 	gem "faraday-stack" #it appears that indextank needs this?
 #  gem 'json_pure', '1.4.6', :require => 'json'
 end
+gem "ckeditor", "3.6.3"
+group :development, :test, :production do
+        gem "ckeditor", "3.6.3"
+	gem 'mongoid-paperclip', :require => 'mongoid_paperclip'
+end

@@ -30,9 +30,11 @@
   <div class="field">
     <%= f.label :content, 'Comment' %><br />
     <% if @post.isKata? %>
-            <%= f.text_area :content, :size => "80x12", :value => "#{GlobalConfig.comment_default}" %>
+            <!--%= f.text_area :content, :size => "80x12", :value => "#{GlobalConfig.comment_default}" %-->
+            <%= f.cktext_area :content, :toolbar => 'CMUSV', :width => 600, :height => 200, :input_html => { :value => "#{GlobalConfig.comment_default}" } %>
 		<% else %>
-			<%= f.text_area :content, :size => "80x10" %>
+			<!--%= f.text_area :content, :size => "80x10" %-->
+            <%= f.cktext_area :content, :toolbar => 'CMUSV', :width => 600, :height => 200 %>
 		<% end %>
   </div>
   <div class="actions">
