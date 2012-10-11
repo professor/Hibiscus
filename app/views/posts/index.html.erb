@@ -1,7 +1,7 @@
 <%= link_to 'New Post', new_post_path %>
 
 <% @posts.each do |post| %>
-    <%= render :partial => 'posts/post', :locals => {:post => post} %>
+    <%= render :partial => 'posts/post_short', :locals => {:post => post} %>
     <br/>
 <% end %>
 
@@ -154,11 +154,15 @@
     <h2 class="stories-section-header">Software Craftsmanship Articles</h2>
   </hgroup>
   <table class="stories-table">
-    <% for entry in FeedEntry.desc(:published_at).limit(10) %>
+    <% for entry in FeedEntry.desc(:published_at).limit(30) %>
         <tr class="story-row">
-          <td class="headline"><%= link_to h(entry.name), entry.url, :target => '_blank', :class => 'story-link'%></td>
-          <td style="width: 150px;"><%=   entry.published_at.to_date.to_formatted_s(:long_ordinal)  %></td>
-          <td>Like</td>
+          <td style="width: 250px;" class="headline"><%= link_to h(entry.name), entry.url, :target => '_blank', :class => 'story-link'%>
+            <% if entry.author %>
+             <br/> by <%= entry.author %>
+            <% end %>
+          </td>
+          <td style="width: 150px;"><%= entry.blog_name %></td>
+          <td style="width: 150px;"><%= entry.published_at.to_date.to_formatted_s(:long_ordinal)  %></td>
         </tr>
     <% end %>
   </table>

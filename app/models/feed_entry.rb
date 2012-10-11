@@ -7,22 +7,27 @@ class FeedEntry
   field :published_at, :type => String
   field :summary, :type => String
   field :url, :type => String
+  field :author, :type => String
+  field :blog_name, :type => String
+
+  validates :guid, :presence => true
+  validates :name, :presence => true
 
   def self.get_feeds
-    feed_urls = %w(http://www.thoughtworks.com/blogs/rss/current http://blog.8thlight.com/feed/atom.xml)
+    feed_urls = %w(http://cleancoder.posterous.com/rss.xml http://blog.8thlight.com/feed/atom.xml http://blog.gdinwiddie.com/feed/ http://blog.coachcamp.org/feed/ http://craftedsw.blogspot.com/feeds/posts/default)
     update_from_feeds(feed_urls)
   end
 
   def self.update_from_feeds(feed_urls)
     feeds = Feedzirra::Feed.fetch_and_parse(feed_urls)
     feeds.each do |feed_url, feed|
-      add_entries(feed.entries)
+      add_entries(feed.entries, feed.title)
     end
   end
 
   def self.update_from_feeds_continuously(feed_urls, delay_interval = 300.seconds)
     feeds = Feedzirra::Feed.fetch_and_parse(feed_urls)
-    add_entries(feeds.entries)
+    add_entries(feeds.entries, feed.title)
     loop do
       sleep delay_interval
       feeds = Feedzirra::Feed.update(feeds.entries)
@@ -32,7 +37,7 @@ class FeedEntry
 
   private
 
-  def self.add_entries(entries)
+  def self.add_entries(entries, title)
     # == Summary
     # Parser for dealing with RDF feed entries.
     #
@@ -51,7 +56,9 @@ class FeedEntry
             :summary      => entry.summary,
             :url          => entry.url,
             :published_at => entry.published,
-            :guid         => entry.id
+            :guid         => entry.id,
+            :author       => entry.author,
+            :blog_name    => title
         )
       end
     end
