@@ -5,14 +5,10 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.xml
   def index
-    @posts = Post.all
-    @type = params[:type]
+    #@posts = Post.all
+    @type = params[:type].blank? ? nil : params[:type]
 
-    #if @type.blank?
-    #  @posts = Post.excludes(_type: @type)
-    #else
-    #  @posts = Post.where(_type: @type)
-    #end
+    @posts = Post.where(_type: @type)
 
     respond_to do |format|
       format.html # index.html.erb
