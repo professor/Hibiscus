@@ -1,11 +1,23 @@
-<%= link_to 'New Post', new_post_path %>
+<%= link_to 'New Post', new_post_path %> <br><br>
+
+<table id="main-posts-table">
+
+
 
 <% @posts.each do |post| %>
+    <tr id="main-post-row">
     <%= render :partial => 'posts/post_short', :locals => {:post => post} %>
-    <br/>
+    </tr>
+
+
 <% end %>
 
-<%= link_to 'New Post', new_post_path %>
+</table>
+<% if @posts.length > 0%>                    <br><br>
+    <%= link_to 'New Post', new_post_path %>
+    <% end %>
+
+
 
 <br /><br /><br />
 
@@ -42,7 +54,7 @@
         font-size: 12px;
     }
     .stories-table td.headline a.story-link:hover {
-        color: #0093cc !important;
+        color: #1a51ad !important;
         text-decoration: none;
     }
     .stories-table td.headline a.story-hattip,
@@ -53,7 +65,7 @@
         white-space: nowrap;
     }
     .stories-table tr:hover td {
-        background: #fbfbfb;
+        background: #e8e8e8;
     }
 
     td.sharers {
@@ -151,12 +163,12 @@
 
 <div id="new-stories" class="stories-container">
   <hgroup>
-    <h2 class="stories-section-header">Software Craftsmanship Articles</h2>
+    <h2 class="stories-section-header">Software Craftsmanship Articles</h2> <br>
   </hgroup>
   <table class="stories-table">
     <% for entry in FeedEntry.desc(:published_at).limit(30) %>
         <tr class="story-row">
-          <td style="width: 250px;" class="headline"><%= link_to h(entry.name), entry.url, :target => '_blank', :class => 'story-link'%>
+          <td style="width: 350px; height: 30px;" class="headline"><%= link_to h(entry.name), entry.url, :target => '_blank', :class => 'story-link'%>
             <% if entry.author %>
              <br/> by <%= entry.author %>
             <% end %>

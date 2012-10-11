@@ -121,6 +121,14 @@ DESCRIPTION: Full width content with no sidebar; used for attachment pages
     position: relative;
     left: 55%;
 }
+#logout_link{
+    width:auto;
+
+}
+#query,#searchsubmit, #right_menu_search{
+    padding-top: 2px;
+
+}
 /* =Fonts
 -------------------------------------------------------------- */
 body,
@@ -177,12 +185,15 @@ div.menu,
 #main,
 #wrapper {
 	margin: 0 auto;
-	width: 940px;
+    /*width: 940px;*/
 }
 #wrapper {
 	background: #fff;
 	margin-top: 20px;
 	padding: 0 20px;
+    margin-left: 15%;
+    margin-right: 15%;
+
 }
 
 /* Structure the footer area */
@@ -343,6 +354,8 @@ a:hover {
 }
 
 
+
+
 /* =Header
 -------------------------------------------------------------- */
 
@@ -386,13 +399,13 @@ a:hover {
 	display: block;
 	float: left;
 	margin: 0 auto;
-	width: 940px;
+	width: 100%;
 }
 #access .menu-header,
 div.menu {
 	font-size: 13px;
 	margin-left: 12px;
-	width: 928px;
+	width: 100%;
 }
 #access .menu-header ul,
 div.menu ul {
@@ -587,7 +600,7 @@ div.menu li {
 }
 .entry-title a:active,
 .entry-title a:hover {
-	color: #ff4b33;
+	color: #046aad;
 }
 .entry-meta {
 	color: #888;
@@ -722,6 +735,38 @@ body.page .edit-link {
 #content .video-player {
 	padding: 0;
 }
+
+table#main-posts-table{
+    border: 1px solid black;
+
+}
+
+tr#main-post-row{
+    height: 180px;
+    padding-bottom: 10%;
+    border: 10px solid #f5f5f5;
+    background-color: #e8e8e8;
+
+}
+
+td.post-meta{
+    width: 30%;
+    text-align: right;
+    padding-right: 1%;
+    padding-top: 1%;
+    padding-left: 1%;
+    /*font-weight: bold;*/
+
+}
+td.post-detail{
+    width: auto;
+    text-align: left;
+    padding-left: 1%;
+    padding-top: 1%;
+    padding-right: 1%;
+    font-size: 1.3em;
+}
+
 
 
 /* =Asides
@@ -1111,7 +1156,7 @@ h3#reply-title {
 	display: none;
 }
 .widget-container {
-	margin: 0 0 10px 0;
+	margin: 0 0 9px 0;
 }
 .widget-title {
 	color: #222;
@@ -1260,7 +1305,8 @@ code {
 	body {
 		background: none !important;
 	}
-	#wrapper {
+    #access,
+    {
 		clear: both !important;
 		display: block !important;
 		float: none !important;
@@ -1289,6 +1335,7 @@ code {
 	}
 	.entry-title {
 		font-size: 21pt;
+
 	}
 	#access,
 	#branding img,
@@ -1334,8 +1381,11 @@ code {
 	}
 	#main {
 		display: inline;
+
 	}
 	.home .sticky {
 		border: none;
 	}
+
+
 }
