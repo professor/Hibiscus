@@ -5,7 +5,6 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.xml
   def index
-    #@posts = Post.all
     @type = params[:type].blank? ? "Post" : params[:type]
 
     @posts = Post.where(_type: @type)

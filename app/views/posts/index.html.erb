@@ -1,5 +1,13 @@
-<%= link_to 'New Post', new_post_path %>
+<% if @type == 'Post' %>
+    <%= link_to 'New Post', new_post_path %>
+<% else %>
+    <%= link_to 'New Kata', new_kata_path %>
+<% end %>
 
 <%= render @posts %>
 
-<%= link_to 'New Post', new_post_path %>
+<% if @type == 'Post' %>
+    <%= link_to 'New Post', new_post_path %>
+<% else %>
+    <%= link_to 'New Kata', new_kata_path %>
+<% end %>
