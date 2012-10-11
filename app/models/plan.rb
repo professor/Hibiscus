@@ -6,7 +6,6 @@ class Plan
 get better at 'X'. What does the community think will help me improve in this area? "
 
   embedded_in :user, :opposite => :plan
-  embeds_many :activities
 
   validates :user, :presence => true
 end

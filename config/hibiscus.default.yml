@@ -1,6 +1,6 @@
 defaults: &defaults
   activity_name: Exercise
-  activity_tag: exercise
+  activity_type: exercise
 
 development:
   <<: *defaults

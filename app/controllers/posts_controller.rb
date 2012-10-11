@@ -6,6 +6,13 @@ class PostsController < ApplicationController
   # GET /posts.xml
   def index
     @posts = Post.all
+    @type = params[:type]
+
+    #if @type.blank?
+    #  @posts = Post.excludes(_type: @type)
+    #else
+    #  @posts = Post.where(_type: @type)
+    #end
 
     respond_to do |format|
       format.html # index.html.erb

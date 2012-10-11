@@ -6,9 +6,7 @@ CraftWiki::Application.routes.draw do
   end
 
   resources :users do
-    resources :plans do
-      resources :activities
-    end
+    resources :plans
   end
 
   resources :search, :only => [:index]
@@ -19,6 +17,7 @@ CraftWiki::Application.routes.draw do
   resources :posts do
     resources :comments
   end
+  resources :katas, :controller => "posts", :type => "Kata"
 
   match '/auth/:provider/callback', :to => 'authentications#create'
   match '/auth/failure', :to => 'authentications#failure'
