@@ -17,7 +17,7 @@
 	</div>
 <% end %>
 <div class="entry-content">
-  <%= post.content.gsub(/<\/?.*?>/, "").truncate(350) %>
+  <%= strip_tags(post.content).truncate(350) %>
 </div>
 <div class="entry-utility">
   <span class="cat-links">
@@ -28,6 +28,7 @@
 			<% end %>
 		<% end %>
 	</span>
+  </span>
   <span class="meta-sep">|</span>
   <span class="comments-link"><a href="<%= post_path(post) %>" title="Comment on <%= post.title %>"><%= post.comments.size  %> Comments</a></span>
 
