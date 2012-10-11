@@ -80,6 +80,12 @@ DESCRIPTION: Two-column fixed layout with one sidebar right of content
 #secondary {
 	clear: right;
 }
+#feed-posts{
+    /*float: right;*/
+    /*overflow: hidden;*/
+    clear: both;
+    width: 100%;
+}
 #footer {
 	clear: both;
 	width: 100%;
@@ -105,7 +111,16 @@ DESCRIPTION: Full width content with no sidebar; used for attachment pages
 	width: 900px;
 }
 
+#search-2{
 
+    position: relative;
+    left: 50%;
+}
+
+#user_profile_menu{
+    position: relative;
+    left: 55%;
+}
 /* =Fonts
 -------------------------------------------------------------- */
 body,
@@ -443,6 +458,8 @@ div.menu li {
 * html #access ul li a:hover {
 	color: #fff;
 }
+
+
 
 
 /* =Content
@@ -1094,7 +1111,7 @@ h3#reply-title {
 	display: none;
 }
 .widget-container {
-	margin: 0 0 18px 0;
+	margin: 0 0 10px 0;
 }
 .widget-title {
 	color: #222;
