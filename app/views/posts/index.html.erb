@@ -1,13 +1,5 @@
-<% if @type == 'Post' %>
-    <%= link_to 'New Post', new_post_path %>
-<% else %>
-    <%= link_to 'New Kata', new_kata_path %>
-<% end %>
+<%= link_to "New #{@type}", "new_#{@type.downcase}".to_sym %>
 
 <%= render @posts %>
 
-<% if @type == 'Post' %>
-    <%= link_to 'New Post', new_post_path %>
-<% else %>
-    <%= link_to 'New Kata', new_kata_path %>
-<% end %>
+<%= link_to "New #{@type}", "new_#{@type.downcase}".to_sym %>

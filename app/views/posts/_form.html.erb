@@ -37,7 +37,18 @@
 
   <% if @type == 'Kata' %>
     <%= f.label :category %>
-    <%= f.text_field :tempCategory, :size => "81", :value => @category %>
+    <% if @post.category.blank? %>
+      <%= f.collection_select :category, @categories, :name, :name %>
+    <% else %>
+      <%= f.collection_select :category, @categories, :name, :name, :selected => @post.category.name %>
+    <% end %>
+
+    <%= f.label :challenge_level %>
+    <% if @post.challenge_level.blank? %>
+      <%= f.select :challenge_level, [['Low', 'low'], ['Medium', 'medium'], ['High', 'high']] %>
+    <% else %>
+      <%= f.select :challenge_level, [['Low', 'low'], ['Medium', 'medium'], ['High', 'high']], :selected => @post.challenge_level %>
+    <% end %>
   <% end %>
 
   <div class="field">

@@ -36,6 +36,7 @@ class PostsController < ApplicationController
   # GET /posts/new.xml
   def new
     @post = post_type.new
+    @categories = Category.all
 
     respond_to do |format|
       format.html # new.html.erb
@@ -47,6 +48,7 @@ class PostsController < ApplicationController
   def edit
     @post = post_type.find(params[:id])
     @tags = @post.joinTags
+    @categories = Category.all
   end
 
   # POST /posts
@@ -71,10 +73,16 @@ class PostsController < ApplicationController
   # PUT /posts/1.xml
   def update
     @post = post_type.find(params[:id])
-    @post.tempTags = params[:post][:tempTags]
-    @post.setTags
-    @post.title = params[:post][:title]
-    @post.content = params[:post][:content]
+    @form = params[@type.downcase.to_sym]
+    if post_type == 'Post'
+      @post.tempTags = @form[:tempTags]
+      @post.setTags
+    else
+      @post.category = @form[:category]
+      @post.challenge_level = @form[:challenge_level]
+    end
+    @post.title = @form[:title]
+    @post.content = params[@type.downcase.to_sym][:content]
 
     respond_to do |format|
       if @post.save

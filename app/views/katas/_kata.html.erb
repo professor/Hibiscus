@@ -38,7 +38,7 @@
   <span class="comments-link"><a href="<%= post_path(kata) %>" title="Comment on <%= kata.title %>"><%= kata.comments.size  %> Comments</a></span>
 
   <span class="edit-link">
-    <%= link_to 'Edit', edit_post_path(kata), :title => "Edit Kata", :class => "kata-edit-link" %>
+    <%= link_to 'Edit', edit_kata_path(kata), :title => "Edit Kata", :class => "kata-edit-link" %>
   </span>
   <span class="edit-link">
     <%= link_to 'Delete', kata, :confirm => 'Are you sure?', :method => :delete, :title => "Delete Kata", :class => "kata-edit-link" %>
