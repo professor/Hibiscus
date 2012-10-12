@@ -27,29 +27,33 @@
 <% end %>
 </div>
 <div class="post-detail">
-<div class="entry-content">
-  <%= strip_tags(post.content).truncate(350) %>
-</div>
-  <br>
-<div class="entry-utility">
-  <span class="cat-links">
-	<span class="entry-utility-prep entry-utility-prep-cat-links">Posted in
-      <% if post.tags.any? %>
-			<% post.tags.each do |tag| %>
-				<%= link_to tag.name, tag, :rel => "category tag" %>
-			<% end %>
-		<% end %>
-	</span>
-  </span>
-  <span class="meta-sep">|</span>
-  <span class="comments-link"><a href="<%= post_path(post) %>" title="Comment on <%= post.title %>"><%= post.comments.size %>
-    Comments</a></span>
 
-  <span class="edit-link">
-    <%= link_to 'Edit', edit_post_path(post), :title => "Edit Post", :class => "post-edit-link" %>
-  </span>
-  <span class="edit-link">
-    <%= link_to 'Delete', post, :confirm => 'Are you sure?', :method => :delete, :title => "Delete Post", :class => "post-edit-link" %>
-  </span>
-</div>
+    <div class="entry-short-content">
+
+      <%= strip_tags(post.content).truncate(350) %>
+
+    </div>
+      <br>
+    <div class="entry-utility">
+      <span class="cat-links">
+        <span class="entry-utility-prep entry-utility-prep-cat-links">Posted in
+          <% if post.tags.any? %>
+                <% post.tags.each do |tag| %>
+                    <%= link_to tag.name, tag, :rel => "category tag" %>
+                <% end %>
+            <% end %>
+        </span>
+      </span>
+      <span class="meta-sep">|</span>
+      <span class="comments-link"><a href="<%= post_path(post) %>" title="Comment on <%= post.title %>"><%= post.comments.size %>
+        Comments</a></span>
+
+      <span class="edit-link">
+        <%= link_to 'Edit', edit_post_path(post), :title => "Edit Post", :class => "post-edit-link" %>
+      </span>
+      <span class="edit-link">
+        <%= link_to 'Delete', post, :confirm => 'Are you sure?', :method => :delete, :title => "Delete Post", :class => "post-edit-link" %>
+      </span>
+    </div>
+
 </div>
