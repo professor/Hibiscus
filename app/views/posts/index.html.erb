@@ -1,25 +1,31 @@
 <%= link_to 'New Post', new_post_path %> <br><br>
 
-<table id="main-posts-table">
 
 
+<div id="main-all-posts-div">
 
-<% @posts.each do |post| %>
-    <tr id="main-post-row">
-    <%= render :partial => 'posts/post_short', :locals => {:post => post} %>
-    </tr>
+    <% @posts.each do |post| %>
+        <div class="main-post-div">
+            <%= render :partial => 'posts/post_short', :locals => {:post => post} %>
+        </div>
 
 
-<% end %>
+    <% end %>
 
-</table>
+</div>
+
+
+<div id="second_new_post_link">
+
 <% if @posts.length > 0%>                    <br><br>
     <%= link_to 'New Post', new_post_path %>
     <% end %>
 
 
 
-<br /><br /><br />
+<br /><br />
+
+</div>
 
 <STYLE type="text/css">
         /**
