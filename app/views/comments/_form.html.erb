@@ -10,14 +10,6 @@
       </ul>
     </div>
   <% end %>
-    
-  <% if @post.isKata? %>
-  <div class="field">
-    <%= f.label :time_spent, 'How much time did you spend on the activity?' %><br />
-    <%= f.text_field :time_spent, :size => "5" %> hours (for example, 3.5 hours)
-  </div>
-  <br/>
-  <% end %>
 
   <% if @post.isKata?
       label = "kata"
