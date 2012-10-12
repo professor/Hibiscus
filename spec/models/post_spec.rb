@@ -81,4 +81,5 @@ describe Post do
       @post.should_receive(:update_search_index)
     end
   end
+
 end

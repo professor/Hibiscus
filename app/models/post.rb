@@ -4,6 +4,7 @@ class Post
   include Mongoid::Document
   include Mongoid::Timestamps
   include Mongoid::Versioning
+  include Mongoid::Paranoia
   
   attr_accessor :tempTags
   
@@ -24,7 +25,7 @@ class Post
   validates :user_id, :presence => true
 
   after_save :update_search_index
-  before_destroy :delete_from_search
+  before_destroy :delete_from_search_index
 
   def listLikes
     likes = []

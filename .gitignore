@@ -10,3 +10,4 @@ config/hibiscus.yml
 */.DS_Store
 /coverage.data
 bin/
+coverage/

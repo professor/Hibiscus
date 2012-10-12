@@ -9,7 +9,11 @@
 					<p class="commentTimeSpent"><%= comment.time_spent %> hours spent.</p>
 				<% end %>
 				<p class="commentContent"><%= comment.content.html_safe %></p>
-				<p class="commentEdit"><%= link_to 'Edit', edit_post_comment_path(@post, comment) %></p> <p class="commentPoster">Posted by: <%= link_to comment.user.display_name, comment.user %></p>
+				<p class="commentEdit">
+                  <%= link_to 'Edit', edit_post_comment_path(@post, comment) %>
+                  <!--%= link_to 'Delete', post_comment_path(@post, comment), :confirm => 'Are you sure?', :method => :delete, :title => "Delete Comments", :class => "comment-delete-link" %-->
+                </p>
+              <p class="commentPoster">Posted by: <%= link_to comment.user.display_name, comment.user %></p>
 			</section>
 		<% end %>
 	<% end %>

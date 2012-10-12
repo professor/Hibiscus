@@ -23,6 +23,7 @@ class PostsController < ApplicationController
   # GET /posts/1
   # GET /posts/1.xml
   def show
+    #STDERR.puts "*** -- REACHED THE SHOW ACTION"
     @post = Post.find(params[:id])
     @comment = Comment.new
     @likes = @post.listLikes
@@ -92,6 +93,7 @@ class PostsController < ApplicationController
   # DELETE /posts/1
   # DELETE /posts/1.xml
   def destroy
+    #STDERR.puts "*** REACHED THE DESTROY ACTION"
     @post = Post.find(params[:id])
     @post.destroy
 

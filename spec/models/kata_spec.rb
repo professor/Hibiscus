@@ -32,4 +32,11 @@ describe Kata do
     end
 
   end
+
+  describe "delete kata" do
+    it "should delete from search index" do
+      @kata.should_receive(:delete_from_search_index)
+      @kata.destroy
+    end
+  end
 end
