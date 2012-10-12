@@ -4,36 +4,45 @@
       <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
 
       <ul>
-      <% @post.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
+        <% @post.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
       </ul>
     </div>
   <% end %>
 
   <div class="field">
-    <%= f.label :title %><br />
+    <%= f.label :title %>
+    <br/>
     <%= f.text_field :title, :size => "81" %>
   </div>
 
   <div class="field">
-      <%= f.label :source %><br />
-      <%= f.text_field :source, :size => "81" %>
+    <%= f.label :source %>
+    <br/>
+    <%= f.text_field :source, :size => "81" %>
   </div>
 
+  <% if @type == 'Post' %>
+    <div class="field">
+      <%= f.label :tempTags, "Tags" %>
+      <br/>
+      <% if @post.tags.any? %>
+        <%= f.text_field :tempTags, :size => "81", :value => @tags %>
+      <% else %>
+        <%= f.text_field :tempTags, :size => "81" %>
+      <% end %>
+    </div>
+  <% end %>
+
+  <% if @type == 'Kata' %>
+    <%= f.label :category %>
+    <%= f.text_field :tempCategory, :size => "81", :value => @category %>
+  <% end %>
+
   <div class="field">
-    <%= f.label :tempTags, "Tags" %><br />
-    <% if @post.tags.any? %>
-			<%= f.text_field :tempTags, :size => "81", :value => @tags %>
-		<% else %>
-			<%= f.text_field :tempTags, :size => "81" %>
-		<% end %>
-  </div>
-
-
-
-  <div class="field">
-    <%= f.label :content %><br />
+    <%= f.label :content %>
+    <br/>
     <%= f.cktext_area :content, :toolbar => 'CMUSV', :width => 600, :height => 200 %>
   </div>
 

@@ -2,12 +2,15 @@
 class PostsController < ApplicationController
   before_filter :authenticate_user!,  :except => [:index, :show]
 
+  def post_type
+    @type = params[:type].blank? ? "Post" : params[:type]
+    @type.constantize
+  end
+
   # GET /posts
   # GET /posts.xml
   def index
-    @type = params[:type].blank? ? "Post" : params[:type]
-
-    @posts = Post.where(_type: @type)
+    @posts = post_type.where(_type: @type)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -18,7 +21,7 @@ class PostsController < ApplicationController
   # GET /posts/1
   # GET /posts/1.xml
   def show
-    @post = Post.find(params[:id])
+    @post = post_type.find(params[:id])
     @comment = Comment.new
     @likes = @post.listLikes
     @dislikes = @post.listDislikes
@@ -32,7 +35,7 @@ class PostsController < ApplicationController
   # GET /posts/new
   # GET /posts/new.xml
   def new
-    @post = Post.new
+    @post = post_type.new
 
     respond_to do |format|
       format.html # new.html.erb
@@ -42,20 +45,20 @@ class PostsController < ApplicationController
 
   # GET /posts/1/edit
   def edit
-    @post = Post.find(params[:id])
+    @post = post_type.find(params[:id])
     @tags = @post.joinTags
   end
 
   # POST /posts
   # POST /posts.xml
   def create
-    @post = Post.new(params[:post])
+    @post = post_type.new(params[@type.downcase.to_sym])
     @post.user = current_user
     @post.setTags
 
     respond_to do |format|
       if @post.save
-        format.html { redirect_to(@post, :notice => 'Post was successfully created.') }
+        format.html { redirect_to(@post, :notice => "#{@type} was successfully created.") }
         format.xml  { render :xml => @post, :status => :created, :location => @post }
       else
         format.html { render :action => "new" }
@@ -67,7 +70,7 @@ class PostsController < ApplicationController
   # PUT /posts/1
   # PUT /posts/1.xml
   def update
-    @post = Post.find(params[:id])
+    @post = post_type.find(params[:id])
     @post.tempTags = params[:post][:tempTags]
     @post.setTags
     @post.title = params[:post][:title]
@@ -87,7 +90,7 @@ class PostsController < ApplicationController
   # DELETE /posts/1
   # DELETE /posts/1.xml
   def destroy
-    @post = Post.find(params[:id])
+    @post = post_type.find(params[:id])
     @post.destroy
 
     respond_to do |format|
