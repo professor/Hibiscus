@@ -185,14 +185,15 @@ div.menu,
 #main,
 #wrapper {
 	margin: 0 auto;
-    /*width: 940px;*/
+    width: 1080px;
 }
 #wrapper {
 	background: #fff;
 	margin-top: 20px;
 	padding: 0 20px;
-    margin-left: 15%;
-    margin-right: 15%;
+    /*margin-left: 15%;*/
+    /*margin-right: 15%;*/
+    /*position: absolute;*/
 
 }
 
@@ -753,7 +754,7 @@ body.page .edit-link {
 /*}*/
 
 #main-all-posts-div{
-    width: inherit;
+    width: auto;
     /*border: 1px solid #000000;*/
     padding: 1%;
     /*background: #dedede;*/
