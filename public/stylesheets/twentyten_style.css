@@ -737,27 +737,13 @@ body.page .edit-link {
 	padding: 0;
 }
 
-/*table#main-posts-table{*/
-    /*border: 1px solid black;*/
 
-/*}*/
-
-/*tr#main-post-row{*/
-    /*height: 180px;*/
-    /*padding-bottom: 10%;*/
-    /*border: 10px solid #e8e8e8;*/
-    /*background-color: #f5f5f5;*/
-    /*-webkit-box-shadow: 0 10px 6px -6px #777;*/
-    /*-moz-box-shadow: 0 10px 6px -6px #777;*/
-    /*box-shadow: 0 10px 6px -6px #777;*/
-
-/*}*/
 
 #main-all-posts-div{
     width: auto;
+    height: 0;
     /*border: 1px solid #000000;*/
     padding: 1%;
-    /*background: #dedede;*/
     background: #e1e1e1;
 }
 
@@ -773,10 +759,13 @@ body.page .edit-link {
     padding: 1.5%;
     -moz-border-radius: 15px;
     border-radius: 15px;
-
-
-
 }
+
+/*.main-post-div:hover, div.post-meta:hover, div.post-detail:hover{*/
+    /*background: #f5f5f5;*/
+/*}*/
+
+
 
 div.post-meta{
     width: 30%;

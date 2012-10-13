@@ -1,11 +1,33 @@
 <%= link_to 'New Post', new_post_path %> <br><br>
 
+<script type="text/javascript">
+
+
+    $(document).ready(function () {
+
+
+        $('.main-post-div').css('opacity', 0).each(function (i) {
+            var height = $('#main-all-posts-div').height();
+
+            $('#main-all-posts-div').animate({ height:height+215}, 500);
+            $('#main-all-posts-div').height("+=215");
+            $(this).css('display', 'block');
+            $(this).animate({ opacity:0 }, i * 500);
+            $(this).animate({ opacity:1}, 1000);
+
+
+        })
+
+    });
+
+
+</script>
 
 
 <div id="main-all-posts-div">
 
-    <% @posts.each do |post| %>
-        <div class="main-post-div">
+    <% @posts.limit(5).each do |post| %>
+        <div class="main-post-div" style="display: none;">
             <%= render :partial => 'posts/post_short', :locals => {:post => post} %>
         </div>
 
@@ -26,6 +48,7 @@
 <br /><br />
 
 </div>
+
 
 <STYLE type="text/css">
         /**
