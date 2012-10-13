@@ -97,7 +97,8 @@ class PostsController < ApplicationController
     @post.destroy
 
     respond_to do |format|
-      format.html { redirect_to(posts_url, :notice => 'The post has been deleted.') }
+      #format.html { redirect_to(polymorphic_url(format), :notice => 'The post has been deleted.')}
+      format.html { redirect_to("#{post_type}s".downcase.to_sym, :notice => 'The post has been deleted.') }
       format.xml  { head :ok }
     end
   end

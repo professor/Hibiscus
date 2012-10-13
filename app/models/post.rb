@@ -4,6 +4,7 @@ class Post
   include Mongoid::Document
   include Mongoid::Timestamps
   include Mongoid::Versioning
+  include Mongoid::Paranoia
   
   attr_accessor :tempTags
   

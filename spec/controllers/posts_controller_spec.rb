@@ -291,5 +291,25 @@ describe PostsController do
         response.should redirect_to(posts_url)
       end
     end
+
+    describe "Destroy Kata" do
+      before(:each) do
+        @kata = FactoryGirl.build(:kata)
+      end
+
+      it "destroy a requested kata" do
+        Kata.stub(:find).with("999") { mock_kata }
+        mock_kata.should_receive(:destroy)
+        delete :destroy, {:id => "999", :type => 'Kata'}
+      end
+
+      it "redirects to the kata list" do
+        Kata.stub(:find).with("999") { mock_kata }
+        delete :destroy, {:id => "999", :type => 'Kata'}
+        response.should redirect_to(katas_url)
+      end
+
+    end
+
   end
 end
