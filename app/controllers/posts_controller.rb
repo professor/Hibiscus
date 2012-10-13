@@ -17,6 +17,7 @@ class PostsController < ApplicationController
   # GET /posts/1.xml
   def show
     @post = post_type.find(params[:id])
+    @comments = @post.comments
     @comment = Comment.new
     @likes = @post.listLikes
     @dislikes = @post.listDislikes
@@ -84,7 +85,7 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       if @post.save
-        format.html { redirect_to(@post, :notice => 'Post was successfully updated.') }
+        format.html { redirect_to(@post, :notice => "#{@type} was successfully updated.") }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -100,8 +101,7 @@ class PostsController < ApplicationController
     @post.destroy
 
     respond_to do |format|
-      #format.html { redirect_to(polymorphic_url(format), :notice => 'The post has been deleted.')}
-      format.html { redirect_to("#{post_type}s".downcase.to_sym, :notice => 'The post has been deleted.') }
+      format.html { redirect_to(post_type, :notice => "The #{@type} has been deleted.") }
       format.xml  { head :ok }
     end
   end

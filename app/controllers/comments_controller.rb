@@ -1,9 +1,6 @@
 class CommentsController < ApplicationController
   before_filter :authenticate_user!
 
-  ##
-  # Create a new comment that belongs to a user and a post, and generate a notice
-  # of whether the comment could be saved or not.
   def create
     #@post = post_type.find(params[:post_id])
     @post = post_type.find(params["#{post_type}_id".downcase.to_sym])
@@ -17,16 +14,11 @@ class CommentsController < ApplicationController
     end
   end
 
-  ##
-  # Retrieve a comment to edit.
   def edit
     @post = post_type.find(params[:post_id])
     @comment = @post.comments.find(params[:id])
   end
 
-  ##
-  # Update a comment, and generate a notice if the changes could be saved or
-  # retry to edit otherwise.
   def update
     @post = post_type.find(params["#{post_type}_id".downcase.to_sym])
     @comment = @post.comments.find(params[:id])
