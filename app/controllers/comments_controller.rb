@@ -41,8 +41,8 @@ class CommentsController < ApplicationController
   end
 
 private
+  # preload the variable @post that the current comment belongs to
   def load_post
-    # preload the necessary variable @post that the current comment belongs to
     # the request url will be in this format: "/katas/kata-title/comments/5078b2b5f1d37f2a3a000064"
     resource, id = request.path.split('/')[1, 2]  # retrieve the 2nd and 3rd element in the url
     @post = resource.singularize.classify.constantize.find(id)   # find the right post/kata the comment belongs to
