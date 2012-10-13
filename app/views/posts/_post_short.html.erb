@@ -9,7 +9,7 @@
   <span class="meta-sep">by</span>
   <span class="author vcard"><a class="url fn n" href="<%= user_path(post.user) %>" title="View all posts by <%= post.user.name %>"><%= post.user.display_name %></a></span>
 </div>
-  <% if post.source.nil? %>
+  <% if !post.source.nil? %>
     <br>
     <div>
       <h4>source:  <%= auto_link_urls post.source %></h4>
