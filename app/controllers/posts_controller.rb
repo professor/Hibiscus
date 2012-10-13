@@ -2,17 +2,15 @@
 class PostsController < ApplicationController
   before_filter :authenticate_user!,  :except => [:index, :show]
 
+  def post_type
+    @type = params[:type].blank? ? "Post" : params[:type]
+    @type.constantize
+  end
+
   # GET /posts
   # GET /posts.xml
   def index
-    @posts = Post.all
-    @type = params[:type]
-
-    #if @type.blank?
-    #  @posts = Post.excludes(_type: @type)
-    #else
-    #  @posts = Post.where(_type: @type)
-    #end
+    @posts = post_type.where(_type: @type)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -23,8 +21,7 @@ class PostsController < ApplicationController
   # GET /posts/1
   # GET /posts/1.xml
   def show
-    #STDERR.puts "*** -- REACHED THE SHOW ACTION"
-    @post = Post.find(params[:id])
+    @post = post_type.find(params[:id])
     @comment = Comment.new
     @likes = @post.listLikes
     @dislikes = @post.listDislikes
@@ -38,7 +35,8 @@ class PostsController < ApplicationController
   # GET /posts/new
   # GET /posts/new.xml
   def new
-    @post = Post.new
+    @post = post_type.new
+    @categories = Category.all
 
     respond_to do |format|
       format.html # new.html.erb
@@ -48,20 +46,21 @@ class PostsController < ApplicationController
 
   # GET /posts/1/edit
   def edit
-    @post = Post.find(params[:id])
+    @post = post_type.find(params[:id])
     @tags = @post.joinTags
+    @categories = Category.all
   end
 
   # POST /posts
   # POST /posts.xml
   def create
-    @post = Post.new(params[:post])
+    @post = post_type.new(params[@type.downcase.to_sym])
     @post.user = current_user
     @post.setTags
 
     respond_to do |format|
       if @post.save
-        format.html { redirect_to(@post, :notice => 'Post was successfully created.') }
+        format.html { redirect_to(@post, :notice => "#{@type} was successfully created.") }
         format.xml  { render :xml => @post, :status => :created, :location => @post }
       else
         format.html { render :action => "new" }
@@ -73,11 +72,17 @@ class PostsController < ApplicationController
   # PUT /posts/1
   # PUT /posts/1.xml
   def update
-    @post = Post.find(params[:id])
-    @post.tempTags = params[:post][:tempTags]
-    @post.setTags
-    @post.title = params[:post][:title]
-    @post.content = params[:post][:content]
+    @post = post_type.find(params[:id])
+    @form = params[@type.downcase.to_sym]
+    if post_type == 'Post'
+      @post.tempTags = @form[:tempTags]
+      @post.setTags
+    else
+      @post.category = @form[:category]
+      @post.challenge_level = @form[:challenge_level]
+    end
+    @post.title = @form[:title]
+    @post.content = params[@type.downcase.to_sym][:content]
 
     respond_to do |format|
       if @post.save
@@ -93,12 +98,12 @@ class PostsController < ApplicationController
   # DELETE /posts/1
   # DELETE /posts/1.xml
   def destroy
-    #STDERR.puts "*** REACHED THE DESTROY ACTION"
-    @post = Post.find(params[:id])
+    @post = post_type.find(params[:id])
     @post.destroy
 
     respond_to do |format|
-      format.html { redirect_to(posts_url, :notice => 'The post has been deleted.') }
+      #format.html { redirect_to(polymorphic_url(format), :notice => 'The post has been deleted.')}
+      format.html { redirect_to("#{post_type}s".downcase.to_sym, :notice => 'The post has been deleted.') }
       format.xml  { head :ok }
     end
   end

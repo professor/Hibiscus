@@ -9,6 +9,10 @@ describe PostsController do
   def mock_post(stubs = {})
     @mock_post ||= mock_model(Post, stubs).as_null_object
   end
+
+  def mock_kata(stubs = {})
+    @mock_kata ||= mock_model(Kata, stubs).as_null_object
+  end
   
   context "Unauthenticated user: " do
     it "should allow access to index" do
@@ -59,10 +63,16 @@ describe PostsController do
     end
     
     describe "GET index" do
-      it "assigns all posts as @posts" do
-        Post.stub(:all) { [mock_post] }
+      it "assigns all posts with type 'Post' as @posts when type is blank" do
+        Post.stub(:where).with(:_type => 'Post') { [mock_post] }
         get :index
         assigns(:posts).should eq([mock_post])
+      end
+
+      it "assigns all posts with type 'Kata' as @posts when type is 'Kata'" do
+        Post.stub(:where).with(:_type => 'Kata') { [mock_kata] }
+        get :index, {:type => 'Kata' }
+        assigns(:posts).should eq([mock_kata])
       end
     end
 
@@ -171,5 +181,25 @@ describe PostsController do
         response.should redirect_to(posts_url)
       end
     end
+
+    describe "Destroy Kata" do
+      before(:each) do
+        @kata = FactoryGirl.build(:kata)
+      end
+
+      it "destroy a requested kata" do
+        Kata.stub(:find).with("999") { mock_kata }
+        mock_kata.should_receive(:destroy)
+        delete :destroy, {:id => "999", :type => 'Kata'}
+      end
+
+      it "redirects to the kata list" do
+        Kata.stub(:find).with("999") { mock_kata }
+        delete :destroy, {:id => "999", :type => 'Kata'}
+        response.should redirect_to(katas_url)
+      end
+
+    end
+
   end
 end

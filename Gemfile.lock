@@ -91,6 +91,9 @@ GEM
     indextank (1.0.9.1)
       faraday-stack
       yajl-ruby (>= 0.7.7)
+    jquery-rails (1.0.19)
+      railties (~> 3.0)
+      thor (~> 0.14)
     json_pure (1.5.1)
     launchy (0.3.7)
       configuration (>= 0.0.5)
@@ -235,6 +238,7 @@ DEPENDENCIES
   faraday-stack
   heroku
   indextank
+  jquery-rails
   metrical
   mongoid (>= 2.0.0.rc.7)
   mongoid-paperclip

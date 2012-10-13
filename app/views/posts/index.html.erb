@@ -1,13 +1,5 @@
-<% if @type == 'Kata' %>
-    <% @posts.each do |post| %>
-        <%= render :partial => 'posts/kata', :locals => {:kata => post} if post.kind_of? Kata %>
-    <% end %>
-<% else %>
-    <%= link_to 'New Post', new_post_path %>
+<%= link_to "New #{@type}", "new_#{@type.downcase}".to_sym %>
 
-    <% @posts.each do |post| %>
-        <%= render :partial => 'posts/post', :locals => {:post => post} unless post.kind_of? Kata %>
-    <% end %>
-    <br />
-    <%= link_to 'New Post', new_post_path %>
-<% end %>
+<%= render @posts %>
+
+<%= link_to "New #{@type}", "new_#{@type.downcase}".to_sym %>
