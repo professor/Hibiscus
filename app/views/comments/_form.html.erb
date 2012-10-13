@@ -11,17 +11,11 @@
     </div>
   <% end %>
 
-  <% if @post.isKata?
-      label = "kata"
-      else
-       label = "post"
-     end %>
-
   <%# render :partial => '/comments/like_dislike', :locals => {:post => @post, :label => label} %>
 
   <div class="field">
     <%= f.label :content, 'Comment' %><br />
-    <% if @post.isKata? %>
+    <% if @type == "Kata" %>
             <!--%= f.text_area :content, :size => "80x12", :value => "#{GlobalConfig.comment_default}" %-->
             <%= f.cktext_area :content, :toolbar => 'CMUSV', :width => 600, :height => 200, :input_html => { :value => "#{GlobalConfig.comment_default}" } %>
 		<% else %>

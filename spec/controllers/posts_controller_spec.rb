@@ -290,12 +290,6 @@ describe PostsController do
         delete :destroy, :id => "1"
         response.should redirect_to(posts_url)
       end
-    end
-
-    describe "Destroy Kata" do
-      before(:each) do
-        @kata = FactoryGirl.build(:kata)
-      end
 
       it "destroy a requested kata" do
         Kata.stub(:find).with("999") { mock_kata }

@@ -60,14 +60,6 @@ class Post
     index.document(url).delete
   end
   
-  def isKata?
-    self.tags.each do |tag|
-      return true if tag.name == "kata"
-    end
-    
-    return false
-  end
-  
   def joinTags
     tags = []
     self.tags.each do |tag|
