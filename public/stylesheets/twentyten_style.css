@@ -770,6 +770,9 @@ body.page .edit-link {
     height: 170px;
     margin-bottom: 1.5%;
     padding: 1.5%;
+    -moz-border-radius: 15px;
+    border-radius: 15px;
+
 
 
 }
