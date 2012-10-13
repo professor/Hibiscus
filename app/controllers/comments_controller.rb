@@ -1,37 +1,32 @@
 class CommentsController < ApplicationController
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, :load_commentable
 
   def create
-    #@post = post_type.find(params[:post_id])
-    @post = post_type.find(params["#{post_type}_id".downcase.to_sym])
-    @comment = @post.comments.build(params[:comment])
+    @comment = @commentable.comments.build(params[:comment])
     @comment.user = current_user
 
     if @comment.save
-      redirect_to(@post, :notice => 'Thank you for your comment.')
+      redirect_to(@commentable, :notice => 'Thank you for your comment.')
     else
-      redirect_to(@post, :flash => { :alert => 'Your comment could not be saved.' })
+      redirect_to(@commentable, :flash => { :alert => 'Your comment could not be saved.' })
     end
   end
 
   def edit
-    @post = post_type.find(params[:post_id])
-    @comment = @post.comments.find(params[:id])
+    @comment = @commentable.comments.find(params[:id])
   end
 
   def update
-    @post = post_type.find(params["#{post_type}_id".downcase.to_sym])
-    @comment = @post.comments.find(params[:id])
+    @comment = @commentable.comments.find(params[:id])
     if @comment.update_attributes(params[:comment])
-      redirect_to(@post, :notice => 'Thank you for the update in your comment.')
+      redirect_to(@commentable, :notice => 'Thank you for the update in your comment.')
     else
       render :action => "edit"
     end
   end             
   
   def destroy
-    @post = post_type.find(params[:post_id])
-    @comment = @post.comments.find(params[:id])
+    @comment = @commentable.comments.find(params[:id])
     if @comment.user == current_user
       @comment.destroy
       respond_to do |format|
@@ -43,5 +38,12 @@ class CommentsController < ApplicationController
         format.html { redirect_to(posts_url, :notice => "You can't delete someone else's comment") }
       end
     end
-  end  
+  end
+
+private
+  def load_commentable
+    # the url will be like: "/katas/kata-title/comments/5078b2b5f1d37f2a3a000064"
+    resource, id = request.path.split('/')[1, 2]  # retrieve the 2nd and 3rd element in the url
+    @commentable = resource.singularize.classify.constantize.find(id)   # find the right post/kata the comment belongs to
+  end
 end

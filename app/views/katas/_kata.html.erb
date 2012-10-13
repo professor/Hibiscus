@@ -1,6 +1,6 @@
 <h2 class="entry-title"><%= link_to kata.title, kata %></h2>
 <div class="entry-meta">
-  <span class="meta-prep meta-prep-author">Posted on</span> <a href="<%= post_path(kata) %>" title="<%= kata.created_at.to_date.to_formatted_s(:long_ordinal) %>" rel="bookmark"><span class="entry-date"><%= kata.created_at.to_date.to_formatted_s(:long_ordinal) %></span></a> <span class="meta-sep">by</span> <span class="author vcard"><a class="url fn n" href="<%= user_path(kata.user) %>" title="View all posts by <%= kata.user.name %>"><%= kata.user.display_name %></a></span>
+  <span class="meta-prep meta-prep-author">Posted on</span> <a href="<%= kata_path(kata) %>" title="<%= kata.created_at.to_date.to_formatted_s(:long_ordinal) %>" rel="bookmark"><span class="entry-date"><%= kata.created_at.to_date.to_formatted_s(:long_ordinal) %></span></a> <span class="meta-sep">by</span> <span class="author vcard"><a class="url fn n" href="<%= user_path(kata.user) %>" title="View all posts by <%= kata.user.name %>"><%= kata.user.display_name %></a></span>
 </div>
 <% if !kata.source.nil? %>
     <div>
@@ -14,13 +14,6 @@
     </div>
 <% end %>
 
-<% if kata.tags.any? %>
-    <div class="entry-tags">
-      <% kata.tags.each do |tag| %>
-          <p class="tag"><%= link_to tag.name, tag %></p>
-      <% end %>
-    </div>
-<% end %>
 <div class="entry-content">
   <%= kata.content.html_safe %>
 </div>
@@ -35,7 +28,7 @@
 	</span>
   </span>
   <span class="meta-sep">|</span>
-  <span class="comments-link"><a href="<%= post_path(kata) %>" title="Comment on <%= kata.title %>"><%= kata.comments.size  %> Comments</a></span>
+  <span class="comments-link"><a href="<%= kata_path(kata) %>" title="Comment on <%= kata.title %>"><%= kata.comments.size  %> Comments</a></span>
 
   <span class="edit-link">
     <%= link_to 'Edit', edit_kata_path(kata), :title => "Edit Kata", :class => "kata-edit-link" %>

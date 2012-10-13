@@ -17,6 +17,8 @@ class PostsController < ApplicationController
   # GET /posts/1.xml
   def show
     @post = post_type.find(params[:id])
+    @commentable = @post
+    @comments = @post.comments
     @comment = Comment.new
     @likes = @post.listLikes
     @dislikes = @post.listDislikes
@@ -97,8 +99,7 @@ class PostsController < ApplicationController
     @post.destroy
 
     respond_to do |format|
-      #format.html { redirect_to(polymorphic_url(format), :notice => 'The post has been deleted.')}
-      format.html { redirect_to("#{post_type}s".downcase.to_sym, :notice => 'The post has been deleted.') }
+      format.html { redirect_to(@post, :notice => 'The post has been deleted.') }
       format.xml  { head :ok }
     end
   end

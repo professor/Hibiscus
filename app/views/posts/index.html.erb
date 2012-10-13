@@ -1,5 +1,5 @@
-<%= link_to "New #{@type}", "new_#{@type.downcase}".to_sym %>
+<%= link_to "New #{@type}", new_polymorphic_path(@type.constantize) %>
 
 <%= render @posts %>
 
-<%= link_to "New #{@type}", "new_#{@type.downcase}".to_sym %>
+<%= link_to "New #{@type}", new_polymorphic_path(@type.constantize) %>
