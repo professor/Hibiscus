@@ -200,13 +200,14 @@
 
           <div class="method-description">
             
-            
+            <p>Create a new comment that belongs to a user and a post, and generate a
+notice of whether the comment could be saved or not.</p>
             
 
             
             <div class="method-source-code" id="create-source">
 <pre>
-<span class="ruby-comment"># File app/controllers/comments_controller.rb, line 4</span>
+<span class="ruby-comment"># File app/controllers/comments_controller.rb, line 7</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">create</span>
   <span class="ruby-comment">#@post = post_type.find(params[:post_id])</span>
   <span class="ruby-ivar">@post</span> = <span class="ruby-identifier">post_type</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-node">&quot;#{post_type}_id&quot;</span>.<span class="ruby-identifier">downcase</span>.<span class="ruby-identifier">to_sym</span>])
@@ -242,13 +243,14 @@
 
           <div class="method-description">
             
-            
+            <p>Delete an existing comment and generate a notice of whether it was deleted
+or not.</p>
             
 
             
             <div class="method-source-code" id="destroy-source">
 <pre>
-<span class="ruby-comment"># File app/controllers/comments_controller.rb, line 32</span>
+<span class="ruby-comment"># File app/controllers/comments_controller.rb, line 42</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">destroy</span>
   <span class="ruby-ivar">@post</span> = <span class="ruby-identifier">post_type</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:post_id</span>])
   <span class="ruby-ivar">@comment</span> = <span class="ruby-ivar">@post</span>.<span class="ruby-identifier">comments</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
@@ -287,13 +289,13 @@
 
           <div class="method-description">
             
-            
+            <p>Retrieve a comment to edit.</p>
             
 
             
             <div class="method-source-code" id="edit-source">
 <pre>
-<span class="ruby-comment"># File app/controllers/comments_controller.rb, line 17</span>
+<span class="ruby-comment"># File app/controllers/comments_controller.rb, line 22</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">edit</span>
   <span class="ruby-ivar">@post</span> = <span class="ruby-identifier">post_type</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:post_id</span>])
   <span class="ruby-ivar">@comment</span> = <span class="ruby-ivar">@post</span>.<span class="ruby-identifier">comments</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
@@ -321,13 +323,14 @@
 
           <div class="method-description">
             
-            
+            <p>Update a comment, and generate a notice if the changes could be saved or
+retry to edit otherwise.</p>
             
 
             
             <div class="method-source-code" id="update-source">
 <pre>
-<span class="ruby-comment"># File app/controllers/comments_controller.rb, line 22</span>
+<span class="ruby-comment"># File app/controllers/comments_controller.rb, line 30</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">update</span>
   <span class="ruby-ivar">@post</span> = <span class="ruby-identifier">post_type</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-node">&quot;#{post_type}_id&quot;</span>.<span class="ruby-identifier">downcase</span>.<span class="ruby-identifier">to_sym</span>])
   <span class="ruby-ivar">@comment</span> = <span class="ruby-ivar">@post</span>.<span class="ruby-identifier">comments</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])

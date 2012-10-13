@@ -2,8 +2,8 @@
 class PostsController < ApplicationController
   before_filter :authenticate_user!,  :except => [:index, :show]
 
-  # GET /posts
-  # GET /posts.xml
+  ##
+  # Retrieve all posts of the specified type.
   def index
     @posts = post_type.where(_type: @type)
 
@@ -27,8 +27,9 @@ class PostsController < ApplicationController
     end
   end
 
-  # GET /posts/new
-  # GET /posts/new.xml
+
+  ##
+  # Instantiate a new post, and retrieve all the categories that it might belong to if it is of type 'Kata'
   def new
     @post = post_type.new
     @categories = Category.all
@@ -39,7 +40,8 @@ class PostsController < ApplicationController
     end
   end
 
-  # GET /posts/1/edit
+  ##
+  # Retrieve a post to edit with its tags and categories if any.
   def edit
     @post = post_type.find(params[:id])
     @tags = @post.joinTags
@@ -64,8 +66,9 @@ class PostsController < ApplicationController
     end
   end
 
-  # PUT /posts/1
-  # PUT /posts/1.xml
+  ##
+  # Update the attributes of a post, and generate a notice if the changes could
+  # be saved or retry to edit otherwise.
   def update
     @post = post_type.find(params[:id])
     @form = params[@type.downcase.to_sym]

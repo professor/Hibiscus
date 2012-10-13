@@ -231,13 +231,15 @@
 
           <div class="method-description">
             
-            
+            <p>Get the type of a post using the type in the params hash passed to
+controller action. If the type param is not present, return <a
+href="Post.html">Post</a>.</p>
             
 
             
             <div class="method-source-code" id="post_type-source">
 <pre>
-<span class="ruby-comment"># File app/controllers/application_controller.rb, line 12</span>
+<span class="ruby-comment"># File app/controllers/application_controller.rb, line 15</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">post_type</span>
   <span class="ruby-ivar">@type</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:type</span>].<span class="ruby-identifier">blank?</span> <span class="ruby-operator">?</span> <span class="ruby-string">&quot;Post&quot;</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:type</span>]
   <span class="ruby-ivar">@type</span>.<span class="ruby-identifier">constantize</span>

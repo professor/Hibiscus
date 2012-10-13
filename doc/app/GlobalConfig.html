@@ -191,7 +191,7 @@
         
           <dt><a name="DEFAULT_CONFIG">DEFAULT_CONFIG</a></dt>
           
-          <dd class="description"></dd>
+          <dd class="description"><p>This is the default configuration hash.</p></dd>
           
         
         </dl>
@@ -219,13 +219,13 @@
 
           <div class="method-description">
             
-            
+            <p>Get the configured site activity name.</p>
             
 
             
             <div class="method-source-code" id="activity_name-source">
 <pre>
-<span class="ruby-comment"># File app/models/global_config.rb, line 22</span>
+<span class="ruby-comment"># File app/models/global_config.rb, line 30</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">activity_name</span>
   <span class="ruby-identifier">config_hash</span>[<span class="ruby-string">'activity_name'</span>]
 <span class="ruby-keyword">end</span></pre>
@@ -252,13 +252,13 @@
 
           <div class="method-description">
             
-            
+            <p>Get the configured site activity type.</p>
             
 
             
             <div class="method-source-code" id="activity_type-source">
 <pre>
-<span class="ruby-comment"># File app/models/global_config.rb, line 26</span>
+<span class="ruby-comment"># File app/models/global_config.rb, line 36</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">activity_type</span>
   <span class="ruby-identifier">config_hash</span>[<span class="ruby-string">'activity_type'</span>]
 <span class="ruby-keyword">end</span></pre>
@@ -285,13 +285,13 @@
 
           <div class="method-description">
             
-            
+            <p>Get the configured comment placeholder.</p>
             
 
             
             <div class="method-source-code" id="comment_default-source">
 <pre>
-<span class="ruby-comment"># File app/models/global_config.rb, line 30</span>
+<span class="ruby-comment"># File app/models/global_config.rb, line 42</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">comment_default</span>
   <span class="ruby-identifier">config_hash</span>[<span class="ruby-string">'comment_default'</span>]
 <span class="ruby-keyword">end</span></pre>
@@ -318,13 +318,13 @@
 
           <div class="method-description">
             
-            
+            <p>Get the configuration hash.</p>
             
 
             
             <div class="method-source-code" id="config_hash-source">
 <pre>
-<span class="ruby-comment"># File app/models/global_config.rb, line 34</span>
+<span class="ruby-comment"># File app/models/global_config.rb, line 48</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">config_hash</span>
   <span class="ruby-ivar">@config_hash</span> <span class="ruby-operator">||=</span> <span class="ruby-constant">DEFAULT_CONFIG</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">read_settings_hash</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -351,13 +351,13 @@
 
           <div class="method-description">
             
-            
+            <p>Read the configuration file if any into the configuration hash.</p>
             
 
             
             <div class="method-source-code" id="read_settings_hash-source">
 <pre>
-<span class="ruby-comment"># File app/models/global_config.rb, line 38</span>
+<span class="ruby-comment"># File app/models/global_config.rb, line 54</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">read_settings_hash</span>
   <span class="ruby-keyword">if</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">exists?</span>(<span class="ruby-node">&quot;#{Rails.root}/config/hibiscus.yml&quot;</span>)
     <span class="ruby-constant">YAML</span><span class="ruby-operator">::</span><span class="ruby-identifier">load_file</span>(<span class="ruby-node">&quot;#{Rails.root}/config/hibiscus.yml&quot;</span>)[<span class="ruby-constant">Rails</span>.<span class="ruby-identifier">env</span>.<span class="ruby-identifier">to_s</span>]
@@ -388,13 +388,13 @@
 
           <div class="method-description">
             
-            
+            <p>Get the configured site tag.</p>
             
 
             
             <div class="method-source-code" id="site_tag-source">
 <pre>
-<span class="ruby-comment"># File app/models/global_config.rb, line 18</span>
+<span class="ruby-comment"># File app/models/global_config.rb, line 24</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">site_tag</span>
   <span class="ruby-identifier">config_hash</span>[<span class="ruby-string">'site_tag'</span>]
 <span class="ruby-keyword">end</span></pre>
@@ -421,13 +421,13 @@
 
           <div class="method-description">
             
-            
+            <p>Get the configured site title.</p>
             
 
             
             <div class="method-source-code" id="site_title-source">
 <pre>
-<span class="ruby-comment"># File app/models/global_config.rb, line 14</span>
+<span class="ruby-comment"># File app/models/global_config.rb, line 18</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">site_title</span>
   <span class="ruby-identifier">config_hash</span>[<span class="ruby-string">'site_title'</span>]
 <span class="ruby-keyword">end</span></pre>

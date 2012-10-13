@@ -212,7 +212,7 @@
             
             <div class="method-source-code" id="create-source">
 <pre>
-<span class="ruby-comment"># File app/controllers/posts_controller.rb, line 51</span>
+<span class="ruby-comment"># File app/controllers/posts_controller.rb, line 53</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">create</span>
   <span class="ruby-ivar">@post</span> = <span class="ruby-identifier">post_type</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">params</span>[<span class="ruby-ivar">@type</span>.<span class="ruby-identifier">downcase</span>.<span class="ruby-identifier">to_sym</span>])
   <span class="ruby-ivar">@post</span>.<span class="ruby-identifier">user</span> = <span class="ruby-identifier">current_user</span>
@@ -257,7 +257,7 @@
             
             <div class="method-source-code" id="destroy-source">
 <pre>
-<span class="ruby-comment"># File app/controllers/posts_controller.rb, line 95</span>
+<span class="ruby-comment"># File app/controllers/posts_controller.rb, line 98</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">destroy</span>
   <span class="ruby-ivar">@post</span> = <span class="ruby-identifier">post_type</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
   <span class="ruby-ivar">@post</span>.<span class="ruby-identifier">destroy</span>
@@ -291,13 +291,13 @@
 
           <div class="method-description">
             
-            <p>GET /posts/1/edit</p>
+            <p>Retrieve a post to edit with its tags and categories if any.</p>
             
 
             
             <div class="method-source-code" id="edit-source">
 <pre>
-<span class="ruby-comment"># File app/controllers/posts_controller.rb, line 43</span>
+<span class="ruby-comment"># File app/controllers/posts_controller.rb, line 45</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">edit</span>
   <span class="ruby-ivar">@post</span> = <span class="ruby-identifier">post_type</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
   <span class="ruby-ivar">@tags</span> = <span class="ruby-ivar">@post</span>.<span class="ruby-identifier">joinTags</span>
@@ -326,7 +326,7 @@
 
           <div class="method-description">
             
-            <p>GET /posts GET /posts.xml</p>
+            <p>Retrieve all posts of the specified type.</p>
             
 
             
@@ -364,13 +364,14 @@
 
           <div class="method-description">
             
-            <p>GET /posts/new GET /posts/new.xml</p>
+            <p>Instantiate a new post, and retrieve all the categories that it might
+belong to if it is of type ‘Kata’</p>
             
 
             
             <div class="method-source-code" id="new-source">
 <pre>
-<span class="ruby-comment"># File app/controllers/posts_controller.rb, line 32</span>
+<span class="ruby-comment"># File app/controllers/posts_controller.rb, line 33</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">new</span>
   <span class="ruby-ivar">@post</span> = <span class="ruby-identifier">post_type</span>.<span class="ruby-identifier">new</span>
   <span class="ruby-ivar">@categories</span> = <span class="ruby-constant">Category</span>.<span class="ruby-identifier">all</span>
@@ -444,13 +445,14 @@
 
           <div class="method-description">
             
-            <p>PUT /posts/1 PUT /posts/1.xml</p>
+            <p>Update the attributes of a post, and generate a notice if the changes could
+be saved or retry to edit otherwise.</p>
             
 
             
             <div class="method-source-code" id="update-source">
 <pre>
-<span class="ruby-comment"># File app/controllers/posts_controller.rb, line 69</span>
+<span class="ruby-comment"># File app/controllers/posts_controller.rb, line 72</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">update</span>
   <span class="ruby-ivar">@post</span> = <span class="ruby-identifier">post_type</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
   <span class="ruby-ivar">@form</span> = <span class="ruby-identifier">params</span>[<span class="ruby-ivar">@type</span>.<span class="ruby-identifier">downcase</span>.<span class="ruby-identifier">to_sym</span>]
