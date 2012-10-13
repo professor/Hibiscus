@@ -2,7 +2,8 @@ class CommentsController < ApplicationController
   before_filter :authenticate_user!
 
   def create
-    @post = Post.find(params[:post_id])
+    #@post = post_type.find(params[:post_id])
+    @post = post_type.find(params["#{post_type}_id".downcase.to_sym])
     @comment = @post.comments.build(params[:comment])
     @comment.user = current_user
 
@@ -14,12 +15,12 @@ class CommentsController < ApplicationController
   end
 
   def edit
-    @post = Post.find(params[:post_id])
+    @post = post_type.find(params[:post_id])
     @comment = @post.comments.find(params[:id])
   end
 
   def update
-    @post = Post.find(params[:post_id])
+    @post = post_type.find(params["#{post_type}_id".downcase.to_sym])
     @comment = @post.comments.find(params[:id])
     if @comment.update_attributes(params[:comment])
       redirect_to(@post, :notice => 'Thank you for the update in your comment.')
@@ -29,7 +30,7 @@ class CommentsController < ApplicationController
   end             
   
   def destroy
-    @post = Post.find(params[:post_id])
+    @post = post_type.find(params[:post_id])
     @comment = @post.comments.find(params[:id])
     if @comment.user == current_user
       @comment.destroy

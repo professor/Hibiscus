@@ -2,11 +2,6 @@
 class PostsController < ApplicationController
   before_filter :authenticate_user!,  :except => [:index, :show]
 
-  def post_type
-    @type = params[:type].blank? ? "Post" : params[:type]
-    @type.constantize
-  end
-
   # GET /posts
   # GET /posts.xml
   def index
@@ -74,7 +69,7 @@ class PostsController < ApplicationController
   def update
     @post = post_type.find(params[:id])
     @form = params[@type.downcase.to_sym]
-    if post_type == 'Post'
+    if post_type == Post
       @post.tempTags = @form[:tempTags]
       @post.setTags
     else

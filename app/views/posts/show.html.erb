@@ -1,4 +1,4 @@
-<%= render :partial => 'posts/post', :locals => {:post => @post} %>
+<%= render @post %>
 
 <section id="comments">
 	<% if @post.comments.any? %>

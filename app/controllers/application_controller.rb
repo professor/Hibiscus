@@ -8,6 +8,11 @@ class ApplicationController < ActionController::Base
   def all_tags
     @all_tags ||= Tag.all
   end
+
+  def post_type
+    @type = params[:type].blank? ? "Post" : params[:type]
+    @type.constantize
+  end
     
-  helper_method :recent_posts, :all_tags
+  helper_method :recent_posts, :all_tags, :post_type
 end
