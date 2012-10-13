@@ -212,7 +212,7 @@
             
             <div class="method-source-code" id="create-source">
 <pre>
-<span class="ruby-comment"># File app/controllers/posts_controller.rb, line 53</span>
+<span class="ruby-comment"># File app/controllers/posts_controller.rb, line 51</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">create</span>
   <span class="ruby-ivar">@post</span> = <span class="ruby-identifier">post_type</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">params</span>[<span class="ruby-ivar">@type</span>.<span class="ruby-identifier">downcase</span>.<span class="ruby-identifier">to_sym</span>])
   <span class="ruby-ivar">@post</span>.<span class="ruby-identifier">user</span> = <span class="ruby-identifier">current_user</span>
@@ -257,13 +257,14 @@
             
             <div class="method-source-code" id="destroy-source">
 <pre>
-<span class="ruby-comment"># File app/controllers/posts_controller.rb, line 97</span>
+<span class="ruby-comment"># File app/controllers/posts_controller.rb, line 95</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">destroy</span>
   <span class="ruby-ivar">@post</span> = <span class="ruby-identifier">post_type</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
   <span class="ruby-ivar">@post</span>.<span class="ruby-identifier">destroy</span>
 
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
-    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">redirect_to</span>(<span class="ruby-ivar">@post</span>, <span class="ruby-value">:notice</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">'The post has been deleted.'</span>) }
+    <span class="ruby-comment">#format.html { redirect_to(polymorphic_url(format), :notice =&gt; 'The post has been deleted.')}</span>
+    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">redirect_to</span>(<span class="ruby-node">&quot;#{post_type}s&quot;</span>.<span class="ruby-identifier">downcase</span>.<span class="ruby-identifier">to_sym</span>, <span class="ruby-value">:notice</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">'The post has been deleted.'</span>) }
     <span class="ruby-identifier">format</span>.<span class="ruby-identifier">xml</span>  { <span class="ruby-identifier">head</span> <span class="ruby-value">:ok</span> }
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
@@ -296,7 +297,7 @@
             
             <div class="method-source-code" id="edit-source">
 <pre>
-<span class="ruby-comment"># File app/controllers/posts_controller.rb, line 45</span>
+<span class="ruby-comment"># File app/controllers/posts_controller.rb, line 43</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">edit</span>
   <span class="ruby-ivar">@post</span> = <span class="ruby-identifier">post_type</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
   <span class="ruby-ivar">@tags</span> = <span class="ruby-ivar">@post</span>.<span class="ruby-identifier">joinTags</span>
@@ -369,7 +370,7 @@
             
             <div class="method-source-code" id="new-source">
 <pre>
-<span class="ruby-comment"># File app/controllers/posts_controller.rb, line 34</span>
+<span class="ruby-comment"># File app/controllers/posts_controller.rb, line 32</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">new</span>
   <span class="ruby-ivar">@post</span> = <span class="ruby-identifier">post_type</span>.<span class="ruby-identifier">new</span>
   <span class="ruby-ivar">@categories</span> = <span class="ruby-constant">Category</span>.<span class="ruby-identifier">all</span>
@@ -411,8 +412,6 @@
 <span class="ruby-comment"># File app/controllers/posts_controller.rb, line 18</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">show</span>
   <span class="ruby-ivar">@post</span> = <span class="ruby-identifier">post_type</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
-  <span class="ruby-ivar">@commentable</span> = <span class="ruby-ivar">@post</span>
-  <span class="ruby-ivar">@comments</span> = <span class="ruby-ivar">@post</span>.<span class="ruby-identifier">comments</span>
   <span class="ruby-ivar">@comment</span> = <span class="ruby-constant">Comment</span>.<span class="ruby-identifier">new</span>
   <span class="ruby-ivar">@likes</span> = <span class="ruby-ivar">@post</span>.<span class="ruby-identifier">listLikes</span>
   <span class="ruby-ivar">@dislikes</span> = <span class="ruby-ivar">@post</span>.<span class="ruby-identifier">listDislikes</span>
@@ -451,7 +450,7 @@
             
             <div class="method-source-code" id="update-source">
 <pre>
-<span class="ruby-comment"># File app/controllers/posts_controller.rb, line 71</span>
+<span class="ruby-comment"># File app/controllers/posts_controller.rb, line 69</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">update</span>
   <span class="ruby-ivar">@post</span> = <span class="ruby-identifier">post_type</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
   <span class="ruby-ivar">@form</span> = <span class="ruby-identifier">params</span>[<span class="ruby-ivar">@type</span>.<span class="ruby-identifier">downcase</span>.<span class="ruby-identifier">to_sym</span>]

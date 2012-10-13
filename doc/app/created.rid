@@ -1,12 +1,12 @@
-Sat, 13 Oct 2012 09:55:03 -0700
-doc/README_FOR_APP	Thu, 27 Sep 2012 16:37:59 -0700
+Sat, 13 Oct 2012 10:17:20 -0700
+doc/README_FOR_APP	Sat, 13 Oct 2012 10:13:09 -0700
 app/controllers/achievements_controller.rb	Thu, 27 Sep 2012 16:37:59 -0700
 app/controllers/application_controller.rb	Fri, 12 Oct 2012 18:04:17 -0700
 app/controllers/authentications_controller.rb	Sun, 07 Oct 2012 15:18:48 -0700
-app/controllers/comments_controller.rb	Sat, 13 Oct 2012 09:17:01 -0700
+app/controllers/comments_controller.rb	Sat, 13 Oct 2012 10:02:00 -0700
 app/controllers/likes_controller.rb	Thu, 27 Sep 2012 16:37:59 -0700
 app/controllers/plans_controller.rb	Thu, 27 Sep 2012 16:37:59 -0700
-app/controllers/posts_controller.rb	Sat, 13 Oct 2012 09:26:53 -0700
+app/controllers/posts_controller.rb	Sat, 13 Oct 2012 10:02:00 -0700
 app/controllers/search_controller.rb	Sun, 07 Oct 2012 17:32:32 -0700
 app/controllers/tags_controller.rb	Sun, 07 Oct 2012 17:32:32 -0700
 app/controllers/users_controller.rb	Wed, 10 Oct 2012 16:37:09 -0700
