@@ -216,13 +216,14 @@
 
           <div class="method-description">
             
-            
+            <p>Get feeds from predefined RSS feeds. Usage: In Rails Console, <a
+href="FeedEntry.html#method-c-get_feeds">FeedEntry.get_feeds</a></p>
             
 
             
             <div class="method-source-code" id="get_feeds-source">
 <pre>
-<span class="ruby-comment"># File app/models/feed_entry.rb, line 16</span>
+<span class="ruby-comment"># File app/models/feed_entry.rb, line 20</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">get_feeds</span>
   <span class="ruby-identifier">feed_urls</span> = <span class="ruby-node">%(http://cleancoder.posterous.com/rss.xml http://blog.8thlight.com/feed/atom.xml http://blog.gdinwiddie.com/feed/ http://blog.coachcamp.org/feed/ http://craftedsw.blogspot.com/feeds/posts/default)</span>
   <span class="ruby-identifier">update_from_feeds</span>(<span class="ruby-identifier">feed_urls</span>)
@@ -250,13 +251,15 @@
 
           <div class="method-description">
             
-            
+            <p>Get feeds for defined RSS feeds. Usage: In Rails Console, <a
+href="FeedEntry.html#method-c-update_from_feeds">FeedEntry.update_from_feeds</a>(“<a
+href="http://blog.8thlight.com/feed/atom.xml">blog.8thlight.com/feed/atom.xml</a>”)</p>
             
 
             
             <div class="method-source-code" id="update_from_feeds-source">
 <pre>
-<span class="ruby-comment"># File app/models/feed_entry.rb, line 21</span>
+<span class="ruby-comment"># File app/models/feed_entry.rb, line 29</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">update_from_feeds</span>(<span class="ruby-identifier">feed_urls</span>)
   <span class="ruby-identifier">feeds</span> = <span class="ruby-constant">Feedzirra</span><span class="ruby-operator">::</span><span class="ruby-constant">Feed</span>.<span class="ruby-identifier">fetch_and_parse</span>(<span class="ruby-identifier">feed_urls</span>)
   <span class="ruby-identifier">feeds</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">feed_url</span>, <span class="ruby-identifier">feed</span><span class="ruby-operator">|</span>
@@ -286,20 +289,23 @@
 
           <div class="method-description">
             
-            
+            <p>Continuously get feeds for defined RSS feeds. Usage: In Rails Console, <a
+href="FeedEntry.html#method-c-update_from_feeds">FeedEntry.update_from_feeds</a>(“<a
+href="http://blog.8thlight.com/feed/atom.xml">blog.8thlight.com/feed/atom.xml</a>”,
+300)</p>
             
 
             
             <div class="method-source-code" id="update_from_feeds_continuously-source">
 <pre>
-<span class="ruby-comment"># File app/models/feed_entry.rb, line 28</span>
+<span class="ruby-comment"># File app/models/feed_entry.rb, line 40</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">update_from_feeds_continuously</span>(<span class="ruby-identifier">feed_urls</span>, <span class="ruby-identifier">delay_interval</span> = <span class="ruby-value">300</span>.<span class="ruby-identifier">seconds</span>)
   <span class="ruby-identifier">feeds</span> = <span class="ruby-constant">Feedzirra</span><span class="ruby-operator">::</span><span class="ruby-constant">Feed</span>.<span class="ruby-identifier">fetch_and_parse</span>(<span class="ruby-identifier">feed_urls</span>)
   <span class="ruby-identifier">add_entries</span>(<span class="ruby-identifier">feeds</span>.<span class="ruby-identifier">entries</span>, <span class="ruby-identifier">feed</span>.<span class="ruby-identifier">title</span>)
   <span class="ruby-identifier">loop</span> <span class="ruby-keyword">do</span>
     <span class="ruby-identifier">sleep</span> <span class="ruby-identifier">delay_interval</span>
     <span class="ruby-identifier">feeds</span> = <span class="ruby-constant">Feedzirra</span><span class="ruby-operator">::</span><span class="ruby-constant">Feed</span>.<span class="ruby-identifier">update</span>(<span class="ruby-identifier">feeds</span>.<span class="ruby-identifier">entries</span>)
-    <span class="ruby-identifier">add_entries</span>(<span class="ruby-identifier">feeds</span>.<span class="ruby-identifier">new_entries</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">feeds</span>.<span class="ruby-identifier">updated?</span>
+    <span class="ruby-identifier">add_entries</span>(<span class="ruby-identifier">feeds</span>.<span class="ruby-identifier">new_entries</span>, <span class="ruby-identifier">feed</span>.<span class="ruby-identifier">title</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">feeds</span>.<span class="ruby-identifier">updated?</span>
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
             </div><!-- update_from_feeds_continuously-source -->
