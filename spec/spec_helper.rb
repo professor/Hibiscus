@@ -44,4 +44,12 @@ RSpec.configure do |config|
     sign_in @user
   end
 
+  #mock the login into github, so it is possible to test the Delete link
+  def login_integration
+    OmniAuth.config.test_mode = true
+    OmniAuth.config.add_mock :github, uid: "2266908", info: { nickname: "oscaralvaro", email: "oscaralvaro@gmail.com", name: "Oscar Sandoval" }
+    #this visit is necessary to "setup" the authentication
+    visit '/auth/github'
+  end
+
 end

@@ -1,6 +1,7 @@
 class Comment
   include Mongoid::Document
   include Mongoid::Timestamps
+  #paranoia module allows to implement "soft deletion"
   include Mongoid::Paranoia
 
   field :content, :type => String
