@@ -12,7 +12,7 @@ class Post
 
   #Adding new field source
 
-  field :source, :type => String
+  field :source_url, :type => String
 
   key :title
 

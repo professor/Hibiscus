@@ -1,9 +1,43 @@
-<%= link_to 'New Post', new_post_path %>
+<%= link_to 'New Post', new_post_path %> <br><br>
 
-<% @posts.each do |post| %>
-	<%= render :partial => 'posts/post', :locals => {:post => post} %>    
-	<br/>
-<% end %>
-<br />
+<script type="text/javascript">
 
-<%= link_to 'New Post', new_post_path %>
+    $(document).ready(function () {
+        $('.main-post-div').css('opacity', 0).each(function (i) {
+            var height = $('#main-all-posts-div').height();
+
+            $('#main-all-posts-div').animate({ height:height+215}, 500);
+            $('#main-all-posts-div').height("+=215");
+            $(this).css('display', 'block');
+            $(this).animate({ opacity:0 }, i * 500);
+            $(this).animate({ opacity:1}, 1000);
+        })
+    });
+</script>
+
+
+<div id="main-all-posts-div">
+    <% @posts.desc(:created_at).limit(15).each do |post| %>
+        <div class="main-post-div" style="display: none;">
+            <% if post.respond_to?('site_name') %>
+              <%= render :partial => 'posts/article_short', :locals => {:post => post} %>
+            <% else %>
+              <%= render :partial => 'posts/post_short', :locals => {:post => post} %>
+            <% end %>
+        </div>
+    <% end %>
+</div>
+
+<div id="second_new_post_link">
+
+<% if @posts.length > 0%>                    <br><br>
+    <%= link_to 'New Post', new_post_path %>
+    <% end %>
+
+<br /><br />
+
+</div>
+
+
+
+</STYLE>

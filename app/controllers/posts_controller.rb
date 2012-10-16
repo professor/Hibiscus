@@ -70,6 +70,7 @@ class PostsController < ApplicationController
     @post.setTags
     @post.title = params[:post][:title]
     @post.content = params[:post][:content]
+    @post.source_url = params[:post][:source_url]
 
     respond_to do |format|
       if @post.save
