@@ -2,10 +2,7 @@
 
 <script type="text/javascript">
 
-
     $(document).ready(function () {
-
-
         $('.main-post-div').css('opacity', 0).each(function (i) {
             var height = $('#main-all-posts-div').height();
 
@@ -14,36 +11,28 @@
             $(this).css('display', 'block');
             $(this).animate({ opacity:0 }, i * 500);
             $(this).animate({ opacity:1}, 1000);
-
-
         })
-
     });
-
-
 </script>
 
 
 <div id="main-all-posts-div">
-
-    <% @posts.limit(5).each do |post| %>
+    <% @posts.desc(:created_at).limit(15).each do |post| %>
         <div class="main-post-div" style="display: none;">
-            <%= render :partial => 'posts/post_short', :locals => {:post => post} %>
+            <% if post.respond_to?('site_name') %>
+              <%= render :partial => 'posts/article_short', :locals => {:post => post} %>
+            <% else %>
+              <%= render :partial => 'posts/post_short', :locals => {:post => post} %>
+            <% end %>
         </div>
-
-
     <% end %>
-
 </div>
-
 
 <div id="second_new_post_link">
 
 <% if @posts.length > 0%>                    <br><br>
     <%= link_to 'New Post', new_post_path %>
     <% end %>
-
-
 
 <br /><br />
 
@@ -189,23 +178,3 @@
         text-decoration: none;
     }
 </STYLE>
-
-<div id="new-stories" class="stories-container">
-  <hgroup>
-    <h2 class="stories-section-header">Software Craftsmanship Articles</h2> <br>
-  </hgroup>
-  <table class="stories-table">
-    <% for entry in FeedEntry.desc(:published_at).limit(30) %>
-        <tr class="story-row">
-          <td style="width: 350px; height: 30px;" class="headline"><%= link_to h(entry.name), entry.url, :target => '_blank', :class => 'story-link'%>
-            <% if entry.author %>
-             <br/> by <%= entry.author %>
-            <% end %>
-          </td>
-          <td style="width: 150px;"><%= entry.blog_name %></td>
-          <td style="width: 150px;"><%= entry.published_at.to_date.to_formatted_s(:long_ordinal)  %></td>
-        </tr>
-    <% end %>
-  </table>
-</div>
-
