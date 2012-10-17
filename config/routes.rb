@@ -19,6 +19,9 @@ CraftWiki::Application.routes.draw do
   resources :posts do
     resources :comments
   end
+  resources :articles, :controller => "posts", :type => "Article" do
+    resources :comments
+  end
 
   match '/auth/:provider/callback', :to => 'authentications#create'
   match '/auth/failure', :to => 'authentications#failure'

@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Like do
   before(:each) do
-    @like = Factory.build(:like)
+    @like = FactoryGirl.build(:like)
   end
   
   describe "Required fields: " do    

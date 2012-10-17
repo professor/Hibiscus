@@ -19,7 +19,7 @@ describe AuthenticationsController do
     
     describe "POST create" do    
       before(:each) do
-        @authentication = Factory(:authentication)
+        @authentication = FactoryGirl.create(:authentication)
         @user = @authentication.user
         request.env['omniauth.auth'] = "Stubbed."
         Authentication.should_receive(:where).and_return(@authentication)

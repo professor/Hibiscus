@@ -1,4 +1,6 @@
-Factory.define(:like) do |l|
-  l.association :post
-  l.association :user
+FactoryGirl.define do
+  factory :like do
+    association :post
+    association :user
+  end
 end
