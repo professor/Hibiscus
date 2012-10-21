@@ -1,4 +1,19 @@
 CraftWiki::Application.routes.draw do
+
+  #match '/posts/mars-rover-kata' => redirect('/katas/mars-rover-kata')
+  #match '/posts/unbeatable-tic-dash-tac-dash-toe' => redirect('/katas/unbeatable-tic-dash-tac-dash-toe')
+  #match '/posts/across-the-board-kata' => redirect('/katas/across-the-board-kata')
+  #match '/posts/potter-kata' => redirect('/katas/potter-kata')
+  #match '/posts/prime-factors-kata' => redirect('/katas/prime-factors-kata')
+  #match '/posts/tennis-game-kata' => redirect('/katas/tennis-game-kata')
+  #match '/posts/recycled-numbers' => redirect('/katas/recycled-numbers')
+  #match '/posts/weighing-with-stones-kata' => redirect('/katas/weighing-with-stones-kata')
+  #match '/posts/coin-change-kata' => redirect('/katas/coin-change-kata')
+  #match '/posts/string-calculator' => redirect('/katas/string-calculator')
+  #match '/posts/mars-rover-kata' => redirect('/katas/mars-rover-kata')
+  #match '/posts/gilded-rose-kata' => redirect('/katas/gilded-rose-kata')
+
+
   devise_for :users do
     match 'users/sign_in', :to => "devise/sessions#new"
     match 'users/:id', :to => 'users#show'
