@@ -41,3 +41,5 @@ The url looks like mongodb://<user>:<password>@staff.mongohq.com:<port>/<databas
 
 #Installation directions for Heroku
 
+1. heroku config:set GOOGLE_ANALYTICS:UA-12345678-1
+
