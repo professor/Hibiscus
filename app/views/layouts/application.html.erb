@@ -1,11 +1,21 @@
 <!DOCTYPE html>
 <html>
-<head>                
- <title><%= (title = yield :title) ? title : GlobalConfig.site_title %></title>                                          	
+<head>
+  <title><%= (title = yield :title) ? title : GlobalConfig.site_title %></title>
   <%= stylesheet_link_tag :all %>
   <%= javascript_include_tag :all %>
   <%= javascript_include_tag :ckeditor %>
   <%= csrf_meta_tag %>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', '<%= ENV['GOOGLE_ANALYTICS'] %>']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
 </head>
 <body class="home blog">
 <div id="wrapper" class="hfeed">
@@ -13,11 +23,11 @@
     <div id="masthead">
       <div id="branding" role="banner">
         <h1 id="site-title">
-					<span><%= link_to GlobalConfig.site_title, root_url, :title => GlobalConfig.site_title, :rel=>"home" %></span>
+          <span><%= link_to GlobalConfig.site_title, root_url, :title => GlobalConfig.site_title, :rel=>"home" %></span>
         </h1>
 
         <div id="site-description"><%= GlobalConfig.site_tag %></div>
-        <img src="http://2010dev.wordpress.com/wp-content/themes/pub/twentyten/images/headers/forestfloor.jpg" width="940" height="198" alt=""/>
+        <img src="http://2010dev.wordpress.com/wp-content/themes/pub/twentyten/images/headers/forestfloor.jpg" width="100%" height="198" alt=""/>
 
       </div>
       <!-- #branding -->
@@ -26,10 +36,37 @@
         <div class="skip-link screen-reader-text"><a href="#content" title="Skip to content">Skip to content</a></div>
 
         <div class="menu">
+
           <ul>
             <li class="current_page_item"><%= link_to "Home", root_url, :title =>"Home" %></li>
             <li class="page_item"><%= link_to "#{GlobalConfig.activity_name.pluralize}", "/#{GlobalConfig.activity_type.pluralize}", :title =>"#{GlobalConfig.activity_name.pluralize}" %></li>
+            <li class="current_page_item"><%= link_to "Popular", root_url, :title =>"Popular" %></li>
+            <li class="widget-container widget_search" id="search-2">
+              <form action="<%= search_index_path %>" id="searchform" method="get" role="search">
+                <div id="right_menu_search">
+                  <input type="text" id="query" name="query" value="">
+                  <input type="submit" value="Search" id="searchsubmit">
+                </div>
+              </form>
+
+            </li>
+            <li id="user_profile_menu">
+              <% if current_user %>
+                  <%= link_to current_user.display_name, current_user%>
+                  <ul>
+                    <li id="logout_link"><%= link_to "Logout", :logout %> </li>
+                  </ul>
+              <% else %>
+                  <%= link_to "Login", '/auth/github' %>
+              <% end %>
+
+            </li>
           </ul>
+
+
+
+
+
         </div>
 
       </div>
@@ -46,125 +83,43 @@
 
           <div class="nav-previous">
             <a href="<%= "#{root_url}" %>" ><span class="meta-nav">&larr;</span>Older posts</a>
-					</div>
+          </div>
           <div class="nav-next">
-		    		<a href="<%= "#{root_url}" %>" >Newer posts<span class="meta-nav">&rarr;</span></a>
+            <a href="<%= "#{root_url}" %>" >Newer posts<span class="meta-nav">&rarr;</span></a>
           </div>
         </div>
         <!-- #nav-above -->
-
-        <section id="notifications">
+        <div id="notifications">
+        <section >
           <% flash.each do |key, value| %>
               <div class="flash <%= key %>"><%= value %></div>
           <% end %>
         </section>
 
-        <%= yield %>
+        </div>
+
 
       </section>
     </section>
 
-    <div role="complementary" class="widget-area" id="primary">
-         <ul class="xoxo">
-            <li class="widget-container widget_search" id="search-2">
-							<form action="<%= search_index_path %>" id="searchform" method="get" role="search">
-                <div>
-									<label for="s" class="screen-reader-text">Search for:</label>
-                	<input type="text" id="query" name="query" value="">
-                	<input type="submit" value="Search" id="searchsubmit">
-                </div>
-							</form>
-						</li>
-
-                        <%= yield :sidebar %>
 
 
-						<% if @post %>
-							<li class="widget-container widget_likes" id="postLikes">
-								<%= form_for Like.new do |f| %>
-									<%= f.hidden_field :post_id, :value => @post.id %>
-							  	<p><%= f.submit "Like this post?" %></p>
-								<% end %>
-								<%= form_for Like.new, :html => { :id => "new_dislike" } do |f| %>
-									<%= f.hidden_field :post_id, :value => @post.id %>
-									<%= f.hidden_field :is_dislike, :value => true %>
-							  	<p><%= f.submit "Dislike this post?" %></p>
-								<% end %>
-
-								<% if @post.listLikes.any? %>
-									<p id="postLikesCount"><%= @post.listLikes.count %> Likes</p>
-
-									<p>This post was liked by:</p>
-									<% @post.listLikes.each do |l| %>
-										<p><%= link_to l.user.display_name, l.user %></p>
-									<% end %>
-								<% end %>
-
-								<% if @post.listDislikes.any? %>
-									<p id="postLikesCount"><%= @post.listDislikes.count %> Dislikes</p>
-
-									<p>This post was disliked by:</p>
-									<% @post.listDislikes.each do |d| %>
-										<p><%= link_to d.user.name, d.user %></p>
-									<% end %>
-								<% end %>
-							</li>
-						<% end %>
-						
-						<li class="widget-container widget_recent_entries" id="recent-posts-2">
-							<h3 class="widget-title">Recent Posts</h3>
-							<ul>
-								<% recent_posts.each do |post| %>
-									<li><%= link_to post.title, post %></li>
-								<% end %>
-							</ul>
-						</li>
-						<!--
-						<li class="widget-container widget_archive" id="archives-2">
-							<h3 class="widget-title">Archives</h3>
-							<ul>
-								<li><a title="April 2011" href="">April 2012</a></li>
-              </ul>
-            </li>-->
-						
-						<li class="widget-container widget_categories" id="categories-2">
-							<h3 class="widget-title">Tags</h3>
-							<ul>
-								<% all_tags.each do |tag| %>
-									<li><%= link_to tag.name, tag %></li>
-								<% end %>
-							</ul>
-            </li>
-						
-						<li class="widget-container widget_meta" id="meta-2">
-							<h3 class="widget-title">Meta</h3>
-							<ul>
-	              <% if current_user %>
-	                <li>Logged in as <%= link_to current_user.display_name, current_user %></li>
-	                <li><%= link_to "Logout", :logout %></li>
-	              <% else %>
-	                <li><%= link_to "Login", '/auth/github' %></li>
-	              <% end %>
-							</ul>
-            </li>
-					</ul>
-     </div>
-     <!-- #complementary -->
   </div><!-- #main -->
+  <%= yield %>
 
-	<div id="footer" role="contentinfo">
-		<div id="colophon">
-			<div id="site-info">
-				<a href="http://www.cmu.edu/silicon-valley/academics/silicon-valley/ft-ms/ft-se.html" title="Craftsmanship" rel="home">Carnegie Mellon University - Silicon Valley</a>
+  <div id="footer" role="contentinfo">
+    <div id="colophon">
+      <div id="site-info">
+        <a href="http://www.cmu.edu/silicon-valley/academics/silicon-valley/ft-ms/ft-se.html" title="Craftsmanship" rel="home">Carnegie Mellon University - Silicon Valley</a>
 
-			</div><!-- #site-info -->
+      </div><!-- #site-info -->
 
-			<div id="site-generator">
-				<a href="https://github.com/hahuang65/Hibiscus" title="Hibiscus" rel="generator">Powered by Hibiscus.</a>
-			</div><!-- #site-generator -->
+      <div id="site-generator">
+        <a href="https://github.com/hahuang65/Hibiscus" title="Hibiscus" rel="generator">Powered by Hibiscus.</a>
+      </div><!-- #site-generator -->
 
-		</div><!-- #colophon -->
-	</div><!-- #footer -->
+    </div><!-- #colophon -->
+  </div><!-- #footer -->
 </div>
 </body>
 </html>

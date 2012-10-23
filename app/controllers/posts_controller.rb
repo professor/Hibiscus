@@ -36,7 +36,6 @@ class PostsController < ApplicationController
   # Instantiate a new post, and retrieve all the categories that it might belong to if it is of type 'Kata'
   def new
     @post = post_type.new
-    @categories = Category.all
 
     respond_to do |format|
       format.html # new.html.erb
@@ -49,7 +48,6 @@ class PostsController < ApplicationController
   def edit
     @post = post_type.find(params[:id])
     @tags = @post.joinTags
-    @categories = Category.all
   end
 
   # POST /posts
@@ -85,6 +83,7 @@ class PostsController < ApplicationController
     end
     @post.title = @form[:title]
     @post.content = params[@type.downcase.to_sym][:content]
+    @post.source = params[@type.downcase.to_sym][:source]
 
     respond_to do |format|
       if @post.save

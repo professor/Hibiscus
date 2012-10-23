@@ -84,9 +84,9 @@ describe PlansController do
       
       it "should render the edit template when a learning plan failed to update" do
         controller.current_user.stub(:plan).and_return(mock_plan)
-        mock_plan.should_receive(:update_attributes).and_return(true)
+        mock_plan.should_receive(:update_attributes).and_return(false)
         put :update, :user_id => @user.id, :id => mock_plan.id
-        response.should render_template # FIXME: Should be render_template("edit")
+        response.should render_template("edit")
       end
     end
   end

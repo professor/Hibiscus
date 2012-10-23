@@ -39,9 +39,9 @@
     <div class='field'>
       <%= f.label :category %>
       <% if @post.category.blank? %>
-        <%= f.collection_select :category, @categories, :name, :name %>
+        <%= f.collection_select :category, Category.all, :id, :name %>
       <% else %>
-        <%= f.collection_select :category, @categories, :name, :name, :selected => @post.category.name %>
+        <%= f.collection_select :category, Category.all, :id, :name, :selected => @post.category_id %>
       <% end %>
     </div>
     <div class='field'>

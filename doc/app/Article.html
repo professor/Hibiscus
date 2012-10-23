@@ -4,7 +4,7 @@
 <head>
 <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
 
-<title>class SearchController - Rails Application Documentation</title>
+<title>class Article - Rails Application Documentation</title>
 
 <link type="text/css" media="screen" href="./rdoc.css" rel="stylesheet">
 
@@ -47,7 +47,7 @@
     <nav id="file-list-section" class="section">
   <h3 class="section-header">Defined In</h3>
   <ul>
-    <li>app/controllers/search_controller.rb
+    <li>app/models/article.rb
   </ul>
 </nav>
 
@@ -59,7 +59,7 @@
     <nav id="parent-class-section" class="section">
   <h3 class="section-header">Parent</h3>
   
-  <p class="link"><a href="ApplicationController.html">ApplicationController</a>
+  <p class="link"><a href="Post.html">Post</a>
   
 </nav>
 
@@ -70,11 +70,11 @@
 
   <ul class="link-list">
     
-    <li><a href="#method-c-index_tank">::index_tank</a>
+    <li><a href="#method-c-get_feeds">::get_feeds</a>
     
-    <li><a href="#method-c-search">::search</a>
+    <li><a href="#method-c-update_from_feeds">::update_from_feeds</a>
     
-    <li><a href="#method-i-index">#index</a>
+    <li><a href="#method-c-update_from_feeds_continuously">::update_from_feeds_continuously</a>
     
   </ul>
 </nav>
@@ -154,7 +154,7 @@
 </nav>
 
 <div id="documentation">
-  <h1 class="class">class SearchController</h1>
+  <h1 class="class">class Article</h1>
 
   <div id="description" class="description">
     
@@ -178,10 +178,10 @@
       <h3 class="section-header">Public Class Methods</h3>
 
     
-      <div id="method-c-index_tank" class="method-detail ">
+      <div id="method-c-get_feeds" class="method-detail ">
         
         <div class="method-heading">
-          <span class="method-name">index_tank</span><span
+          <span class="method-name">get_feeds</span><span
             class="method-args">()</span>
           <span class="method-click-advice">click to toggle source</span>
         </div>
@@ -189,93 +189,103 @@
 
         <div class="method-description">
           
-          
+          <p>Get articles from predefined RSS feeds. Usage: In Rails Console, <a
+href="Article.html#method-c-get_feeds">::get_feeds</a></p>
           
 
           
-          <div class="method-source-code" id="index_tank-source">
-            <pre><span class="ruby-comment"># File app/controllers/search_controller.rb, line 5</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">index_tank</span>
-  <span class="ruby-ivar">@api</span>  = <span class="ruby-constant">IndexTank</span><span class="ruby-operator">::</span><span class="ruby-constant">Client</span>.<span class="ruby-identifier">new</span>(<span class="ruby-constant">ENV</span>[<span class="ruby-string">'SEARCHIFY_HIBISCUS_API_URL'</span>] <span class="ruby-operator">||</span> <span class="ruby-string">'http://your_api_url'</span>)
-  <span class="ruby-ivar">@index</span> <span class="ruby-operator">||=</span> <span class="ruby-ivar">@api</span>.<span class="ruby-identifier">indexes</span>(<span class="ruby-constant">ENV</span>[<span class="ruby-string">'SEARCHIFY_HIBISCUS_INDEX'</span>] <span class="ruby-operator">||</span> <span class="ruby-string">'hibiscus'</span>)
+          <div class="method-source-code" id="get_feeds-source">
+            <pre><span class="ruby-comment"># File app/models/article.rb, line 12</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">get_feeds</span>
+  <span class="ruby-identifier">feed_urls</span> = <span class="ruby-node">%w(http://blog.8thlight.com/feed/atom.xml http://blog.gdinwiddie.com/feed/)</span>
+  <span class="ruby-identifier">update_from_feeds</span>(<span class="ruby-identifier">feed_urls</span>)
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- index_tank-source -->
+          </div><!-- get_feeds-source -->
           
         </div>
 
         
 
         
-      </div><!-- index_tank-method -->
+      </div><!-- get_feeds-method -->
 
     
-      <div id="method-c-search" class="method-detail ">
+      <div id="method-c-update_from_feeds" class="method-detail ">
         
         <div class="method-heading">
-          <span class="method-name">search</span><span
-            class="method-args">(query)</span>
+          <span class="method-name">update_from_feeds</span><span
+            class="method-args">(feed_urls)</span>
           <span class="method-click-advice">click to toggle source</span>
         </div>
         
 
         <div class="method-description">
           
-          <p>retrieve docs from IndexTank</p>
+          <p>Get articles for defined RSS feeds. Usage: In Rails Console, <a
+href="Article.html#method-c-update_from_feeds">::update_from_feeds</a>(“<a
+href="http://blog.8thlight.com/feed/atom.xml">blog.8thlight.com/feed/atom.xml</a>”)</p>
           
 
           
-          <div class="method-source-code" id="search-source">
-            <pre><span class="ruby-comment"># File app/controllers/search_controller.rb, line 11</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">search</span>(<span class="ruby-identifier">query</span>)
-  <span class="ruby-identifier">index_tank</span>.<span class="ruby-identifier">search</span>(<span class="ruby-node">&quot;#{query} OR title:#{query}&quot;</span>, <span class="ruby-value">:fetch</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">'timestamp,url,text,title'</span>, <span class="ruby-value">:snippet</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">'text'</span>)
+          <div class="method-source-code" id="update_from_feeds-source">
+            <pre><span class="ruby-comment"># File app/models/article.rb, line 21</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">update_from_feeds</span>(<span class="ruby-identifier">feed_urls</span>)
+  <span class="ruby-identifier">feeds</span> = <span class="ruby-constant">Feedzirra</span><span class="ruby-operator">::</span><span class="ruby-constant">Feed</span>.<span class="ruby-identifier">fetch_and_parse</span>(<span class="ruby-identifier">feed_urls</span>)
+  <span class="ruby-identifier">feeds</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">feed_url</span>, <span class="ruby-identifier">feed</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">add_entries</span>(<span class="ruby-identifier">feed</span>.<span class="ruby-identifier">entries</span>, <span class="ruby-identifier">feed</span>.<span class="ruby-identifier">title</span>)
+  <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- search-source -->
+          </div><!-- update_from_feeds-source -->
           
         </div>
 
         
 
         
-      </div><!-- search-method -->
+      </div><!-- update_from_feeds-method -->
+
+    
+      <div id="method-c-update_from_feeds_continuously" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">update_from_feeds_continuously</span><span
+            class="method-args">(feed_urls, delay_interval = 300.seconds)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Continuously get articles for defined RSS feeds. Usage: In Rails Console,
+<a
+href="Article.html#method-c-update_from_feeds">::update_from_feeds</a>(“<a
+href="http://blog.8thlight.com/feed/atom.xml">blog.8thlight.com/feed/atom.xml</a>”,
+300)</p>
+          
+
+          
+          <div class="method-source-code" id="update_from_feeds_continuously-source">
+            <pre><span class="ruby-comment"># File app/models/article.rb, line 32</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">update_from_feeds_continuously</span>(<span class="ruby-identifier">feed_urls</span>, <span class="ruby-identifier">delay_interval</span> = <span class="ruby-value">300</span>.<span class="ruby-identifier">seconds</span>)
+  <span class="ruby-identifier">feeds</span> = <span class="ruby-constant">Feedzirra</span><span class="ruby-operator">::</span><span class="ruby-constant">Feed</span>.<span class="ruby-identifier">fetch_and_parse</span>(<span class="ruby-identifier">feed_urls</span>)
+  <span class="ruby-identifier">add_entries</span>(<span class="ruby-identifier">feeds</span>.<span class="ruby-identifier">entries</span>, <span class="ruby-identifier">feed</span>.<span class="ruby-identifier">title</span>)
+  <span class="ruby-identifier">loop</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-identifier">sleep</span> <span class="ruby-identifier">delay_interval</span>
+    <span class="ruby-identifier">feeds</span> = <span class="ruby-constant">Feedzirra</span><span class="ruby-operator">::</span><span class="ruby-constant">Feed</span>.<span class="ruby-identifier">update</span>(<span class="ruby-identifier">feeds</span>.<span class="ruby-identifier">entries</span>)
+    <span class="ruby-identifier">add_entries</span>(<span class="ruby-identifier">feeds</span>.<span class="ruby-identifier">new_entries</span>, <span class="ruby-identifier">feed</span>.<span class="ruby-identifier">title</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">feeds</span>.<span class="ruby-identifier">updated?</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- update_from_feeds_continuously-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- update_from_feeds_continuously-method -->
 
     
     </section><!-- public-class-method-details -->
-  
-     <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
-      <h3 class="section-header">Public Instance Methods</h3>
-
-    
-      <div id="method-i-index" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">index</span><span
-            class="method-args">()</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-
-          
-          <div class="method-source-code" id="index-source">
-            <pre><span class="ruby-comment"># File app/controllers/search_controller.rb, line 15</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">index</span>
-  <span class="ruby-ivar">@docs</span> = <span class="ruby-constant">SearchController</span>.<span class="ruby-identifier">search</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:query</span>]) <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:query</span>].<span class="ruby-identifier">present?</span>
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- index-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- index-method -->
-
-    
-    </section><!-- public-instance-method-details -->
   
   </section><!-- 5Buntitled-5D -->
 
