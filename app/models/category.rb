@@ -1,3 +1,5 @@
+# Category is only related to Kata model, representing the category a kata belongs to.
+
 class Category
   include Mongoid::Document
 

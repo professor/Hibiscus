@@ -1,5 +1,7 @@
 require 'indextank'
 
+# Post is the model for articles, and the base model for katas(Kata) and feeds(Feed).
+
 class Post
   include Mongoid::Document
   include Mongoid::Timestamps

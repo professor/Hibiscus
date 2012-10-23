@@ -1,3 +1,6 @@
+# PostsController handles model and view for Post. When <tt>param[:type]</tt>
+# is specified, it is also capable to handle Post's inherited models
+# (Kata, Feed) using the same methods.
 
 class PostsController < ApplicationController
   before_filter :authenticate_user!,  :except => [:index, :show]
