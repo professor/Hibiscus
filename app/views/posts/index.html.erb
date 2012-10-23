@@ -21,10 +21,10 @@
         <div class="main-post-div" style="display: none;">
             <% if post.respond_to?('site_name') %>
               <%= render :partial => 'posts/article_short', :locals => {:post => post} %>
-            <% elsif post.kind_of? Post %>
-              <%= render :partial => 'posts/post_short', :locals => {:post => post} %>
-            <% else %>
+            <% elsif post.kind_of? Kata %>
               <%= render post %>
+            <% else %>
+              <%= render :partial => 'posts/post_short', :locals => {:post => post} %>
             <% end %>
         </div>
     <% end %>
