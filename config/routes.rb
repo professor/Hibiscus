@@ -17,6 +17,9 @@ CraftWiki::Application.routes.draw do
   resources :posts do
     resources :comments
   end
+  resources :articles, :controller => "posts", :type => "Article" do
+    resources :comments
+  end
   resources :katas, :controller => "posts", :type => "Kata" do
     resources :comments
   end

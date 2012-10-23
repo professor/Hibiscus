@@ -5,7 +5,7 @@
 <head>
   <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
 
-  <title>Class: ApplicationController</title>
+  <title>Class: ActivitiesController</title>
 
   <link rel="stylesheet" href="./rdoc.css" type="text/css" media="screen" />
 
@@ -34,8 +34,8 @@
         <div class="section-body">
           <ul>
           
-            <li><a href="./app/controllers/application_controller_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
-              class="thickbox" title="app/controllers/application_controller.rb">app/controllers/application_controller.rb</a></li>
+            <li><a href="./app/controllers/activities_controller_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+              class="thickbox" title="app/controllers/activities_controller.rb">app/controllers/activities_controller.rb</a></li>
           
           </ul>
         </div>
@@ -50,7 +50,7 @@
       <div id="parent-class-section" class="section">
         <h3 class="section-header">Parent</h3>
         
-        <p class="link">ActionController::Base</p>
+        <p class="link"><a href="ApplicationController.html">ApplicationController</a></p>
         
       </div>
       
@@ -65,11 +65,7 @@
         <h3 class="section-header">Methods</h3>
         <ul class="link-list">
           
-          <li><a href="#method-i-all_tags">#all_tags</a></li>
-          
-          <li><a href="#method-i-post_type">#post_type</a></li>
-          
-          <li><a href="#method-i-recent_posts">#recent_posts</a></li>
+          <li><a href="#method-i-create">#create</a></li>
           
         </ul>
       </div>
@@ -110,6 +106,10 @@
         
           <li><a href="./AchievementsController.html">AchievementsController</a></li>
         
+          <li><a href="./ActivitiesController.html">ActivitiesController</a></li>
+        
+          <li><a href="./Activity.html">Activity</a></li>
+        
           <li><a href="./ApplicationController.html">ApplicationController</a></li>
         
           <li><a href="./ApplicationHelper.html">ApplicationHelper</a></li>
@@ -120,8 +120,6 @@
         
           <li><a href="./AuthenticationsController.html">AuthenticationsController</a></li>
         
-          <li><a href="./Category.html">Category</a></li>
-        
           <li><a href="./Comment.html">Comment</a></li>
         
           <li><a href="./CommentsController.html">CommentsController</a></li>
@@ -129,8 +127,6 @@
           <li><a href="./EmailValidator.html">EmailValidator</a></li>
         
           <li><a href="./GlobalConfig.html">GlobalConfig</a></li>
-        
-          <li><a href="./Kata.html">Kata</a></li>
         
           <li><a href="./Like.html">Like</a></li>
         
@@ -165,7 +161,7 @@
   </div>
 
   <div id="documentation">
-    <h1 class="class">ApplicationController</h1>
+    <h1 class="class">ActivitiesController</h1>
 
     <div id="description" class="description">
       
@@ -187,12 +183,12 @@
         <h3 class="section-header">Public Instance Methods</h3>
 
       
-        <div id="all_tags-method" class="method-detail ">
-          <a name="method-i-all_tags"></a>
+        <div id="create-method" class="method-detail ">
+          <a name="method-i-create"></a>
 
           
           <div class="method-heading">
-            <span class="method-name">all_tags</span><span
+            <span class="method-name">create</span><span
               class="method-args">()</span>
             <span class="method-click-advice">click to toggle source</span>
           </div>
@@ -204,89 +200,28 @@
             
 
             
-            <div class="method-source-code" id="all_tags-source">
+            <div class="method-source-code" id="create-source">
 <pre>
-<span class="ruby-comment"># File app/controllers/application_controller.rb, line 8</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">all_tags</span>
-  <span class="ruby-ivar">@all_tags</span> <span class="ruby-operator">||=</span> <span class="ruby-constant">Tag</span>.<span class="ruby-identifier">all</span>
+<span class="ruby-comment"># File app/controllers/activities_controller.rb, line 4</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">create</span>
+  <span class="ruby-ivar">@user</span> = <span class="ruby-identifier">current_user</span>
+  <span class="ruby-ivar">@plan</span> = <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">plan</span>
+  <span class="ruby-ivar">@activity</span> = <span class="ruby-ivar">@plan</span>.<span class="ruby-identifier">activities</span>.<span class="ruby-identifier">build</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:activity</span>])
+
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@activity</span>.<span class="ruby-identifier">save</span>
+    <span class="ruby-identifier">redirect_to</span>(<span class="ruby-ivar">@user</span>, <span class="ruby-value">:notice</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;Activity successfully created.&quot;</span>)
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">redirect_to</span>(<span class="ruby-ivar">@user</span>, <span class="ruby-value">:flash</span> =<span class="ruby-operator">&gt;</span> { <span class="ruby-value">:alert</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;Activity could not be saved.&quot;</span> })
+  <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
-            </div><!-- all_tags-source -->
+            </div><!-- create-source -->
             
           </div>
 
           
 
           
-        </div><!-- all_tags-method -->
-
-      
-        <div id="post_type-method" class="method-detail ">
-          <a name="method-i-post_type"></a>
-
-          
-          <div class="method-heading">
-            <span class="method-name">post_type</span><span
-              class="method-args">()</span>
-            <span class="method-click-advice">click to toggle source</span>
-          </div>
-          
-
-          <div class="method-description">
-            
-            <p>Get the type of a post using the type in the params hash passed to
-controller action. If the type param is not present, return <a
-href="Post.html">Post</a>.</p>
-            
-
-            
-            <div class="method-source-code" id="post_type-source">
-<pre>
-<span class="ruby-comment"># File app/controllers/application_controller.rb, line 15</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">post_type</span>
-  <span class="ruby-ivar">@type</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:type</span>].<span class="ruby-identifier">blank?</span> <span class="ruby-operator">?</span> <span class="ruby-string">&quot;Post&quot;</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:type</span>]
-  <span class="ruby-ivar">@type</span>.<span class="ruby-identifier">constantize</span>
-<span class="ruby-keyword">end</span></pre>
-            </div><!-- post_type-source -->
-            
-          </div>
-
-          
-
-          
-        </div><!-- post_type-method -->
-
-      
-        <div id="recent_posts-method" class="method-detail ">
-          <a name="method-i-recent_posts"></a>
-
-          
-          <div class="method-heading">
-            <span class="method-name">recent_posts</span><span
-              class="method-args">()</span>
-            <span class="method-click-advice">click to toggle source</span>
-          </div>
-          
-
-          <div class="method-description">
-            
-            
-            
-
-            
-            <div class="method-source-code" id="recent_posts-source">
-<pre>
-<span class="ruby-comment"># File app/controllers/application_controller.rb, line 4</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">recent_posts</span>
-  <span class="ruby-ivar">@recent_posts</span> <span class="ruby-operator">||=</span> <span class="ruby-constant">Post</span>.<span class="ruby-identifier">desc</span>(<span class="ruby-value">:created_at</span>).<span class="ruby-identifier">limit</span>(<span class="ruby-value">5</span>)
-<span class="ruby-keyword">end</span></pre>
-            </div><!-- recent_posts-source -->
-            
-          </div>
-
-          
-
-          
-        </div><!-- recent_posts-method -->
+        </div><!-- create-method -->
 
       
       </div><!-- public-instance-method-details -->

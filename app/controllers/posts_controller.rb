@@ -82,6 +82,7 @@ class PostsController < ApplicationController
     end
     @post.title = @form[:title]
     @post.content = params[@type.downcase.to_sym][:content]
+    @post.source = params[@type.downcase.to_sym][:source]
 
     respond_to do |format|
       if @post.save

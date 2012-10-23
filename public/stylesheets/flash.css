@@ -2,10 +2,14 @@
   text-align: center;
   padding: 6px 10px;
   border: 1px solid black;
-  margin: 20px;
+
+  /*margin: 20px;*/
+    /*margin-left: 30% ;*/
+    /*margin-right: 30%;*/
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   border-radius: 3px;
+
 }
 
 .notice {

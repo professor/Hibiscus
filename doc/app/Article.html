@@ -5,7 +5,7 @@
 <head>
   <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
 
-  <title>Class: ApplicationController</title>
+  <title>Class: Article</title>
 
   <link rel="stylesheet" href="./rdoc.css" type="text/css" media="screen" />
 
@@ -34,8 +34,8 @@
         <div class="section-body">
           <ul>
           
-            <li><a href="./app/controllers/application_controller_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
-              class="thickbox" title="app/controllers/application_controller.rb">app/controllers/application_controller.rb</a></li>
+            <li><a href="./app/models/article_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+              class="thickbox" title="app/models/article.rb">app/models/article.rb</a></li>
           
           </ul>
         </div>
@@ -50,7 +50,7 @@
       <div id="parent-class-section" class="section">
         <h3 class="section-header">Parent</h3>
         
-        <p class="link">ActionController::Base</p>
+        <p class="link"><a href="Post.html">Post</a></p>
         
       </div>
       
@@ -65,11 +65,11 @@
         <h3 class="section-header">Methods</h3>
         <ul class="link-list">
           
-          <li><a href="#method-i-all_tags">#all_tags</a></li>
+          <li><a href="#method-c-get_feeds">::get_feeds</a></li>
           
-          <li><a href="#method-i-post_type">#post_type</a></li>
+          <li><a href="#method-c-update_from_feeds">::update_from_feeds</a></li>
           
-          <li><a href="#method-i-recent_posts">#recent_posts</a></li>
+          <li><a href="#method-c-update_from_feeds_continuously">::update_from_feeds_continuously</a></li>
           
         </ul>
       </div>
@@ -110,6 +110,10 @@
         
           <li><a href="./AchievementsController.html">AchievementsController</a></li>
         
+          <li><a href="./ActivitiesController.html">ActivitiesController</a></li>
+        
+          <li><a href="./Activity.html">Activity</a></li>
+        
           <li><a href="./ApplicationController.html">ApplicationController</a></li>
         
           <li><a href="./ApplicationHelper.html">ApplicationHelper</a></li>
@@ -120,8 +124,6 @@
         
           <li><a href="./AuthenticationsController.html">AuthenticationsController</a></li>
         
-          <li><a href="./Category.html">Category</a></li>
-        
           <li><a href="./Comment.html">Comment</a></li>
         
           <li><a href="./CommentsController.html">CommentsController</a></li>
@@ -129,8 +131,6 @@
           <li><a href="./EmailValidator.html">EmailValidator</a></li>
         
           <li><a href="./GlobalConfig.html">GlobalConfig</a></li>
-        
-          <li><a href="./Kata.html">Kata</a></li>
         
           <li><a href="./Like.html">Like</a></li>
         
@@ -165,7 +165,7 @@
   </div>
 
   <div id="documentation">
-    <h1 class="class">ApplicationController</h1>
+    <h1 class="class">Article</h1>
 
     <div id="description" class="description">
       
@@ -183,16 +183,16 @@
 
       <!-- Methods -->
       
-      <div id="public-instance-method-details" class="method-section section">
-        <h3 class="section-header">Public Instance Methods</h3>
+      <div id="public-class-method-details" class="method-section section">
+        <h3 class="section-header">Public Class Methods</h3>
 
       
-        <div id="all_tags-method" class="method-detail ">
-          <a name="method-i-all_tags"></a>
+        <div id="get_feeds-method" class="method-detail ">
+          <a name="method-c-get_feeds"></a>
 
           
           <div class="method-heading">
-            <span class="method-name">all_tags</span><span
+            <span class="method-name">get_feeds</span><span
               class="method-args">()</span>
             <span class="method-click-advice">click to toggle source</span>
           </div>
@@ -200,96 +200,110 @@
 
           <div class="method-description">
             
-            
+            <p>Get articles from predefined RSS feeds. Usage: In Rails Console, <a
+href="Article.html#method-c-get_feeds">Article.get_feeds</a></p>
             
 
             
-            <div class="method-source-code" id="all_tags-source">
+            <div class="method-source-code" id="get_feeds-source">
 <pre>
-<span class="ruby-comment"># File app/controllers/application_controller.rb, line 8</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">all_tags</span>
-  <span class="ruby-ivar">@all_tags</span> <span class="ruby-operator">||=</span> <span class="ruby-constant">Tag</span>.<span class="ruby-identifier">all</span>
+<span class="ruby-comment"># File app/models/article.rb, line 12</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">get_feeds</span>
+  <span class="ruby-identifier">feed_urls</span> = <span class="ruby-node">%(http://blog.8thlight.com/feed/atom.xml http://blog.gdinwiddie.com/feed/)</span>
+  <span class="ruby-identifier">update_from_feeds</span>(<span class="ruby-identifier">feed_urls</span>)
 <span class="ruby-keyword">end</span></pre>
-            </div><!-- all_tags-source -->
+            </div><!-- get_feeds-source -->
             
           </div>
 
           
 
           
-        </div><!-- all_tags-method -->
+        </div><!-- get_feeds-method -->
 
       
-        <div id="post_type-method" class="method-detail ">
-          <a name="method-i-post_type"></a>
+        <div id="update_from_feeds-method" class="method-detail ">
+          <a name="method-c-update_from_feeds"></a>
 
           
           <div class="method-heading">
-            <span class="method-name">post_type</span><span
-              class="method-args">()</span>
+            <span class="method-name">update_from_feeds</span><span
+              class="method-args">(feed_urls)</span>
             <span class="method-click-advice">click to toggle source</span>
           </div>
           
 
           <div class="method-description">
             
-            <p>Get the type of a post using the type in the params hash passed to
-controller action. If the type param is not present, return <a
-href="Post.html">Post</a>.</p>
+            <p>Get articles for defined RSS feeds. Usage: In Rails Console, <a
+href="Article.html#method-c-update_from_feeds">Article.update_from_feeds</a>(“<a
+href="http://blog.8thlight.com/feed/atom.xml">blog.8thlight.com/feed/atom.xml</a>”)</p>
             
 
             
-            <div class="method-source-code" id="post_type-source">
+            <div class="method-source-code" id="update_from_feeds-source">
 <pre>
-<span class="ruby-comment"># File app/controllers/application_controller.rb, line 15</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">post_type</span>
-  <span class="ruby-ivar">@type</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:type</span>].<span class="ruby-identifier">blank?</span> <span class="ruby-operator">?</span> <span class="ruby-string">&quot;Post&quot;</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:type</span>]
-  <span class="ruby-ivar">@type</span>.<span class="ruby-identifier">constantize</span>
+<span class="ruby-comment"># File app/models/article.rb, line 21</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">update_from_feeds</span>(<span class="ruby-identifier">feed_urls</span>)
+  <span class="ruby-identifier">feeds</span> = <span class="ruby-constant">Feedzirra</span><span class="ruby-operator">::</span><span class="ruby-constant">Feed</span>.<span class="ruby-identifier">fetch_and_parse</span>(<span class="ruby-identifier">feed_urls</span>)
+  <span class="ruby-identifier">feeds</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">feed_url</span>, <span class="ruby-identifier">feed</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">add_entries</span>(<span class="ruby-identifier">feed</span>.<span class="ruby-identifier">entries</span>, <span class="ruby-identifier">feed</span>.<span class="ruby-identifier">title</span>)
+  <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
-            </div><!-- post_type-source -->
+            </div><!-- update_from_feeds-source -->
             
           </div>
 
           
 
           
-        </div><!-- post_type-method -->
+        </div><!-- update_from_feeds-method -->
 
       
-        <div id="recent_posts-method" class="method-detail ">
-          <a name="method-i-recent_posts"></a>
+        <div id="update_from_feeds_continuously-method" class="method-detail ">
+          <a name="method-c-update_from_feeds_continuously"></a>
 
           
           <div class="method-heading">
-            <span class="method-name">recent_posts</span><span
-              class="method-args">()</span>
+            <span class="method-name">update_from_feeds_continuously</span><span
+              class="method-args">(feed_urls, delay_interval = 300.seconds)</span>
             <span class="method-click-advice">click to toggle source</span>
           </div>
           
 
           <div class="method-description">
             
-            
+            <p>Continuously get articles for defined RSS feeds. Usage: In Rails Console,
+<a
+href="Article.html#method-c-update_from_feeds">Article.update_from_feeds</a>(“<a
+href="http://blog.8thlight.com/feed/atom.xml">blog.8thlight.com/feed/atom.xml</a>”,
+300)</p>
             
 
             
-            <div class="method-source-code" id="recent_posts-source">
+            <div class="method-source-code" id="update_from_feeds_continuously-source">
 <pre>
-<span class="ruby-comment"># File app/controllers/application_controller.rb, line 4</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">recent_posts</span>
-  <span class="ruby-ivar">@recent_posts</span> <span class="ruby-operator">||=</span> <span class="ruby-constant">Post</span>.<span class="ruby-identifier">desc</span>(<span class="ruby-value">:created_at</span>).<span class="ruby-identifier">limit</span>(<span class="ruby-value">5</span>)
+<span class="ruby-comment"># File app/models/article.rb, line 32</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">update_from_feeds_continuously</span>(<span class="ruby-identifier">feed_urls</span>, <span class="ruby-identifier">delay_interval</span> = <span class="ruby-value">300</span>.<span class="ruby-identifier">seconds</span>)
+  <span class="ruby-identifier">feeds</span> = <span class="ruby-constant">Feedzirra</span><span class="ruby-operator">::</span><span class="ruby-constant">Feed</span>.<span class="ruby-identifier">fetch_and_parse</span>(<span class="ruby-identifier">feed_urls</span>)
+  <span class="ruby-identifier">add_entries</span>(<span class="ruby-identifier">feeds</span>.<span class="ruby-identifier">entries</span>, <span class="ruby-identifier">feed</span>.<span class="ruby-identifier">title</span>)
+  <span class="ruby-identifier">loop</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-identifier">sleep</span> <span class="ruby-identifier">delay_interval</span>
+    <span class="ruby-identifier">feeds</span> = <span class="ruby-constant">Feedzirra</span><span class="ruby-operator">::</span><span class="ruby-constant">Feed</span>.<span class="ruby-identifier">update</span>(<span class="ruby-identifier">feeds</span>.<span class="ruby-identifier">entries</span>)
+    <span class="ruby-identifier">add_entries</span>(<span class="ruby-identifier">feeds</span>.<span class="ruby-identifier">new_entries</span>, <span class="ruby-identifier">feed</span>.<span class="ruby-identifier">title</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">feeds</span>.<span class="ruby-identifier">updated?</span>
+  <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
-            </div><!-- recent_posts-source -->
+            </div><!-- update_from_feeds_continuously-source -->
             
           </div>
 
           
 
           
-        </div><!-- recent_posts-method -->
+        </div><!-- update_from_feeds_continuously-method -->
 
       
-      </div><!-- public-instance-method-details -->
+      </div><!-- public-class-method-details -->
     
     </div><!-- 5Buntitled-5D -->
   
