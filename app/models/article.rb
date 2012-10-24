@@ -52,7 +52,7 @@ class Article < Post
             :author         => entry.author,
             :content        => entry.content.blank? ? entry.title : entry.content,
             :site_name      => title,
-            :user_id        => 'johnleee'
+            :user_id        => ENV['ARTICLE_USER_ID']
         )
         art.tempTags = "article"
         art.setTags
