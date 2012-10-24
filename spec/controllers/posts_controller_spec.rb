@@ -99,8 +99,8 @@ describe PostsController do
     end
 
     describe "GET index" do
-      it "assigns all posts with type 'Post' as @posts when type is blank" do
-        Post.stub(:where).with(:_type => 'Post') { [mock_post] }
+      it "assigns all posts with type nil as @posts when type is blank" do
+        Post.stub(:where).with(:_type => nil) { [mock_post] }
         get :index
         assigns(:posts).should eq([mock_post])
       end
