@@ -27,6 +27,16 @@ describe Post do
       @post.content = " "
       @post.should be_invalid
     end
+
+    it "should be valid without a source" do
+      @post.source = nil
+      @post.should be_valid
+    end
+
+    it "should be valid without a rating" do
+      @post.rating = nil
+      @post.should be_valid
+    end
     
     it "should be invalid without a user" do
       @post.user = nil
@@ -71,4 +81,5 @@ describe Post do
       @post.should_receive(:update_search_index)
     end
   end
+
 end

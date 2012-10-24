@@ -1,4 +1,4 @@
-<%= link_to 'New Post', new_post_path %> <br><br>
+<%= link_to "New #{@type}", new_polymorphic_path(@type.constantize) %>
 
 <script type="text/javascript">
 
@@ -19,11 +19,8 @@
 <div id="main-all-posts-div">
     <% @posts.desc(:created_at).limit(15).each do |post| %>
         <div class="main-post-div" style="display: none;">
-            <% if post.respond_to?('site_name') %>
-              <%= render :partial => 'posts/article_short', :locals => {:post => post} %>
-            <% else %>
-              <%= render :partial => 'posts/post_short', :locals => {:post => post} %>
-            <% end %>
+          <%= render partial: "posts/#{@type.downcase}_short", locals: { post: post } %>
+              <%#= render partial: "posts/#{@type.downcase}_short", locals: { post: post } %>
         </div>
     <% end %>
 </div>
@@ -31,13 +28,9 @@
 <div id="second_new_post_link">
 
 <% if @posts.length > 0%>                    <br><br>
-    <%= link_to 'New Post', new_post_path %>
+    <%= link_to "New #{@type}", new_polymorphic_path(@type.constantize) %>
     <% end %>
 
 <br /><br />
 
 </div>
-
-
-
-</STYLE>
