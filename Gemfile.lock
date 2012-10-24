@@ -93,9 +93,6 @@ GEM
       sexp_processor (~> 3.0)
     haml (3.0.25)
     hashie (1.2.0)
-    heroku (1.20.1)
-      launchy (~> 0.3.2)
-      rest-client (>= 1.4.0, < 1.7.0)
     hirb (0.4.3)
     i18n (0.5.0)
     indextank (1.0.9.1)
@@ -202,8 +199,6 @@ GEM
       ruby2ruby (~> 1.2)
       ruby_parser (~> 2.0)
       sexp_processor (~> 3.0)
-    rest-client (1.6.1)
-      mime-types (>= 1.16)
     roodi (2.1.0)
       ruby_parser
     rspec (2.5.0)
@@ -258,7 +253,6 @@ DEPENDENCIES
   exception_notification
   factory_girl_rails
   faraday-stack
-  heroku
   indextank
   jquery-rails
   launchy
