@@ -1,9 +1,13 @@
 require 'indextank'
 
+# Post is the model for articles, and the base model for katas(Kata) and feeds(Feed).
+
 class Post
   include Mongoid::Document
   include Mongoid::Timestamps
   include Mongoid::Versioning
+  #paranoia module allows to implement "soft deletion"
+  include Mongoid::Paranoia
   
   attr_accessor :tempTags
   
@@ -12,7 +16,8 @@ class Post
 
   #Adding new field source
 
-  field :source_url, :type => String
+  field :source, :type => String
+  field :rating, :type => Float
 
   key :title
 
@@ -26,7 +31,7 @@ class Post
   validates :user_id, :presence => true
 
   after_save :update_search_index
-  before_destroy :delete_from_search
+  before_destroy :delete_from_search_index
 
   def listLikes
     likes = []
@@ -59,14 +64,6 @@ class Post
     api = IndexTank::Client.new(ENV['SEARCHIFY_HIBISCUS_API_URL'] || '<API_URL>')
     index = api.indexes(ENV['SEARCHIFY_HIBISCUS_INDEX'] || 'hibiscus')
     index.document(url).delete
-  end
-  
-  def isKata?
-    self.tags.each do |tag|
-      return true if tag.name == "kata"
-    end
-    
-    return false
   end
   
   def joinTags

@@ -7,15 +7,7 @@
 		<h3>Maiden Speech:</h3>
 		<p><%= @user.plan.maiden_speech.html_safe %></p>
 	</section>
-	<% if @user.plan.activities.any? %>
-		<ul id="activities">
-			<h3>Activities for my learning plan:</h3>
-			<% @user.plan.activities.each do |a| %>
-				<li class="activity"><%= a.name %></li>
-			<% end %>
-		</ul>
-	<% end %>
-	<section id="newActivity"><%= render 'activities/form' %></section>
+
 	<%= link_to 'Edit Learning Plan', edit_user_plan_path(@user, @user.plan) %>
 <% else %>
 	<section id="newLearningPlan"><%= render 'plans/form' %></section>

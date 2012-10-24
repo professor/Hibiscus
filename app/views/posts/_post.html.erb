@@ -2,13 +2,16 @@
 <div class="entry-meta">
 <span class="meta-prep meta-prep-author">Posted on</span> <a href="<%= post_path(post) %>" title="<%= post.created_at.to_date.to_formatted_s(:long_ordinal) %>" rel="bookmark"><span class="entry-date"><%= post.created_at.to_date.to_formatted_s(:long_ordinal) %></span></a> <span class="meta-sep">by</span> <span class="author vcard"><a class="url fn n" href="<%= user_path(post.user) %>" title="View all posts by <%= post.user.name %>"><%= post.user.display_name %></a></span>
 </div>
-
-<% unless post.source_url.blank? %>
-    <br>
+<% if !post.source.nil? %>
     <div>
-      <h4>Source URL:  <%= auto_link_urls post.source_url %></h4>
+      <h4>Source:  <%= auto_link_urls post.source %></h4>
     </div>
+<% end %>
 
+<% if !post.rating.nil? %>
+    <div>
+      <h4>Rating: <%= post.rating %></h4>
+    </div>
 <% end %>
 
 <% if post.tags.any? %>
@@ -30,6 +33,7 @@
 			<% end %>
 		<% end %>
 	</span>
+  </span>
   <span class="meta-sep">|</span>
   <span class="comments-link"><a href="<%= post_path(post) %>" title="Comment on <%= post.title %>"><%= post.comments.size  %> Comments</a></span>
 

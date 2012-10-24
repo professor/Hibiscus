@@ -50,5 +50,8 @@ module CraftWiki
       g.test_framework :rspec
       g.stylesheets false
     end
+
+    #ckeditor installation
+    config.autoload_paths += %W(#{config.root}/app/models/ckeditor)
   end
 end

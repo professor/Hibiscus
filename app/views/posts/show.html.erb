@@ -1,17 +1,9 @@
-<%= render :partial => 'posts/post', :locals => {:post => @post} %>
+<%= render @post %>
 
 <section id="comments">
 	<% if @post.comments.any? %>
 		<h2 id="commentsCount"><%= @post.comments.size %> Comments</h2>
-		<% for comment in @post.comments %>
-			<section class="comment">
-				<% if comment.time_spent.present? %>
-					<p class="commentTimeSpent"><%= comment.time_spent %> hours spent.</p>
-				<% end %>
-				<p class="commentContent"><%= comment.content.html_safe %></p>
-				<p class="commentEdit"><%= link_to 'Edit', edit_post_comment_path(@post, comment) %></p> <p class="commentPoster">Posted by: <%= link_to comment.user.display_name, comment.user %></p>
-			</section>
-		<% end %>
+    <%= render @post.comments %>
 	<% end %>
 
   <p id="postLikesCount">

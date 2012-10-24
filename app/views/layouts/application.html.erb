@@ -4,6 +4,7 @@
   <title><%= (title = yield :title) ? title : GlobalConfig.site_title %></title>
   <%= stylesheet_link_tag :all %>
   <%= javascript_include_tag :all %>
+  <%= javascript_include_tag :ckeditor %>
   <%= csrf_meta_tag %>
   <script type="text/javascript">
     var _gaq = _gaq || [];
@@ -38,7 +39,7 @@
 
           <ul>
             <li class="current_page_item"><%= link_to "Home", root_url, :title =>"Home" %></li>
-            <li class="page_item"><%= link_to "#{GlobalConfig.activity_name.pluralize}", "/tags/#{GlobalConfig.activity_tag}", :title =>"#{GlobalConfig.activity_name.pluralize}" %></li>
+            <li class="page_item"><%= link_to "#{GlobalConfig.activity_name.pluralize}", "/#{GlobalConfig.activity_type.pluralize}", :title =>"#{GlobalConfig.activity_name.pluralize}" %></li>
             <li class="current_page_item"><%= link_to "Popular", root_url, :title =>"Popular" %></li>
             <li class="widget-container widget_search" id="search-2">
               <form action="<%= search_index_path %>" id="searchform" method="get" role="search">
