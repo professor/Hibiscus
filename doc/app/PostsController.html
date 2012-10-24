@@ -207,7 +207,7 @@ href="Kata.html">Kata</a>, Feed) using the same methods.</p>
 
           
           <div class="method-source-code" id="create-source">
-            <pre><span class="ruby-comment"># File app/controllers/posts_controller.rb, line 55</span>
+            <pre><span class="ruby-comment"># File app/controllers/posts_controller.rb, line 56</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">create</span>
   <span class="ruby-ivar">@post</span> = <span class="ruby-identifier">post_type</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">params</span>[<span class="ruby-ivar">@type</span>.<span class="ruby-identifier">downcase</span>.<span class="ruby-identifier">to_sym</span>])
   <span class="ruby-ivar">@post</span>.<span class="ruby-identifier">user</span> = <span class="ruby-identifier">current_user</span>
@@ -249,7 +249,7 @@ href="Kata.html">Kata</a>, Feed) using the same methods.</p>
 
           
           <div class="method-source-code" id="destroy-source">
-            <pre><span class="ruby-comment"># File app/controllers/posts_controller.rb, line 101</span>
+            <pre><span class="ruby-comment"># File app/controllers/posts_controller.rb, line 102</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">destroy</span>
   <span class="ruby-ivar">@post</span> = <span class="ruby-identifier">post_type</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
   <span class="ruby-ivar">@post</span>.<span class="ruby-identifier">destroy</span>
@@ -285,7 +285,7 @@ href="Kata.html">Kata</a>, Feed) using the same methods.</p>
 
           
           <div class="method-source-code" id="edit-source">
-            <pre><span class="ruby-comment"># File app/controllers/posts_controller.rb, line 48</span>
+            <pre><span class="ruby-comment"># File app/controllers/posts_controller.rb, line 49</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">edit</span>
   <span class="ruby-ivar">@post</span> = <span class="ruby-identifier">post_type</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
   <span class="ruby-ivar">@tags</span> = <span class="ruby-ivar">@post</span>.<span class="ruby-identifier">joinTags</span>
@@ -316,9 +316,9 @@ href="Kata.html">Kata</a>, Feed) using the same methods.</p>
 
           
           <div class="method-source-code" id="index-source">
-            <pre><span class="ruby-comment"># File app/controllers/posts_controller.rb, line 10</span>
+            <pre><span class="ruby-comment"># File app/controllers/posts_controller.rb, line 11</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">index</span>
-  <span class="ruby-ivar">@posts</span> = <span class="ruby-identifier">post_type</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">_type</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@type</span>)
+  <span class="ruby-ivar">@posts</span> = (<span class="ruby-ivar">@type</span> <span class="ruby-operator">==</span> <span class="ruby-string">'Post'</span>) <span class="ruby-operator">?</span> <span class="ruby-identifier">post_type</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">_type</span><span class="ruby-operator">:</span> <span class="ruby-keyword">nil</span>) <span class="ruby-operator">:</span> <span class="ruby-identifier">post_type</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">_type</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@type</span>)
 
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
     <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> <span class="ruby-comment"># index.html.erb</span>
@@ -352,7 +352,7 @@ belong to if it is of type ‘Kata’</p>
 
           
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File app/controllers/posts_controller.rb, line 37</span>
+            <pre><span class="ruby-comment"># File app/controllers/posts_controller.rb, line 38</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">new</span>
   <span class="ruby-ivar">@post</span> = <span class="ruby-identifier">post_type</span>.<span class="ruby-identifier">new</span>
 
@@ -387,7 +387,7 @@ belong to if it is of type ‘Kata’</p>
 
           
           <div class="method-source-code" id="show-source">
-            <pre><span class="ruby-comment"># File app/controllers/posts_controller.rb, line 21</span>
+            <pre><span class="ruby-comment"># File app/controllers/posts_controller.rb, line 22</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">show</span>
   <span class="ruby-ivar">@post</span> = <span class="ruby-identifier">post_type</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
   <span class="ruby-ivar">@comments</span> = <span class="ruby-ivar">@post</span>.<span class="ruby-identifier">comments</span>
@@ -427,7 +427,7 @@ be saved or retry to edit otherwise.</p>
 
           
           <div class="method-source-code" id="update-source">
-            <pre><span class="ruby-comment"># File app/controllers/posts_controller.rb, line 74</span>
+            <pre><span class="ruby-comment"># File app/controllers/posts_controller.rb, line 75</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">update</span>
   <span class="ruby-ivar">@post</span> = <span class="ruby-identifier">post_type</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
   <span class="ruby-ivar">@form</span> = <span class="ruby-identifier">params</span>[<span class="ruby-ivar">@type</span>.<span class="ruby-identifier">downcase</span>.<span class="ruby-identifier">to_sym</span>]
