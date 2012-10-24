@@ -1,5 +1,5 @@
 FactoryGirl.define do
-  factory :kata do
+  factory :kata_tag do
     name "Kata"
   end
 

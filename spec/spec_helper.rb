@@ -2,6 +2,7 @@
 ENV["RAILS_ENV"] ||= 'test'
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
+require 'capybara/rspec'
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
@@ -24,7 +25,7 @@ RSpec.configure do |config|
   # examples within a transaction, remove the following line or assign false
   # instead of true.
   # config.use_transactional_fixtures = true
-    
+
   # Clean up the database
   require 'database_cleaner'
   config.before(:suite) do
@@ -35,10 +36,20 @@ RSpec.configure do |config|
   config.before(:each) do
     DatabaseCleaner.clean
   end
-  
+
+
   def login
     @request.env["devise.mapping"] = Devise.mappings[:user]
     @user = FactoryGirl.create(:user)
     sign_in @user
   end
+
+  #mock the login into github, so it is possible to test the Delete link
+  def login_integration
+    OmniAuth.config.test_mode = true
+    OmniAuth.config.add_mock :github, uid: "2266908", info: { nickname: "oscaralvaro", email: "oscaralvaro@gmail.com", name: "Oscar Sandoval" }
+    #this visit is necessary to "setup" the authentication
+    visit '/auth/github'
+  end
+
 end

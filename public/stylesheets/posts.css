@@ -91,3 +91,7 @@
 	margin: 10px 0;
 	border-bottom: 1px dashed black;
 }
+
+#content table tr td {
+    padding: 0;
+}
