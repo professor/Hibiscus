@@ -27,9 +27,10 @@ Permission granted to use this image from Mahesh "Vyoma" Bhat | KalaaLog.com
 1. Setup your environment variable for ARTICLE_USER_ID. This is used by the Article Generator.
    1. add the following to .bash_profile
 
-    export ARTICLE_USER_ID="youruserid"<br/>
+    export ARTICLE_USER_ID="scotty"<br/>
 
    1. restart your terminal
+   1. in terminal run "rake db:seed" to create default article user
 
 ##Local mongo database
 1. install mongo (See http://www.mongodb.org/display/DOCS/Quickstart+OS+X )
