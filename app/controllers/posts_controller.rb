@@ -4,11 +4,12 @@
 
 class PostsController < ApplicationController
   before_filter :authenticate_user!,  :except => [:index, :show]
+  before_filter :post_type
 
   ##
   # Retrieve all posts of the specified type.
   def index
-    @posts = post_type.where(_type: @type)
+    @posts = (@type == 'Post') ? post_type.where(_type: nil) : post_type.where(_type: @type)
 
     respond_to do |format|
       format.html # index.html.erb

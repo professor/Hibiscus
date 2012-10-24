@@ -19,13 +19,8 @@
 <div id="main-all-posts-div">
     <% @posts.desc(:created_at).limit(15).each do |post| %>
         <div class="main-post-div" style="display: none;">
-            <% if post.respond_to?('site_name') %>
-              <%= render :partial => 'posts/article_short', :locals => {:post => post} %>
-            <% elsif post.kind_of? Kata %>
-              <%= render post %>
-            <% else %>
-              <%= render :partial => 'posts/post_short', :locals => {:post => post} %>
-            <% end %>
+          <%= render partial: "posts/#{@type.downcase}_short", locals: { post: post } %>
+              <%#= render partial: "posts/#{@type.downcase}_short", locals: { post: post } %>
         </div>
     <% end %>
 </div>
