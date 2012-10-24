@@ -6,7 +6,6 @@ require 'indextank'
 # with Post and also has some extra fields.
 
 class Kata < Post
-  store_in_collection: "exercises"
 
   field :challenge_level, :type => String
   field :user_categories, :type => String
