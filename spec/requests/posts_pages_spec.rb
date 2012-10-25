@@ -12,7 +12,7 @@ describe "PostsPages" do
 =end
 
   describe "create a new post" do
-     visit 'users/sign_in'
-     click_link 'GitHub'
+     #visit 'users/sign_in'
+     #click_link 'GitHub'
   end
 end
