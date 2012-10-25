@@ -4,5 +4,4 @@ FactoryGirl.define do
     content "Post Content Factory"
     association :user
   end
-
 end

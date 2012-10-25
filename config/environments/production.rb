@@ -46,6 +46,10 @@ CraftWiki::Application.configure do
 
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
+
+  #ckeditor installation
+  #config.assets.precompile += Ckeditor.assets
+
 end
 
 CraftWiki::Application.config.middleware.use ExceptionNotifier,

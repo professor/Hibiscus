@@ -1,208 +1,196 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!DOCTYPE html>
+
+<html>
 <head>
-  <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
 
-  <title>Class: LikesController</title>
+<title>class LikesController - Rails Application Documentation</title>
 
-  <link rel="stylesheet" href="./rdoc.css" type="text/css" media="screen" />
+<link type="text/css" media="screen" href="./rdoc.css" rel="stylesheet">
 
-  <script src="./js/jquery.js" type="text/javascript" charset="utf-8"></script>
-  <script src="./js/thickbox-compressed.js" type="text/javascript" charset="utf-8"></script>
-  <script src="./js/quicksearch.js" type="text/javascript" charset="utf-8"></script>
-  <script src="./js/darkfish.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
 
-</head>
+<script type="text/javascript" charset="utf-8" src="./js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/navigation.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search_index.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/searcher.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/darkfish.js"></script>
+
+
 <body id="top" class="class">
+<nav id="metadata">
+  <nav id="home-section" class="section">
+  <h3 class="section-header">
+    <a href="./index.html">Home</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </h3>
+</nav>
 
-  <div id="metadata">
-    <div id="home-metadata">
-      <div id="home-section" class="section">
-        <h3 class="section-header">
-          <a href="./index.html">Home</a>
-          <a href="./index.html#classes">Classes</a>
-          <a href="./index.html#methods">Methods</a>
-        </h3>
-      </div>
-    </div>
 
-    <div id="file-metadata">
-      <div id="file-list-section" class="section">
-        <h3 class="section-header">In Files</h3>
-        <div class="section-body">
-          <ul>
-          
-            <li><a href="./app/controllers/likes_controller_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
-              class="thickbox" title="app/controllers/likes_controller.rb">app/controllers/likes_controller.rb</a></li>
-          
-          </ul>
-        </div>
-      </div>
+  <nav id="search-section" class="section project-section" class="initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <h3 class="section-header">
+      <input type="text" name="search" placeholder="Search" id="search-field"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </h3>
+  </form>
 
-      
-    </div>
+  <ul id="search-results" class="initially-hidden"></ul>
+</nav>
 
-    <div id="class-metadata">
-      
-      <!-- Parent Class -->
-      <div id="parent-class-section" class="section">
-        <h3 class="section-header">Parent</h3>
-        
-        <p class="link"><a href="ApplicationController.html">ApplicationController</a></p>
-        
-      </div>
-      
 
-      
-
-      
-
-      
-      <!-- Method Quickref -->
-      <div id="method-list-section" class="section">
-        <h3 class="section-header">Methods</h3>
-        <ul class="link-list">
-          
-          <li><a href="#method-i-create">#create</a></li>
-          
-        </ul>
-      </div>
-      
-
-      
-    </div>
-
-    <div id="project-metadata">
-      
-      
-      <div id="fileindex-section" class="section project-section">
-        <h3 class="section-header">Files</h3>
-        <ul>
-        
-          <li class="file"><a href="./doc/README_FOR_APP.html">README_FOR_APP</a></li>
-        
-        </ul>
-      </div>
-      
-
-      <div id="classindex-section" class="section project-section">
-        <h3 class="section-header">Class/Module Index
-          <span class="search-toggle"><img src="./images/find.png"
-            height="16" width="16" alt="[+]"
-            title="show/hide quicksearch" /></span></h3>
-        <form action="#" method="get" accept-charset="utf-8" class="initially-hidden">
-        <fieldset>
-          <legend>Quicksearch</legend>
-          <input type="text" name="quicksearch" value=""
-            class="quicksearch-field" />
-        </fieldset>
-        </form>
-
-        <ul class="link-list">
-        
-          <li><a href="./Achievement.html">Achievement</a></li>
-        
-          <li><a href="./AchievementsController.html">AchievementsController</a></li>
-        
-          <li><a href="./ActivitiesController.html">ActivitiesController</a></li>
-        
-          <li><a href="./Activity.html">Activity</a></li>
-        
-          <li><a href="./ApplicationController.html">ApplicationController</a></li>
-        
-          <li><a href="./ApplicationHelper.html">ApplicationHelper</a></li>
-        
-          <li><a href="./Article.html">Article</a></li>
-        
-          <li><a href="./Authentication.html">Authentication</a></li>
-        
-          <li><a href="./AuthenticationsController.html">AuthenticationsController</a></li>
-        
-          <li><a href="./Comment.html">Comment</a></li>
-        
-          <li><a href="./CommentsController.html">CommentsController</a></li>
-        
-          <li><a href="./EmailValidator.html">EmailValidator</a></li>
-        
-          <li><a href="./GlobalConfig.html">GlobalConfig</a></li>
-        
-          <li><a href="./Like.html">Like</a></li>
-        
-          <li><a href="./LikesController.html">LikesController</a></li>
-        
-          <li><a href="./Plan.html">Plan</a></li>
-        
-          <li><a href="./PlansController.html">PlansController</a></li>
-        
-          <li><a href="./Post.html">Post</a></li>
-        
-          <li><a href="./PostsController.html">PostsController</a></li>
-        
-          <li><a href="./SearchController.html">SearchController</a></li>
-        
-          <li><a href="./Searchify.html">Searchify</a></li>
-        
-          <li><a href="./Tag.html">Tag</a></li>
-        
-          <li><a href="./TagsController.html">TagsController</a></li>
-        
-          <li><a href="./User.html">User</a></li>
-        
-          <li><a href="./UsersController.html">UsersController</a></li>
-        
-        </ul>
-        <div id="no-class-search-results" style="display: none;">No matching classes.</div>
-      </div>
-
-      
-    </div>
-  </div>
-
-  <div id="documentation">
-    <h1 class="class">LikesController</h1>
-
-    <div id="description" class="description">
-      
-    </div><!-- description -->
+  <div id="file-metadata">
+    <nav id="file-list-section" class="section">
+  <h3 class="section-header">Defined In</h3>
+  <ul>
+    <li>app/controllers/likes_controller.rb
+  </ul>
+</nav>
 
     
-    <div id="5Buntitled-5D" class="documentation-section">
-      
+  </div>
 
-      
+  <div id="class-metadata">
+    
+    <nav id="parent-class-section" class="section">
+  <h3 class="section-header">Parent</h3>
+  
+  <p class="link"><a href="ApplicationController.html">ApplicationController</a>
+  
+</nav>
 
-      
+    
+    <!-- Method Quickref -->
+<nav id="method-list-section" class="section">
+  <h3 class="section-header">Methods</h3>
 
-      
+  <ul class="link-list">
+    
+    <li><a href="#method-i-create">#create</a>
+    
+  </ul>
+</nav>
 
-      <!-- Methods -->
-      
-      <div id="public-instance-method-details" class="method-section section">
-        <h3 class="section-header">Public Instance Methods</h3>
+  </div>
 
-      
-        <div id="create-method" class="method-detail ">
-          <a name="method-i-create"></a>
+  <div id="project-metadata">
+    <nav id="fileindex-section" class="section project-section">
+  <h3 class="section-header">Pages</h3>
+
+  <ul>
+  
+    <li class="file"><a href="./doc/README_FOR_APP.html">README_FOR_APP</a>
+  
+  </ul>
+</nav>
+
+    <nav id="classindex-section" class="section project-section">
+  <h3 class="section-header">Class and Module Index</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="./Achievement.html">Achievement</a>
+  
+    <li><a href="./AchievementsController.html">AchievementsController</a>
+  
+    <li><a href="./ApplicationController.html">ApplicationController</a>
+  
+    <li><a href="./ApplicationHelper.html">ApplicationHelper</a>
+  
+    <li><a href="./Article.html">Article</a>
+  
+    <li><a href="./Authentication.html">Authentication</a>
+  
+    <li><a href="./AuthenticationsController.html">AuthenticationsController</a>
+  
+    <li><a href="./Category.html">Category</a>
+  
+    <li><a href="./Comment.html">Comment</a>
+  
+    <li><a href="./CommentsController.html">CommentsController</a>
+  
+    <li><a href="./EmailValidator.html">EmailValidator</a>
+  
+    <li><a href="./GlobalConfig.html">GlobalConfig</a>
+  
+    <li><a href="./Kata.html">Kata</a>
+  
+    <li><a href="./Like.html">Like</a>
+  
+    <li><a href="./LikesController.html">LikesController</a>
+  
+    <li><a href="./Plan.html">Plan</a>
+  
+    <li><a href="./PlansController.html">PlansController</a>
+  
+    <li><a href="./Post.html">Post</a>
+  
+    <li><a href="./PostsController.html">PostsController</a>
+  
+    <li><a href="./SearchController.html">SearchController</a>
+  
+    <li><a href="./Searchify.html">Searchify</a>
+  
+    <li><a href="./Tag.html">Tag</a>
+  
+    <li><a href="./TagsController.html">TagsController</a>
+  
+    <li><a href="./User.html">User</a>
+  
+    <li><a href="./UsersController.html">UsersController</a>
+  
+  </ul>
+</nav>
+
+  </div>
+</nav>
+
+<div id="documentation">
+  <h1 class="class">class LikesController</h1>
+
+  <div id="description" class="description">
+    
+  </div><!-- description -->
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    <!-- Methods -->
+    
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Instance Methods</h3>
+
+    
+      <div id="method-i-create" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">create</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
 
           
-          <div class="method-heading">
-            <span class="method-name">create</span><span
-              class="method-args">()</span>
-            <span class="method-click-advice">click to toggle source</span>
-          </div>
-          
-
-          <div class="method-description">
-            
-            
-            
-
-            
-            <div class="method-source-code" id="create-source">
-<pre>
-<span class="ruby-comment"># File app/controllers/likes_controller.rb, line 4</span>
+          <div class="method-source-code" id="create-source">
+            <pre><span class="ruby-comment"># File app/controllers/likes_controller.rb, line 4</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">create</span>
   <span class="ruby-ivar">@post</span> = <span class="ruby-constant">Post</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:like</span>][<span class="ruby-value">:post_id</span>])
   <span class="ruby-ivar">@like</span> = <span class="ruby-constant">Like</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:like</span>])
@@ -218,29 +206,26 @@
     <span class="ruby-keyword">end</span>
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
-            </div><!-- create-source -->
-            
-          </div>
-
+          </div><!-- create-source -->
           
+        </div>
 
-          
-        </div><!-- create-method -->
+        
 
-      
-      </div><!-- public-instance-method-details -->
+        
+      </div><!-- create-method -->
+
     
-    </div><!-- 5Buntitled-5D -->
+    </section><!-- public-instance-method-details -->
   
+  </section><!-- 5Buntitled-5D -->
 
-  </div><!-- documentation -->
+</div><!-- documentation -->
 
-  <div id="validator-badges">
-    <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
-    <p><small>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish
-      Rdoc Generator</a> 2</small>.</p>
-  </div>
 
-</body>
-</html>
+<footer id="validator-badges">
+  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
+  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.12.
+  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
+</footer>
 

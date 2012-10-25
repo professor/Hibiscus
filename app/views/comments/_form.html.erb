@@ -10,29 +10,17 @@
       </ul>
     </div>
   <% end %>
-    
-  <% if @post.isKata? %>
-  <div class="field">
-    <%= f.label :time_spent, 'How much time did you spend on the activity?' %><br />
-    <%= f.text_field :time_spent, :size => "5" %> hours (for example, 3.5 hours)
-  </div>
-  <br/>
-  <% end %>
-
-  <% if @post.isKata?
-      label = "kata"
-      else
-       label = "post"
-     end %>
 
   <%# render :partial => '/comments/like_dislike', :locals => {:post => @post, :label => label} %>
 
   <div class="field">
     <%= f.label :content, 'Comment' %><br />
-    <% if @post.isKata? %>
-            <%= f.text_area :content, :size => "80x12", :value => "#{GlobalConfig.comment_default}" %>
+    <% if @type == "Kata" %>
+            <!--%= f.text_area :content, :size => "80x12", :value => "#{GlobalConfig.comment_default}" %-->
+            <%= f.cktext_area :content, :toolbar => 'CMUSV', :width => 600, :height => 200, :input_html => { :value => "#{GlobalConfig.comment_default}" } %>
 		<% else %>
-			<%= f.text_area :content, :size => "80x10" %>
+			<!--%= f.text_area :content, :size => "80x10" %-->
+            <%= f.cktext_area :content, :toolbar => 'CMUSV', :width => 600, :height => 200 %>
 		<% end %>
   </div>
   <div class="actions">
