@@ -47,6 +47,7 @@ group :development, :test, :production do
 	gem "devise", "1.1.8"
 	gem 'omniauth','1.0'
   gem 'omniauth-github'
+  #gem 'heroku'
   gem "indextank"
 	gem "faraday-stack", '= 0.1.5' #it appears that indextank needs this?
   gem "ckeditor", "3.6.3"
