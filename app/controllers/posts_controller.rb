@@ -85,33 +85,33 @@ class PostsController < ApplicationController
       @post.tempTags = @form[:tempTags]
       @post.setTags
     elsif post_type == Kata
-        @post.category = @form[:category]
-        @post.challenge_level = @form[:challenge_level]
-      end
-      @post.title = @form[:title]
-      @post.content = params[@type.downcase.to_sym][:content]
-      @post.source = params[@type.downcase.to_sym][:source]
-
-      respond_to do |format|
-        if @post.save
-          format.html { redirect_to(@post, :notice => "#{@type} was successfully updated.") }
-          format.xml { head :ok }
-        else
-          format.html { render :action => "edit" }
-          format.xml { render :xml => @post.errors, :status => :unprocessable_entity }
-        end
-      end
+      @post.category = @form[:category]
+      @post.challenge_level = @form[:challenge_level]
     end
+    @post.title = @form[:title]
+    @post.content = params[@type.downcase.to_sym][:content]
+    @post.source = params[@type.downcase.to_sym][:source]
 
-    # DELETE /posts/1
-    # DELETE /posts/1.xml
-    def destroy
-      @post = post_type.find(params[:id])
-      @post.destroy
-
-      respond_to do |format|
-        format.html { redirect_to(post_type, :notice => "The #{@type} has been deleted.") }
+    respond_to do |format|
+      if @post.save
+        format.html { redirect_to(@post, :notice => "#{@type} was successfully updated.") }
         format.xml { head :ok }
+      else
+        format.html { render :action => "edit" }
+        format.xml { render :xml => @post.errors, :status => :unprocessable_entity }
       end
     end
   end
+
+  # DELETE /posts/1
+  # DELETE /posts/1.xml
+  def destroy
+    @post = post_type.find(params[:id])
+    @post.destroy
+
+    respond_to do |format|
+      format.html { redirect_to(post_type, :notice => "The #{@type} has been deleted.") }
+      format.xml { head :ok }
+    end
+  end
+end
