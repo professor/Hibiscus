@@ -19,9 +19,15 @@ class Article < Post
   # Usage: In Rails Console, Article.update_from_feeds("http://blog.8thlight.com/feed/atom.xml")
   ##
   def self.update_from_feeds(feed_urls)
+    @new_article = false
     feeds = Feedzirra::Feed.fetch_and_parse(feed_urls)
     feeds.each do |feed_url, feed|
       add_entries(feed.entries, feed.title)
+    end
+
+    if @new_article
+      @user = User.find(:first, :conditions => { :_id => "johnleee" })
+      UserMailer.deliver_article_email(@user)
     end
   end
 
@@ -56,6 +62,7 @@ class Article < Post
         )
         art.tempTags = "article"
         art.setTags
+        #@new_article = true
       end
     end
   end

@@ -12,7 +12,9 @@ describe "PostsPages" do
 =end
 
   describe "create a new post" do
-     visit 'users/sign_in'
-     click_link 'GitHub'
+    it "signs in" , :js => true do
+      visit 'http://127.0.0.1:3000/users/sign_in'
+      click_link 'GitHub'
+    end
   end
 end

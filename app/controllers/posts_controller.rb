@@ -9,8 +9,8 @@ class PostsController < ApplicationController
   ##
   # Retrieve all posts of the specified type.
   def index
-    @posts = (@type == 'Post') ? post_type.where(_type: nil) : post_type.where(_type: @type)
-
+    #@posts = (@type == 'Post') ? post_type.where(_type: nil) : post_type.where(_type: @type)
+    @posts = Post.all
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @posts }
