@@ -1,8 +1,8 @@
 #Welcome to Hibiscus
-     
+
 
 ![Hibiscus Logo](https://github.com/professor/Hibiscus/raw/master/public/images/hibiscus.jpg)
-Permission granted to use this image from Mahesh "Vyoma" Bhat | KalaaLog.com 
+Permission granted to use this image from Mahesh "Vyoma" Bhat | KalaaLog.com
 
 #Installation directions for development environment
 
@@ -15,7 +15,7 @@ Permission granted to use this image from Mahesh "Vyoma" Bhat | KalaaLog.com
 
     export GITHUB_ID="d8a90randomjunk1dasdsa"<br/>
     export GITHUB_SECRET="a89309adsrandomjunk1j9fajsJ"
-    
+
 1. Setup your environment variable for SEARCHIFY_HIBISCUS_API_URL from http://searchify.com/
    1. add the following to .bash_profile
 
@@ -27,9 +27,10 @@ Permission granted to use this image from Mahesh "Vyoma" Bhat | KalaaLog.com
 1. Setup your environment variable for ARTICLE_USER_ID. This is used by the Article Generator.
    1. add the following to .bash_profile
 
-    export ARTICLE_USER_ID="youruserid"<br/>
+          export ARTICLE_USER_ID="scotty"
 
-   1. restart your terminal
+   2. restart your terminal
+   3. in terminal run "rake db:seed" to create default article user
 
 ##Local mongo database
 1. install mongo (See http://www.mongodb.org/display/DOCS/Quickstart+OS+X )

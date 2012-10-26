@@ -99,14 +99,14 @@ describe PostsController do
     end
 
     describe "GET index" do
-      it "assigns all posts with type nil as @posts when type is blank" do
-        Post.stub(:where).with(:_type => nil) { [mock_post] }
+      it "assigns all records in posts collection as @posts by default" do
+        Post.stub(:all) { [mock_post] }
         get :index
         assigns(:posts).should eq([mock_post])
       end
 
-      it "assigns all posts with type 'Kata' as @posts when type is 'Kata'" do
-        Kata.stub(:where).with(:_type => 'Kata') { [mock_kata] }
+      it "assigns all records in katas collection as @posts when type is 'Kata'" do
+        Kata.stub(:all) { [mock_kata] }
         get :index, {:type => 'Kata' }
         assigns(:posts).should eq([mock_kata])
       end
@@ -123,8 +123,8 @@ describe PostsController do
 
       it "assigns the requested kata as @post" do
         Kata.stub(:find).with("37") { mock_kata }
-        mock_kata.should_receive(:listLikes)
-        mock_kata.should_receive(:listDislikes)
+        mock_kata.should_not_receive(:listLikes)
+        mock_kata.should_not_receive(:listDislikes)
         get :show, :type => 'Kata', :id => "37"
         assigns(:post).should be(mock_kata)
       end

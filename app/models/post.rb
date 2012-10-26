@@ -1,4 +1,5 @@
 require 'indextank'
+require "searchify"
 
 # Post is the model for articles, and the base model for katas(Kata) and feeds(Feed).
 
@@ -8,6 +9,7 @@ class Post
   include Mongoid::Versioning
   #paranoia module allows to implement "soft deletion"
   include Mongoid::Paranoia
+  include Searchify
   
   attr_accessor :tempTags
   
@@ -49,21 +51,6 @@ class Post
     end
     
     return dislikes
-  end
-
-  def update_search_index
-    url = "posts/" + self.id
-    api = IndexTank::Client.new(ENV['SEARCHIFY_HIBISCUS_API_URL'] || '<API_URL>')
-    tmp = ENV['SEARCHIFY_HIBISCUS_INDEX']
-    index = api.indexes(ENV['SEARCHIFY_HIBISCUS_INDEX'] || 'hibiscus')
-    index.document(self.id.to_s).add({ :title => self.title, :timestamp => self.created_at.to_i, :text => self.content.gsub(/<\/?[^>]*>/, ""), :url => url, :id => self.id})
-  end
-
-  def delete_from_search_index
-    url = "posts/" + self.id
-    api = IndexTank::Client.new(ENV['SEARCHIFY_HIBISCUS_API_URL'] || '<API_URL>')
-    index = api.indexes(ENV['SEARCHIFY_HIBISCUS_INDEX'] || 'hibiscus')
-    index.document(url).delete
   end
   
   def joinTags

@@ -5,3 +5,19 @@
 #
 #   cities = City.create([{ :name => 'Chicago' }, { :name => 'Copenhagen' }])
 #   Mayor.create(:name => 'Daley', :city => cities.first)
+
+require 'factory_girl'
+
+FactoryGirl.define do
+  factory :user, class: User do
+    #can default values here
+  end
+
+  factory :scotty, :parent => :user do
+    name "Scotty Dog"
+    username "scotty"
+    email "todd.sedano@sv.cmu.edu"
+  end
+end
+
+todd = FactoryGirl.create(:scotty)
