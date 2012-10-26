@@ -21,8 +21,15 @@ class PostsController < ApplicationController
   # GET /posts/1.xml
   def show
     @post = post_type.find(params[:id])
-    @comments = @post.comments
-    @comment = Comment.new
+    if @post.is_a?(Kata)
+      @comments = @post.reviews
+      @comment = Review.new
+    else
+      @comments = @post.comments
+      @comment = Comment.new
+    end
+
+
     if post_type != Kata
       @likes = @post.listLikes
       @dislikes = @post.listDislikes
