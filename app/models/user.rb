@@ -20,6 +20,7 @@ class User
   key :username
 
   references_many :authentications, :dependent => :delete
+  references_many :katas, :dependent => :delete
   references_many :posts, :dependent => :delete
   references_many :likes, :dependent => :delete
   embeds_one :plan
