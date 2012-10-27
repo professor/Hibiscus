@@ -1,9 +1,10 @@
 class Article < Post
   field :author, :type => String
   field :site_name, :type => String
+  field :guid, :type => String
 
   validates :site_name, :presence => true
-  validates :id, :presence => true
+  validates :guid, :presence => true
 
   ##
   # Get articles from predefined RSS feeds.
@@ -19,9 +20,15 @@ class Article < Post
   # Usage: In Rails Console, Article.update_from_feeds("http://blog.8thlight.com/feed/atom.xml")
   ##
   def self.update_from_feeds(feed_urls)
+    @articles = {}
     feeds = Feedzirra::Feed.fetch_and_parse(feed_urls)
     feeds.each do |feed_url, feed|
       add_entries(feed.entries, feed.title)
+    end
+
+    if !@articles.empty?
+      @user = User.find(:first, :conditions => { :_id => ENV['ARTICLE_USER_ID'] })
+      UserMailer.deliver_article_email(@user, @articles)
     end
   end
 
@@ -43,12 +50,13 @@ class Article < Post
 
   def self.add_entries(entries, title)
     entries.each do |entry|
-      unless exists?(:conditions => {:id => entry.id})
+      unless exists?(:conditions => {:guid => entry.id})
+        #puts(entry.id)
         art = create!(
             :title          => entry.title,
             :source_url     => entry.url,
             :created_at     => entry.published,
-            :id             => entry.id,
+            :guid           => entry.id,
             :author         => entry.author,
             :content        => entry.content.blank? ? entry.title : entry.content,
             :site_name      => title,
@@ -56,6 +64,7 @@ class Article < Post
         )
         art.tempTags = "article"
         art.setTags
+        @articles[art.source_url] = art.title
       end
     end
   end
