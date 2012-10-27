@@ -13,6 +13,10 @@ describe PostsController do
   def mock_kata(stubs = {})
     @mock_kata ||= mock_model(Kata, stubs).as_null_object
   end
+
+  def mock_article(stubs = {})
+    @mock_article ||= mock_model(Article, stubs).as_null_object
+  end
   
   context "Unauthenticated user: " do
     it "should allow access to index" do
@@ -23,6 +27,12 @@ describe PostsController do
     it "should allow access to show a post" do
       Post.should_receive(:find).and_return(mock_post)
       get :show, :id => mock_post.id
+      response.should be_success
+    end
+
+    it "should allow access to show an article" do
+      Article.should_receive(:find).and_return(mock_article)
+      get :show, :type => 'Article', :id => mock_article.id
       response.should be_success
     end
 
@@ -38,14 +48,27 @@ describe PostsController do
       response.should redirect_to("/users/sign_in")
     end
 
+    it "should not allow access to make a new article" do
+      get :new, :type => 'Article'
+      flash[:alert].should == "You need to sign in before continuing."
+      response.should redirect_to("/users/sign_in")
+    end
+
     it "should not allow access to make a new kata" do
       get :new, :type => 'Kata'
       flash[:alert].should == "You need to sign in before continuing."
       response.should redirect_to("/users/sign_in")
     end
 
+
     it "should not allow access to create a post" do
       post :create
+      flash[:alert].should == "You need to sign in before continuing."
+      response.should redirect_to("/users/sign_in")
+    end
+
+    it "should not allow access to create a article" do
+      post :create, :type => 'Article'
       flash[:alert].should == "You need to sign in before continuing."
       response.should redirect_to("/users/sign_in")
     end
@@ -55,9 +78,15 @@ describe PostsController do
       flash[:alert].should == "You need to sign in before continuing."
       response.should redirect_to("/users/sign_in")
     end
-    
+
     it "should not allow access to edit a post" do
       get :edit, :id => mock_post.id
+      flash[:alert].should == "You need to sign in before continuing."
+      response.should redirect_to("/users/sign_in")
+    end
+
+    it "should not allow access to edit an article" do
+      get :edit, :type => 'Article', :id => mock_article.id
       flash[:alert].should == "You need to sign in before continuing."
       response.should redirect_to("/users/sign_in")
     end
@@ -74,6 +103,12 @@ describe PostsController do
       response.should redirect_to("/users/sign_in")
     end
 
+    it "should not allow access to update an article" do
+      put :update, :type => 'Article', :id => mock_article.id
+      flash[:alert].should == "You need to sign in before continuing."
+      response.should redirect_to("/users/sign_in")
+    end
+
     it "should not allow access to update a kata" do
       put :update, :type => 'Kata', :id => mock_kata.id
       flash[:alert].should == "You need to sign in before continuing."
@@ -82,6 +117,12 @@ describe PostsController do
 
     it "should not allow access to destroy a post" do
       delete :destroy, :id => mock_post.id
+      flash[:alert].should == "You need to sign in before continuing."
+      response.should redirect_to("/users/sign_in")
+    end
+
+    it "should not allow access to destroy an article" do
+      delete :destroy, :type => 'Article', :id => mock_article.id
       flash[:alert].should == "You need to sign in before continuing."
       response.should redirect_to("/users/sign_in")
     end
