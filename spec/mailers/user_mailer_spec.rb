@@ -3,7 +3,8 @@ require "spec_helper"
 describe UserMailer do
   before do
     @user = FactoryGirl.build(:user)
-    @email = UserMailer.article_email(@user)
+    @articles = {}
+    @email = UserMailer.article_email(@user, @articles)
   end
 
   #ensure that the subject is correct

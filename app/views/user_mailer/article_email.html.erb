@@ -6,8 +6,13 @@
 <body>
 <h1>Automated Article Feed Notification by <%= @user.name %></h1>
 <p>
-  Feeds were generated.
+  Feeds were processed.
 </p>
+<% @articles.each do | url, title | %>
+    <p>
+      <a href="<%= url %>"><%= title %></a>
+    </p>
+<% end %>
 <p>
   To view the feeds just follow this link: <%= @url %>.
 </p>

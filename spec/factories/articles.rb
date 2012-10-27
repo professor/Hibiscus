@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :article do
-    id "retrospective-principles"
+    guid "retrospective-principles"
     title "Retrospective Principles"
     content "Retrospective Principles"
     association :user
