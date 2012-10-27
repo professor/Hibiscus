@@ -19,7 +19,7 @@
 <div id="main-all-posts-div">
     <% @posts.desc(:created_at).limit(15).each do |post| %>
         <div class="main-post-div" style="display: none;">
-          <%= render partial: "posts/#{@type.downcase}_short", locals: { post: post } %>
+          <%= render partial: "posts/#{post.class.name.downcase}_short", locals: { post: post } %>
               <%#= render partial: "posts/#{@type.downcase}_short", locals: { post: post } %>
         </div>
     <% end %>
