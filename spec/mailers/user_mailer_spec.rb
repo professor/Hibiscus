@@ -16,6 +16,11 @@ describe UserMailer do
     @email.to.should == [@user.email]
   end
 
+  #ensure that the sender is correct
+  it 'renders the sender email' do
+    @email.from.should == ['noreply@sv.cmu.edu']
+  end
+
   #ensure that the @user.name variable appears in the email body
   it 'assigns @user.name' do
     @email.body.encoded.should match(@user.name)

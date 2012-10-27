@@ -1,5 +1,5 @@
 class UserMailer < ActionMailer::Base
-  default :from => "john.lee@sv.cmu.edu"
+  default :from => "noreply@sv.cmu.edu"
 
 
   def article_email(user)
