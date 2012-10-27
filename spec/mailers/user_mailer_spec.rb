@@ -1,5 +1,28 @@
 require "spec_helper"
 
 describe UserMailer do
-  pending "add some examples to (or delete) #{__FILE__}"
+  before do
+    @user = FactoryGirl.build(:user)
+    @email = UserMailer.article_email(@user)
+  end
+
+  #ensure that the subject is correct
+  it 'renders the subject' do
+    @email.subject.should == 'Article Feeds Notification'
+  end
+
+  #ensure that the receiver is correct
+  it 'renders the receiver email' do
+    @email.to.should == [@user.email]
+  end
+
+  #ensure that the @user.name variable appears in the email body
+  it 'assigns @user.name' do
+    @email.body.encoded.should match(@user.name)
+  end
+
+  #ensure that the @url variable appears in the email body
+  it 'assigns @url' do
+    @email.body.encoded.should match("http://craftsmanship.sv.cmu.edu")
+  end
 end
