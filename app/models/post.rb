@@ -18,7 +18,7 @@ class Post
 
   #Adding new field source
 
-  field :source, :type => String
+  field :source_url, :type => String
   field :rating, :type => Float
 
   key :title
