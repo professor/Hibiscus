@@ -1,11 +1,14 @@
 class CommentsController < ApplicationController
   before_filter :authenticate_user!, :load_commentable, :load_commentable_collection
+  before_filter :select_comment_symbol, :only => [:create, :update]
 
   ##
   # Create a new comment that belongs to a user and a post,
   # and generate a notice of whether the comment could be saved or not.
   def create
-    #@comment = @commentable.comments.build(params[:comment])
+
+    @comment = @commentable_collection.build(params[:comment])
+    #@comment = @commentable_collection.build(params[@comment_symbol])
     @comment.user = current_user
 
     if @comment.save
@@ -18,14 +21,14 @@ class CommentsController < ApplicationController
   ##
   # Retrieve a comment to edit.
   def edit
-    #@comment = @commentable.comments.find(params[:id])
+    @comment = @commentable_collection.find(params[:id])
   end
 
   ##
   # Update a comment, and generate a notice if the changes could be saved or retry to edit otherwise.
   def update
-    #@comment = @commentable.comments.find(params[:id])
-    if @comment.update_attributes(params[:comment])
+    @comment = @commentable_collection.find(params[:id])
+    if @comment.update_attributes(params[@comment_symbol])
       redirect_to(@commentable, :notice => 'Thank you for the update in your comment.')
     else
       render :action => "edit"
@@ -35,7 +38,7 @@ class CommentsController < ApplicationController
   ##
   # Delete an existing comment and generate a notice of whether it was deleted or not.
   def destroy
-    #@comment = @commentable.comments.find(params[:id])
+    @comment = @commentable_collection.find(params[:id])
     if @comment.user == current_user
       @comment.destroy
       respond_to do |format|
@@ -59,9 +62,17 @@ private
 
   def load_commentable_collection
     if @commentable.is_a?(Kata)
-      @comment = @commentable.reviews.build(params[:comment])
+      @commentable_collection = @commentable.reviews
     else
-      @comment = @commentable.comments.build(params[:comment])
+      @commentable_collection = @commentable.comments
+    end
+  end
+
+  def select_comment_symbol
+    if @commentable.is_a?(Kata)
+      @comment_symbol = :review
+    else
+      @comment_symbol = :comment
     end
   end
 end

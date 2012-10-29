@@ -21,6 +21,8 @@ class PostsController < ApplicationController
   # GET /posts/1.xml
   def show
     @post = post_type.find(params[:id])
+    #TODO; refactor
+    @commentable = @post
     if @post.is_a?(Kata)
       @comments = @post.reviews
       @comment = Review.new
