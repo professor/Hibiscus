@@ -1,0 +1,33 @@
+<section class="comment">
+  <div>
+    <b>Title</b><br/>
+    <%= review.title.html_safe %>
+    <br/><br/>
+  </div>
+  <div>
+    <b>Rating</b><br/>
+    <%= review.rating %>
+    <br/><br/>
+  </div>
+  <div>
+    <b>Challenge level</b><br/>
+    <%= review.challenge_level %>
+    <br/><br/>
+  </div>
+  <div>
+    <b>Language</b><br/>
+    <%= review.language %>
+    <br/><br/>
+  </div>
+  <div>
+    <b>Categories</b><br/>
+    <%= review.categories.all.collect { |x| x.name } %>
+    <br/><br/>
+  </div>
+  <div>
+    <b>Content</b><br/>
+    <%= review.content.html_safe %>
+  </div>
+  <p class="commentEdit"><%= link_to 'Edit', edit_polymorphic_path([@commentable, review]) %></p>
+  <p class="commentPoster">Posted by: <%= link_to review.user.display_name, review.user %></p>
+</section>

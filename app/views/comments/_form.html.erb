@@ -1,29 +1,77 @@
 <%= form_for [@commentable, @comment] do |f| %>
-  <% if @comment.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
+    <% if @comment.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
 
-      <ul>
-      <% @comment.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+          <ul>
+            <% @comment.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <%# render :partial => '/comments/like_dislike', :locals => {:post => @post, :label => label} %>
+
+
+    <% if @commentable.is_a?(Kata) %>
+        <div class="field">
+          <%= f.label :title %>
+          <br/>
+          <%= f.text_field :title, :size => "81" %>
+          <br/><br/>
+        </div>
+        <div class='field'>
+          <%= f.label :categories %>
+          <%= f.select :category_ids, Category.all.collect { |x| [x.name, x.id] }, {}, :multiple => true %>
+          <br/><br/>
+        </div>
+        <div class='field'>
+          <%= f.label :challenge_level %>
+          <% if @comment.challenge_level.blank? %>
+              <%= f.select :challenge_level, [['Low', 'low'], ['Medium', 'medium'], ['High', 'high']] %>
+          <% else %>
+              <%= f.select :challenge_level, [['Low', 'low'], ['Medium', 'medium'], ['High', 'high']], :selected => @comment.challenge_level %>
+          <% end %>
+          <br/><br/>
+        </div>
+        <div class='field'>
+          <%= f.label :rating %>
+          <% [1, 2, 3, 4, 5].each do |item| %>
+              <% if @comment.rating == item %>
+                  <%= f.radio_button :rating, item, :checked => true %> <%= item %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <% else %>
+                  <%= f.radio_button :rating, item %> <%= item %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <% end %>
+          <% end %>
+          <br/><br/>
+        </div>
+        <div class="field">
+          <%= f.label :language %>
+          <br/>
+          <%= f.text_field :language, :size => "81" %>
+          <br/><br/>
+        </div>
+        <div class="field">
+          <%= f.label :content, 'Comment' %>
+          <br/>
+          <% if @comment.content.blank? %>
+              <%= f.cktext_area :content, :toolbar => 'CMUSV', :width => 600, :height => 200, :input_html => {:value => "#{GlobalConfig.comment_default}"} %>
+          <% else %>
+              <%= f.cktext_area :content, :toolbar => 'CMUSV', :width => 600, :height => 200 %>
+          <% end %>
+          <br/><br/>
+        </div>
+
+    <% else %>
+        <div class="field">
+          <%= f.label :content, 'Comment' %>
+          <%= f.cktext_area :content, :toolbar => 'CMUSV', :width => 600, :height => 200 %>
+        </div>
+    <% end %>
+
+
+    <div class="actions">
+      <%= f.submit %>
     </div>
-  <% end %>
-
-  <%# render :partial => '/comments/like_dislike', :locals => {:post => @post, :label => label} %>
-
-  <div class="field">
-    <%= f.label :content, 'Comment' %><br />
-    <% if @type == "Kata" %>
-            <!--%= f.text_area :content, :size => "80x12", :value => "#{GlobalConfig.comment_default}" %-->
-            <%= f.cktext_area :content, :toolbar => 'CMUSV', :width => 600, :height => 200, :input_html => { :value => "#{GlobalConfig.comment_default}" } %>
-		<% else %>
-			<!--%= f.text_area :content, :size => "80x10" %-->
-            <%= f.cktext_area :content, :toolbar => 'CMUSV', :width => 600, :height => 200 %>
-		<% end %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
 <% end %>

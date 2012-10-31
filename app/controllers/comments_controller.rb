@@ -6,15 +6,14 @@ class CommentsController < ApplicationController
   # Create a new comment that belongs to a user and a post,
   # and generate a notice of whether the comment could be saved or not.
   def create
-
-    @comment = @commentable_collection.build(params[:comment])
-    #@comment = @commentable_collection.build(params[@comment_symbol])
+    @comment = @commentable_collection.build(params[@comment_symbol])
+    #@comment = @commentable_collection.build(params[:comment])
     @comment.user = current_user
-
+    STDERR.puts(@commentable_collection)
     if @comment.save
-      redirect_to(@commentable, :notice => 'Thank you for your comment.')
+      redirect_to(@commentable, :notice => "Thank you for your #{@comment.class.to_s.downcase}.")
     else
-      redirect_to(@commentable, :flash => { :alert => 'Your comment could not be saved.' })
+      redirect_to(@commentable, :flash => { :alert => "Your #{@comment.class.to_s.downcase} could not be saved." })
     end
   end
 
@@ -29,7 +28,7 @@ class CommentsController < ApplicationController
   def update
     @comment = @commentable_collection.find(params[:id])
     if @comment.update_attributes(params[@comment_symbol])
-      redirect_to(@commentable, :notice => 'Thank you for the update in your comment.')
+      redirect_to(@commentable, :notice => "Thank you for the update in your #{@comment.class.to_s.downcase}.")
     else
       render :action => "edit"
     end
@@ -42,12 +41,12 @@ class CommentsController < ApplicationController
     if @comment.user == current_user
       @comment.destroy
       respond_to do |format|
-        format.html { redirect_to(posts_url, :notice => 'Your comment has been deleted') }
+        format.html { redirect_to(posts_url, :notice => "Your #{@comment.class.to_s.downcase} has been deleted") }
         format.xml  { head :ok }
       end
     else
       respond_to do |format|
-        format.html { redirect_to(posts_url, :notice => "You can't delete someone else's comment") }
+        format.html { redirect_to(posts_url, :notice => "You can't delete someone else's #{@comment.class.to_s.downcase}") }
       end
     end
   end
