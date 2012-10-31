@@ -24,6 +24,7 @@ CraftWiki::Application.routes.draw do
     resources :comments
   end
 
+  match '/get_started', to: 'start#show'
   match '/auth/:provider/callback', :to => 'authentications#create'
   match '/auth/failure', :to => 'authentications#failure'
 

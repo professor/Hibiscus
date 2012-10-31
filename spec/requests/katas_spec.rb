@@ -10,7 +10,7 @@ describe "Katas" do
     end
   end
 
-  before :each {login_integration}
+  before(:each) {login_integration}
   describe "POST /katas" do
     it "create katas" do
        visit root_path
