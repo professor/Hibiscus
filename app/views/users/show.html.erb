@@ -5,18 +5,19 @@
 </p>
 <br><br>
 
-<p class="profile_emails">Email: <%=  @user.email %></p>
-<p class="profile_emails">Gravatar Email: <%= @user.gravatar_email %></p>
+<span class="profile_emails">Email:  </span> <span class="profile_emails_values"><%=  @user.email %></span>  <br><br>
+<span class="profile_emails">Gravatar Email:  </span> <span class="profile_emails_values"><%= @user.gravatar_email %></span>
+
+<br><br><br><br>
 
 <% if @user.plan %>
 
 	<section id="maiden_speech">
-      <h3>Maiden Speech:</h3> <br>
-		<p><%= @user.plan.maiden_speech.html_safe %></p>
-
-
-
+        <span class="profile_emails">Maiden Speech:   </span><br><br>
+	    <span class="profile_emails_values"><%= @user.plan.maiden_speech.html_safe %></span>
     </section>
+
+    <br>
     <section class="page_nav_links">
     <%= link_to 'Edit Learning Plan', edit_user_plan_path(@user, @user.plan) %>
     </section>
