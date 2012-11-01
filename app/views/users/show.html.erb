@@ -1,7 +1,7 @@
 <% content_for :title, @user.display_name + " - Profile"%>
 <p>
 <label id="profile_name"> <%= @user.display_name %> </label>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <%= link_to 'Edit', edit_user_path(@user), :title => "Edit Profile", :class => "user-edit-link" %>
+  <span class="page_nav_links"> <%= link_to 'Edit', edit_user_path(@user), :title => "Edit Profile", :class => "user-edit-link" %></span>
 </p>
 <br><br>
 
