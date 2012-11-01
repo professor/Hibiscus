@@ -6,6 +6,8 @@ describe User do
   end
 
   it { should respond_to(:points) }
+  it { should respond_to(:email) }
+  it { should respond_to(:gravatar_email) }
 
   describe "Required fields: " do
     it "should be invalid without a username" do
@@ -23,4 +25,6 @@ describe User do
       @user.should be_valid_verbose
     end
   end
+
+
 end
