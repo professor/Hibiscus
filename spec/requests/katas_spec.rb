@@ -10,33 +10,32 @@ describe "Katas" do
     end
   end
 
-  before :each {login_integration}
-  describe "POST /katas" do
-    it "create katas" do
-       visit root_path
-       click_link 'New Post'
-    end
-  end
-
-  describe "DELETE /katas", :js => true do
-=begin
-    before do
+  describe "operations of logged in user" do
+    before(:each) do
       login_integration
     end
-=end
 
-    it "delete a kata when click on link", :js => true do
-      #it emulates a user clicking the Delete link and see if the kata is deleted
+    describe "POST /katas" do
+      it "create katas" do
+        visit root_path
+        click_link 'New Post'
+      end
+    end
 
-      FactoryGirl.create(:kata, :title => "test kata")
-      visit katas_path
-      expect {
-        #hack necessary to the confirm box not be displayed, cause apparently
-        #there is no way to press the OK button with capybara/selenium
-        page.evaluate_script('window.confirm = function() { return true; }')
-        click_link('Delete')
-        #sleep 2.seconds
-      }.to change(Kata, :count).by(-1)
+    describe "DELETE /katas", :js => true do
+      it "delete a kata when click on link", :js => true do
+        #it emulates a user clicking the Delete link and see if the kata is deleted
+
+        FactoryGirl.create(:kata, :title => "test kata")
+        visit katas_path
+        expect {
+          #hack necessary to the confirm box not be displayed, cause apparently
+          #there is no way to press the OK button with capybara/selenium
+          page.evaluate_script('window.confirm = function() { return true; }')
+          click_link('Delete')
+          #sleep 2.seconds
+        }.to change(Kata, :count).by(-1)
+      end
     end
   end
 
