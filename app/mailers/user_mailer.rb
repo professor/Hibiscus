@@ -5,6 +5,7 @@ class UserMailer < ActionMailer::Base
   def article_email(user, articles)
     @user = user
     @url  = "http://craftsmanship.sv.cmu.edu"
+    #@url  = "http://127.0.0.1:3000"
     @articles = articles
     mail(:to => user.email, :subject => "Article Feeds Notification")
   end

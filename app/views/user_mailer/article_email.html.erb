@@ -11,7 +11,8 @@
 <% @articles.each do | url, title | %>
 <div>
   <p><a href="<%= url %>"><%= title.split('##')[0] %></a>:&nbsp;
-    <%= strip_tags(title.split('##')[1]) %>
+    <%= strip_tags(title.split('##')[1]) %><br/>
+    <a href="<%= @url + '/articles/' + title.split('##')[2] + '/edit' %>">Edit</a>
   </p>
 </div>
 <% end %>

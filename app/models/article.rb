@@ -64,7 +64,7 @@ class Article < Post
         )
         art.tempTags = "article"
         art.setTags
-        @articles[art.source_url] = art.title + "##"  + art.content.truncate(350)
+        @articles[art.source_url] = art.title + "##"  + art.content.truncate(350) + "##" + art.id
       end
     end
   end
