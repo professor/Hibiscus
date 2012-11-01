@@ -38,7 +38,8 @@ describe CommentsController do
       context "with valid params" do
         before(:each) do
           Post.stub(:find).and_return(mock_post)
-          post :create, :post_id => mock_post.id, :comment => { :content => 'Some content.' }
+          mock_post.comments.stub(:build) { mock_comment }
+          post :create, :post_id => mock_post.id, :comment => mock_comment
         end
 
         it 'sets the flash notice' do

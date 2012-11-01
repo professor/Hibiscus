@@ -7,9 +7,7 @@ class CommentsController < ApplicationController
   # and generate a notice of whether the comment could be saved or not.
   def create
     @comment = @commentable_collection.build(params[@comment_symbol])
-    #@comment = @commentable_collection.build(params[:comment])
     @comment.user = current_user
-    STDERR.puts(@commentable_collection)
     if @comment.save
       redirect_to(@commentable, :notice => "Thank you for your #{@comment.class.to_s.downcase}.")
     else
