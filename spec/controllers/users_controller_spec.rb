@@ -31,5 +31,35 @@ describe UsersController do
         response.should be_success
       end
     end
+
+    describe "PUT update" do
+      describe "with valid params" do
+        it "updates the requested users email" do
+          User.stub(:find) { mock_user }
+          mock_user.should_receive(:save)
+          put :update, :id => "10", :user => {'email' => 'test@test.com' }
+          response.should redirect_to(user_url(mock_user))
+        end
+
+        it "updates the requested users gravatar email" do
+          User.stub(:find) { mock_user }
+          mock_user.should_receive(:save)
+          put :update, :id => "10", :user => {'gravatar_email' => 'test@test.com' }
+          response.should redirect_to(user_url(mock_user))
+        end
+
+        it "redirects to the user" do
+          User.stub(:find) { mock_user }
+          put :update, :id => "1", :user => {}
+          response.should redirect_to(user_url(mock_user))
+        end
+
+      end
+    end
   end
+
+
+
+
 end
+
