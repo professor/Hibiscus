@@ -1,16 +1,34 @@
 <% content_for :title, @user.display_name + " - Information"%>
-<h1><%= @user.display_name %></h1>
-<p id="email">Email: <%= @user.email %></p>
+<h1><%= @user.display_name %></h1><br><br>
+<%
+   uemail = ""
+   if @user.email.nil?
+     uemail = "abhishekshiroor@gmail.com"
+   else
+     uemail =  @user.email
+  end
+
+
+%>
+<p class="profile_emails">Email: <%= uemail %></p>
+<p class="profile_emails">Gravatar Email: <%= @user.email %></p>
 
 <% if @user.plan %>
+
 	<section id="maiden_speech">
-		<h3>Maiden Speech:</h3>
+      <h3>Maiden Speech:</h3> <br>
 		<p><%= @user.plan.maiden_speech.html_safe %></p>
 	</section>
 
 	<%= link_to 'Edit Learning Plan', edit_user_plan_path(@user, @user.plan) %>
+    <br>
+
 <% else %>
 	<section id="newLearningPlan"><%= render 'plans/form' %></section>
 <% end %>
 
-<%= link_to 'Authentications', authentications_path %>
+<br>
+<section id="authentications">
+<h3>
+  <%= link_to 'Authentications', authentications_path %></h3>
+</section><br><br>

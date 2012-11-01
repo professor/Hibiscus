@@ -1,5 +1,13 @@
 #maiden_speech {
 	padding-top: 30px;
+    font-size: 1.3em;
+    width: 70%;
+}
+
+#authentications {
+    padding-top: 30px;
+    font-size: 1.3em;
+    width: 70%;
 }
 
 #activities {
@@ -12,4 +20,8 @@
 
 #newActivity, #newLearningPlan {
 	padding: 30px 0;
+}
+
+.profile_emails{
+    font-size: 1.3em;
 }
