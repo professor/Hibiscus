@@ -4,16 +4,7 @@
   <%= link_to 'Edit', edit_user_path(@user), :title => "Edit Profile", :class => "user-edit-link" %>
 </p>
 <br><br>
-<%
-   uemail = ""
-   if @user.email.nil?
-     uemail = "abhishekshiroor@gmail.com"
-   else
-     uemail =  @user.email
-  end
 
-
-%>
 <p class="profile_emails">Email: <%=  @user.email %></p>
 <p class="profile_emails">Gravatar Email: <%= @user.gravatar_email %></p>
 
