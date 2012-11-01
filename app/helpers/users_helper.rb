@@ -1,7 +1,7 @@
 module UsersHelper
 
   # Returns the Gravatar (http://gravatar.com/) for the given user.
-  def gravatar_for(user, options = { size: 200 })
+  def gravatar_for(user, options = { size: 40})
     if user.gravatar_email.nil?
       gemail = ''
     else

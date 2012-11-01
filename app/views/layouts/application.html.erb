@@ -40,7 +40,7 @@
           <ul>
             <li class="current_page_item"><%= link_to "Home", root_url, :title =>"Home" %></li>
             <li class="page_item"><%= link_to "#{GlobalConfig.activity_name.pluralize}", "/#{GlobalConfig.activity_type.pluralize}", :title =>"#{GlobalConfig.activity_name.pluralize}" %></li>
-            <li class="current_page_item"><%= link_to "Popular", root_url, :title =>"Popular" %></li>
+            <li class="page_item"><%= link_to "Popular", root_url, :title =>"Popular" %></li>
             <li class="widget-container widget_search" id="search-2">
               <form action="<%= search_index_path %>" id="searchform" method="get" role="search">
                 <div id="right_menu_search">
@@ -52,7 +52,7 @@
             </li>
             <li id="user_profile_menu">
               <% if current_user %>
-                  <%= link_to current_user.display_name, current_user%>
+                  <%= link_to (gravatar_for current_user, options = { size: 40}), current_user%>
                   <ul>
                     <li id="logout_link"><%= link_to "Logout", :logout %> </li>
                   </ul>
