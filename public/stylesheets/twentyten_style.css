@@ -986,6 +986,12 @@ div.post-detail{
 	margin: -18px 0 0 0;
 }
 
+.page_nav_links {
+    font-size: 1.0em;
+    font-weight: bold;
+}
+
+
 
 /* =Comments
 -------------------------------------------------------------- */
