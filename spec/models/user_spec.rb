@@ -4,7 +4,9 @@ describe User do
   before(:each) do
     @user = FactoryGirl.build(:user)
   end
-  
+
+  it { should respond_to(:points) }
+
   describe "Required fields: " do
     it "should be invalid without a username" do
       @user.username = nil
