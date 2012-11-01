@@ -1,7 +1,7 @@
 #maiden_speech {
 	/*padding-top: 30px;*/
     /*font-size: 1.3em;*/
-    width: 60%;
+    width: auto;
 }
 
 #authentications {
@@ -31,4 +31,21 @@
 
 #profile_name{
     font-size: 2em;
+}
+
+#gravatar_div{
+    float: right;
+    width: auto;
+    padding: 2%;
+    /*border: 1px solid;*/
+    text-align: center;
+}
+
+#profile_div{
+    width: 70%;
+    float: left;
+    padding: 2%;
+    /*border: 1px solid;*/
+
+
 }
