@@ -17,6 +17,7 @@ class User
   field :email, :type => String
   field :username, :type => String
   field :gravatar_email, :type=> String
+  field :points, :type => Integer
   
   key :username
 
