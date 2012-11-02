@@ -4,6 +4,7 @@ log/*.log
 tmp/
 
 config/hibiscus.yml
+config/mongoid.yml
 
 .idea/*
 .DS_Store
@@ -11,3 +12,17 @@ config/hibiscus.yml
 coverage/*
 /coverage.data
 bin/
+
+config/mongoid.yml
+
+*.json
+
+*.yml
+
+.gitignore
+
+*.json
+
+*.yml
+
+.gitignore
