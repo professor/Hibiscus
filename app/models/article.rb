@@ -50,7 +50,7 @@ class Article < Post
 
   def self.add_entries(entries, title)
     entries.each do |entry|
-      unless exists?(:conditions => {:guid => entry.id})
+      if self.unscoped.where(guid: entry.id).empty?
         #puts(entry.id)
         art = create!(
             :title          => entry.title,
