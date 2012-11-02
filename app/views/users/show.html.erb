@@ -1,4 +1,6 @@
 <% content_for :title, @user.display_name + " - Profile"%>
+<div id="main_profile_div">
+
 <div id="profile_div">
 <p>
 <label id="profile_name"> <%= @user.display_name %> </label>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -38,6 +40,12 @@
 </div>
 
 <div id="gravatar_div">
-<%= gravatar_for @user, options = { size: 200} %>   <br><br> <a href="http://gravatar.com/emails" target="_blank" class="page_nav_links">Change your avatar at Gravatar.com</a>
+<%= gravatar_for @user, options = { size: 200} %>
+</div>
+  <br><br>
+  <div id="gravatar_link">
+     <a href="http://gravatar.com/emails" target="_blank" class="page_nav_links">Change your avatar at Gravatar.com</a>
+    </div>
+
 </div>
 
