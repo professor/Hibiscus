@@ -119,9 +119,9 @@ DESCRIPTION: Full width content with no sidebar; used for attachment pages
 
 #user_profile_menu{
     position: relative;
-    left: 52%;
+    left: 50%;
     height: 40px;
-    width: 50px;
+    width: 130px;
     text-align: center;
 }
 
@@ -134,7 +134,7 @@ DESCRIPTION: Full width content with no sidebar; used for attachment pages
 
 }
 #query{
-    width: 200px;
+    width: 150px;
 }
 
 /* =Fonts

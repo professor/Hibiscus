@@ -52,7 +52,7 @@
             </li>
             <li id="user_profile_menu">
               <% if current_user %>
-                  <%= link_to (gravatar_for current_user, options = { size: 40}), current_user%>
+                  <%= link_to current_user.display_name, current_user%>
                   <ul>
                     <li id="logout_link"><%= link_to "Logout", :logout %> </li>
                   </ul>
