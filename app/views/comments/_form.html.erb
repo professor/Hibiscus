@@ -34,9 +34,9 @@
     <div class='field'>
       <%= f.label :challenge_level, "Challenge Level" %>
       <% if @comment.challenge_level.blank? %>
-        <%= f.select :challenge_level, [['Low', 'low'], ['Medium', 'medium'], ['High', 'high']] %>
+        <%= f.select :challenge_level, [[], ['Low', 'Low'], ['Medium', 'Medium'], ['High', 'High']] %>
       <% else %>
-        <%= f.select :challenge_level, [['Low', 'low'], ['Medium', 'medium'], ['High', 'high']], :selected => @comment.challenge_level %>
+        <%= f.select :challenge_level, [[], ['Low', 'Low'], ['Medium', 'Medium'], ['High', 'High']], :selected => @comment.challenge_level %>
       <% end %>
       <br/><br/>
     </div>

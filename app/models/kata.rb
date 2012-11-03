@@ -21,7 +21,7 @@ class Kata
   field :title, :type => String
   field :content, :type => String
   field :source, :type => String
-  field :rating, :type => Float
+  field :rating, :type => Float, default: 0.0
 
   field :challenge_level, :type => String
   field :user_categories, :type => String
@@ -38,7 +38,7 @@ class Kata
   validates :content, :presence => true
   validates :user_id, :presence => true
   # challenge_level can be "low", "medium", "high"
-  validates :challenge_level, presence: true, inclusion: { in: %w(low medium high) }
+  validates :challenge_level, presence: true, inclusion: { in: %w(Low Medium High) }
   # a kata must have one and only one category
   validates :category, presence: true
 
