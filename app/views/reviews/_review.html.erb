@@ -1,31 +1,19 @@
-<section class="comment">
+<section class="comment" xmlns="http://www.w3.org/1999/html">
+  <h2 class="entry-title"><%= review.title.html_safe %></h2>
+  <span><b>Rating: </b><%= review.rating %></span>
   <div>
-    <b>Title</b><br/>
-    <%= review.title.html_safe %>
+    <span><b>Challenge Level: </b><%= review.challenge_level %></span>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <span><b>Programming Language: </b><%= review.language %></span>
+  </div>
+  <div>
+    <b>Suggested Categories: </b>
+    <% review.categories.all.collect do |x| %>
+      <a href="<%= kata_path(@commentable) %>" rel="bookmark"><%= x.name %></a> &nbsp;&nbsp;&nbsp;
+    <% end %>
     <br/><br/>
   </div>
   <div>
-    <b>Rating</b><br/>
-    <%= review.rating %>
-    <br/><br/>
-  </div>
-  <div>
-    <b>Challenge level</b><br/>
-    <%= review.challenge_level %>
-    <br/><br/>
-  </div>
-  <div>
-    <b>Language</b><br/>
-    <%= review.language %>
-    <br/><br/>
-  </div>
-  <div>
-    <b>Categories</b><br/>
-    <%= review.categories.all.collect { |x| x.name } %>
-    <br/><br/>
-  </div>
-  <div>
-    <b>Content</b><br/>
     <%= review.content.html_safe %>
   </div>
   <p class="commentEdit"><%= link_to 'Edit', edit_polymorphic_path([@commentable, review]) %></p>

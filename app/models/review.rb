@@ -2,6 +2,8 @@ class Review
   include Mongoid::Document
   include Mongoid::Timestamps
 
+  #after_save :update_kata_rating
+
   field :title, :type => String
   field :content, :type => String
   field :rating, :type => Float
@@ -18,6 +20,10 @@ class Review
   validates :title, :presence => true
   validates :content, :presence => true
   validates :user_id, :presence => true
-  validates :rating, :numericality => true, :allow_blank => true, :allow_nil => true
+  validates :rating, :presence => true, :numericality => true, :allow_blank => true, :allow_nil => true
+
+  def update_kata_rating
+    puts self.kata.reviews.count
+  end
 
 end
