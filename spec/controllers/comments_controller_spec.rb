@@ -37,7 +37,7 @@ describe CommentsController do
     describe "POST create" do
       context "with valid params" do
         before(:each) do
-          Post.stub(:find).and_return(mock_post)
+          Post.stub(:find_by_slug).and_return(mock_post)
           post :create, :post_id => mock_post.id, :comment => { :content => 'Some content.' }
         end
 
@@ -52,7 +52,7 @@ describe CommentsController do
     
       context "with invalid params" do
         before(:each) do
-          Post.stub(:find).and_return(mock_post)
+          Post.stub(:find_by_slug).and_return(mock_post)
           mock_post.comments.stub(:build) { mock_comment(:save => false) }
           post :create, :post_id => mock_post.id, :comment => { }
         end
@@ -69,7 +69,7 @@ describe CommentsController do
   
     describe "GET edit" do
       it "assigns the requested comment as @comment, and it's parent post as @post" do
-        Post.should_receive(:find).and_return(mock_post)
+        Post.should_receive(:find_by_slug).and_return(mock_post)
         mock_post.should_receive(:comments).and_return(mock_comment)
         get :edit, :post_id => mock_post.id, :id => mock_comment.id
         assigns(:post).should be(mock_post)
@@ -80,7 +80,7 @@ describe CommentsController do
     describe "PUT update" do
       context "with valid params" do
         it "should set a successful flash message, then redirect to the parent post" do
-          Post.should_receive(:find).and_return(mock_post)
+          Post.should_receive(:find_by_slug).and_return(mock_post)
           mock_post.should_receive(:comments).and_return(mock_comment(:update_attributes => true))
           put :update, :post_id => mock_post.id, :id => mock_comment.id
           assigns(:post).should be(mock_post)
@@ -92,7 +92,7 @@ describe CommentsController do
     
       context "with invalid params" do
         it "assigns the requested comment as @comment, and it's parent post as @post" do
-          Post.should_receive(:find).and_return(mock_post)
+          Post.should_receive(:find_by_slug).and_return(mock_post)
           mock_post.should_receive(:comments).and_return(mock_comment(:update_attributes => false))
           put :update, :post_id => mock_post.id, :id => mock_comment.id
           assigns(:post).should be(mock_post)
@@ -104,13 +104,13 @@ describe CommentsController do
 
     describe "DELETE destroy the comment" do
       it "redirects to the posts list" do
-        Post.stub(:find) { mock_post }
+        Post.stub(:find_by_slug) { mock_post }
         delete :destroy, :id => "2", :post_id => 2
         response.should redirect_to(posts_url)
       end
 
       it "should correctly delete the comment " do
-        Post.stub(:find) { mock_post }
+        Post.stub(:find_by_slug) { mock_post }
         mock_comment.stub(:user) { controller.current_user }
         mock_post.stub_chain(:comments, :find) { mock_comment }
         mock_comment.should_receive(:destroy)
