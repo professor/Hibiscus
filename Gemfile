@@ -56,5 +56,6 @@ group :development, :test, :production do
   gem "jquery-rails"
 #  gem 'json_pure', '1.4.6', :require => 'json'
   gem "feedzirra"
+  gem "gamify"
 end
 

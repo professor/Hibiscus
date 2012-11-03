@@ -110,6 +110,7 @@ GEM
     flog (2.5.3)
       ruby_parser (~> 2.0)
       sexp_processor (~> 3.0)
+    gamify (0.0.2)
     hashie (1.2.0)
     hirb (0.7.0)
     http_parser.rb (0.5.3)
@@ -299,6 +300,7 @@ DEPENDENCIES
   factory_girl_rails
   faraday-stack (= 0.1.5)
   feedzirra
+  gamify
   indextank
   jquery-rails
   launchy
