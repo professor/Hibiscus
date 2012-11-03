@@ -115,6 +115,10 @@
   
     <li><a href="./Article.html">Article</a>
   
+    <li><a href="./AuditObserver.html">AuditObserver</a>
+  
+    <li><a href="./AuditTrail.html">AuditTrail</a>
+  
     <li><a href="./Authentication.html">Authentication</a>
   
     <li><a href="./AuthenticationsController.html">AuthenticationsController</a>
@@ -153,7 +157,11 @@
   
     <li><a href="./User.html">User</a>
   
+    <li><a href="./UserMailer.html">UserMailer</a>
+  
     <li><a href="./UsersController.html">UsersController</a>
+  
+    <li><a href="./UsersHelper.html">UsersHelper</a>
   
   </ul>
 </nav>
@@ -207,19 +215,23 @@ href="Kata.html">Kata</a>, Feed) using the same methods.</p>
 
           
           <div class="method-source-code" id="create-source">
-            <pre><span class="ruby-comment"># File app/controllers/posts_controller.rb, line 56</span>
+            <pre><span class="ruby-comment"># File app/controllers/posts_controller.rb, line 60</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">create</span>
   <span class="ruby-ivar">@post</span> = <span class="ruby-identifier">post_type</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">params</span>[<span class="ruby-ivar">@type</span>.<span class="ruby-identifier">downcase</span>.<span class="ruby-identifier">to_sym</span>])
   <span class="ruby-ivar">@post</span>.<span class="ruby-identifier">user</span> = <span class="ruby-identifier">current_user</span>
-  <span class="ruby-ivar">@post</span>.<span class="ruby-identifier">setTags</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">post_type</span> <span class="ruby-operator">!=</span> <span class="ruby-constant">Kata</span>
+    <span class="ruby-ivar">@post</span>.<span class="ruby-identifier">setTags</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">add_points</span>(<span class="ruby-value">10</span>)
 
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
     <span class="ruby-keyword">if</span> <span class="ruby-ivar">@post</span>.<span class="ruby-identifier">save</span>
       <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">redirect_to</span>(<span class="ruby-ivar">@post</span>, <span class="ruby-value">:notice</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-node">&quot;#{@type} was successfully created.&quot;</span>) }
-      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">xml</span>  { <span class="ruby-identifier">render</span> <span class="ruby-value">:xml</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@post</span>, <span class="ruby-value">:status</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:created</span>, <span class="ruby-value">:location</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@post</span> }
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">xml</span> { <span class="ruby-identifier">render</span> <span class="ruby-value">:xml</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@post</span>, <span class="ruby-value">:status</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:created</span>, <span class="ruby-value">:location</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@post</span> }
     <span class="ruby-keyword">else</span>
       <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">render</span> <span class="ruby-value">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;new&quot;</span> }
-      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">xml</span>  { <span class="ruby-identifier">render</span> <span class="ruby-value">:xml</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@post</span>.<span class="ruby-identifier">errors</span>, <span class="ruby-value">:status</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:unprocessable_entity</span> }
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">xml</span> { <span class="ruby-identifier">render</span> <span class="ruby-value">:xml</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@post</span>.<span class="ruby-identifier">errors</span>, <span class="ruby-value">:status</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:unprocessable_entity</span> }
     <span class="ruby-keyword">end</span>
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
@@ -249,14 +261,14 @@ href="Kata.html">Kata</a>, Feed) using the same methods.</p>
 
           
           <div class="method-source-code" id="destroy-source">
-            <pre><span class="ruby-comment"># File app/controllers/posts_controller.rb, line 102</span>
+            <pre><span class="ruby-comment"># File app/controllers/posts_controller.rb, line 110</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">destroy</span>
-  <span class="ruby-ivar">@post</span> = <span class="ruby-identifier">post_type</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
+  <span class="ruby-ivar">@post</span> = <span class="ruby-identifier">post_type</span>.<span class="ruby-identifier">find_by_slug</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
   <span class="ruby-ivar">@post</span>.<span class="ruby-identifier">destroy</span>
 
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
     <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">redirect_to</span>(<span class="ruby-identifier">post_type</span>, <span class="ruby-value">:notice</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-node">&quot;The #{@type} has been deleted.&quot;</span>) }
-    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">xml</span>  { <span class="ruby-identifier">head</span> <span class="ruby-value">:ok</span> }
+    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">xml</span> { <span class="ruby-identifier">head</span> <span class="ruby-value">:ok</span> }
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- destroy-source -->
@@ -285,10 +297,12 @@ href="Kata.html">Kata</a>, Feed) using the same methods.</p>
 
           
           <div class="method-source-code" id="edit-source">
-            <pre><span class="ruby-comment"># File app/controllers/posts_controller.rb, line 49</span>
+            <pre><span class="ruby-comment"># File app/controllers/posts_controller.rb, line 51</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">edit</span>
-  <span class="ruby-ivar">@post</span> = <span class="ruby-identifier">post_type</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
-  <span class="ruby-ivar">@tags</span> = <span class="ruby-ivar">@post</span>.<span class="ruby-identifier">joinTags</span>
+  <span class="ruby-ivar">@post</span> = <span class="ruby-identifier">post_type</span>.<span class="ruby-identifier">find_by_slug</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">post_type</span> <span class="ruby-operator">!=</span> <span class="ruby-constant">Kata</span>
+    <span class="ruby-ivar">@tags</span> = <span class="ruby-ivar">@post</span>.<span class="ruby-identifier">joinTags</span>
+  <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- edit-source -->
           
@@ -318,11 +332,11 @@ href="Kata.html">Kata</a>, Feed) using the same methods.</p>
           <div class="method-source-code" id="index-source">
             <pre><span class="ruby-comment"># File app/controllers/posts_controller.rb, line 11</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">index</span>
-  <span class="ruby-ivar">@posts</span> = (<span class="ruby-ivar">@type</span> <span class="ruby-operator">==</span> <span class="ruby-string">'Post'</span>) <span class="ruby-operator">?</span> <span class="ruby-identifier">post_type</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">_type</span><span class="ruby-operator">:</span> <span class="ruby-keyword">nil</span>) <span class="ruby-operator">:</span> <span class="ruby-identifier">post_type</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">_type</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@type</span>)
+  <span class="ruby-ivar">@posts</span> = <span class="ruby-identifier">post_type</span>.<span class="ruby-identifier">all</span>
 
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
     <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> <span class="ruby-comment"># index.html.erb</span>
-    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">xml</span>  { <span class="ruby-identifier">render</span> <span class="ruby-value">:xml</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@posts</span> }
+    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">xml</span> { <span class="ruby-identifier">render</span> <span class="ruby-value">:xml</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@posts</span> }
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- index-source -->
@@ -352,13 +366,13 @@ belong to if it is of type ‘Kata’</p>
 
           
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File app/controllers/posts_controller.rb, line 38</span>
+            <pre><span class="ruby-comment"># File app/controllers/posts_controller.rb, line 40</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">new</span>
   <span class="ruby-ivar">@post</span> = <span class="ruby-identifier">post_type</span>.<span class="ruby-identifier">new</span>
 
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
     <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> <span class="ruby-comment"># new.html.erb</span>
-    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">xml</span>  { <span class="ruby-identifier">render</span> <span class="ruby-value">:xml</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@post</span> }
+    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">xml</span> { <span class="ruby-identifier">render</span> <span class="ruby-value">:xml</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@post</span> }
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- new-source -->
@@ -389,15 +403,17 @@ belong to if it is of type ‘Kata’</p>
           <div class="method-source-code" id="show-source">
             <pre><span class="ruby-comment"># File app/controllers/posts_controller.rb, line 22</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">show</span>
-  <span class="ruby-ivar">@post</span> = <span class="ruby-identifier">post_type</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
+  <span class="ruby-ivar">@post</span> = <span class="ruby-identifier">post_type</span>.<span class="ruby-identifier">find_by_slug</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
   <span class="ruby-ivar">@comments</span> = <span class="ruby-ivar">@post</span>.<span class="ruby-identifier">comments</span>
   <span class="ruby-ivar">@comment</span> = <span class="ruby-constant">Comment</span>.<span class="ruby-identifier">new</span>
-  <span class="ruby-ivar">@likes</span> = <span class="ruby-ivar">@post</span>.<span class="ruby-identifier">listLikes</span>
-  <span class="ruby-ivar">@dislikes</span> = <span class="ruby-ivar">@post</span>.<span class="ruby-identifier">listDislikes</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">post_type</span> <span class="ruby-operator">!=</span> <span class="ruby-constant">Kata</span>
+    <span class="ruby-ivar">@likes</span> = <span class="ruby-ivar">@post</span>.<span class="ruby-identifier">listLikes</span>
+    <span class="ruby-ivar">@dislikes</span> = <span class="ruby-ivar">@post</span>.<span class="ruby-identifier">listDislikes</span>
+  <span class="ruby-keyword">end</span>
 
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
     <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> <span class="ruby-comment"># show.html.erb</span>
-    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">xml</span>  { <span class="ruby-identifier">render</span> <span class="ruby-value">:xml</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@post</span> }
+    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">xml</span> { <span class="ruby-identifier">render</span> <span class="ruby-value">:xml</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@post</span> }
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- show-source -->
@@ -427,28 +443,28 @@ be saved or retry to edit otherwise.</p>
 
           
           <div class="method-source-code" id="update-source">
-            <pre><span class="ruby-comment"># File app/controllers/posts_controller.rb, line 75</span>
+            <pre><span class="ruby-comment"># File app/controllers/posts_controller.rb, line 83</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">update</span>
-  <span class="ruby-ivar">@post</span> = <span class="ruby-identifier">post_type</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
+  <span class="ruby-ivar">@post</span> = <span class="ruby-identifier">post_type</span>.<span class="ruby-identifier">find_by_slug</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
   <span class="ruby-ivar">@form</span> = <span class="ruby-identifier">params</span>[<span class="ruby-ivar">@type</span>.<span class="ruby-identifier">downcase</span>.<span class="ruby-identifier">to_sym</span>]
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">post_type</span> <span class="ruby-operator">==</span> <span class="ruby-constant">Post</span>
     <span class="ruby-ivar">@post</span>.<span class="ruby-identifier">tempTags</span> = <span class="ruby-ivar">@form</span>[<span class="ruby-value">:tempTags</span>]
     <span class="ruby-ivar">@post</span>.<span class="ruby-identifier">setTags</span>
-  <span class="ruby-keyword">else</span>
+  <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">post_type</span> <span class="ruby-operator">==</span> <span class="ruby-constant">Kata</span>
     <span class="ruby-ivar">@post</span>.<span class="ruby-identifier">category</span> = <span class="ruby-ivar">@form</span>[<span class="ruby-value">:category</span>]
     <span class="ruby-ivar">@post</span>.<span class="ruby-identifier">challenge_level</span> = <span class="ruby-ivar">@form</span>[<span class="ruby-value">:challenge_level</span>]
   <span class="ruby-keyword">end</span>
   <span class="ruby-ivar">@post</span>.<span class="ruby-identifier">title</span> = <span class="ruby-ivar">@form</span>[<span class="ruby-value">:title</span>]
   <span class="ruby-ivar">@post</span>.<span class="ruby-identifier">content</span> = <span class="ruby-identifier">params</span>[<span class="ruby-ivar">@type</span>.<span class="ruby-identifier">downcase</span>.<span class="ruby-identifier">to_sym</span>][<span class="ruby-value">:content</span>]
-  <span class="ruby-ivar">@post</span>.<span class="ruby-identifier">source</span> = <span class="ruby-identifier">params</span>[<span class="ruby-ivar">@type</span>.<span class="ruby-identifier">downcase</span>.<span class="ruby-identifier">to_sym</span>][<span class="ruby-value">:source</span>]
+  <span class="ruby-ivar">@post</span>.<span class="ruby-identifier">source_url</span> = <span class="ruby-identifier">params</span>[<span class="ruby-ivar">@type</span>.<span class="ruby-identifier">downcase</span>.<span class="ruby-identifier">to_sym</span>][<span class="ruby-value">:source_url</span>]
 
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
     <span class="ruby-keyword">if</span> <span class="ruby-ivar">@post</span>.<span class="ruby-identifier">save</span>
       <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">redirect_to</span>(<span class="ruby-ivar">@post</span>, <span class="ruby-value">:notice</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-node">&quot;#{@type} was successfully updated.&quot;</span>) }
-      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">xml</span>  { <span class="ruby-identifier">head</span> <span class="ruby-value">:ok</span> }
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">xml</span> { <span class="ruby-identifier">head</span> <span class="ruby-value">:ok</span> }
     <span class="ruby-keyword">else</span>
       <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">render</span> <span class="ruby-value">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;edit&quot;</span> }
-      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">xml</span>  { <span class="ruby-identifier">render</span> <span class="ruby-value">:xml</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@post</span>.<span class="ruby-identifier">errors</span>, <span class="ruby-value">:status</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:unprocessable_entity</span> }
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">xml</span> { <span class="ruby-identifier">render</span> <span class="ruby-value">:xml</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@post</span>.<span class="ruby-identifier">errors</span>, <span class="ruby-value">:status</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:unprocessable_entity</span> }
     <span class="ruby-keyword">end</span>
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>

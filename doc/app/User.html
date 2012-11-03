@@ -73,6 +73,14 @@
     <li><span class="include">Mongoid::Document</span>
   
   
+  
+    <li><span class="include">Mongoid::Slug</span>
+  
+  
+  
+    <li><span class="include">Gamify</span>
+  
+  
   </ul>
 </nav>
 
@@ -115,6 +123,10 @@
   
     <li><a href="./Article.html">Article</a>
   
+    <li><a href="./AuditObserver.html">AuditObserver</a>
+  
+    <li><a href="./AuditTrail.html">AuditTrail</a>
+  
     <li><a href="./Authentication.html">Authentication</a>
   
     <li><a href="./AuthenticationsController.html">AuthenticationsController</a>
@@ -153,7 +165,11 @@
   
     <li><a href="./User.html">User</a>
   
+    <li><a href="./UserMailer.html">UserMailer</a>
+  
     <li><a href="./UsersController.html">UsersController</a>
+  
+    <li><a href="./UsersHelper.html">UsersHelper</a>
   
   </ul>
 </nav>
@@ -202,7 +218,7 @@
 
           
           <div class="method-source-code" id="display_name-source">
-            <pre><span class="ruby-comment"># File app/models/user.rb, line 33</span>
+            <pre><span class="ruby-comment"># File app/models/user.rb, line 37</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">display_name</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">name</span>.<span class="ruby-identifier">blank?</span> <span class="ruby-operator">?</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">username</span> <span class="ruby-operator">:</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">name</span>
 <span class="ruby-keyword">end</span></pre>

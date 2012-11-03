@@ -103,6 +103,10 @@
   
     <li><a href="./Article.html">Article</a>
   
+    <li><a href="./AuditObserver.html">AuditObserver</a>
+  
+    <li><a href="./AuditTrail.html">AuditTrail</a>
+  
     <li><a href="./Authentication.html">Authentication</a>
   
     <li><a href="./AuthenticationsController.html">AuthenticationsController</a>
@@ -141,7 +145,11 @@
   
     <li><a href="./User.html">User</a>
   
+    <li><a href="./UserMailer.html">UserMailer</a>
+  
     <li><a href="./UsersController.html">UsersController</a>
+  
+    <li><a href="./UsersHelper.html">UsersHelper</a>
   
   </ul>
 </nav>
@@ -193,7 +201,7 @@
             <pre><span class="ruby-comment"># File app/controllers/tags_controller.rb, line 2</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">show</span>
 
-  <span class="ruby-ivar">@tag</span> = <span class="ruby-constant">Tag</span>.<span class="ruby-identifier">first</span>(<span class="ruby-value">:conditions</span> =<span class="ruby-operator">&gt;</span> {<span class="ruby-value">:name</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>]})
+  <span class="ruby-ivar">@tag</span> = <span class="ruby-constant">Tag</span>.<span class="ruby-identifier">find_by_slug</span>(<span class="ruby-value">:conditions</span> =<span class="ruby-operator">&gt;</span> {<span class="ruby-value">:name</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>]})
   <span class="ruby-comment">#@tag = Tag.find(params[:id])</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- show-source -->
