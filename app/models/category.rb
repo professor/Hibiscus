@@ -2,9 +2,10 @@
 
 class Category
   include Mongoid::Document
+  include Mongoid::Slug
 
   field :name, :type => String
-  key :name
+  slug :name
 
   has_many :katas
 

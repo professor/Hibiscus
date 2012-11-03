@@ -9,6 +9,7 @@ class Post
   include Mongoid::Versioning
   #paranoia module allows to implement "soft deletion"
   include Mongoid::Paranoia
+  include Mongoid::Slug
   include Searchify
   
   attr_accessor :tempTags
@@ -21,7 +22,7 @@ class Post
   field :source_url, :type => String
   field :rating, :type => Float
 
-  key :title
+  slug :title
 
   embeds_many :comments
   references_many :likes, :dependent => :destroy

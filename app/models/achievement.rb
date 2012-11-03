@@ -1,8 +1,10 @@
 class Achievement
   include Mongoid::Document
   include Mongoid::Timestamps
+ # include Mongoid::Slug
 
   key :name
+#  slug :name
 
   field :name, :type => String
   field :level, :type => String
