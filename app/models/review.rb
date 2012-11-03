@@ -2,7 +2,8 @@ class Review
   include Mongoid::Document
   include Mongoid::Timestamps
 
-  #after_save :update_kata_rating
+  after_save :add_to_kata_rating
+  after_destroy :remove_from_kata_rating
 
   field :title, :type => String
   field :content, :type => String
@@ -20,10 +21,19 @@ class Review
   validates :title, :presence => true
   validates :content, :presence => true
   validates :user_id, :presence => true
-  validates :rating, :presence => true, :numericality => true, :allow_blank => true, :allow_nil => true
+  validates :rating, :presence => true, :numericality => true
 
-  def update_kata_rating
-    puts self.kata.reviews.count
+  def add_to_kata_rating
+    self.kata.rating = ((self.kata.rating * (self.kata.reviews.count - 1)) + self.rating) / self.kata.reviews.count
+    self.kata.save
   end
 
+  def remove_from_kata_rating
+    if self.kata.reviews.count > 0
+      self.kata.rating = ((self.kata.rating * (self.kata.reviews.count + 1)) - self.rating) / self.kata.reviews.count
+    else
+      self.kata.rating = 0
+    end
+    self.kata.save
+  end
 end
