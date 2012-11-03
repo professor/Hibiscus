@@ -2,11 +2,8 @@ class CategoriesController < ApplicationController
   before_filter :authenticate_user!
 
   def index
-    @categories = Category.all
-    #@categories = Category.where(:name => "#{params[:q]}")
-    #@categories = Category.where(:name => "/.*others.*/" )
-    #@categories = Category..any_of({ :name => /o/ })
-    #where("name like ?", "%#{params[:q]}%")
+    #@categories = Category.all
+    @categories = Category.find(:all, :conditions => {:name => Regexp.new(params[:q], true) })
     respond_to do |format|
       format.html
       format.json do
