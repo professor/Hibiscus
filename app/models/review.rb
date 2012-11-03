@@ -14,6 +14,12 @@ class Review
 
   has_and_belongs_to_many :categories
 
+  attr_reader :category_tokens
+
+  def category_tokens=(ids)
+    self.category_ids = ids.split(",")
+  end
+
   referenced_in :user
   embedded_in :kata, :inverse_of => :reviews
 

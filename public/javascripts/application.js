@@ -21,3 +21,15 @@ $(document).ready(function() {
     return false;
   });
 });
+
+
+//$(document).ready(function () {
+$(function() {
+    $("#review_category_tokens").tokenInput("/categories/index.json", {
+        crossDomain: false,
+        prePopulate: $("#review_category_tokens").data("pre"),
+        theme: "facebook",
+        tokenValue: "id",
+        preventDuplicates: true
+    });
+});

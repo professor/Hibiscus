@@ -46,11 +46,9 @@
       <%= f.text_field :language, :size => "81" %>
       <br/><br/>
     </div>
-    <div class='field'>
-      <%= f.label :categories, "Suggested Categories" %>
-      <%= f.select :category_ids, Category.all.collect { |x| [x.name, x.id] }, {}, :multiple => true %>
+      <%= f.label :category_tokens, "Suggested Categories" %>
+      <%= f.text_field :category_tokens, "data-pre" => @comment.categories.map { |category| {:id => category._id, :name => category.name}}.to_json %>
       <br/><br/>
-    </div>
     <div class="field">
       <%= f.label :content, 'Comment' %>
       <br/>
