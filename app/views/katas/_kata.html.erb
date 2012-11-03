@@ -9,7 +9,17 @@
 
 <div>
   <% if !kata.rating.nil? %>
-    <span><b> Rating: </b><%= kata.rating %> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+    <div style="float: left"><b> Rating: &nbsp;&nbsp;</b></div>
+    <span>
+      <% rating = kata.rating.round %>
+      <% [1, 2, 3, 4, 5].each do |val| %>
+        <% if val == rating %>
+        <%= radio_button_tag kata.rating, val, true, {:disabled => "disabled", :class => "star { split:2 }"} %>
+        <% else %>
+        <%= radio_button_tag kata.rating, val, false, {:disabled => "disabled", :class => "star { split:2 }"} %>
+      <% end %>
+      <% end %>
+    </span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   <% end %>
   <span><b>Challenge Level: </b><%= kata.challenge_level %> </span>
 </div>

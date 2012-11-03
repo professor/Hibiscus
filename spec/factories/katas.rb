@@ -5,13 +5,6 @@ FactoryGirl.define do
     association :user
     association :category
     challenge_level "medium"
+    rating 4
   end
 end
-
-#Factory.define :kata do |ak|
-#  k.title "Kata Title Factory"
-#  k.content "Kata Content Factory"
-#  k.association :user
-#  k.association :category
-#  k.challenge_level "medium"
-#end
