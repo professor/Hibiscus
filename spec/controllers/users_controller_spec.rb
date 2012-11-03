@@ -26,7 +26,7 @@ describe UsersController do
     describe 'GET show' do
       # FIXME: NEED TO WRITE THIS.
       it "should set the user's info" do
-        get :show, :id => @user.id
+        get :show, :id => @user.slug
         assigns(:user).should == @user
         response.should be_success
       end
