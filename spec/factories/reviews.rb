@@ -1,5 +1,5 @@
 FactoryGirl.define do
-  factory :review do
+  factory :review do  |r|
 
     title "test title"
     content "this is a test content for a review"
@@ -10,6 +10,6 @@ FactoryGirl.define do
     downvoters {"other" "another"}
 
     association :user
-    association :kata
+    association :kata,  strategy: :build
   end
 end
