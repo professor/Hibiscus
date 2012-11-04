@@ -5,18 +5,19 @@ describe Article do
     @article = FactoryGirl.build(:article)
   end
 
+  it { should respond_to(:guid) }
   it { should respond_to(:author) }
   it { should respond_to(:site_name) }
 
   describe "Required fields: " do
-    it "should be invalid without a id" do
-      @article.id = nil
+    it "should be invalid without a guid" do
+      @article.guid = nil
       @article.should be_invalid
 
-      @article.id = ""
+      @article.guid = ""
       @article.should be_invalid
 
-      @article.id = " "
+      @article.guid = " "
       @article.should be_invalid
     end
 

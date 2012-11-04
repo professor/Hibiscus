@@ -7,6 +7,7 @@ end
 
 class User
   include Mongoid::Document
+  include Mongoid::Slug
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable, :lockable and :timeoutable
   # devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable
@@ -17,7 +18,7 @@ class User
   field :email, :type => String
   field :username, :type => String
   
-  key :username
+  slug :username
 
   references_many :authentications, :dependent => :delete
   references_many :katas, :dependent => :delete

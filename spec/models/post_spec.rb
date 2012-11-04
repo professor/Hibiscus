@@ -4,7 +4,11 @@ describe Post do
   before(:each) do
     @post = FactoryGirl.build(:post)
   end
-  
+
+  it {should respond_to(:source_url)}
+  it {should respond_to(:title)}
+  it {should respond_to(:content)}
+
   describe "Required fields: " do
     it "should be invalid without a title" do
       @post.title = nil
@@ -29,7 +33,7 @@ describe Post do
     end
 
     it "should be valid without a source" do
-      @post.source = nil
+      @post.source_url = nil
       @post.should be_valid
     end
 

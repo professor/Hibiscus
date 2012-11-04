@@ -24,6 +24,10 @@ Permission granted to use this image from Mahesh "Vyoma" Bhat | KalaaLog.com
 
    1. restart your terminal
 
+1. If you enable sending of emails in development environment, then setup your environment variable for emails. Currently this is only needed for testing article feed importer
+   export SMTP_SERVER_USERNAME=
+   SMTP_SERVER_PASSWORD=
+
 1. Setup your environment variable for ARTICLE_USER_ID. This is used by the Article Generator.
    1. add the following to .bash_profile
 

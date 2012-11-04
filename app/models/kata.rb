@@ -12,6 +12,7 @@ class Kata
   include Mongoid::Versioning
   #paranoia module allows to implement "soft deletion"
   include Mongoid::Paranoia
+  include Mongoid::Slug
   include Searchify
 
   belongs_to :category
@@ -26,7 +27,7 @@ class Kata
   field :challenge_level, :type => String
   field :user_categories, :type => String
 
-  key :title
+  slug :title
 
   embeds_many :comments
   references_many :likes, :dependent => :destroy
