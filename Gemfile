@@ -23,7 +23,8 @@ group :test do
 end
 
 group :production do
-  gem 'exception_notification', :require => 'exception_notifier'
+#  gem 'exception_notification', :require => 'exception_notifier'
+  gem 'exception_notification', git: 'git://github.com/alanjds/exception_notification.git'
 end
 
 group :development, :test do
@@ -43,6 +44,7 @@ end
 # Modified by Norman Xin on Oct. 4, 2012
 group :development, :test, :production do
 	gem "mongoid", ">= 2.0.0.rc.7"
+  gem "mongoid_slug", "~> 0.10.0"
 	gem "bson_ext"
 	gem "devise", "1.1.8"
 	gem 'omniauth','1.0'

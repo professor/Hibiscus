@@ -28,16 +28,34 @@ CraftWiki::Application.routes.draw do
   resources :authentications
   resources :likes
   resources :tags
+
+  match '/posts/mars-rover-kata' => redirect('/exercises/mars-rover-kata')
+  match '/posts/unbeatable-tic-dash-tac-dash-toe' => redirect('/exercises/unbeatable-tic-dash-tac-dash-toe')
+  match '/posts/across-the-board-kata' => redirect('/exercises/across-the-board-kata')
+  match '/posts/potter-kata' => redirect('/exercises/potter-kata')
+  match '/posts/prime-factors-kata' => redirect('/exercises/prime-factors-kata')
+  match '/posts/tennis-game-kata' => redirect('/exercises/tennis-game-kata')
+  match '/posts/recycled-numbers' => redirect('/exercises/recycled-numbers')
+  match '/posts/weighing-with-stones-kata' => redirect('/exercises/weighing-with-stones-kata')
+  match '/posts/coin-change-kata' => redirect('/exercises/coin-change-kata')
+  match '/posts/string-calculator' => redirect('/exercises/string-calculator')
+  match '/posts/mars-rover-kata' => redirect('/exercises/mars-rover-kata')
+  match '/posts/gilded-rose-kata' => redirect('/exercises/gilded-rose-kata')
+
   resources :posts do
     resources :comments
   end
   resources :articles, :controller => "posts", :type => "Article" do
     resources :comments
   end
+  resources :exercises, :controller => "posts", :type => "Kata" do
+    resources :comments
+  end
   resources :katas, :controller => "posts", :type => "Kata" do
     resources :reviews, :controller => "comments"
   end
 
+  match '/get_started', to: 'start#show'
   match '/auth/:provider/callback', :to => 'authentications#create'
   match '/auth/failure', :to => 'authentications#failure'
 
