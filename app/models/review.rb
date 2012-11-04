@@ -4,6 +4,8 @@ class Review
 
   after_save :add_to_kata_rating
   after_destroy :remove_from_kata_rating
+  before_update :add_to_kata_rating
+  after_update :remove_from_kata_rating
 
   field :title, :type => String
   field :content, :type => String
@@ -30,16 +32,16 @@ class Review
   validates :rating, :presence => true, :numericality => true
 
   def add_to_kata_rating
-    self.kata.rating = ((self.kata.rating * (self.kata.reviews.count - 1)) + self.rating) / self.kata.reviews.count
-    self.kata.save
+    kata.rating = ((kata.rating * (kata.reviews.count - 1)) + rating) / kata.reviews.count
+    kata.save
   end
 
   def remove_from_kata_rating
-    if self.kata.reviews.count > 0
-      self.kata.rating = ((self.kata.rating * (self.kata.reviews.count + 1)) - self.rating) / self.kata.reviews.count
+    if kata.reviews.count > 0
+      kata.rating = ((kata.rating * (kata.reviews.count + 1)) - rating) / kata.reviews.count
     else
-      self.kata.rating = 0
+      kata.rating = 0
     end
-    self.kata.save
+      kata.save
   end
 end
