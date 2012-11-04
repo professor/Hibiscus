@@ -54,7 +54,7 @@ private
   def load_commentable
     # the request url will be in this format: "/katas/kata-title/comments/5078b2b5f1d37f2a3a000064"
     resource, id = request.path.split('/')[1, 2]  # retrieve the 2nd and 3rd element in the url
-    @commentable = resource.classify.constantize.find(id)   # find the right post/kata the comment belongs to
+    @commentable = resource.classify.constantize.find_by_slug(id)   # find the right post/kata the comment belongs to
   end
 
   def load_commentable_collection

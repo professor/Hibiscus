@@ -94,13 +94,14 @@ class PostsController < ApplicationController
     if post_type == Post
       @post.tempTags = @form[:tempTags]
       @post.setTags
+      @post.source_url = params[@type.downcase.to_sym][:source_url]
     elsif post_type == Kata
       @post.category = @form[:category]
       @post.challenge_level = @form[:challenge_level]
+      @post.source = params[@type.downcase.to_sym][:source]
     end
     @post.title = @form[:title]
     @post.content = params[@type.downcase.to_sym][:content]
-    @post.source_url = params[@type.downcase.to_sym][:source_url]
 
     respond_to do |format|
       if @post.save

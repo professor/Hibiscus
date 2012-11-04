@@ -1,17 +1,11 @@
 CraftWiki::Application.routes.draw do
   get "categories/index"
-
-  get "categories/show"
-
-  get "categories/new"
-
-  get "categories/edit"
-
-  get "categories/create"
-
-  get "categories/update"
-
-  get "categories/destroy"
+  #get "categories/show"
+  #get "categories/new"
+  #get "categories/edit"
+  #get "categories/create"
+  #get "categories/update"
+  #get "categories/destroy"
 
   devise_for :users do
     match 'users/sign_in', :to => "devise/sessions#new"
