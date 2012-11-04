@@ -14,9 +14,9 @@
 </div>
 <div>
   <h2>Here are some easy katas you can start with: </h2>
-  <% (1..3).each do |x| %>
-      <% easy_kata = eval "@easy_kata#{x}" %>
-      <%= link_to "Easy Kata #{x.to_s} (#{easy_kata.category_id})", easy_kata %>
-      <br>
+  <ul>
+  <% @easy_katas.each do |kata| %>
+      <li><%= link_to kata.title, kata %></li>
   <% end %>
-</div><br>
+  </ul>
+</div>
