@@ -10,6 +10,7 @@ class PostsController < ApplicationController
   # Retrieve all posts of the specified type.
   def index
     @posts = post_type.all
+    @categories = Category.all
 
 
 

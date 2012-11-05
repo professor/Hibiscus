@@ -2,17 +2,17 @@
 
 <script type="text/javascript">
 
-    $(document).ready(function () {
-        $('.main-post-div').css('opacity', 0).each(function (i) {
-            var height = $('#main-all-posts-div').height();
+  $(document).ready(function () {
+    $('.main-post-div').css('opacity', 0).each(function (i) {
+      var height = $('#main-all-posts-div').height();
 
-            $('#main-all-posts-div').animate({ height:height+215}, 500);
-            $('#main-all-posts-div').height("+=215");
-            $(this).css('display', 'block');
-            $(this).animate({ opacity:0 }, i * 500);
-            $(this).animate({ opacity:1}, 1000);
-        })
-    });
+      $('#main-all-posts-div').animate({ height:height + 215}, 500);
+      $('#main-all-posts-div').height("+=215");
+      $(this).css('display', 'block');
+      $(this).animate({ opacity:0 }, i * 500);
+      $(this).animate({ opacity:1}, 1000);
+    })
+  });
 </script>
 
 <% if @type == 'Kata'  %>
@@ -55,20 +55,30 @@
 <% end %>
 
 <div id="main-all-posts-div">
-    <% @posts.desc(:created_at).limit(15).each do |post| %>
-        <div class="main-post-div" style="display: none;">
-          <%= render partial: "posts/#{post.class.name.downcase}_short", locals: { post: post } %>
-              <%#= render partial: "posts/#{@type.downcase}_short", locals: { post: post } %>
-        </div>
+  <% @posts.desc(:created_at).limit(15).each do |post| %>
+    <% if !post.is_a?(Kata) %>
+      <div class="main-post-div" style="display: none;">
+        <%= render partial: "posts/#{post.class.name.downcase}_short", locals: {post: post} %>
+        <%#= render partial: "posts/#{@type.downcase}_short", locals: { post: post } %>
+      </div>
     <% end %>
+  <% end %>
+
+  <% if @posts.first.is_a?(Kata) %>
+    <% @categories.limit(6).each do |category| %>
+      <div class="main-post-div" style="display: none;">
+        <%= category %>
+      </div>
+    <% end %>
+  <% end %>
 </div>
 
 <div id="second_new_post_link">
 
-<% if @posts.length > 0%>                    <br><br>
+  <% if @posts.length > 0 %>                    <br><br>
     <%= link_to "New #{@type}", new_polymorphic_path(@type.constantize) %>
-    <% end %>
+  <% end %>
 
-<br /><br />
+  <br/><br/>
 
 </div>
