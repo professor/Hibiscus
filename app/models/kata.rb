@@ -44,4 +44,7 @@ class Kata
   after_save :update_search_index
   before_destroy :delete_from_search_index
 
+  def survived_comments
+    comments.delete_if { |comment| !comment[:deleted_at].nil? }
+  end
 end

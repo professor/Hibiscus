@@ -21,7 +21,8 @@ class PostsController < ApplicationController
   # GET /posts/1.xml
   def show
     @post = post_type.find(params[:id])
-    @comments = @post.comments
+    #@comments = @post.comments.delete_if {|comment| !comment[:deleted_at].nil? }
+    @comments = @post.survived_comments
     @comment = Comment.new
     if post_type != Kata
       @likes = @post.listLikes
