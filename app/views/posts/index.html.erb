@@ -15,6 +15,44 @@
     });
 </script>
 
+<% if @type == 'Kata'  %>
+
+<table width='100%'>
+  <tr>
+    <td colspan="3">&nbsp;</td>
+  </tr>
+  <tr>
+    <td width='33%'><%= Category.find('test-driven-development').name %></td>
+    <td width='33%'>Algorithmic Complexity</td>
+    <td width='33%'>Data modeling</td>
+  </tr>
+  <tr>
+    <td>
+      <%= Category.find('test-driven-development').katas.desc(:rating).each do %>
+      <%= Category.find('test-driven-development').katas.desc(:rating).first.rating  %>
+    </td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td colspan="3">&nbsp;</td>
+  </tr>
+  <tr>
+    <td>Dynamic programming</td>
+    <td>Off-the-shelf algorithms</td>
+    <td>String manipulation</td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td colspan="3">&nbsp;</td>
+  </tr>
+</table>
+
+<% end %>
 
 <div id="main-all-posts-div">
     <% @posts.desc(:created_at).limit(15).each do |post| %>

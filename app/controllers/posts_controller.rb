@@ -11,6 +11,8 @@ class PostsController < ApplicationController
   def index
     @posts = post_type.all
 
+
+
     respond_to do |format|
       format.html # index.html.erb
       format.xml { render :xml => @posts }
@@ -20,7 +22,6 @@ class PostsController < ApplicationController
   # GET /posts/1
   # GET /posts/1.xml
   def show
-    #@post = post_type.find(params[:id])
     @post = post_type.find_by_slug(params[:id])
 
     #TODO; refactor
