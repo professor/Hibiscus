@@ -107,6 +107,10 @@
   
     <li><a href="./Article.html">Article</a>
   
+    <li><a href="./AuditObserver.html">AuditObserver</a>
+  
+    <li><a href="./AuditTrail.html">AuditTrail</a>
+  
     <li><a href="./Authentication.html">Authentication</a>
   
     <li><a href="./AuthenticationsController.html">AuthenticationsController</a>
@@ -145,7 +149,11 @@
   
     <li><a href="./User.html">User</a>
   
+    <li><a href="./UserMailer.html">UserMailer</a>
+  
     <li><a href="./UsersController.html">UsersController</a>
+  
+    <li><a href="./UsersHelper.html">UsersHelper</a>
   
   </ul>
 </nav>
@@ -195,7 +203,7 @@ href="Article.html#method-c-get_feeds">::get_feeds</a></p>
 
           
           <div class="method-source-code" id="get_feeds-source">
-            <pre><span class="ruby-comment"># File app/models/article.rb, line 12</span>
+            <pre><span class="ruby-comment"># File app/models/article.rb, line 13</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">get_feeds</span>
   <span class="ruby-identifier">feed_urls</span> = <span class="ruby-node">%w(http://blog.8thlight.com/feed/atom.xml http://blog.gdinwiddie.com/feed/)</span>
   <span class="ruby-identifier">update_from_feeds</span>(<span class="ruby-identifier">feed_urls</span>)
@@ -228,11 +236,17 @@ href="http://blog.8thlight.com/feed/atom.xml">blog.8thlight.com/feed/atom.xml</a
 
           
           <div class="method-source-code" id="update_from_feeds-source">
-            <pre><span class="ruby-comment"># File app/models/article.rb, line 21</span>
+            <pre><span class="ruby-comment"># File app/models/article.rb, line 22</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">update_from_feeds</span>(<span class="ruby-identifier">feed_urls</span>)
+  <span class="ruby-ivar">@articles</span> = {}
   <span class="ruby-identifier">feeds</span> = <span class="ruby-constant">Feedzirra</span><span class="ruby-operator">::</span><span class="ruby-constant">Feed</span>.<span class="ruby-identifier">fetch_and_parse</span>(<span class="ruby-identifier">feed_urls</span>)
   <span class="ruby-identifier">feeds</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">feed_url</span>, <span class="ruby-identifier">feed</span><span class="ruby-operator">|</span>
     <span class="ruby-identifier">add_entries</span>(<span class="ruby-identifier">feed</span>.<span class="ruby-identifier">entries</span>, <span class="ruby-identifier">feed</span>.<span class="ruby-identifier">title</span>)
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-ivar">@articles</span>.<span class="ruby-identifier">empty?</span>
+    <span class="ruby-ivar">@user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find</span>(<span class="ruby-value">:first</span>, <span class="ruby-value">:conditions</span> =<span class="ruby-operator">&gt;</span> { <span class="ruby-value">:_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">ENV</span>[<span class="ruby-string">'ARTICLE_USER_ID'</span>] })
+    <span class="ruby-constant">UserMailer</span>.<span class="ruby-identifier">deliver_article_email</span>(<span class="ruby-ivar">@user</span>, <span class="ruby-ivar">@articles</span>)
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- update_from_feeds-source -->
@@ -265,7 +279,7 @@ href="http://blog.8thlight.com/feed/atom.xml">blog.8thlight.com/feed/atom.xml</a
 
           
           <div class="method-source-code" id="update_from_feeds_continuously-source">
-            <pre><span class="ruby-comment"># File app/models/article.rb, line 32</span>
+            <pre><span class="ruby-comment"># File app/models/article.rb, line 39</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">update_from_feeds_continuously</span>(<span class="ruby-identifier">feed_urls</span>, <span class="ruby-identifier">delay_interval</span> = <span class="ruby-value">300</span>.<span class="ruby-identifier">seconds</span>)
   <span class="ruby-identifier">feeds</span> = <span class="ruby-constant">Feedzirra</span><span class="ruby-operator">::</span><span class="ruby-constant">Feed</span>.<span class="ruby-identifier">fetch_and_parse</span>(<span class="ruby-identifier">feed_urls</span>)
   <span class="ruby-identifier">add_entries</span>(<span class="ruby-identifier">feeds</span>.<span class="ruby-identifier">entries</span>, <span class="ruby-identifier">feed</span>.<span class="ruby-identifier">title</span>)

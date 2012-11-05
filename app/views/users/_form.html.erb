@@ -1,0 +1,33 @@
+<%= form_for(@user ) do |f| %>
+
+    <% if @user.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+          <ul>
+            <% @user.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+    <br>
+
+    <div>
+
+      <section class="maiden_speech_fields">
+        <%= f.label :email, 'Email' %>
+        <%= f.text_field :email, :size => "81"%>
+      </section>
+
+      <br>
+      <section class="maiden_speech_fields">
+        <%= f.label :gravatar_email, 'Gravatar Email' %>
+        <%= f.text_field :gravatar_email, :size => "81"%>
+      </section>
+    </div>
+    <br><br>
+    <div class="actions">
+      <%= f.submit "Update Profile"%>
+    </div>
+<% end %>

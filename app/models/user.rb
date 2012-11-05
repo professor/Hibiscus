@@ -11,12 +11,15 @@ class User
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable, :lockable and :timeoutable
   # devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable
+  include Gamify
 
   devise :omniauthable, :rememberable, :trackable, :database_authenticatable
 
   field :name, :type => String
   field :email, :type => String
   field :username, :type => String
+  field :gravatar_email, :type=> String
+  field :points, :type => Integer
   
   slug :username
 

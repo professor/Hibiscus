@@ -85,6 +85,14 @@
     <li><span class="include">Mongoid::Paranoia</span>
   
   
+  
+    <li><span class="include">Mongoid::Slug</span>
+  
+  
+  
+    <li><a class="include" href="Searchify.html">Searchify</a>
+  
+  
   </ul>
 </nav>
 
@@ -94,8 +102,6 @@
 
   <ul class="link-list">
     
-    <li><a href="#method-i-delete_from_search_index">#delete_from_search_index</a>
-    
     <li><a href="#method-i-joinTags">#joinTags</a>
     
     <li><a href="#method-i-listDislikes">#listDislikes</a>
@@ -103,8 +109,6 @@
     <li><a href="#method-i-listLikes">#listLikes</a>
     
     <li><a href="#method-i-setTags">#setTags</a>
-    
-    <li><a href="#method-i-update_search_index">#update_search_index</a>
     
   </ul>
 </nav>
@@ -136,6 +140,10 @@
     <li><a href="./ApplicationHelper.html">ApplicationHelper</a>
   
     <li><a href="./Article.html">Article</a>
+  
+    <li><a href="./AuditObserver.html">AuditObserver</a>
+  
+    <li><a href="./AuditTrail.html">AuditTrail</a>
   
     <li><a href="./Authentication.html">Authentication</a>
   
@@ -175,7 +183,11 @@
   
     <li><a href="./User.html">User</a>
   
+    <li><a href="./UserMailer.html">UserMailer</a>
+  
     <li><a href="./UsersController.html">UsersController</a>
+  
+    <li><a href="./UsersHelper.html">UsersHelper</a>
   
   </ul>
 </nav>
@@ -231,39 +243,6 @@ for katas(<a href="Kata.html">Kata</a>) and feeds(Feed).</p>
       <h3 class="section-header">Public Instance Methods</h3>
 
     
-      <div id="method-i-delete_from_search_index" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">delete_from_search_index</span><span
-            class="method-args">()</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-
-          
-          <div class="method-source-code" id="delete_from_search_index-source">
-            <pre><span class="ruby-comment"># File app/models/post.rb, line 62</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">delete_from_search_index</span>
-  <span class="ruby-identifier">url</span> = <span class="ruby-string">&quot;posts/&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>
-  <span class="ruby-identifier">api</span> = <span class="ruby-constant">IndexTank</span><span class="ruby-operator">::</span><span class="ruby-constant">Client</span>.<span class="ruby-identifier">new</span>(<span class="ruby-constant">ENV</span>[<span class="ruby-string">'SEARCHIFY_HIBISCUS_API_URL'</span>] <span class="ruby-operator">||</span> <span class="ruby-string">'&lt;API_URL&gt;'</span>)
-  <span class="ruby-identifier">index</span> = <span class="ruby-identifier">api</span>.<span class="ruby-identifier">indexes</span>(<span class="ruby-constant">ENV</span>[<span class="ruby-string">'SEARCHIFY_HIBISCUS_INDEX'</span>] <span class="ruby-operator">||</span> <span class="ruby-string">'hibiscus'</span>)
-  <span class="ruby-identifier">index</span>.<span class="ruby-identifier">document</span>(<span class="ruby-identifier">url</span>).<span class="ruby-identifier">delete</span>
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- delete_from_search_index-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- delete_from_search_index-method -->
-
-    
       <div id="method-i-joinTags" class="method-detail ">
         
         <div class="method-heading">
@@ -280,7 +259,7 @@ for katas(<a href="Kata.html">Kata</a>) and feeds(Feed).</p>
 
           
           <div class="method-source-code" id="joinTags-source">
-            <pre><span class="ruby-comment"># File app/models/post.rb, line 69</span>
+            <pre><span class="ruby-comment"># File app/models/post.rb, line 57</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">joinTags</span>
   <span class="ruby-identifier">tags</span> = []
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">tags</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">tag</span><span class="ruby-operator">|</span>
@@ -315,7 +294,7 @@ for katas(<a href="Kata.html">Kata</a>) and feeds(Feed).</p>
 
           
           <div class="method-source-code" id="listDislikes-source">
-            <pre><span class="ruby-comment"># File app/models/post.rb, line 45</span>
+            <pre><span class="ruby-comment"># File app/models/post.rb, line 48</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">listDislikes</span>
   <span class="ruby-identifier">dislikes</span> = []
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">likes</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">l</span><span class="ruby-operator">|</span>
@@ -350,7 +329,7 @@ for katas(<a href="Kata.html">Kata</a>) and feeds(Feed).</p>
 
           
           <div class="method-source-code" id="listLikes-source">
-            <pre><span class="ruby-comment"># File app/models/post.rb, line 36</span>
+            <pre><span class="ruby-comment"># File app/models/post.rb, line 39</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">listLikes</span>
   <span class="ruby-identifier">likes</span> = []
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">likes</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">l</span><span class="ruby-operator">|</span>
@@ -385,7 +364,7 @@ for katas(<a href="Kata.html">Kata</a>) and feeds(Feed).</p>
 
           
           <div class="method-source-code" id="setTags-source">
-            <pre><span class="ruby-comment"># File app/models/post.rb, line 78</span>
+            <pre><span class="ruby-comment"># File app/models/post.rb, line 66</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">setTags</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">tags</span>.<span class="ruby-identifier">nullify</span>
   
@@ -406,40 +385,6 @@ for katas(<a href="Kata.html">Kata</a>) and feeds(Feed).</p>
 
         
       </div><!-- setTags-method -->
-
-    
-      <div id="method-i-update_search_index" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">update_search_index</span><span
-            class="method-args">()</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-
-          
-          <div class="method-source-code" id="update_search_index-source">
-            <pre><span class="ruby-comment"># File app/models/post.rb, line 54</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">update_search_index</span>
-  <span class="ruby-identifier">url</span> = <span class="ruby-string">&quot;posts/&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>
-  <span class="ruby-identifier">api</span> = <span class="ruby-constant">IndexTank</span><span class="ruby-operator">::</span><span class="ruby-constant">Client</span>.<span class="ruby-identifier">new</span>(<span class="ruby-constant">ENV</span>[<span class="ruby-string">'SEARCHIFY_HIBISCUS_API_URL'</span>] <span class="ruby-operator">||</span> <span class="ruby-string">'&lt;API_URL&gt;'</span>)
-  <span class="ruby-identifier">tmp</span> = <span class="ruby-constant">ENV</span>[<span class="ruby-string">'SEARCHIFY_HIBISCUS_INDEX'</span>]
-  <span class="ruby-identifier">index</span> = <span class="ruby-identifier">api</span>.<span class="ruby-identifier">indexes</span>(<span class="ruby-constant">ENV</span>[<span class="ruby-string">'SEARCHIFY_HIBISCUS_INDEX'</span>] <span class="ruby-operator">||</span> <span class="ruby-string">'hibiscus'</span>)
-  <span class="ruby-identifier">index</span>.<span class="ruby-identifier">document</span>(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>.<span class="ruby-identifier">to_s</span>).<span class="ruby-identifier">add</span>({ <span class="ruby-value">:title</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">title</span>, <span class="ruby-value">:timestamp</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">created_at</span>.<span class="ruby-identifier">to_i</span>, <span class="ruby-value">:text</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">content</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp">%r&lt;\/?[^&gt;]*&gt;/</span>, <span class="ruby-string">&quot;&quot;</span>), <span class="ruby-value">:url</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">url</span>, <span class="ruby-value">:id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>})
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- update_search_index-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- update_search_index-method -->
 
     
     </section><!-- public-instance-method-details -->

@@ -64,6 +64,8 @@ class PostsController < ApplicationController
       @post.setTags
     end
 
+    current_user.add_points(10)
+
     respond_to do |format|
       if @post.save
         format.html { redirect_to(@post, :notice => "#{@type} was successfully created.") }
