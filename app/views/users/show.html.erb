@@ -14,23 +14,6 @@
 
 <br><br><br><br>
 
-<% if @user.plan %>
-
-	<section id="maiden_speech">
-        <span class="profile_emails">Maiden Speech:   </span><br><br>
-	    <span class="profile_emails_values"><%= @user.plan.maiden_speech.html_safe %></span>
-    </section>
-
-    <br>
-    <section class="page_nav_links">
-    <%= link_to 'Edit Learning Plan', edit_user_plan_path(@user, @user.plan) %>
-    </section>
-    <br>
-
-<% else %>
-	<section id="newLearningPlan"><%= render 'plans/form' %></section>
-<% end %>
-
 <br>
 <section id="authentications">
 <h3>
