@@ -62,8 +62,8 @@ class Article < Post
             :site_name      => title,
             :user_id        => ENV['ARTICLE_USER_ID']
         )
-        art.tempTags = "article"
-        art.setTags
+        #art.tempTags = "article"
+        #art.setTags
         @articles[art.source_url] = art.title + "##"  + art.content.truncate(350) + "##" + art.slug
       end
     end

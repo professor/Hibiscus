@@ -1,29 +1,74 @@
-<%= form_for [@post, @comment] do |f| %>
+<!--<a href="" onclick="$('div#comment_form').css('visibility', 'visible');"> New <%= @comment.class.to_s %> </a>-->
+<!--<div id="comment_form" style="visibility: hidden;">-->
+<%= form_for [@commentable, @comment] do |f| %>
   <% if @comment.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
 
       <ul>
-      <% @comment.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
+        <% @comment.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
       </ul>
     </div>
   <% end %>
 
-  <%# render :partial => '/comments/like_dislike', :locals => {:post => @post, :label => label} %>
+  <% if @commentable.is_a?(Kata) %>
+    <div class="field">
+      <%= f.label :title %>
+      <br/>
+      <%= f.text_field :title, :size => "81" %>
+      <br/><br/>
+    </div>
+    <div class='field'>
+      <div><%= f.label :rating%></div>
+      <% [1, 2, 3, 4, 5].each do |item| %>
+        <% if @comment.rating == item %>
+          <%= f.radio_button :rating, item, {:checked => true, :class => "star"} %> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <% else %>
+          <%= f.radio_button :rating, item, {:class => "star"} %> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <% end %>
+      <% end %>
+      <br/><br/>
+    </div>
+    <div class='field'>
+      <%= f.label :challenge_level, "Challenge Level" %>
+      <% if @comment.challenge_level.blank? %>
+        <%= f.select :challenge_level, [[], ['Low', 'Low'], ['Medium', 'Medium'], ['High', 'High']] %>
+      <% else %>
+        <%= f.select :challenge_level, [[], ['Low', 'Low'], ['Medium', 'Medium'], ['High', 'High']], :selected => @comment.challenge_level %>
+      <% end %>
+      <br/><br/>
+    </div>
+    <div class="field">
+      <%= f.label :language, "Programming Language" %>
+      <br/>
+      <%= f.text_field :language, :size => "81" %>
+      <br/><br/>
+    </div>
+      <%= f.label :category_tokens, "Suggested Categories" %>
+      <%= f.text_field :category_tokens, "data-pre" => @comment.categories.map { |category| {:id => category._id, :name => category.name}}.to_json %>
+      <br/><br/>
+    <div class="field">
+      <%= f.label :content, 'Comment' %>
+      <br/>
+      <% @comment.content = strip_tags(@comment.content) %>
+      <%= f.text_area :content, :cols => 100, :rows => 10 %>
+      <br/><br/>
+    </div>
 
-  <div class="field">
-    <%= f.label :content, 'Comment' %><br />
-    <% if @type == "Kata" %>
-            <!--%= f.text_area :content, :size => "80x12", :value => "#{GlobalConfig.comment_default}" %-->
-            <%= f.cktext_area :content, :toolbar => 'CMUSV', :width => 600, :height => 200, :input_html => { :value => "#{GlobalConfig.comment_default}" } %>
-		<% else %>
-			<!--%= f.text_area :content, :size => "80x10" %-->
-            <%= f.cktext_area :content, :toolbar => 'CMUSV', :width => 600, :height => 200 %>
-		<% end %>
-  </div>
+  <% else %>
+    <div class="field">
+      <%= f.label :content, 'Comment' %>
+      <br/>
+      <% @comment.content = strip_tags(@comment.content) %>
+      <%= f.text_area :content, :cols => 100, :rows => 10 %>
+    </div>
+  <% end %>
+
+
   <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>
+<!--</div>-->

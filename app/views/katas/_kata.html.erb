@@ -1,26 +1,41 @@
 <h2 class="entry-title"><%= link_to kata.title, kata %></h2>
 <div class="entry-meta">
-  <span class="meta-prep meta-prep-author">Posted on</span> <a href="<%= kata_path(kata) %>" title="<%= kata.created_at.to_date.to_formatted_s(:long_ordinal) %>" rel="bookmark"><span class="entry-date"><%= kata.created_at.to_date.to_formatted_s(:long_ordinal) %></span></a> <span class="meta-sep">by</span> <span class="author vcard"><a class="url fn n" href="<%= user_path(kata.user) %>" title="View all posts by <%= kata.user.name %>"><%= kata.user.display_name %></a></span>
+  <span class="meta-prep meta-prep-author">Posted on</span>
+  <span class="entry-date"><%= kata.created_at.to_date.to_formatted_s(:long_ordinal) %></span>
+  <span class="meta-sep">by</span>
+  <span class="author vcard"><a class="url fn n" href="<%= user_path(kata.user) %>" title="View all posts by <%= kata.user.name %>"><%= kata.user.display_name %></a></span>
+  <span>In <b>Category: </b><a href="<%= kata_path(kata) %>" rel="bookmark"><%= kata.category.name %></a></span>
 </div>
-<% if !kata.source.nil? %>
-    <div>
-      <h4>Source:  <%= auto_link_urls kata.source %></h4>
-    </div>
-<% end %>
 
-<% if !kata.rating.nil? %>
-    <div>
-      <h4>Rating: <%= kata.rating %></h4>
-    </div>
-<% end %>
+<div>
+  <% unless kata.rating.nil? %>
+    <div style="float: left"><b> Rating: &nbsp;&nbsp;</b></div>
+    <span>
+      <% rating = kata.rating.round %>
+      <% [1, 2, 3, 4, 5].each do |val| %>
+        <% if val == rating %>
+        <%= radio_button_tag kata.id, val, true, {:disabled => "disabled", :class => "star"} %>
+        <% else %>
+        <%= radio_button_tag kata.id, val, false, {:disabled => "disabled", :class => "star"} %>
+      <% end %>
+      <% end %>
+    </span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <% end %>
+  <span><b>Challenge Level: </b><%= kata.challenge_level %> </span>
+</div>
 
+<% unless kata.source.blank? %>
+  <div>
+    <h4><b>Source: </b><%= auto_link_urls kata.source %></h4>
+  </div>
+<% end %>
 <div class="entry-content">
   <%= kata.content.html_safe %>
 </div>
 <div class="entry-utility">
   <span class="cat-links">
 	<span class="entry-utility-prep entry-utility-prep-cat-links">Posted in
-      <% if kata.tags.any? %>
+    <% if kata.tags.any? %>
 			<% kata.tags.each do |tag| %>
 				<%= link_to tag.name, tag, :rel => "category tag" %>
 			<% end %>
@@ -28,7 +43,8 @@
 	</span>
   </span>
   <span class="meta-sep">|</span>
-  <span class="comments-link"><a href="<%= kata_path(kata) %>" title="Comment on <%= kata.title %>"><%= kata.comments.size  %> Comments</a></span>
+  <span class="comments-link"><a href="<%= kata_path(kata) %>" title="Comment on <%= kata.title %>"><%= kata.reviews.size %>
+    Reviews</a></span>
 
   <span class="edit-link">
     <%= link_to 'Edit', edit_kata_path(kata), :title => "Edit Kata", :class => "kata-edit-link" %>
