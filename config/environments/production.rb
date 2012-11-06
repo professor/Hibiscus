@@ -55,4 +55,4 @@ end
 CraftWiki::Application.config.middleware.use ExceptionNotifier,
   :email_prefix => "[Error-Hibiscus] ",
   :sender_address => %{"Exception Notifier" <exception.notifier@default.com>},
-  :exception_recipients => %w{todd.sedano@sv.cmu.edu, howard.huang@sv.cmu.edu}
+  :exception_recipients => %w{todd.sedano@sv.cmu.edu, fall-2012-team-curiosity@sv.cmu.edu, fall-2012-team-awesome@west.cmu.edu}
