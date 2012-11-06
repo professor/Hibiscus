@@ -10,10 +10,20 @@ describe "Katas" do
     end
   end
 
+  before(:each) {login_integration}
+  describe "POST /katas" do
+    it "create katas" do
+       visit root_path
+       click_link 'New Post'
+    end
+  end
+
   describe "DELETE /katas", :js => true do
+=begin
     before do
       login_integration
     end
+=end
 
     it "delete a kata when click on link", :js => true do
       #it emulates a user clicking the Delete link and see if the kata is deleted
