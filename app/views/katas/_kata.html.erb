@@ -8,7 +8,7 @@
 </div>
 
 <div>
-  <% if !kata.rating.nil? %>
+  <% unless kata.rating.nil? %>
     <div style="float: left"><b> Rating: &nbsp;&nbsp;</b></div>
     <span>
       <% rating = kata.rating.round %>
@@ -24,7 +24,7 @@
   <span><b>Challenge Level: </b><%= kata.challenge_level %> </span>
 </div>
 
-<% if !kata.source.blank? %>
+<% unless kata.source.blank? %>
   <div>
     <h4><b>Source: </b><%= auto_link_urls kata.source %></h4>
   </div>
