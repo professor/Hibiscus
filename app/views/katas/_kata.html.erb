@@ -2,13 +2,13 @@
 <div class="entry-meta">
   <span class="meta-prep meta-prep-author">Posted on</span> <a href="<%= kata_path(kata) %>" title="<%= kata.created_at.to_date.to_formatted_s(:long_ordinal) %>" rel="bookmark"><span class="entry-date"><%= kata.created_at.to_date.to_formatted_s(:long_ordinal) %></span></a> <span class="meta-sep">by</span> <span class="author vcard"><a class="url fn n" href="<%= user_path(kata.user) %>" title="View all posts by <%= kata.user.name %>"><%= kata.user.display_name %></a></span>
 </div>
-<% if !kata.source.nil? %>
+<% unless kata.source.nil? %>
     <div>
       <h4>Source:  <%= auto_link_urls kata.source %></h4>
     </div>
 <% end %>
 
-<% if !kata.rating.nil? %>
+<% unless kata.rating.nil? %>
     <div>
       <h4>Rating: <%= kata.rating %></h4>
     </div>
