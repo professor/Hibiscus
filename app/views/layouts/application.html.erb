@@ -40,7 +40,8 @@
           <ul>
             <li class="current_page_item"><%= link_to "Home", root_url, :title =>"Home" %></li>
             <li class="page_item"><%= link_to "#{GlobalConfig.activity_name.pluralize}", "/#{GlobalConfig.activity_type.pluralize}", :title =>"#{GlobalConfig.activity_name.pluralize}" %></li>
-            <li class="page_item"><%= link_to "Popular", root_url, :title =>"Popular" %></li>
+            <li class="current_page_item"><%= link_to "Popular", root_url, :title =>"Popular" %></li>
+            <!--li class="current_page_item"><%= link_to "Get Started", '/get_started' , :title =>"Get Started" %></li-->
             <li class="widget-container widget_search" id="search-2">
               <form action="<%= search_index_path %>" id="searchform" method="get" role="search">
                 <div id="right_menu_search">

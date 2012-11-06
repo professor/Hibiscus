@@ -38,7 +38,8 @@ describe CommentsController do
       context "with valid params" do
         before(:each) do
           Post.stub(:find_by_slug).and_return(mock_post)
-          post :create, :post_id => mock_post.id, :comment => { :content => 'Some content.' }
+          mock_post.comments.stub(:build) { mock_comment }
+          post :create, :post_id => mock_post.id, :comment => mock_comment
         end
 
         it 'sets the flash notice' do
@@ -72,7 +73,7 @@ describe CommentsController do
         Post.should_receive(:find_by_slug).and_return(mock_post)
         mock_post.should_receive(:comments).and_return(mock_comment)
         get :edit, :post_id => mock_post.id, :id => mock_comment.id
-        assigns(:post).should be(mock_post)
+        assigns(:commentable).should be(mock_post)
         assigns(:comment).should be(mock_comment)
       end
     end
@@ -83,7 +84,7 @@ describe CommentsController do
           Post.should_receive(:find_by_slug).and_return(mock_post)
           mock_post.should_receive(:comments).and_return(mock_comment(:update_attributes => true))
           put :update, :post_id => mock_post.id, :id => mock_comment.id
-          assigns(:post).should be(mock_post)
+          assigns(:commentable).should be(mock_post)
           assigns(:comment).should be(mock_comment)
           flash[:notice].should == "Thank you for the update in your comment."
           response.should redirect_to(mock_post)
@@ -95,7 +96,7 @@ describe CommentsController do
           Post.should_receive(:find_by_slug).and_return(mock_post)
           mock_post.should_receive(:comments).and_return(mock_comment(:update_attributes => false))
           put :update, :post_id => mock_post.id, :id => mock_comment.id
-          assigns(:post).should be(mock_post)
+          assigns(:commentable).should be(mock_post)
           assigns(:comment).should be(mock_comment)
           response.should render_template("edit")
         end

@@ -1,10 +1,10 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
-  
+
   def recent_posts
     @recent_posts ||= Post.desc(:created_at).limit(5)
   end
-  
+
   def all_tags
     @all_tags ||= Tag.all
   end
@@ -16,6 +16,15 @@ class ApplicationController < ActionController::Base
     @type = params[:type].blank? ? "Post" : params[:type]
     @type.constantize
   end
-    
+
+  def help
+    Helper.instance
+  end
+
+  class Helper
+    include Singleton
+    include ActionView::Helpers::TextHelper
+  end
+
   helper_method :recent_posts, :all_tags, :post_type
 end

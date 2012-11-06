@@ -1,4 +1,12 @@
 CraftWiki::Application.routes.draw do
+  get "categories/index"
+  #get "categories/show"
+  #get "categories/new"
+  #get "categories/edit"
+  #get "categories/create"
+  #get "categories/update"
+  #get "categories/destroy"
+
   devise_for :users do
     match 'users/sign_in', :to => "devise/sessions#new"
     #match 'users/:id', :to => 'users#show'
@@ -38,9 +46,10 @@ CraftWiki::Application.routes.draw do
     resources :comments
   end
   resources :katas, :controller => "posts", :type => "Kata" do
-    resources :comments
+    resources :reviews, :controller => "comments"
   end
 
+  match '/get_started', to: 'start#show'
   match '/auth/:provider/callback', :to => 'authentications#create'
   match '/auth/failure', :to => 'authentications#failure'
 

@@ -1,0 +1,43 @@
+<section class="comment" xmlns="http://www.w3.org/1999/html">
+  <h2 class="entry-title"><%= review.title.html_safe %></h2>
+
+  <div>
+    <div style="float: left"><b> Rating: &nbsp;&nbsp;</b></div>
+    <span>
+      <% [1, 2, 3, 4, 5].each do |val| %>
+        <% if val == review.rating %>
+        <%= radio_button_tag review.id, val, true, {:disabled => "disabled", :class => "star"} %>
+        <% else %>
+        <%= radio_button_tag review.id, val, false, {:disabled => "disabled", :class => "star "} %>
+      <% end %>
+      <% end %>
+    </span>
+  </div> <br/>
+  <div>
+    <% if !review.challenge_level.blank? %>
+      <span><b>Challenge Level: </b><%= review.challenge_level %></span>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <% end %>
+    <% if !review.language.blank? %>
+      <span><b>Programming Language: </b><%= review.language %></span>
+    <% end %>
+  </div>
+
+  <% if !review.categories.empty? %>
+    <div>
+      <b>Suggested Categories: </b>
+      <% review.categories.all.collect do |x| %>
+        <a href="<%= kata_path(@commentable) %>" rel="bookmark"><%= x.name %></a> &nbsp;&nbsp;&nbsp;
+      <% end %>
+      <br/>
+    </div>
+  <% end %>
+  <br/>
+
+  <div>
+    <%= review.content.html_safe %>
+  </div>
+  <p class="commentEdit"><%= link_to 'Edit', edit_polymorphic_path([@commentable, review]) %></p>
+
+  <p class="commentPoster">Posted by: <%= link_to review.user.display_name, review.user %></p>
+</section>

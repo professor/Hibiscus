@@ -12,7 +12,7 @@ describe Kata do
     end
 
     it "is valid with a challenge level in 'low, medium, high'" do
-      @kata.challenge_level = "high"
+      @kata.challenge_level = "High"
       @kata.should be_valid
     end
 
