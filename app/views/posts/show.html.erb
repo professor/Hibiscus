@@ -1,9 +1,10 @@
 <%= render @post %>
 
 <section id="comments">
-  <% if @post.comments.any? %>
-    <h2 id="commentsCount"><%= @post.comments.size %> Comments</h2>
-    <%= render @post.comments %>
+  <% if @comments.any? %>
+    <h2 id="commentsCount">
+      <%= pluralize(@comments.count, @comment.class.to_s) %></h2>
+    <%= render @comments %>
   <% end %>
 
   <% if @type != 'Kata' %>
@@ -29,7 +30,7 @@
 
   <br/>
   <% if current_user %>
-    <h3>New Comment</h3>
+    <h3>New <%= @comment.class.to_s %></h3>
     <%= render 'comments/form' %>
   <% else %>
     <h3>Please <%= link_to "sign in", '/auth/github' %> to comment.</h3>

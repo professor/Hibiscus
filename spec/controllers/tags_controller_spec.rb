@@ -8,7 +8,7 @@ describe TagsController do
 
   context "Unauthenticated user: " do
     it "should allow access to viewing a tag" do
-      Tag.should_receive(:find).and_return(mock_tag)
+      Tag.should_receive(:find_by_slug).and_return(mock_tag)
       get :show, :id => mock_tag
       response.should be_success
     end

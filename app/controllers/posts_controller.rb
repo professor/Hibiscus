@@ -20,10 +20,19 @@ class PostsController < ApplicationController
   # GET /posts/1
   # GET /posts/1.xml
   def show
-    @post = post_type.find(params[:id])
-    #@comments = @post.comments.delete_if {|comment| !comment[:deleted_at].nil? }
-    @comments = @post.survived_comments
-    @comment = Comment.new
+    #@post = post_type.find(params[:id])
+    @post = post_type.find_by_slug(params[:id])
+
+    #TODO; refactor
+    @commentable = @post
+    if @post.is_a?(Kata)
+      @comments = @post.survived_reviews
+      @comment = Review.new
+    else
+      @comments = @post.survived_comments
+      @comment = Comment.new
+    end
+
     if post_type != Kata
       @likes = @post.listLikes
       @dislikes = @post.listDislikes
@@ -50,7 +59,7 @@ class PostsController < ApplicationController
   ##
   # Retrieve a post to edit with its tags and categories if any.
   def edit
-    @post = post_type.find(params[:id])
+    @post = post_type.find_by_slug(params[:id])
     if post_type != Kata
       @tags = @post.joinTags
     end
@@ -80,18 +89,19 @@ class PostsController < ApplicationController
   # Update the attributes of a post, and generate a notice if the changes could
   # be saved or retry to edit otherwise.
   def update
-    @post = post_type.find(params[:id])
+    @post = post_type.find_by_slug(params[:id])
     @form = params[@type.downcase.to_sym]
     if post_type == Post
       @post.tempTags = @form[:tempTags]
       @post.setTags
+      @post.source_url = params[@type.downcase.to_sym][:source_url]
     elsif post_type == Kata
       @post.category = @form[:category]
       @post.challenge_level = @form[:challenge_level]
+      @post.source = params[@type.downcase.to_sym][:source]
     end
     @post.title = @form[:title]
     @post.content = params[@type.downcase.to_sym][:content]
-    @post.source = params[@type.downcase.to_sym][:source]
 
     respond_to do |format|
       if @post.save
@@ -107,7 +117,7 @@ class PostsController < ApplicationController
   # DELETE /posts/1
   # DELETE /posts/1.xml
   def destroy
-    @post = post_type.find(params[:id])
+    @post = post_type.find_by_slug(params[:id])
     @post.destroy
 
     respond_to do |format|
