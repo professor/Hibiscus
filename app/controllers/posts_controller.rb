@@ -10,6 +10,9 @@ class PostsController < ApplicationController
   # Retrieve all posts of the specified type.
   def index
     @posts = post_type.all
+    @categories = Category.all
+
+
 
     respond_to do |format|
       format.html # index.html.erb
@@ -20,7 +23,6 @@ class PostsController < ApplicationController
   # GET /posts/1
   # GET /posts/1.xml
   def show
-    #@post = post_type.find(params[:id])
     @post = post_type.find_by_slug(params[:id])
 
     #TODO; refactor
