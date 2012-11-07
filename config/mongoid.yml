@@ -9,7 +9,8 @@ defaults: &defaults
 development:
   <<: *defaults
 #  database: craft_wiki_development
-  database: app501900
+#  database: app501900
+  database: craftsmanship-awesome
 
 test:
   <<: *defaults
