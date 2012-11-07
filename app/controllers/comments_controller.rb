@@ -56,7 +56,32 @@ class CommentsController < ApplicationController
     end
   end
 
-  private
+  # Now dedicated for kata - review. Can be extended to post - comment.
+  def upvote
+    begin
+      current_user.vote_for(@review = @commentable_collection.find(params[:id]))
+      #render :nothing => true, :status => 200
+      respond_to do |format|
+        #format.html { render :nothing => true, :status => 200 }
+        format.js
+      end
+    #  render :nothing => true, :status => 200
+    #rescue ActiveRecord::RecordInvalid
+    #  render :nothing => true, :status => 404
+    end
+  end
+
+  # Now dedicated for kata - review. Can be extended to post - comment.
+  def downvote
+    begin
+      current_user.vote_against(@review = @commentable_collection.find(params[:id]))
+      render :nothing => true, :status => 200
+      #rescue ActiveRecord::RecordInvalid
+      #  render :nothing => true, :status => 404
+    end
+  end
+
+private
   # preload the variable @post that the current comment belongs to
   def load_commentable
     # the request url will be in this format: "/katas/kata-title/comments/5078b2b5f1d37f2a3a000064"
@@ -79,4 +104,5 @@ class CommentsController < ApplicationController
       @comment_symbol = :comment
     end
   end
+
 end

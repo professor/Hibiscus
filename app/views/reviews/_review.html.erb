@@ -1,4 +1,6 @@
 <section class="comment" xmlns="http://www.w3.org/1999/html">
+  <%= render :partial => 'votes/vote', :locals => { :review => review } %>
+
   <h2 class="entry-title"><%= review.title.html_safe %></h2>
 
   <div>

@@ -1,11 +1,14 @@
 class Review
   include Mongoid::Document
   include Mongoid::Timestamps
+  include ThumbsUp::ActsAsVoteable
 
   after_save :add_to_kata_rating
   after_destroy :remove_from_kata_rating
   before_update :add_to_kata_rating
   after_update :remove_from_kata_rating
+
+  acts_as_voteable
 
   field :title, :type => String
   field :content, :type => String

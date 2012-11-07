@@ -8,6 +8,7 @@ end
 class User
   include Mongoid::Document
   include Mongoid::Slug
+  include ThumbsUp::ActsAsVoter
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable, :lockable and :timeoutable
   # devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable
@@ -19,6 +20,8 @@ class User
   field :username, :type => String
   
   slug :username
+
+  acts_as_voter
 
   references_many :authentications, :dependent => :delete
   references_many :katas, :dependent => :delete
