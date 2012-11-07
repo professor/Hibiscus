@@ -38,7 +38,7 @@
                           <h2 class="entry-title"><%= @categories.at((@row_num * 3) + s - 1).name.capitalize %></h2>
                           <br/>
                           <table width='100%'>
-                            <% @categories.at(1).katas.desc(:rating).each do |kata| %>
+                            <% @categories.at((@row_num * 3) + s - 1).katas.desc(:rating).each do |kata| %>
                                 <tr>
                                   <td width='70%'>
                                     &nbsp;<%= link_to kata.title, kata %>
