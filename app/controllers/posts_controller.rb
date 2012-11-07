@@ -28,10 +28,10 @@ class PostsController < ApplicationController
     #TODO; refactor
     @commentable = @post
     if @post.is_a?(Kata)
-      @comments = @post.reviews
+      @comments = @post.survived_reviews
       @comment = Review.new
     else
-      @comments = @post.comments
+      @comments = @post.survived_comments
       @comment = Comment.new
     end
 

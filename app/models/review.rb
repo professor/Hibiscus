@@ -14,6 +14,7 @@ class Review
   field :language, :type => String
   field :upvoters, :type => Hash
   field :downvoters, :type => Hash
+  field :deleted_at, :type => Date
 
   has_and_belongs_to_many :categories
 
@@ -43,5 +44,10 @@ class Review
       kata.rating = 0
     end
       kata.save
+  end
+
+  def destroy
+    write_attribute :deleted_at, Time.now
+    save
   end
 end

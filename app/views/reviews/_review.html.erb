@@ -37,7 +37,14 @@
   <div>
     <%= review.content.html_safe %>
   </div>
-  <p class="commentEdit"><%= link_to 'Edit', edit_polymorphic_path([@commentable, review]) %></p>
+  <p class="commentEdit">
+    <span class="edit-link">
+        <%= link_to 'Edit', edit_polymorphic_path([@commentable, review]) %>
+    </span>
+    <span class="edit-link">
+         <%= link_to 'Delete', polymorphic_path([@commentable, review]), confirm: 'Are you sure?', method: :delete %>
+    </span>
+  </p>
 
   <p class="commentPoster">Posted by: <%= link_to review.user.display_name, review.user %></p>
 </section>

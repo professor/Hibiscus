@@ -1,7 +1,14 @@
 <section class="comment">
   <p class="commentContent"><%= comment.content.html_safe %></p>
 
-  <p class="commentEdit"><%= link_to 'Edit', edit_polymorphic_path([@post, comment]) %></p>
+  <p class="commentEdit">
+    <span class="edit-link">
+        <%= link_to 'Edit', edit_polymorphic_path([@post, comment]) %>
+    </span>
+    <span class="edit-link">
+         <%= link_to 'Delete', polymorphic_path([@post, comment]), confirm: 'Are you sure?', method: :delete %>
+    </span>
+  </p>
 
   <p class="commentPoster">Posted by: <%= link_to comment.user.display_name, comment.user %></p>
 </section>
