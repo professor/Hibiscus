@@ -2,64 +2,74 @@
 
 <script type="text/javascript">
 
-  $(document).ready(function () {
-    $('.main-post-div').css('opacity', 0).each(function (i) {
-      var height = $('#main-all-posts-div').height();
+    $(document).ready(function () {
+        $('.main-post-div').css('opacity', 0).each(function (i) {
+            var height = $('#main-all-posts-div').height();
 
-      $('#main-all-posts-div').animate({ height:height + 215}, 500);
-      $('#main-all-posts-div').height("+=70");
-      $(this).css('display', 'block');
-      $(this).animate({ opacity:0 }, i * 500);
-      $(this).animate({ opacity:1}, 1000);
-    })
-  });
+            $('#main-all-posts-div').animate({ height:height + 215}, 500);
+            $('#main-all-posts-div').height("+=70");
+            $(this).css('display', 'block');
+            $(this).animate({ opacity:0 }, i * 500);
+            $(this).animate({ opacity:1}, 1000);
+        })
+    });
 </script>
 
 <div id="main-all-posts-div">
   <% @posts.desc(:created_at).limit(15).each do |post| %>
-    <% if !post.is_a?(Kata) %>
-      <div class="main-post-div" style="display: none;">
-        <%= render partial: "posts/#{post.class.name.downcase}_short", locals: {post: post} %>
-      </div>
-    <% end %>
+      <% if !post.is_a?(Kata) %>
+          <div class="main-post-div" style="display: none;">
+            <%= render partial: "posts/#{post.class.name.downcase}_short", locals: {post: post} %>
+          </div>
+      <% end %>
   <% end %>
 
   <% if @posts.first.is_a?(Kata) %>
-    <table width='100%' border="1">
-      <% @cat_count = @categories.count %>
-      <% @row_count = (@categories.count / 3.0).ceil %>
-      <% @row_num = 0 %>
-      <% while @row_num < @row_count %>
-        <tr>
-          <% (1..3).each do |s| %>
-            <td width="33%">
-              <div class="main-post-div" style="display: none;">
-                <h2 class="entry-title">
-                  <% if ((@row_num * 3) + s) < @cat_count %>
-                    <%= @categories.at((@row_num * 3) + s).name %>
-                    <% @categories.at((@row_num * 3) + s).katas.desc(:rating).each do |kata| %>
-                      <h2 class="entry-title"><%= link_to kata.title, kata %>
-                        <%= kata.rating %>
-                      </h2><br/>
-                    <% end %>
-                  <% else %>
-                    &nbsp;
-                  <% end %>
-                </h2>
-              </div>
-            </td>
-          <% end %>
-        </tr>
-        <% @row_num += 1 %>
-      <% end %>
-    </table>
+      <table width='100%'>
+        <% @cat_count = @categories.count %>
+        <% @row_count = (@categories.count / 3.0).ceil %>
+        <% @row_num = 0 %>
+        <% while @row_num < @row_count %>
+            <tr>
+              <% (1..3).each do |s| %>
+                  <td width="33%">
+                    <div class="main-post-div" style="display: none; margin: 5px;">
+                      <% if ((@row_num * 3) + s - 1) < @cat_count %>
+                          <h2 class="entry-title"><%= @categories.at((@row_num * 3) + s - 1).name.capitalize %></h2>
+                          <br/>
+                          <table width='100%'>
+                            <% @categories.at(1).katas.desc(:rating).each do |kata| %>
+                                <tr>
+                                  <td width='70%'>
+                                    &nbsp;<%= link_to kata.title, kata %>
+                                  </td>
+                                  <td width='30%'>
+                                    <% if kata.rating > 0 %>
+                                        <% for x in 1..kata.rating.ceil %>
+                                            <img src="/images/star_unit.gif">
+                                        <% end %>
+                                    <% end %>
+                                  </td>
+                                </tr>
+                            <% end %>
+                          </table>
+                      <% else %>
+                          &nbsp;
+                      <% end %>
+                    </div>
+                  </td>
+              <% end %>
+            </tr>
+            <% @row_num += 1 %>
+        <% end %>
+      </table>
   <% end %>
 </div>
 
 <div id="second_new_post_link">
 
   <% if @posts.length > 0 %>                    <br><br>
-    <%= link_to "New #{@type}", new_polymorphic_path(@type.constantize) %>
+      <%= link_to "New #{@type}", new_polymorphic_path(@type.constantize) %>
   <% end %>
 
   <br/><br/>
