@@ -7,11 +7,20 @@
             var height = $('#main-all-posts-div').height();
 
             $('#main-all-posts-div').animate({ height:height + 215}, 500);
-            $('#main-all-posts-div').height("+=70");
+            $('#main-all-posts-div').height("+=220");
             $(this).css('display', 'block');
             $(this).animate({ opacity:0 }, i * 500);
             $(this).animate({ opacity:1}, 1000);
-        })
+        });
+        $('.main-category-div').css('opacity', 0).each(function (i) {
+          var height = $('#main-all-posts-div').height();
+
+          $('#main-all-posts-div').animate({ height:height + 75}, 500);
+          $('#main-all-posts-div').height("+=70");
+          $(this).css('display', 'block');
+          $(this).animate({ opacity:0 }, i * 500);
+          $(this).animate({ opacity:1}, 1000);
+        });
     });
 </script>
 
@@ -33,7 +42,7 @@
             <tr>
               <% (1..3).each do |s| %>
                   <td width="33%">
-                    <div class="main-post-div" style="display: none; margin: 5px;padding: 10px;">
+                    <div class="main-category-div" style="display: none; margin: 5px;padding: 10px;">
                       <% if ((@row_num * 3) + s - 1) < @cat_count %>
                           <h2 class="entry-title" style="margin-bottom: 5px;"><%= @categories.at((@row_num * 3) + s - 1).name.capitalize %></h2>
                           <table width='100%'>
