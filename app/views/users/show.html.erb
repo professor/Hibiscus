@@ -1,16 +1,21 @@
-<% content_for :title, @user.display_name + " - Information"%>
+<% content_for :title, @user.display_name + " - Information" %>
 <h1><%= @user.display_name %></h1>
 <p id="email">Email: <%= @user.email %></p>
 
 <% if @user.plan %>
-	<section id="maiden_speech">
-		<h3>Maiden Speech:</h3>
-		<p><%= @user.plan.maiden_speech.html_safe %></p>
-	</section>
+  <section id="maiden_speech">
+    <h3>Maiden Speech:</h3>
 
-	<%= link_to 'Edit Learning Plan', edit_user_plan_path(@user, @user.plan) %>
+    <p><%= @user.plan.maiden_speech.html_safe %></p>
+  </section>
+
+  <% if can? :update, @user %>
+    <%= link_to 'Edit Learning Plan', edit_user_plan_path(@user, @user.plan) %>
+  <% end %>
 <% else %>
-	<section id="newLearningPlan"><%= render 'plans/form' %></section>
+  <section id="newLearningPlan"><%= render 'plans/form' %></section>
 <% end %>
 
-<%= link_to 'Authentications', authentications_path %>
+<% if can? :update, @user  %>
+  <%= link_to 'Authentications', authentications_path %>
+<% end %>

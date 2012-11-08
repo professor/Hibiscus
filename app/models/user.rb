@@ -14,10 +14,13 @@ class User
 
   devise :omniauthable, :rememberable, :trackable, :database_authenticatable
 
+  #load_and_authorize_resource
+
   field :name, :type => String
   field :email, :type => String
   field :username, :type => String
-  
+  field :admin, :type => Boolean
+
   slug :username
 
   references_many :authentications, :dependent => :delete

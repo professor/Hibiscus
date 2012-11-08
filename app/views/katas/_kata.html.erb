@@ -33,23 +33,15 @@
   <%= kata.content.html_safe %>
 </div>
 <div class="entry-utility">
-  <span class="cat-links">
-	<span class="entry-utility-prep entry-utility-prep-cat-links">Posted in
-    <% if kata.tags.any? %>
-			<% kata.tags.each do |tag| %>
-				<%= link_to tag.name, tag, :rel => "category tag" %>
-			<% end %>
-		<% end %>
-	</span>
-  </span>
-  <span class="meta-sep">|</span>
   <span class="comments-link"><a href="<%= kata_path(kata) %>" title="Comment on <%= kata.title %>"><%= kata.reviews.size %>
     Reviews</a></span>
 
+  <% if can? :update, kata %>
   <span class="edit-link">
     <%= link_to 'Edit', edit_kata_path(kata), :title => "Edit Kata", :class => "kata-edit-link" %>
   </span>
   <span class="edit-link">
     <%= link_to 'Delete', kata, :confirm => 'Are you sure?', :method => :delete, :title => "Delete Kata", :class => "kata-edit-link" %>
   </span>
+  <% end %>
 </div>
