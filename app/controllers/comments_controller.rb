@@ -53,7 +53,7 @@ class CommentsController < ApplicationController
       end
     else
       respond_to do |format|
-        format.html { redirect_to(@commentable, :alert => "You can't delete someone else's #{@comment.class.to_s.downcase}") }
+        format.html { redirect_to(@commentable, :alert => "Your #{@comment.class.to_s.downcase} could not be deleted.")}
       end
     end
   end

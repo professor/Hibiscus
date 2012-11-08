@@ -14,8 +14,6 @@ class User
 
   devise :omniauthable, :rememberable, :trackable, :database_authenticatable
 
-  #load_and_authorize_resource
-
   field :name, :type => String
   field :email, :type => String
   field :username, :type => String
