@@ -20,6 +20,7 @@ class User
   field :username, :type => String
   field :gravatar_email, :type=> String
   field :points, :type => Integer
+  field :digest_frequency, :type => String
   
   slug :username
 

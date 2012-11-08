@@ -7,6 +7,14 @@ class Article < Post
   validates :guid, :presence => true
 
   ##
+  # Deliver weekly digest
+  # Usage: In Rails Console, Article.deliver_weekly_digest
+  ##
+  def self.deliver_weekly_digest
+    UserMailer.deliver_weekly_email("Weekly")
+  end
+
+  ##
   # Get articles from predefined RSS feeds.
   # Usage: In Rails Console, Article.get_feeds
   ##

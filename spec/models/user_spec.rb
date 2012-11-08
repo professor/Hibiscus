@@ -8,6 +8,7 @@ describe User do
   it { should respond_to(:points) }
   it { should respond_to(:email) }
   it { should respond_to(:gravatar_email) }
+  it { should respond_to(:digest_frequency) }
 
   describe "Required fields: " do
     it "should be invalid without a username" do
