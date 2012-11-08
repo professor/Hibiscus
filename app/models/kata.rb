@@ -46,4 +46,7 @@ class Kata
   after_save :update_search_index
   before_destroy :delete_from_search_index
 
+  def survived_reviews
+    reviews.delete_if { |review| !review[:deleted_at].nil? }
+  end
 end

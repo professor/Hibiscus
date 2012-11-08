@@ -7,14 +7,17 @@
   <%= javascript_include_tag :ckeditor %>
   <%= csrf_meta_tag %>
   <script type="text/javascript">
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', '<%= ENV['GOOGLE_ANALYTICS'] %>']);
-    _gaq.push(['_trackPageview']);
-    (function() {
-      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-    })();
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', '<%= ENV['GOOGLE_ANALYTICS'] %>']);
+      _gaq.push(['_trackPageview']);
+      (function () {
+          var ga = document.createElement('script');
+          ga.type = 'text/javascript';
+          ga.async = true;
+          ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+          var s = document.getElementsByTagName('script')[0];
+          s.parentNode.insertBefore(ga, s);
+      })();
   </script>
 </head>
 <body class="home blog">
@@ -23,7 +26,7 @@
     <div id="masthead">
       <div id="branding" role="banner">
         <h1 id="site-title">
-          <span><%= link_to GlobalConfig.site_title, root_url, :title => GlobalConfig.site_title, :rel=>"home" %></span>
+          <span><%= link_to GlobalConfig.site_title, root_url, :title => GlobalConfig.site_title, :rel => "home" %></span>
         </h1>
 
         <div id="site-description"><%= GlobalConfig.site_tag %></div>
@@ -38,10 +41,10 @@
         <div class="menu">
 
           <ul>
-            <li class="current_page_item"><%= link_to "Home", root_url, :title =>"Home" %></li>
-            <li class="page_item"><%= link_to "#{GlobalConfig.activity_name.pluralize}", "/#{GlobalConfig.activity_type.pluralize}", :title =>"#{GlobalConfig.activity_name.pluralize}" %></li>
-            <li class="current_page_item"><%= link_to "Popular", root_url, :title =>"Popular" %></li>
-            <!--li class="current_page_item"><%= link_to "Get Started", '/get_started' , :title =>"Get Started" %></li-->
+            <li class="current_page_item"><%= link_to "Home", root_url, :title => "Home" %></li>
+            <li class="page_item"><%= link_to "#{GlobalConfig.activity_name.pluralize}", "/#{GlobalConfig.activity_type.pluralize}", :title => "#{GlobalConfig.activity_name.pluralize}" %></li>
+            <li class="current_page_item"><%= link_to "Popular", root_url, :title => "Popular" %></li>
+            <!--<li class="current_page_item"><%= link_to "Get Started", '/get_started', :title => "Get Started" %></li>-->
             <li class="widget-container widget_search" id="search-2">
               <form action="<%= search_index_path %>" id="searchform" method="get" role="search">
                 <div id="right_menu_search">
@@ -53,7 +56,7 @@
             </li>
             <li id="user_profile_menu">
               <% if current_user %>
-                  <%= link_to current_user.display_name, current_user%>
+                  <%= link_to current_user.display_name, current_user %>
                   <ul>
                     <li id="logout_link"><%= link_to "Logout", :logout %> </li>
                   </ul>
@@ -63,9 +66,6 @@
 
             </li>
           </ul>
-
-
-
 
 
         </div>
@@ -83,19 +83,19 @@
         <div id="nav-above" class="navigation">
 
           <div class="nav-previous">
-            <a href="<%= "#{root_url}" %>" ><span class="meta-nav">&larr;</span>Older posts</a>
+            <a href="<%= "#{root_url}" %>"><span class="meta-nav">&larr;</span>Older posts</a>
           </div>
           <div class="nav-next">
-            <a href="<%= "#{root_url}" %>" >Newer posts<span class="meta-nav">&rarr;</span></a>
+            <a href="<%= "#{root_url}" %>">Newer posts<span class="meta-nav">&rarr;</span></a>
           </div>
         </div>
         <!-- #nav-above -->
         <div id="notifications">
-        <section >
-          <% flash.each do |key, value| %>
-              <div class="flash <%= key %>"><%= value %></div>
-          <% end %>
-        </section>
+          <section>
+            <% flash.each do |key, value| %>
+                <div class="flash <%= key %>"><%= value %></div>
+            <% end %>
+          </section>
 
         </div>
 
@@ -104,23 +104,28 @@
     </section>
 
 
-
-  </div><!-- #main -->
+  </div>
+  <!-- #main -->
   <%= yield %>
 
   <div id="footer" role="contentinfo">
     <div id="colophon">
       <div id="site-info">
-        <a href="http://www.cmu.edu/silicon-valley/academics/silicon-valley/ft-ms/ft-se.html" title="Craftsmanship" rel="home">Carnegie Mellon University - Silicon Valley</a>
+        <a href="http://www.cmu.edu/silicon-valley/academics/silicon-valley/ft-ms/ft-se.html" title="Craftsmanship" rel="home">Carnegie
+          Mellon University - Silicon Valley</a>
 
-      </div><!-- #site-info -->
+      </div>
+      <!-- #site-info -->
 
       <div id="site-generator">
         <a href="https://github.com/hahuang65/Hibiscus" title="Hibiscus" rel="generator">Powered by Hibiscus.</a>
-      </div><!-- #site-generator -->
+      </div>
+      <!-- #site-generator -->
 
-    </div><!-- #colophon -->
-  </div><!-- #footer -->
+    </div>
+    <!-- #colophon -->
+  </div>
+  <!-- #footer -->
 </div>
 </body>
 </html>

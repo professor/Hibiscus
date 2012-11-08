@@ -15,6 +15,7 @@
 
   <% if @commentable.is_a?(Kata) %>
     <div class="field">
+      <br/>
       <%= f.label :title %>
       <br/>
       <%= f.text_field :title, :size => "81" %>

@@ -48,7 +48,7 @@ CraftWiki::Application.configure do
   config.active_support.deprecation = :notify
 
   #ckeditor installation
-  #config.assets.precompile += Ckeditor.assets
+  # config.assets.precompile += Ckeditor.assets
 
 end
 

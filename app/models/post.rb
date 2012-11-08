@@ -75,4 +75,8 @@ class Post
       end
     end
   end
+
+  def survived_comments
+    comments.delete_if { |comment| !comment[:deleted_at].nil? }
+  end
 end
