@@ -49,7 +49,7 @@
         </span>
       </span>
     <span class="meta-sep">|</span>
-      <span class="comments-link"><a href="<%= post_path(post) %>" title="Comment on <%= post.title %>"><%= post.comments.size %>
+      <span class="comments-link"><a href="<%= post_path(post) %>" title="Comment on <%= post.title %>"><%= post.survived_comments.size %>
         Comments</a></span>
 
     <% if can? :update, post %>
