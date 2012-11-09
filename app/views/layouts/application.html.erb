@@ -26,7 +26,8 @@
     <div id="masthead">
       <div id="branding" role="banner">
         <h1 id="site-title">
-          <span><%= link_to GlobalConfig.site_title, root_url, :title => GlobalConfig.site_title, :rel => "home" %></span>
+          <!--span><%= link_to GlobalConfig.site_title, root_url, :title => GlobalConfig.site_title, :rel => "home" %></span-->
+          <span>KataLog</span>
         </h1>
 
         <div id="site-description"><%= GlobalConfig.site_tag %></div>
@@ -42,7 +43,8 @@
 
           <ul>
             <li class="current_page_item"><%= link_to "Home", root_url, :title => "Home" %></li>
-            <li class="page_item"><%= link_to "#{GlobalConfig.activity_name.pluralize}", "/#{GlobalConfig.activity_type.pluralize}", :title => "#{GlobalConfig.activity_name.pluralize}" %></li>
+            <!--li class="page_item"><%= link_to "#{GlobalConfig.activity_name.pluralize}", "/#{GlobalConfig.activity_type.pluralize}", :title => "#{GlobalConfig.activity_name.pluralize}" %></li-->
+            <li class="page_item"><%= link_to "Katalog", "/#{GlobalConfig.activity_type.pluralize}", :title => "#{GlobalConfig.activity_name.pluralize}" %></li>
             <li class="current_page_item"><%= link_to "Popular", root_url, :title => "Popular" %></li>
             <!--<li class="current_page_item"><%= link_to "Get Started", '/get_started', :title => "Get Started" %></li>-->
             <li class="widget-container widget_search" id="search-2">

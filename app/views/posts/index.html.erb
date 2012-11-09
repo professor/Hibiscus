@@ -46,6 +46,7 @@
                       <% if ((@row_num * 3) + s - 1) < @cat_count %>
                           <h2 class="entry-title" style="margin-bottom: 5px;"><%= @categories.at((@row_num * 3) + s - 1).name.capitalize %></h2>
                           <table width='100%'>
+                            <% number_katas = 0 %>
                             <% @categories.at((@row_num * 3) + s - 1).katas.desc(:rating).each do |kata| %>
                                 <tr>
                                   <td width='70%' style="font-size: 14px;">
@@ -59,6 +60,13 @@
                                     <% end %>
                                   </td>
                                 </tr>
+                                <%
+                                   if number_katas < 6
+                                     number_katas = number_katas + 1
+                                   else
+                                     break
+                                   end
+                                %>
                             <% end %>
                           </table>
                       <% else %>
