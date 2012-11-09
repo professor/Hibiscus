@@ -865,11 +865,11 @@ div.post-detail{
 
 
 }
-div.newType:hover a:hover{
+div.newType:hover a{
     /*background-color: #9b9b9b;*/
+    text-decoration:none;
     color: #046aad;
     font-size: 16px;
-    text-decoration:none;
 }
 div.newType a:link {text-decoration:none; color: #5e5e5e;}
 div.newType a:visited {text-decoration:none;color: #046aad;}
