@@ -12,7 +12,7 @@
 <div id="source_url_div">
   <% unless post.source_url.blank? %>
 
-      Source URL: <%=link_to post.source_url.truncate(42),"#{post.source_url}", {:target => '_blank'}%>
+      Source URL: <%=link_to post.source_url.truncate(35),"#{post.source_url}", {:target => '_blank'}%>
 
 
   <% end %>

@@ -879,6 +879,94 @@ div.newType a:active {text-decoration:none; color: #046aad;}
 
 
 
+/*Post page styling*/
+
+#main-entities-div {
+    width: 1058px;
+    height: auto;
+    /*border: 1px solid #000000;*/
+    padding: 1%;
+    background: #e1e1e1;
+    margin-bottom: 4%;
+}
+
+.entity-div {
+    width: 1026px;
+    height: auto;
+    display: block;
+    background: #ffffff;
+    -webkit-box-shadow: 0 10px 6px -3px #777;
+    -moz-box-shadow: 0 10px 6px -3px #777;
+    box-shadow: 0 10px 6px -3px #777;
+    /*border: 1px solid #000000;*/
+    padding: 1.5%;
+    -moz-border-radius: 15px;
+    border-radius: 15px;
+}
+
+.entity-title{
+    margin: 1% 1.5% 1% 1.5%;
+    padding: 1% 1% 1% 1%;
+    height: 25px;
+    /*border: 1px solid #000000;*/
+    font-size: 2em;
+    display: block;
+}
+
+.entity-meta{
+    margin: 1% 1.5% 1% 1.5%;
+    padding: 0% 1% 0% 1%;
+    height: 20px;
+    /*border: 1px solid #000000;*/
+    display: block;
+    font-size: 1.1em;
+}
+
+.entity-source-url{
+    margin: 1% 1.5% 1% 1.5%;
+    padding: 0% 1% 0% 1%;
+    height: 20px;
+    /*border: 1px solid #000000;*/
+    display: block;
+    min-height: 0;
+    font-size: 1.1em;
+}
+.entity-tags{
+    margin: 1% 1.5% 1% 1.5%;
+    padding: 0 1% 0 1%;
+    height: 30px;
+    /*border: 1px solid #000000;*/
+    display: block;
+    min-height: 0;
+    font-size: 1.1em;
+
+}
+
+.entity-content{
+    margin: 5% 1.5% 5% 1.5%;
+    padding: 0% 1% 0% 1%;
+    height: auto;
+    /*border: 1px solid #000000;*/
+    display: block;
+    font-size: 1.3em;
+    line-height: 150%;
+
+
+
+}
+
+
+.entity-utility{
+    margin: 1% 1.5% 1% 1.5%;
+    padding: 0% 1% 0% 1%;
+    height: 30px;
+    /*border: 1px solid #000000;*/
+    display: block;
+    min-height: 0;
+    font-size: 1.1em;
+}
+
+
 /* =Asides
 -------------------------------------------------------------- */
 
