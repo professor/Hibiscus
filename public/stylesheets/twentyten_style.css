@@ -819,7 +819,7 @@ div.post-detail{
 }
 
 .entry-title{
-    height: 75px;
+    height: 30px;
     /*border: 1px solid #000000;*/
 }
 .entry-meta{
@@ -837,7 +837,7 @@ div.post-detail{
 #source_url_div{
     height: 20px;
     /*border: 1px solid #000000;*/
-    margin-bottom: 10px;
+    margin-bottom: 52px;
 }
 
 /*#second_new_post_link{*/
