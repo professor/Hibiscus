@@ -48,6 +48,13 @@ describe UsersController do
           response.should redirect_to(user_url(mock_user))
         end
 
+        it "updates the requested users digest frequency" do
+          User.stub(:find) { mock_user }
+          mock_user.should_receive(:save)
+          put :update, :id => "10", :user => {'digest_frequency' => 'Weekly' }
+          response.should redirect_to(user_url(mock_user))
+        end
+
         it "redirects to the user" do
           User.stub(:find) { mock_user }
           put :update, :id => "1", :user => {}

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+</head>
+<body>
+<div>
+  <h1>Weekly Digest</h1>
+  <p>These are the latest posts and articles.</p>
+</div>
+<% @posts.each do | post | %>
+<div>
+  <p><a href="<%= post.source_url %>"><%= post.title %></a>:&nbsp;
+    <%= strip_tags(post.content.truncate(350)) %><br/>
+  </p>
+</div>
+<% end %>
+<p>
+  To view the posts and articles just follow this link: <%= @url %>.
+</p>
+<p>Do not reply to this email.</p>
+</body>
+</html>

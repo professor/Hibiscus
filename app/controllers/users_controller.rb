@@ -16,6 +16,7 @@ class UsersController < ApplicationController
 
     @user.email = params[:user][:email]
     @user.gravatar_email = params[:user][:gravatar_email]
+    @user.digest_frequency = params[:user][:digest_frequency]
 
     respond_to do |format|
       if @user.save
