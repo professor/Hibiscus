@@ -12,7 +12,7 @@
   <% unless post.source_url.blank? %>
     <br>
     <div>
-      <h4>Source URL:  <%= auto_link_urls post.source_url %></h4>
+      <h4>Source URL: <%=link_to nil,"http://#{post.source_url}", {:target => '_blank'}%> </h4>
     </div>
 
   <% end %>
@@ -45,8 +45,10 @@
         </span>
       </span>
       <span class="meta-sep">|</span>
-      <span class="comments-link"><a href="<%= post_path(post) %>" title="Comment on <%= post.title %>"><%= post.comments.size %>
-        Comments</a></span>
+      <span class="comments-link">
+        <a href="<%= post_path(post) %>" title="Comment on <%= post.title %>"><%= post.comments.size %>
+        Comments</a>
+      </span>
 
       <span class="edit-link">
         <%= link_to 'Edit', edit_post_path(post), :title => "Edit Post", :class => "post-edit-link" %>
