@@ -188,12 +188,14 @@ describe PostsController do
     describe "GET edit" do
       it "assigns the requested post to edit as @post" do
         Post.stub(:find_by_slug).with("37") { mock_post }
+        mock_post.stub(:user_id) { controller.current_user.id }
         get :edit, :id => "37"
         assigns(:post).should be(mock_post)
       end
 
       it "assigns the requested kata to edit as @post" do
         Kata.stub(:find_by_slug).with("37") { mock_kata }
+        mock_kata.stub(:user_id) { controller.current_user.id }
         get :edit, :type => 'Kata', :id => "37"
         assigns(:post).should be(mock_kata)
       end
@@ -257,36 +259,42 @@ describe PostsController do
       describe "with valid params" do
         it "updates the requested post" do
           Post.stub(:find_by_slug).with("37") { mock_post }
+          mock_post.stub(:user_id) { controller.current_user.id }
           mock_post.should_receive(:save)
           put :update, :id => "37", :post => {'these' => 'params'}
         end
 
         it "assigns the requested post as @post" do
           Post.stub(:find_by_slug) { mock_post(:update_attributes => true) }
+          mock_post.stub(:user_id) { controller.current_user.id }
           put :update, :id => "1", :post => {}
           assigns(:post).should be(mock_post)
         end
 
         it "redirects to the post" do
           Post.stub(:find_by_slug) { mock_post(:update_attributes => true) }
+          mock_post.stub(:user_id) { controller.current_user.id }
           put :update, :id => "1", :post => {}
           response.should redirect_to(post_url(mock_post))
         end
 
         it "updates the requested kata" do
           Kata.stub(:find_by_slug).with("37") { mock_kata }
+          mock_kata.stub(:user_id) { controller.current_user.id }
           mock_kata.should_receive(:save)
           put :update, :type => 'Kata', :id => "37", :kata => {'these' => 'params'}
         end
 
         it "assigns the requested kata as @post" do
           Kata.stub(:find_by_slug) { mock_kata(:update_attributes => true) }
+          mock_kata.stub(:user_id) { controller.current_user.id }
           put :update, :type => 'Kata', :id => "1", :kata => {}
           assigns(:post).should be(mock_kata)
         end
 
         it "redirects to the kata" do
           Kata.stub(:find_by_slug) { mock_kata(:update_attributes => true) }
+          mock_kata.stub(:user_id) { controller.current_user.id }
           put :update, :type => 'Kata', :id => "1", :kata => {}
           response.should redirect_to(kata_url(mock_kata))
         end
@@ -295,26 +303,30 @@ describe PostsController do
       describe "with invalid params" do
         it "assigns the post as @post" do
           Post.stub(:find_by_slug) { mock_post(:update_attributes => false) }
+          mock_post.stub(:user_id) { controller.current_user.id }
           put :update, :id => "1", :post => {}
           assigns(:post).should be(mock_post)
         end
 
-        it "re-renders the 'edit' template" do
-          Post.stub(:find_by_slug) { mock_post(:save => false) }
-          put :update, :id => "1", :post => {}
-          response.should render_template("edit")
+        it "re-renders the post" do
+          Post.stub(:find_by_slug) { mock_post(:update_attributes => false) }
+          mock_post.stub(:user_id) { controller.current_user.id }
+          put :update, :id => mock_post.id, :post => {}
+          response.should redirect_to(post_path)
         end
 
         it "assigns the kata as @post" do
           Kata.stub(:find_by_slug) { mock_kata(:update_attributes => false) }
+          mock_kata.stub(:user_id) { controller.current_user.id }
           put :update, :type => 'Kata', :id => "1", :kata => {}
           assigns(:post).should be(mock_kata)
         end
 
-        it "re-renders the 'edit' kata template" do
+        it "re-renders the kata" do
           Kata.stub(:find_by_slug) { mock_kata(:save => false) }
-          put :update, :type => 'Kata', :id => "1", :kata => {}
-          response.should render_template("edit")
+          mock_kata.stub(:user_id) { controller.current_user.id }
+          put :update, :type => 'Kata', :id => mock_kata.id, :kata => {}
+          response.should redirect_to(kata_path)
         end
       end
     end
@@ -322,24 +334,28 @@ describe PostsController do
     describe "DELETE destroy" do
       it "destroys the requested post" do
         Post.stub(:find_by_slug).with("37") { mock_post }
+        mock_post.stub(:user_id) { controller.current_user.id }
         mock_post.should_receive(:destroy)
         delete :destroy, :id => "37"
       end
 
       it "redirects to the posts list" do
         Post.stub(:find_by_slug) { mock_post }
+        mock_post.stub(:user_id) { controller.current_user.id }
         delete :destroy, :id => "1"
         response.should redirect_to(posts_url)
       end
 
       it "destroy a requested kata" do
         Kata.stub(:find_by_slug).with("999") { mock_kata }
+        mock_kata.stub(:user_id) { controller.current_user.id }
         mock_kata.should_receive(:destroy)
         delete :destroy, {:id => "999", :type => 'Kata'}
       end
 
       it "redirects to the kata list" do
         Kata.stub(:find_by_slug).with("999") { mock_kata }
+        mock_kata.stub(:user_id) { controller.current_user.id }
         delete :destroy, {:id => "999", :type => 'Kata'}
         response.should redirect_to(katas_url)
       end

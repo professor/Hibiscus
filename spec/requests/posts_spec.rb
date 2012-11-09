@@ -2,19 +2,11 @@ require "spec_helper"
 
 describe "Posts" do
 
-  describe "GET /posts" do
-    it "displays posts" do
-      #it creates a post, list the index page and see if capybara can find it on the page
-      FactoryGirl.create(:post, :title => "mock post")
-      visit posts_path
-      page.should have_content("mock post")
-    end
-  end
-
+  before(:each) {sign_in_as_a_user}
   describe "GET /" do
     it "displays posts" do
       #it creates a post, list the index page and see if capybara can find it on the page
-      FactoryGirl.create(:post, :title => "mock post")
+      FactoryGirl.create(:post, :title => "mock post", :user => @user)
       visit root_url
       page.should have_content("mock post")
     end
@@ -23,10 +15,9 @@ describe "Posts" do
   describe "GET /" do
     it "displays articles" do
       #it creates a post, list the index page and see if capybara can find it on the page
-      FactoryGirl.create(:article, :title => "mock article" )
+      FactoryGirl.create(:article, :title => "mock article", :user => @user)
       visit root_url
       page.should have_content("mock article")
-      page.should have_xpath("//a[@target='_blank']")
     end
   end
 
