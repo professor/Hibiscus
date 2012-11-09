@@ -12,7 +12,7 @@
   <% unless post.source_url.blank? %>
     <br>
     <div>
-      <h4>Source URL: <%=link_to nil,"http://#{post.source_url}", {:target => '_blank'}%> </h4>
+      <h4>Source URL: <%=link_to post.source_url.truncate(42),"#{post.source_url}", {:target => '_blank'}%> </h4>
     </div>
 
   <% end %>
