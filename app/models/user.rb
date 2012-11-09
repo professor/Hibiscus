@@ -18,6 +18,7 @@ class User
   field :name, :type => String
   field :email, :type => String
   field :username, :type => String
+  field :admin, :type => Boolean
   field :gravatar_email, :type=> String
   field :points, :type => Integer
   field :digest_frequency, :type => String

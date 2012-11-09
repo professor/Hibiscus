@@ -18,7 +18,9 @@
 <br>
 <section id="authentications">
 <h3>
+<% if can? :update, @user  %>
   <%= link_to 'Authentications', authentications_path %></h3>
+<% end %>
   <br><br><br><br>
 </section>
 </div>
