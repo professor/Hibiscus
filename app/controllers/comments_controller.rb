@@ -75,9 +75,12 @@ class CommentsController < ApplicationController
   def downvote
     begin
       current_user.vote_against(@review = @commentable_collection.find(params[:id]))
-      render :nothing => true, :status => 200
+      #render :nothing => true, :status => 200
+      respond_to do |format|
+        #format.html { render :nothing => true, :status => 200 }
+        format.js
+      end
       #rescue ActiveRecord::RecordInvalid
-      #  render :nothing => true, :status => 404
     end
   end
 

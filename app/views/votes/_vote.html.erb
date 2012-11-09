@@ -1,9 +1,17 @@
-<div id="vote_<%= review.id %>" >
+<div id="vote_<%= review.id %>" class="vote">
 
-<%= link_to 'Vote Up', upvote_kata_review_path(@commentable, review), :class => "upvote", :method => :post, :remote => true %>
+<% unless current_user && current_user.voted_for?(review) %>
+  <%= link_to 'Vote Up', upvote_kata_review_path(@commentable, review), :class => "upvote", :method => :post, :remote => true %>
+<% else %>
+  <span>Vote Up</span>
+<% end %>
 
 <span><%= review.plusminus %></span>
 
-<%= link_to 'Vote Down', downvote_kata_review_path(@commentable, review), :class => "downvote", :method => :post, :remote => true %>
+<% unless current_user && current_user.voted_against?(review) %>
+  <%= link_to 'Vote Down', downvote_kata_review_path(@commentable, review), :class => "downvote", :method => :post, :remote => true %>
+<% else %>
+  <span>Vote Down</span>
+<% end %>
 
 </div>

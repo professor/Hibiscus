@@ -32,7 +32,7 @@ module ThumbsUp #:nodoc:
       #       user.vote_count()      # All votes
 
       def vote_count(for_or_against = :all)
-        v = Vote.where(:voter_id => id).where(:voter_type => self.class.base_class.name)
+        v = Vote.where(:voter_id => id).where(:voter_type => self.class.name)
         v = case for_or_against
               when :all   then v
               when :up    then v.where(:vote => true)
@@ -52,9 +52,9 @@ module ThumbsUp #:nodoc:
       def voted_on?(voteable)
         0 < Vote.where(
             :voter_id => self.id,
-            :voter_type => self.class.base_class.name,
+            :voter_type => self.class.name,
             :voteable_id => voteable.id,
-            :voteable_type => voteable.class.base_class.name
+            :voteable_type => voteable.class.name
         ).count
       end
 
@@ -80,15 +80,20 @@ module ThumbsUp #:nodoc:
           self.unvote_for(voteable)
         end
         direction = (options[:direction].to_sym == :up)
-        Vote.create!(:vote => direction, :voteable => voteable, :voter => self)
+        opposite_direction = (options[:direction].to_sym == :down)
+        if voted_which_way?(voteable, opposite_direction)
+          unvote_for(voteable)
+        else
+          Vote.create!(:vote => direction, :voteable => voteable, :voter => self)
+        end
       end
 
       def unvote_for(voteable)
         Vote.where(
             :voter_id => self.id,
-            :voter_type => self.class.base_class.name,
+            :voter_type => self.class.name,
             :voteable_id => voteable.id,
-            :voteable_type => voteable.class.base_class.name
+            :voteable_type => voteable.class.name
         ).map(&:destroy)
       end
 
@@ -98,10 +103,10 @@ module ThumbsUp #:nodoc:
         raise ArgumentError, "expected :up or :down" unless [:up, :down].include?(direction)
         0 < Vote.where(
             :voter_id => self.id,
-            :voter_type => self.class.base_class.name,
+            :voter_type => self.class.name,
             :vote => direction == :up ? true : false,
             :voteable_id => voteable.id,
-            :voteable_type => voteable.class.base_class.name
+            :voteable_type => voteable.class.name
         ).count
       end
 
