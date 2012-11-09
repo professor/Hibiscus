@@ -850,7 +850,7 @@ div.post-detail{
     border-radius: 6px;
     /*border: 1px solid black;*/
     background-color: #dddddd;
-    width: 100px;
+    width: 95px;
     color: #5e5e5e;
     font-weight: bold;
     text-align: center;
@@ -859,6 +859,7 @@ div.post-detail{
     line-height: 28px;
     margin-bottom: 1%;
     margin-top: 1%;
+    margin-left: 90%;
     clear: both;
     height: 28px;
     vertical-align: middle;
