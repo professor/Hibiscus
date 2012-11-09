@@ -1,5 +1,7 @@
-<%= link_to "New #{@type}", new_polymorphic_path(@type.constantize) %>
 
+<div class="newType" >
+    <%= link_to "New #{@type}", new_polymorphic_path(@type.constantize) %>
+</div>
 <script type="text/javascript">
 
     $(document).ready(function () {
@@ -25,12 +27,10 @@
     <% end %>
 </div>
 
-<div id="second_new_post_link">
 
-<% if @posts.length > 0%>                    <br><br>
+
+<% if @posts.length >= 4 %>
+    <div class="newType">
     <%= link_to "New #{@type}", new_polymorphic_path(@type.constantize) %>
-    <% end %>
-
-<br /><br />
-
-</div>
+    </div>
+<% end %>
