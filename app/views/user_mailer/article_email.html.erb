@@ -4,14 +4,18 @@
   <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
 </head>
 <body>
-<h1>Automated Article Feed Notification by <%= @user.name %></h1>
-<p>
-  Feeds were processed.
-</p>
+<div>
+  <h1>Automated Article Feed Notification by <%= @user.name %></h1>
+  <p>Feeds were processed.</p>
+</div>
 <% @articles.each do | url, title | %>
-    <p>
-      <a href="<%= url %>"><%= title %></a>
-    </p>
+<div>
+  <p><a href="<%= url %>"><%= title.split('##')[0] %></a>:&nbsp;
+    <%= strip_tags(title.split('##')[1]) %><br/>
+    <a href="<%= @url + '/articles/' + title.split('##')[2] + '/edit' %>">Edit</a>
+    <a href="<%= @url + '/articles' %>">Delete</a>
+  </p>
+</div>
 <% end %>
 <p>
   To view the feeds just follow this link: <%= @url %>.

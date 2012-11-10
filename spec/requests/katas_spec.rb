@@ -19,17 +19,12 @@ describe "Katas" do
   end
 
   describe "DELETE /katas", :js => true do
-=begin
-    before do
-      login_integration
-    end
-=end
 
     it "delete a kata when click on link", :js => true do
       #it emulates a user clicking the Delete link and see if the kata is deleted
-
-      FactoryGirl.create(:kata, :title => "test kata")
-      visit katas_path
+      sign_in_as_a_user
+      @kata = FactoryGirl.create(:kata, :title => "test kata", :user => @user)
+      visit kata_path(@kata)
       expect {
         #hack necessary to the confirm box not be displayed, cause apparently
         #there is no way to press the OK button with capybara/selenium

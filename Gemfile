@@ -1,6 +1,6 @@
 source "http://rubygems.org"
 
-gem "rails", "3.0.5"
+gem "rails", "3.0.17"
 
 group :development do
 	gem "rdoc"
@@ -56,5 +56,7 @@ group :development, :test, :production do
   gem "jquery-rails"
 #  gem 'json_pure', '1.4.6', :require => 'json'
   gem "feedzirra"
+  gem "gamify"
+  gem "cancan"
 end
 

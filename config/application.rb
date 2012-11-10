@@ -54,5 +54,8 @@ module CraftWiki
 
     #ckeditor installation
     config.autoload_paths += %W(#{config.root}/app/models/ckeditor)
+
+    #register observer class for audit trail
+    config.mongoid.observers = :audit_observer
   end
 end

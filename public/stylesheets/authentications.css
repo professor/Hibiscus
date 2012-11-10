@@ -1,0 +1,16 @@
+.auth_header{
+    width: 200px;
+    /*border: 1px solid;*/
+    height: 30px;
+    font-size: 1.3em;
+    text-align: left;
+    font-weight: bold;
+}
+
+.auth_row{
+    width: 200px;
+    /*border: 1px solid;*/
+    height: 30px;
+    font-size: 1.3em;
+    text-align: left;
+}

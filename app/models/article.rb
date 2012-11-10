@@ -7,6 +7,14 @@ class Article < Post
   validates :guid, :presence => true
 
   ##
+  # Deliver weekly digest
+  # Usage: In Rails Console, Article.deliver_weekly_digest
+  ##
+  def self.deliver_weekly_digest
+    UserMailer.deliver_weekly_email("Weekly")
+  end
+
+  ##
   # Get articles from predefined RSS feeds.
   # Usage: In Rails Console, Article.get_feeds
   ##
@@ -50,7 +58,7 @@ class Article < Post
 
   def self.add_entries(entries, title)
     entries.each do |entry|
-      unless exists?(:conditions => {:guid => entry.id})
+      if self.unscoped.where(guid: entry.id).empty?
         #puts(entry.id)
         art = create!(
             :title          => entry.title,
@@ -64,7 +72,7 @@ class Article < Post
         )
         #art.tempTags = "article"
         #art.setTags
-        @articles[art.source_url] = art.title
+        @articles[art.source_url] = art.title + "##"  + art.content.truncate(350) + "##" + art.slug
       end
     end
   end

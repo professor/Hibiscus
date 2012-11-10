@@ -1,33 +1,36 @@
 <h2 class="entry-title"><%= link_to post.title, post %></h2>
 <div class="entry-meta">
-<span class="meta-prep meta-prep-author">Posted on</span> <a href="<%= post_path(post) %>" title="<%= post.created_at.to_date.to_formatted_s(:long_ordinal) %>" rel="bookmark"><span class="entry-date"><%= post.created_at.to_date.to_formatted_s(:long_ordinal) %></span></a> <span class="meta-sep">by</span> <span class="author vcard"><a class="url fn n" href="<%= user_path(post.user) %>" title="View all posts by <%= post.user.name %>"><%= post.user.display_name %></a></span>
+  <span class="meta-prep meta-prep-author">Posted on</span>
+  <a href="<%= post_path(post) %>" title="<%= post.created_at.to_date.to_formatted_s(:long_ordinal) %>" rel="bookmark"><span class="entry-date"><%= post.created_at.to_date.to_formatted_s(:long_ordinal) %></span></a>
+  <span class="meta-sep">by</span>
+  <span class="author vcard"><a class="url fn n" href="<%= user_path(post.user) %>" title="View all posts by <%= post.user.name %>"><%= post.user.display_name %></a></span>
 </div>
 <% unless post.source_url.blank? %>
-    <div>
-      <h4>Source URL:  <%= auto_link_urls post.source_url %></h4>
-    </div>
+  <div>
+    <h4>Source URL:  <%= auto_link_urls post.source_url %></h4>
+  </div>
 <% end %>
 
 <% if !post.rating.nil? %>
-    <div>
-      <h4>Rating: <%= post.rating %></h4>
-    </div>
+  <div>
+    <h4>Rating: <%= post.rating %></h4>
+  </div>
 <% end %>
 
 <% if post.tags.any? %>
-	<div class="entry-tags">
-		<% post.tags.each do |tag| %>
-			<p class="tag"><%= link_to tag.name, tag %></p>
-		<% end %>
-	</div>
+  <div class="entry-tags">
+    <% post.tags.each do |tag| %>
+      <p class="tag"><%= link_to tag.name, tag %></p>
+    <% end %>
+  </div>
 <% end %>
 <div class="entry-content">
   <%= post.content.html_safe %>
 </div>
 <div class="entry-utility">
   <span class="cat-links">
-	<span class="entry-utility-prep entry-utility-prep-cat-links">Posted in 
-		<% if post.tags.any? %>
+	<span class="entry-utility-prep entry-utility-prep-cat-links">Posted in
+    <% if post.tags.any? %>
 			<% post.tags.each do |tag| %>
 				<%= link_to tag.name, tag, :rel => "category tag" %>
 			<% end %>
@@ -35,13 +38,16 @@
 	</span>
   </span>
   <span class="meta-sep">|</span>
-  <span class="comments-link"><a href="<%= post_path(post) %>" title="Comment on <%= post.title %>"><%= post.comments.size  %> Comments</a></span>
+  <span class="comments-link"><a href="<%= post_path(post) %>" title="Comment on <%= post.title %>"><%= post.survived_comments.size %>
+    Comments</a></span>
 
+  <% if can? :update, post %>
   <span class="edit-link">
     <%= link_to 'Edit', edit_post_path(post), :title => "Edit Post", :class => "post-edit-link" %>
   </span>
   <span class="edit-link">
     <%= link_to 'Delete', post, :confirm => 'Are you sure?', :method => :delete, :title => "Delete Post", :class => "post-edit-link" %>
   </span>
-      </span>
+    </span>
+  <% end %>
 </div>

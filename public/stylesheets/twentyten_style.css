@@ -119,16 +119,24 @@ DESCRIPTION: Full width content with no sidebar; used for attachment pages
 
 #user_profile_menu{
     position: relative;
-    left: 55%;
+    left: 50%;
+    height: 40px;
+    width: 130px;
+    text-align: center;
 }
+
+
 #logout_link{
     width:auto;
-
 }
 #query,#searchsubmit, #right_menu_search{
     padding-top: 2px;
 
 }
+#query{
+    width: 150px;
+}
+
 /* =Fonts
 -------------------------------------------------------------- */
 body,
@@ -434,11 +442,11 @@ div.menu li {
 	top: 38px;
 	left: 0;
 	float: left;
-	width: 180px;
+	width: 50px;
 	z-index: 99999;
 }
 #access ul ul li {
-	min-width: 180px;
+	min-width: 50px;
 }
 #access ul ul ul {
 	left: 100%;
@@ -448,7 +456,7 @@ div.menu li {
 	background: #333;
 	line-height: 1em;
 	padding: 10px;
-	width: 160px;
+	width: 50px;
 	height: auto;
 }
 #access li:hover > a,
@@ -761,6 +769,20 @@ body.page .edit-link {
     border-radius: 15px;
 }
 
+.main-category-div{
+
+    background: #ffffff;
+    -webkit-box-shadow: 0 10px 6px -3px #777;
+    -moz-box-shadow: 0 10px 6px -3px #777;
+    box-shadow: 0 10px 6px -3px #777;
+    /*border: 1px solid #000000;*/
+    height: 170px;
+    margin-bottom: 1.5%;
+    padding: 1.5%;
+    -moz-border-radius: 15px;
+    border-radius: 15px;
+}
+
 /*.main-post-div:hover, div.post-meta:hover, div.post-detail:hover{*/
     /*background: #f5f5f5;*/
 /*}*/
@@ -985,6 +1007,12 @@ div.post-detail{
 #nav-below {
 	margin: -18px 0 0 0;
 }
+
+.page_nav_links {
+    font-size: 1.0em;
+    font-weight: bold;
+}
+
 
 
 /* =Comments
@@ -1337,6 +1365,8 @@ code {
 }
 
 
+
+
 /* =Print Style
 -------------------------------------------------------------- */
 
@@ -1425,6 +1455,8 @@ code {
 	.home .sticky {
 		border: none;
 	}
+
+
 
 
 }

@@ -10,6 +10,7 @@ class PostsController < ApplicationController
   # Retrieve all posts of the specified type.
   def index
     @posts = post_type.all
+    @categories = Category.order_importance
 
     respond_to do |format|
       format.html # index.html.erb
@@ -20,16 +21,15 @@ class PostsController < ApplicationController
   # GET /posts/1
   # GET /posts/1.xml
   def show
-    #@post = post_type.find(params[:id])
     @post = post_type.find_by_slug(params[:id])
 
     #TODO; refactor
     @commentable = @post
     if @post.is_a?(Kata)
-      @comments = @post.reviews
+      @comments = @post.survived_reviews
       @comment = Review.new
     else
-      @comments = @post.comments
+      @comments = @post.survived_comments
       @comment = Comment.new
     end
 
@@ -60,6 +60,7 @@ class PostsController < ApplicationController
   # Retrieve a post to edit with its tags and categories if any.
   def edit
     @post = post_type.find_by_slug(params[:id])
+    authorize! :update, @post
     if post_type != Kata
       @tags = @post.joinTags
     end
@@ -73,6 +74,8 @@ class PostsController < ApplicationController
     if post_type != Kata
       @post.setTags
     end
+
+    current_user.add_points(10)
 
     respond_to do |format|
       if @post.save
@@ -90,6 +93,7 @@ class PostsController < ApplicationController
   # be saved or retry to edit otherwise.
   def update
     @post = post_type.find_by_slug(params[:id])
+    authorize! :update, @post
     @form = params[@type.downcase.to_sym]
     if post_type == Post
       @post.tempTags = @form[:tempTags]
@@ -118,6 +122,7 @@ class PostsController < ApplicationController
   # DELETE /posts/1.xml
   def destroy
     @post = post_type.find_by_slug(params[:id])
+    authorize! :destroy, @post
     @post.destroy
 
     respond_to do |format|

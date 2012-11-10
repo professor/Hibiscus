@@ -26,12 +26,14 @@ class CommentsController < ApplicationController
   # Retrieve a comment to edit.
   def edit
     @comment = @commentable_collection.find(params[:id])
+    authorize! :update, @comment
   end
 
   ##
   # Update a comment, and generate a notice if the changes could be saved or retry to edit otherwise.
   def update
     @comment = @commentable_collection.find(params[:id])
+    authorize! :update, @comment
     if @comment.update_attributes(params[@comment_symbol])
       redirect_to(@commentable, :notice => "Thank you for the update in your #{@comment.class.to_s.downcase}.")
     else
@@ -43,15 +45,15 @@ class CommentsController < ApplicationController
   # Delete an existing comment and generate a notice of whether it was deleted or not.
   def destroy
     @comment = @commentable_collection.find(params[:id])
-    if @comment.user == current_user
-      @comment.destroy
+    authorize! :destroy, @comment
+    if  @comment.destroy
       respond_to do |format|
-        format.html { redirect_to(posts_url, :notice => "Your #{@comment.class.to_s.downcase} has been deleted") }
+        format.html { redirect_to(@commentable, :notice => "Your #{@comment.class.to_s.downcase} has been deleted") }
         format.xml { head :ok }
       end
     else
       respond_to do |format|
-        format.html { redirect_to(posts_url, :notice => "You can't delete someone else's #{@comment.class.to_s.downcase}") }
+        format.html { redirect_to(@commentable, :alert => "Your #{@comment.class.to_s.downcase} could not be deleted.")}
       end
     end
   end

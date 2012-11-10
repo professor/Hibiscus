@@ -8,8 +8,7 @@ defaults: &defaults
 
 development:
   <<: *defaults
-#  database: craft_wiki_development
-  database: app501900
+  database: craft_wiki_development
 
 test:
   <<: *defaults
