@@ -1,3 +1,8 @@
+<% if @posts.first.is_a?(Kata) %>
+  <% header = GlobalConfig.activity_page_header || GlobalConfig.activity_name.pluralize  %>
+  <%= content_for :page_header, header %>
+<% end %>
+
 <%= link_to "New #{@type}", new_polymorphic_path(@type.constantize) %>
 
 <script type="text/javascript">
@@ -23,6 +28,8 @@
         });
     });
 </script>
+
+
 
 <div id="main-all-posts-div">
   <% @posts.desc(:created_at).limit(15).each do |post| %>
