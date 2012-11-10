@@ -1,3 +1,7 @@
+<script type="text/javascript">var switchTo5x=true;</script>
+<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+<script type="text/javascript">stLight.options({publisher: "ur-9048546c-df53-fafd-463b-e1d2104fc723"});</script>
+
 <div class="post-meta">
 
   <h2 class="entry-title"><%= link_to post.title.truncate(35), post %></h2>
@@ -49,6 +53,16 @@
         <%= link_to 'Delete', post, :confirm => 'Are you sure?', :method => :delete, :title => "Delete Post", :class => "post-edit-link" %>
       </span>
     <% end %>
+
+      <div class="entry-utility-social">
+
+        <span class='st_facebook' st_url="<%= post.source_url %>"></span>
+        <span class='st_twitter' st_url="<%= post.source_url %>"></span>
+        <span class='st_linkedin' st_url="<%= post.source_url %>"></span>
+        <span class='st_googleplus' st_url="<%= post.source_url %>"></span>
+        <span class='st_email' st_url="<%= post.source_url %>"></span>
+      </div>
   </div>
+
 
 </div>

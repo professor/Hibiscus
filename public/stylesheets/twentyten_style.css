@@ -727,6 +727,9 @@ body.page .edit-link {
 	font-size: 100%;
 	font-weight: bold;
 	margin-bottom: 0;
+
+
+
 }
 .entry-utility {
 	clear: both;
@@ -735,6 +738,7 @@ body.page .edit-link {
 	line-height: 18px;
     height: 20px;
     /*border: 1px solid #000000;*/
+    width: 650px;
 }
 .entry-meta a,
 .entry-utility a {
@@ -831,6 +835,16 @@ div.post-detail{
     /*border: 1px solid #000000;*/
     margin-bottom: 8px;
     /*word-spacing: 2px;*/
+}
+
+.entry-utility-social{
+    display: inline-block;
+    /*clear: both;*/
+    float: right;
+    height: 20px;
+    width: 125px;
+    /*padding-left: 230px;*/
+    /*border: 1px solid #000000;*/
 }
 
 .entry-title{
