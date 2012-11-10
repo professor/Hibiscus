@@ -1,6 +1,22 @@
+<div class="newType" xmlns="http://www.w3.org/1999/html">
+  <%= link_to "New #{@type}", new_polymorphic_path(@type.constantize) %>
+</div>
+
+<div id="main-entities-div">
 <%= render @post %>
 
-<section id="comments">
+<!-- social bar-->
+<div class="entity-div">
+
+  <span>
+   <script src="//platform.linkedin.com/in.js" type="text/javascript"></script>
+    <script type="IN/Share" data-counter="right"></script>
+  </span>
+
+</div>
+
+  <!-- comments bar-->
+<div class="entity-div">
   <% if @comments.any? %>
     <h2 id="commentsCount">
       <%= pluralize(@comments.count, @comment.class.to_s) %></h2>
@@ -35,4 +51,5 @@
   <% else %>
     <h3>Please <%= link_to "sign in", '/auth/github' %> to comment.</h3>
   <% end %>
-</section>
+</div>
+    </div>

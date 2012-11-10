@@ -902,6 +902,8 @@ div.newType a:active {text-decoration:none; color: #046aad;}
     padding: 1.5%;
     -moz-border-radius: 15px;
     border-radius: 15px;
+    margin-bottom: 2%;
+    margin-top: 1%;
 }
 
 .entity-title{
@@ -965,6 +967,7 @@ div.newType a:active {text-decoration:none; color: #046aad;}
     min-height: 0;
     font-size: 1.1em;
 }
+
 
 
 /* =Asides
