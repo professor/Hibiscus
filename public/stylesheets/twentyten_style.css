@@ -752,10 +752,11 @@ body.page .edit-link {
 
 #main-all-posts-div{
     width: auto;
-    height: 0;
+    height: auto;
     /*border: 1px solid #000000;*/
     padding: 1%;
     background: #e1e1e1;
+    display: block;
 }
 
 .main-post-div{
@@ -906,7 +907,7 @@ div.newType a:active {text-decoration:none; color: #046aad;}
 }
 
 .entity-div {
-    width: 1026px;
+    width: 920px;
     height: auto;
     display: block;
     background: #ffffff;
@@ -914,13 +915,30 @@ div.newType a:active {text-decoration:none; color: #046aad;}
     -moz-box-shadow: 0 10px 6px -3px #777;
     box-shadow: 0 10px 6px -3px #777;
     /*border: 1px solid #000000;*/
-    padding: 1.5%;
+    padding: 5%;
     -moz-border-radius: 15px;
     border-radius: 15px;
-    margin-bottom: 2%;
-    margin-top: 1%;
+    margin: 1.5%;
 }
 
+.social-entity-div {
+    width: 1000px;
+    height: auto;
+    display: inline-block;
+    background: #ffffff;
+    -webkit-box-shadow: 0 10px 6px -3px #777;
+    -moz-box-shadow: 0 10px 6px -3px #777;
+    box-shadow: 0 10px 6px -3px #777;
+    /*border: 1px solid #000000;*/
+    padding: 1%;
+    -moz-border-radius: 15px;
+    border-radius: 15px;
+    /*margin: 1.5%;*/
+    margin: 0 1.5% 0 1.5%;
+}
+#social-icons{
+    float: right;
+}
 .entity-title{
     margin: 1% 1.5% 1% 1.5%;
     padding: 1% 1% 1% 1%;
