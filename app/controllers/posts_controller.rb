@@ -90,6 +90,7 @@ class PostsController < ApplicationController
   # be saved or retry to edit otherwise.
   def update
     @post = post_type.find_by_slug(params[:id])
+    @post.oldSlug= @post.slug
     @form = params[@type.downcase.to_sym]
     if post_type == Post
       @post.tempTags = @form[:tempTags]
