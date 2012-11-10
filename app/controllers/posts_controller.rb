@@ -10,7 +10,7 @@ class PostsController < ApplicationController
   # Retrieve all posts of the specified type.
   def index
     @posts = post_type.all
-    @categories = Category.all
+    @categories = Category.order_importance
 
     respond_to do |format|
       format.html # index.html.erb

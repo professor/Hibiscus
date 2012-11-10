@@ -24,4 +24,5 @@ class Category
   #  end
   #end
 
+  scope :order_importance, order_by(:order => :asc)
 end
