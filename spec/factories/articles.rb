@@ -3,9 +3,9 @@ FactoryGirl.define do
     guid "retrospective-principles"
     title "Retrospective Principles"
     content "Retrospective Principles"
-    association :user
     site_name "George Dinwiddie blog"
     source_url "http://craftsmanship.sv.cmu.edu/"
+    association :user
   end
 
 end

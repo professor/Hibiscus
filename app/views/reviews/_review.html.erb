@@ -12,7 +12,9 @@
       <% end %>
       <% end %>
     </span>
-  </div> <br/>
+  </div>
+  <br/>
+
   <div>
     <% if !review.challenge_level.blank? %>
       <span><b>Challenge Level: </b><%= review.challenge_level %></span>
@@ -37,7 +39,18 @@
   <div>
     <%= review.content.html_safe %>
   </div>
-  <p class="commentEdit"><%= link_to 'Edit', edit_polymorphic_path([@commentable, review]) %></p>
+
+  <p class="commentEdit">
+    <% if can? :update, review %>
+      <span class="edit-link">
+      <%= link_to 'Edit', edit_polymorphic_path([@commentable, review]) %>
+      </span>
+    <span class="edit-link">
+         <%= link_to 'Delete', polymorphic_path([@commentable, review]), confirm: 'Are you sure?', method: :delete %>
+    </span>
+    <% end %>
+  </p>
+
 
   <p class="commentPoster">Posted by: <%= link_to review.user.display_name, review.user %></p>
 </section>

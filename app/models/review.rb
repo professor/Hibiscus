@@ -2,10 +2,9 @@ class Review
   include Mongoid::Document
   include Mongoid::Timestamps
 
-  after_save :add_to_kata_rating
-  after_destroy :remove_from_kata_rating
-  before_update :add_to_kata_rating
-  after_update :remove_from_kata_rating
+  after_save :calculate_kata_rating
+  after_destroy :calculate_kata_rating
+  after_update :calculate_kata_rating
 
   field :title, :type => String
   field :content, :type => String
@@ -14,6 +13,7 @@ class Review
   field :language, :type => String
   field :upvoters, :type => Hash
   field :downvoters, :type => Hash
+  field :deleted_at, :type => Date
 
   has_and_belongs_to_many :categories
 
@@ -31,17 +31,22 @@ class Review
   validates :user_id, :presence => true
   validates :rating, :presence => true, :numericality => true
 
-  def add_to_kata_rating
-    kata.rating = ((kata.rating * (kata.reviews.count - 1)) + rating) / kata.reviews.count
-    kata.save
-  end
+  def calculate_kata_rating
+    reviews_ratings = 0
 
-  def remove_from_kata_rating
     if kata.reviews.count > 0
-      kata.rating = ((kata.rating * (kata.reviews.count + 1)) - rating) / kata.reviews.count
+      kata.reviews.count.times do |i|
+        reviews_ratings += kata.reviews.at(i).rating
+      end
+      kata.rating = reviews_ratings / kata.reviews.count
     else
       kata.rating = 0
     end
-      kata.save
+    kata.save
+  end
+
+  def destroy
+    write_attribute :deleted_at, Time.now
+    save
   end
 end

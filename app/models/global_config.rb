@@ -6,6 +6,7 @@ class GlobalConfig
   'site_tag' => "Reviewed katas for software excellence",
   'activity_name' => "Kata",
   'activity_type' => "kata",
+  'activity_page_header' => "Kata-logue",
   'comment_default' => "1. Why would you recommend (or not recommend) this activity to a peer?<br /><br />
 																															2. What worked well?<br /><br />
 																															3. What didn't work well?<br /><br />
@@ -35,6 +36,10 @@ class GlobalConfig
     # Get the configured site activity type.
     def activity_type
       config_hash['activity_type']
+    end
+
+    def activity_page_header
+      config_hash['activity_page_header']
     end
 
     ##
