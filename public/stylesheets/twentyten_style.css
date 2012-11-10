@@ -115,12 +115,12 @@ DESCRIPTION: Full width content with no sidebar; used for attachment pages
 #search-2{
 
     position: relative;
-    left: 50%;
+    left: 55%;
 }
 
 #user_profile_menu{
     position: relative;
-    left: 50%;
+    left: 55%;
     height: 40px;
     width: 130px;
     text-align: center;
