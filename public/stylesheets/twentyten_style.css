@@ -968,7 +968,23 @@ div.newType a:active {text-decoration:none; color: #046aad;}
     font-size: 1.1em;
 }
 
+.social_button{
+    padding-top: 5px;
+    min-width: 120px;
+    display: inline-block;
+    vertical-align: baseline;
 
+}
+.social_button_twitter{
+    display: inline-block;
+    vertical-align: baseline;
+}
+
+.social_button_facebook{
+    min-width: 165px;
+    vertical-align: text-bottom;
+    display: inline-block;
+}
 
 /* =Asides
 -------------------------------------------------------------- */
