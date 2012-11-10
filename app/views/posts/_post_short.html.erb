@@ -1,40 +1,44 @@
 <div class="post-meta">
 
-<h2 class="entry-title"><%= link_to post.title, post %></h2>
- <br>
-<div class="entry-meta">
+  <h2 class="entry-title"><%= link_to post.title, post %></h2>
+  <br>
 
-  <span class="meta-prep meta-prep-author">Posted on</span>
-  <a href="<%= post_path(post) %>" title="<%= post.created_at.to_date.to_formatted_s(:long_ordinal) %>" rel="bookmark"><span class="entry-date"><%= post.created_at.to_date.to_formatted_s(:long_ordinal) %></span></a>
-  <span class="meta-sep">by</span>
-  <span class="author vcard"><a class="url fn n" href="<%= user_path(post.user) %>" title="View all posts by <%= post.user.name %>"><%= post.user.display_name %></a></span>
-</div>
+  <div class="entry-meta">
+
+    <span class="meta-prep meta-prep-author">Posted on</span>
+    <a href="<%= post_path(post) %>" title="<%= post.created_at.to_date.to_formatted_s(:long_ordinal) %>" rel="bookmark"><span class="entry-date"><%= post.created_at.to_date.to_formatted_s(:long_ordinal) %></span></a>
+    <span class="meta-sep">by</span>
+    <span class="author vcard"><a class="url fn n" href="<%= user_path(post.user) %>" title="View all posts by <%= post.user.name %>"><%= post.user.display_name %></a></span>
+  </div>
   <% unless post.source_url.blank? %>
     <br>
+
     <div>
-      <h4>Source URL:  <%= auto_link_urls post.source_url %></h4>
+      <h4>Source URL: <%=link_to post.source_url.truncate(42),"#{post.source_url}", {:target => '_blank'}%> </h4>
     </div>
 
   <% end %>
 
   <% if post.tags.any? %>
-      <br>
-	<div class="entry-tags">
+    <br>
+
+    <div class="entry-tags">
       <% post.tags.each do |tag| %>
-          <p class="tag"><%= link_to tag.name, tag %></p>
+        <p class="tag"><%= link_to tag.name, tag %></p>
       <% end %>
     </div>
-<% end %>
+  <% end %>
 </div>
 <div class="post-detail">
 
-    <div class="entry-short-content">
+  <div class="entry-short-content">
 
-      <%= strip_tags(post.content).truncate(350) %>
+    <%= strip_tags(post.content).truncate(350) %>
 
-    </div>
-      <br>
-    <div class="entry-utility">
+  </div>
+  <br>
+
+  <div class="entry-utility">
       <span class="cat-links">
         <span class="entry-utility-prep entry-utility-prep-cat-links">Posted in
           <% if post.tags.any? %>
@@ -44,16 +48,18 @@
             <% end %>
         </span>
       </span>
-      <span class="meta-sep">|</span>
-      <span class="comments-link"><a href="<%= post_path(post) %>" title="Comment on <%= post.title %>"><%= post.comments.size %>
+    <span class="meta-sep">|</span>
+      <span class="comments-link"><a href="<%= post_path(post) %>" title="Comment on <%= post.title %>"><%= post.survived_comments.size %>
         Comments</a></span>
 
+    <% if can? :update, post %>
       <span class="edit-link">
         <%= link_to 'Edit', edit_post_path(post), :title => "Edit Post", :class => "post-edit-link" %>
       </span>
       <span class="edit-link">
         <%= link_to 'Delete', post, :confirm => 'Are you sure?', :method => :delete, :title => "Delete Post", :class => "post-edit-link" %>
       </span>
-    </div>
+    <% end %>
+  </div>
 
 </div>

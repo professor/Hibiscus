@@ -9,7 +9,7 @@ CraftWiki::Application.routes.draw do
 
   devise_for :users do
     match 'users/sign_in', :to => "devise/sessions#new"
-    match 'users/:id', :to => 'users#show'
+    #match 'users/:id', :to => 'users#show'
     match 'logout', :to => 'devise/sessions#destroy', :as => :logout
   end
 

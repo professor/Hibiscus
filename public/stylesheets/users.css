@@ -1,5 +1,13 @@
 #maiden_speech {
-	padding-top: 30px;
+	/*padding-top: 30px;*/
+    /*font-size: 1.3em;*/
+    width: auto;
+}
+
+#authentications {
+    padding-top: 30px;
+    font-size: 1.3em;
+    width: 70%;
 }
 
 #activities {
@@ -13,3 +21,54 @@
 #newActivity, #newLearningPlan {
 	padding: 30px 0;
 }
+
+.profile_emails{
+    font-size: 1.3em;
+}
+.profile_emails_values{
+     font-size: 1.2em;
+ }
+
+#profile_name{
+    font-size: 2em;
+}
+
+#gravatar_div{
+    float: right;
+    width: 200px;
+    padding: 1%;
+    margin: 2%;
+    border: 1px solid #d3d3d3;
+    text-align: center;
+    background-color: #ffffff;
+}
+
+#gravatar_link{
+    float: right;
+    width: 200px;
+    padding: 1%;
+    margin: 2%;
+    text-align: center;
+    /*border: 1px solid;*/
+    text-align: center;
+    /*background-color: #e2e2e2;*/
+}
+
+#profile_div{
+    width: 61%;
+    float: left;
+    padding: 5%;
+    /*border: 1px solid;*/
+    /*background-color: #ffffff;*/
+
+
+}
+
+#main_profile_div{
+    /*background-color: #d3d3d3;*/
+    margin: 2%;
+    /*border: 1px solid;*/
+    padding: 2%;
+    float: left;
+}
+

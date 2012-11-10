@@ -1,17 +1,14 @@
 <h1>Listing authentications</h1>
-
+<br><br>
 <table>
   <tr>
-    <th>User</th>
-    <th>Provider</th>
-    <th>Uid</th>
-    <th></th>
-    <th></th>
-    <th></th>
+    <th class="auth_header">User</th>
+    <th class="auth_header">Provider</th>
+    <th class="auth_header">Uid</th>
   </tr>
 
 <% @authentications.each do |authentication| %>
-  <tr>
+  <tr class="auth_row">
     <td><%= authentication.user_id %></td>
     <td><%= authentication.provider %></td>
     <td><%= authentication.uid %></td>
@@ -19,4 +16,9 @@
 <% end %>
 </table>
 
-<br />
+<br><br>
+<section class="page_nav_links">
+
+  <%= link_to 'Back', :back %>
+</section>
+<br><br>
