@@ -55,20 +55,33 @@
 }
 
 #profile_div{
-    width: 61%;
+    width: 640px;
     float: left;
     padding: 5%;
     /*border: 1px solid;*/
     /*background-color: #ffffff;*/
 
+    height: auto;
+    display: block;
+    background: #ffffff;
+    -webkit-box-shadow: 0 10px 6px -3px #777;
+    -moz-box-shadow: 0 10px 6px -3px #777;
+    box-shadow: 0 10px 6px -3px #777;
+    /*border: 1px solid #000000;*/
+    -moz-border-radius: 15px;
+    border-radius: 15px;
+    margin: 2%;
+
 
 }
 
 #main_profile_div{
-    /*background-color: #d3d3d3;*/
-    margin: 2%;
-    /*border: 1px solid;*/
-    padding: 2%;
     float: left;
+    width: 1058px;
+    height: auto;
+    /*border: 1px solid #000000;*/
+    padding: 1%;
+    background: #e1e1e1;
+    margin-bottom: 4%;
 }
 

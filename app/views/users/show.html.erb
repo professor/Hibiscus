@@ -1,37 +1,40 @@
-<% content_for :title, @user.display_name + " - Profile"%>
+<% content_for :title, @user.display_name + " - Profile" %>
 <div id="main_profile_div">
 
-<div id="profile_div">
-<p>
-<label id="profile_name"> <%= @user.display_name %> </label>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <span class="page_nav_links"> <%= link_to 'Edit', edit_user_path(@user), :title => "Edit Profile", :class => "user-edit-link" %></span>
-</p>
-<br><br>
+  <div id="profile_div">
+    <p>
+      <label id="profile_name"> <%= @user.display_name %> </label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <span class="page_nav_links"> <%= link_to 'Edit', edit_user_path(@user), :title => "Edit Profile", :class => "user-edit-link" %></span>
+    </p>
+    <br><br>
 
-<span class="profile_emails">Email:  </span> <span class="profile_emails_values"><%=  @user.email %></span>  <br><br>
-<span class="profile_emails">Gravatar Email:  </span> <span class="profile_emails_values"><%= @user.gravatar_email %></span> <br><br>
-<span class="profile_emails">Points: </span> <span class="profile_emails_values"><%=  @user.points %></span><br><br>
-<span class="profile_emails">Digest Frequency: </span> <span class="profile_emails_values"><%=  @user.digest_frequency %></span>
+    <span class="profile_emails">Email:  </span> <span class="profile_emails_values"><%= @user.email %></span> <br><br>
+    <span class="profile_emails">Gravatar Email:  </span>
+    <span class="profile_emails_values"><%= @user.gravatar_email %></span> <br><br>
+    <span class="profile_emails">Points: </span> <span class="profile_emails_values"><%= @user.points %></span><br><br>
+    <span class="profile_emails">Digest Frequency: </span>
+    <span class="profile_emails_values"><%= @user.digest_frequency %></span>
 
-<br><br><br><br>
+    <br><br>
 
-<br>
-<section id="authentications">
-<h3>
-<% if can? :update, @user  %>
-  <%= link_to 'Authentications', authentications_path %></h3>
-<% end %>
-  <br><br><br><br>
-</section>
-</div>
+    <br>
+    <section id="authentications">
+      <h3>
+        <% if can? :update, @user %>
+            <%= link_to 'Authentications', authentications_path %></h3>
+        <% end %>
+        <br><br>
+        </section>
+  </div>
 
-<div id="gravatar_div">
-<%= gravatar_for @user, options = { size: 200} %>
-</div>
+  <div id="gravatar_div">
+    <%= gravatar_for @user, options = {size: 200} %>
+  </div>
   <br><br>
+
   <div id="gravatar_link">
-     <a href="http://gravatar.com/emails" target="_blank" class="page_nav_links">Change your avatar at Gravatar.com</a>
-    </div>
+    <a href="http://gravatar.com/emails" target="_blank" class="page_nav_links">Change your avatar at Gravatar.com</a>
+  </div>
 
 </div>
 
