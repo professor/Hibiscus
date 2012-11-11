@@ -1,19 +1,21 @@
 class Review
   include Mongoid::Document
   include Mongoid::Timestamps
+  include ActsAsVoteable
 
   after_save :calculate_kata_rating
   after_destroy :calculate_kata_rating
   after_update :calculate_kata_rating
+
+  acts_as_voteable
 
   field :title, :type => String
   field :content, :type => String
   field :rating, :type => Float
   field :challenge_level, :type => String
   field :language, :type => String
-  field :upvoters, :type => Hash
-  field :downvoters, :type => Hash
   field :deleted_at, :type => Date
+  field :vote_score, :type => Integer, default: 0
 
   has_and_belongs_to_many :categories
 
@@ -47,6 +49,11 @@ class Review
 
   def destroy
     write_attribute :deleted_at, Time.now
+    save
+  end
+
+  def update_vote_score
+    self.vote_score = self.plusminus
     save
   end
 end
