@@ -12,7 +12,7 @@ class Post
   include Mongoid::Slug
   include Searchify
   
-  attr_accessor :tempTags
+  attr_accessor :tempTags,:oldSlug
   
   field :title, :type => String
   field :content, :type => String
@@ -78,5 +78,9 @@ class Post
 
   def survived_comments
     comments.where(:deleted_at.exists => false)
+  end
+
+  def oldSlug=(value)
+    @oldSlug = value
   end
 end
