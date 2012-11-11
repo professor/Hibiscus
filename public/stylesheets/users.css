@@ -55,20 +55,81 @@
 }
 
 #profile_div{
-    width: 61%;
+    width: 640px;
     float: left;
     padding: 5%;
     /*border: 1px solid;*/
     /*background-color: #ffffff;*/
 
+    height: auto;
+    display: block;
+    background: #ffffff;
+    -webkit-box-shadow: 0 10px 6px -3px #777;
+    -moz-box-shadow: 0 10px 6px -3px #777;
+    box-shadow: 0 10px 6px -3px #777;
+    /*border: 1px solid #000000;*/
+    -moz-border-radius: 15px;
+    border-radius: 15px;
+    margin: 2%;
+
 
 }
 
 #main_profile_div{
-    /*background-color: #d3d3d3;*/
-    margin: 2%;
-    /*border: 1px solid;*/
-    padding: 2%;
     float: left;
+    width: 1058px;
+    height: auto;
+    /*border: 1px solid #000000;*/
+    padding: 1%;
+    background: #e1e1e1;
+    margin-bottom: 4%;
 }
+
+.user_field_label{
+    width: 12em;
+    float: left;
+    font-size: 1.3em;
+    text-align: left;
+    margin-right: 0.5em;
+    vertical-align: bottom;
+
+}
+
+.user_field_value{
+    font-size: 1.2em;
+    width: 400px;
+    vertical-align: text-bottom;
+    height: 20px;
+
+
+}
+
+.user_field_value_textbox{
+    font-size: 1.2em;
+    width: 1000px;
+    height: 200px;
+    vertical-align: text-bottom;
+}
+
+.user_field_value_select{
+    width: 200px;
+    height: 40px;
+}
+
+.new-user-entity-div {
+    width: 910px;
+    height: auto;
+    display: inline-block;
+    background: #ffffff;
+    -webkit-box-shadow: 0 10px 6px -3px #777;
+    -moz-box-shadow: 0 10px 6px -3px #777;
+    box-shadow: 0 10px 6px -3px #777;
+    /*border: 1px solid #000000;*/
+    padding: 5%;
+    -moz-border-radius: 15px;
+    border-radius: 15px;
+    margin: 2%;
+
+}
+
 
