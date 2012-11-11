@@ -3,7 +3,13 @@
   <%= content_for :page_header, header %>
 <% end %>
 
-<%= link_to "New #{@type}", new_polymorphic_path(@type.constantize) %>
+
+  <% if @type != "Article" %>
+    <div class="newType" >
+    <%= link_to "New #{@type}", new_polymorphic_path(@type.constantize) %>
+    </div>
+  <% end %>
+
 
 <script type="text/javascript">
 
@@ -89,11 +95,16 @@
   <% end %>
 </div>
 
+<% if @type != "Article" %>
+
 <div id="second_new_post_link">
 
-  <% if @posts.length > 0 %>                    <br><br>
-      <%= link_to "New #{@type}", new_polymorphic_path(@type.constantize) %>
-  <% end %>
+  <% if @posts.length >= 4 %>
+    <div class="newType">
+    <%= link_to "New #{@type}", new_polymorphic_path(@type.constantize) %>
+    </div>
+	<% end %>
+<% end %>
 
   <br/><br/>
 
