@@ -1,4 +1,12 @@
-module ActsAsVoter #:nodoc:
+# The module to be included to let the subject act as a voter.
+# This module is supposed to work in pair with the other module 'ActsAsVoteable'.
+# Code adapted from https://github.com/bouchard/thumbs_up/
+# Usage of the module can be found in
+# https://github.com/bouchard/thumbs_up/
+# and
+# http://stackoverflow.com/questions/4907744/clarification-on-how-to-use-thumbs-up-voting-gem-with-rails-3
+
+module ActsAsVoter
 
   def self.included(base)
     base.extend ClassMethods
@@ -26,10 +34,10 @@ module ActsAsVoter #:nodoc:
   # This module contains instance methods
   module InstanceMethods
 
+    # Get the vote history of this voter
     # Usage user.vote_score(:up)  # All +1 votes
     #       user.vote_score(:down) # All -1 votes
     #       user.vote_score()      # All votes
-
     def vote_score(for_or_against = :all)
       v = Vote.where(:voter_id => id).where(:voter_type => self.class.name)
       v = case for_or_against
@@ -51,6 +59,7 @@ module ActsAsVoter #:nodoc:
       voted_which_way?(voteable, :down)
     end
 
+    # Check if the voter voted on this voteable. (Can be either voted for or voted against)
     def voted_on?(voteable)
       0 < Vote.where(
           :voter_id => self.id,
@@ -76,6 +85,11 @@ module ActsAsVoter #:nodoc:
       self.vote(voteable, {:direction => :down, :exclusive => true})
     end
 
+    # Vote on a specific voteable.
+    # Must specify the voteable
+    # Must specify the direction of vote {:direction => :down} or {:direction => :up}
+    # Optional to specify if this vote is exclusive. That is, on this specific voteable,
+    # cancel previous votes from this user and only record this vote.
     def vote(voteable, options = {})
       raise ArgumentError, "you must specify :up or :down in order to vote" unless options[:direction] && [:up, :down].include?(options[:direction].to_sym)
       if options[:exclusive]
@@ -89,6 +103,7 @@ module ActsAsVoter #:nodoc:
       end
     end
 
+    # Cancel the voter's vote on a specific voteable
     def unvote_for(voteable)
       Vote.where(
           :voter_id => self.id,
@@ -100,6 +115,7 @@ module ActsAsVoter #:nodoc:
 
     alias_method :clear_votes, :unvote_for
 
+    # Check if the voter voted up/down on a specific voteable
     def voted_which_way?(voteable, direction)
       raise ArgumentError, "expected :up or :down" unless [:up, :down].include?(direction)
       0 < Vote.where(
