@@ -1,3 +1,7 @@
+# CommentsController handles model and view for Comment, and Review. It determines the types of
+# of the comment resource (Post or Kata) and the comment (Comment or Review) by parsing the html
+# request path.
+
 class CommentsController < ApplicationController
   before_filter :authenticate_user!, :load_commentable, :load_commentable_collection
   before_filter :select_comment_symbol, :only => [:create, :update]
@@ -86,6 +90,8 @@ class CommentsController < ApplicationController
     @commentable = resource.classify.constantize.find_by_slug(id) # find the right post/kata the comment belongs to
   end
 
+  ##
+  # Retrieve the collection of comments/reviews of the post/kata the current comment belongs to.
   def load_commentable_collection
     if @commentable.is_a?(Kata)
       @commentable_collection = @commentable.reviews
@@ -94,6 +100,8 @@ class CommentsController < ApplicationController
     end
   end
 
+  ##
+  # Helper method to provide the symbol of the current comment's class.
   def select_comment_symbol
     if @commentable.is_a?(Kata)
       @comment_symbol = :review
