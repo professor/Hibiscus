@@ -12,7 +12,7 @@ class CommentsController < ApplicationController
       redirect_to(@commentable, :notice => "Thank you for your #{@comment.class.to_s.downcase}.")
     else
       if @comment.errors.any?
-        @comment_errors_message = "#{help.pluralize(@comment.errors.count, "error")} prohibited this #{@comment.class.to_s.downcase} from being saved:\n"
+        @comment_errors_message = "#{help_controller.pluralize(@comment.errors.count, "error")} prohibited this #{@comment.class.to_s.downcase} from being saved:\n"
         @comment_errors_message << "\n"
         @comment.errors.full_messages.each do |msg|
           @comment_errors_message << msg << "; "
