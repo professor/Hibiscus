@@ -1,3 +1,5 @@
+
+<div class="new-user-entity-div">
 <%= form_for(@user ) do |f| %>
 
     <% if @user.errors.any? %>
@@ -15,21 +17,21 @@
 
     <div>
 
-      <section class="maiden_speech_fields">
-        <%= f.label :email, 'Email' %>
-        <%= f.text_field :email, :size => "81"%>
+      <section >
+        <%= f.label :email, 'Email', :class=>"user_field_label" %>
+        <%= f.text_field :email, :class=>"user_field_value"%>
       </section>
 
       <br>
-      <section class="maiden_speech_fields">
-        <%= f.label :gravatar_email, 'Gravatar Email' %>
-        <%= f.text_field :gravatar_email, :size => "81"%>
+      <section >
+        <%= f.label :gravatar_email, 'Gravatar Email', :class=>"user_field_label" %>
+        <%= f.text_field :gravatar_email, :class=>"user_field_value"%>
       </section>
 
       <br>
-      <section class="maiden_speech_fields">
-        <%= f.label :digest_frequency, 'Craftsmanship Digest' %>
-        <%= f.select :digest_frequency, [" ", "Weekly"] %>
+      <section>
+        <%= f.label :digest_frequency, 'Craftsmanship Digest', :class=>"user_field_label" %>
+        <%= f.select :digest_frequency, [" ", "Weekly"] , {},  :class=>"user_field_value_select"%>
       </section>
     </div>
     <br><br>
@@ -37,3 +39,5 @@
       <%= f.submit "Update Profile"%>
     </div>
 <% end %>
+
+    </div>
