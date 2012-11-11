@@ -26,11 +26,11 @@ module ActsAsVoter #:nodoc:
   # This module contains instance methods
   module InstanceMethods
 
-    # Usage user.vote_count(:up)  # All +1 votes
-    #       user.vote_count(:down) # All -1 votes
-    #       user.vote_count()      # All votes
+    # Usage user.vote_score(:up)  # All +1 votes
+    #       user.vote_score(:down) # All -1 votes
+    #       user.vote_score()      # All votes
 
-    def vote_count(for_or_against = :all)
+    def vote_score(for_or_against = :all)
       v = Vote.where(:voter_id => id).where(:voter_type => self.class.name)
       v = case for_or_against
             when :all then

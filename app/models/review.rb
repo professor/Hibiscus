@@ -15,7 +15,7 @@ class Review
   field :challenge_level, :type => String
   field :language, :type => String
   field :deleted_at, :type => Date
-  field :vote_count, :type => Integer, default: 0
+  field :vote_score, :type => Integer, default: 0
 
   has_and_belongs_to_many :categories
 
@@ -52,8 +52,8 @@ class Review
     save
   end
 
-  def update_vote_count
-    self.vote_count = self.plusminus
+  def update_vote_score
+    self.vote_score = self.plusminus
     save
   end
 end

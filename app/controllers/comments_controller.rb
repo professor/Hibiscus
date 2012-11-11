@@ -62,7 +62,7 @@ class CommentsController < ApplicationController
   def upvote
     @review = @commentable_collection.find(params[:id])
     current_user.vote_for(@review)
-    @review.update_vote_count
+    @review.update_vote_score
     respond_to do |format|
       format.js
     end
@@ -72,7 +72,7 @@ class CommentsController < ApplicationController
   def downvote
     @review = @commentable_collection.find(params[:id])
     current_user.vote_against(@review)
-    @review.update_vote_count
+    @review.update_vote_score
     respond_to do |format|
       format.js
     end

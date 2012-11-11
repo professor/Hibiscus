@@ -21,9 +21,9 @@ describe ActsAsVoter do
       end
 
       it "is true that Greg voted for (upvoted) the review once" do
-        @user_for.vote_count.should be 1
-        @user_for.vote_count(:up).should be 1
-        @user_for.vote_count(:down).should be 0
+        @user_for.vote_score.should be 1
+        @user_for.vote_score(:up).should be 1
+        @user_for.vote_score(:down).should be 0
         @user_for.voted_which_way?(@review, :up).should be true
         @user_for.voted_which_way?(@review, :down).should be false
       end
@@ -40,7 +40,7 @@ describe ActsAsVoter do
 
       it "is allowed for Greg to unvote" do
         @user_for.unvote_for(@review)
-        @user_for.vote_count.should be 0
+        @user_for.vote_score.should be 0
       end
 
       it "raises ArgumentError for arguments that are not up or down" do
@@ -67,9 +67,9 @@ describe ActsAsVoter do
       end
 
       it "is true that Steve voted against (upvoted) the review once" do
-        @user_against.vote_count.should be 1
-        @user_against.vote_count(:up).should be 0
-        @user_against.vote_count(:down).should be 1
+        @user_against.vote_score.should be 1
+        @user_against.vote_score(:up).should be 0
+        @user_against.vote_score(:down).should be 1
         @user_against.voted_which_way?(@review, :up).should be false
         @user_against.voted_which_way?(@review, :down).should be true
       end
@@ -86,7 +86,7 @@ describe ActsAsVoter do
 
       it "is allowed for Steve to unvote" do
         @user_against.unvote_for(@review)
-        @user_against.vote_count.should be 0
+        @user_against.vote_score.should be 0
       end
 
       it "raises ArgumentError for arguments that are not up or down" do
