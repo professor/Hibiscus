@@ -77,7 +77,7 @@ class Post
   end
 
   def survived_comments
-    comments.delete_if { |comment| !comment[:deleted_at].nil? }
+    comments.where(:deleted_at.exists => false)
   end
 
   def oldSlug=(value)

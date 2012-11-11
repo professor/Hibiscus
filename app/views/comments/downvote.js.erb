@@ -1,0 +1,1 @@
+$('#vote_<%= @review.id %>').html("<%= escape_javascript render :partial => 'votes/vote', :locals => { :review => @review } %>");

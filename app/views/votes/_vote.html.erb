@@ -1,0 +1,12 @@
+  <% if current_user && current_user.voted_for?(review) %>
+    <%= link_to image_tag("upvoted.png"), upvote_kata_review_path(@commentable, review), :class => "upvoted", :method => :post, :remote => true %>
+  <% else %>
+    <%= link_to image_tag("upvote.png"), upvote_kata_review_path(@commentable, review), :class => "upvote", :method => :post, :remote => true %>
+  <% end %>
+  <span><%= review.vote_score %></span>
+
+  <% if current_user && current_user.voted_against?(review) %>
+    <%= link_to image_tag("downvoted.png"), downvote_kata_review_path(@commentable, review), :class => "downvoted", :method => :post, :remote => true %>
+  <% else %>
+    <%= link_to image_tag("downvote.png"), downvote_kata_review_path(@commentable, review), :class => "downvote", :method => :post, :remote => true %>
+  <% end %>

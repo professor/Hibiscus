@@ -53,8 +53,28 @@ class CommentsController < ApplicationController
       end
     else
       respond_to do |format|
-        format.html { redirect_to(@commentable, :alert => "Your #{@comment.class.to_s.downcase} could not be deleted.")}
+        format.html { redirect_to(@commentable, :alert => "Your #{@comment.class.to_s.downcase} could not be deleted.") }
       end
+    end
+  end
+
+  # Now dedicated for kata - review. Can be extended to post - comment.
+  def upvote
+    @review = @commentable_collection.find(params[:id])
+    current_user.vote_for(@review)
+    @review.update_vote_score
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  # Now dedicated for kata - review. Can be extended to post - comment.
+  def downvote
+    @review = @commentable_collection.find(params[:id])
+    current_user.vote_against(@review)
+    @review.update_vote_score
+    respond_to do |format|
+      format.js
     end
   end
 
@@ -81,4 +101,5 @@ class CommentsController < ApplicationController
       @comment_symbol = :comment
     end
   end
+
 end
