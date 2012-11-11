@@ -4,7 +4,9 @@ describe UserMailer do
   before do
     @user = FactoryGirl.build(:user)
     @articles = {}
+    @posts = {}
     @email = UserMailer.article_email(@user, @articles)
+    @weekly_email = UserMailer.weekly_email("Weekly")
   end
 
   #ensure that the subject is correct
@@ -30,5 +32,20 @@ describe UserMailer do
   #ensure that the @url variable appears in the email body
   it 'assigns @url' do
     @email.body.encoded.should match("http://craftsmanship.sv.cmu.edu")
+  end
+
+  #ensure that the subject is correct
+  it 'renders the subject' do
+    @weekly_email.subject.should == 'CMU Craftsmanship Weekly Digest'
+  end
+
+  #ensure that the sender is correct
+  it 'renders the sender email' do
+    @weekly_email.from.should == ['noreply@sv.cmu.edu']
+  end
+
+  #ensure that the @url variable appears in the email body
+  it 'assigns @url' do
+    @weekly_email.body.encoded.should match("http://craftsmanship.sv.cmu.edu")
   end
 end

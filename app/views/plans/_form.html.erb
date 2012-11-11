@@ -11,10 +11,15 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :maiden_speech, 'Maiden Speech' %><br />
+  <div>
+
+   <section class="maiden_speech_fields">
+    <%= f.label :maiden_speech, 'Maiden Speech' %></section><br>
+    <section class="maiden_speech_fields">
     <%= f.text_area :maiden_speech, :size => "80x8" %>
+    </section>
   </div>
+    <br>
   <div class="actions">
     <%= f.submit %>
   </div>
