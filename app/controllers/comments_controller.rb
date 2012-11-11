@@ -53,40 +53,32 @@ class CommentsController < ApplicationController
       end
     else
       respond_to do |format|
-        format.html { redirect_to(@commentable, :alert => "Your #{@comment.class.to_s.downcase} could not be deleted.")}
+        format.html { redirect_to(@commentable, :alert => "Your #{@comment.class.to_s.downcase} could not be deleted.") }
       end
     end
   end
 
   # Now dedicated for kata - review. Can be extended to post - comment.
   def upvote
-    begin
-      current_user.vote_for(@review = @commentable_collection.find(params[:id]))
-      #render :nothing => true, :status => 200
-      respond_to do |format|
-        #format.html { render :nothing => true, :status => 200 }
-        format.js
-      end
-    #  render :nothing => true, :status => 200
-    #rescue ActiveRecord::RecordInvalid
-    #  render :nothing => true, :status => 404
+    @review = @commentable_collection.find(params[:id])
+    current_user.vote_for(@review)
+    @review.update_vote_count
+    respond_to do |format|
+      format.js
     end
   end
 
   # Now dedicated for kata - review. Can be extended to post - comment.
   def downvote
-    begin
-      current_user.vote_against(@review = @commentable_collection.find(params[:id]))
-      #render :nothing => true, :status => 200
-      respond_to do |format|
-        #format.html { render :nothing => true, :status => 200 }
-        format.js
-      end
-      #rescue ActiveRecord::RecordInvalid
+    @review = @commentable_collection.find(params[:id])
+    current_user.vote_against(@review)
+    @review.update_vote_count
+    respond_to do |format|
+      format.js
     end
   end
 
-private
+  private
   # preload the variable @post that the current comment belongs to
   def load_commentable
     # the request url will be in this format: "/katas/kata-title/comments/5078b2b5f1d37f2a3a000064"

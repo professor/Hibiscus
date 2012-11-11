@@ -14,9 +14,8 @@ class Review
   field :rating, :type => Float
   field :challenge_level, :type => String
   field :language, :type => String
-  field :upvoters, :type => Hash
-  field :downvoters, :type => Hash
   field :deleted_at, :type => Date
+  field :vote_count, :type => Integer, default: 0
 
   has_and_belongs_to_many :categories
 
@@ -50,6 +49,11 @@ class Review
 
   def destroy
     write_attribute :deleted_at, Time.now
+    save
+  end
+
+  def update_vote_count
+    self.vote_count = self.plusminus
     save
   end
 end

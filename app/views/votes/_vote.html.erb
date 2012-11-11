@@ -1,17 +1,12 @@
-<div id="vote_<%= review.id %>" class="vote">
+  <% if current_user && current_user.voted_for?(review) %>
+    <%= link_to image_tag("upvoted.png"), upvote_kata_review_path(@commentable, review), :class => "upvoted", :method => :post, :remote => true %>
+  <% else %>
+    <%= link_to image_tag("upvote.png"), upvote_kata_review_path(@commentable, review), :class => "upvote", :method => :post, :remote => true %>
+  <% end %>
+  <span><%= review.vote_count %></span>
 
-<% unless current_user && current_user.voted_for?(review) %>
-  <%= link_to 'Vote Up', upvote_kata_review_path(@commentable, review), :class => "upvote", :method => :post, :remote => true %>
-<% else %>
-  <span>Vote Up</span>
-<% end %>
-
-<span><%= review.plusminus %></span>
-
-<% unless current_user && current_user.voted_against?(review) %>
-  <%= link_to 'Vote Down', downvote_kata_review_path(@commentable, review), :class => "downvote", :method => :post, :remote => true %>
-<% else %>
-  <span>Vote Down</span>
-<% end %>
-
-</div>
+  <% if current_user && current_user.voted_against?(review) %>
+    <%= link_to image_tag("downvoted.png"), downvote_kata_review_path(@commentable, review), :class => "downvoted", :method => :post, :remote => true %>
+  <% else %>
+    <%= link_to image_tag("downvote.png"), downvote_kata_review_path(@commentable, review), :class => "downvote", :method => :post, :remote => true %>
+  <% end %>

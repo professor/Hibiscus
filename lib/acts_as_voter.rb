@@ -80,8 +80,7 @@ module ThumbsUp #:nodoc:
           self.unvote_for(voteable)
         end
         direction = (options[:direction].to_sym == :up)
-        opposite_direction = (options[:direction].to_sym == :down)
-        if voted_which_way?(voteable, opposite_direction)
+        if voted_on?(voteable)
           unvote_for(voteable)
         else
           Vote.create!(:vote => direction, :voteable => voteable, :voter => self)
