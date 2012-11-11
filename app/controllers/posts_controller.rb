@@ -26,8 +26,7 @@ class PostsController < ApplicationController
     #TODO; refactor
     @commentable = @post
     if @post.is_a?(Kata)
-      #@comments = @post.survived_reviews.order_by([[:vote_count]])
-      @comments = @post.survived_reviews.order_by([[:vote_count]])
+      @comments = @post.survived_reviews.desc(:vote_count, :updated_at)
       @comment = Review.new
     else
       @comments = @post.survived_comments

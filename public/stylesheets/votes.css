@@ -1,28 +1,28 @@
-section#comments section.comment{
+div.entity-div section.comment{
     overflow: hidden;
 }
-section#comments .vote {
+div.entity-div .vote {
     /*height: 100%;*/
     width: 7%;
     float: left;
 }
-section#comments .review {
+div.entity-div .review {
     float: left;
     width: 93%;
     /*height: 100%;*/
 }
 
-section#comments .vote a {
+div.entity-div .vote a {
     line-height: 1;
     display: block;
     text-align: center;
 }
 
-section#comments .vote a img {
+div.entity-div .vote a img {
     vertical-align: middle;
 }
 
-section#comments .vote span {
+div.entity-div .vote span {
     line-height: 1;
     height: 35px;
     display: block;
