@@ -1,7 +1,7 @@
 require 'indextank'
 require "searchify"
 
-# Post is the model for articles, and the base model for katas(Kata) and feeds(Feed).
+# Post is the model for posted articles (Post), and the base model for article feeds(Article).
 
 class Post
   include Mongoid::Document
