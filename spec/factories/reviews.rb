@@ -6,8 +6,6 @@ FactoryGirl.define do
     rating 5
     challenge_level "low"
     language "Java"
-    upvoters {"oscar" "aristide"}
-    downvoters {"other" "another"}
 
     association :user
     association :kata,  strategy: :build

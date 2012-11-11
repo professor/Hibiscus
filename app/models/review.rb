@@ -1,7 +1,7 @@
 class Review
   include Mongoid::Document
   include Mongoid::Timestamps
-  include ThumbsUp::ActsAsVoteable
+  include ActsAsVoteable
 
   after_save :calculate_kata_rating
   after_destroy :calculate_kata_rating
