@@ -90,7 +90,7 @@ class PostsController < ApplicationController
   def update
     @post = post_type.find_by_slug(params[:id])
     @post.oldSlug= @post.slug
-    authorize! :update, @post
+    #authorize! :update, @post
     @form = params[@type.downcase.to_sym]
     if post_type == Post
       @post.tempTags = @form[:tempTags]
