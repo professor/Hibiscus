@@ -6,7 +6,7 @@ class PostsController < ApplicationController
   before_filter :post_type
 
   ##
-  # Retrieve all posts of the specified type.
+  # Retrieve all Posts or Katas and displays them
   def index
     @posts = post_type.all
     @categories = Category.order_importance
