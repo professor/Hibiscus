@@ -47,7 +47,7 @@ class Kata
   before_destroy :delete_from_search_index
 
   def survived_reviews
-    reviews.delete_if { |review| !review[:deleted_at].nil? }
+    reviews.where(:deleted_at.exists => false)
   end
 
   def oldSlug=(value)

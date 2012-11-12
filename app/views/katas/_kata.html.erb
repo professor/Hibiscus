@@ -1,15 +1,15 @@
-<h2 class="entry-title"><%= link_to kata.title, kata %></h2>
-<div class="entry-meta">
-  <span class="meta-prep meta-prep-author">Posted on</span>
-  <span class="entry-date"><%= kata.created_at.to_date.to_formatted_s(:long_ordinal) %></span>
-  <span class="meta-sep">by</span>
-  <span class="author vcard"><a class="url fn n" href="<%= user_path(kata.user) %>" title="View all posts by <%= kata.user.name %>"><%= kata.user.display_name %></a></span>
-  <span>In <b>Category: </b><a href="<%= kata_path(kata) %>" rel="bookmark"><%= kata.category.name %></a></span>
-</div>
+<div class="entity-div">
+  <h2 class="entity-title"><%= kata.title.truncate(80) %></h2>
 
-<div>
-  <% unless kata.rating.nil? %>
-    <div style="float: left"><b> Rating: &nbsp;&nbsp;</b></div>
+  <div class="entity-meta">
+    <span class="meta-prep meta-prep-author">Posted on</span>
+    <span class="entry-date"><%= kata.created_at.to_date.to_formatted_s(:long_ordinal) %></span>
+    <span class="meta-sep">by</span>
+    <span class="author vcard"><a class="url fn n" href="<%= user_path(kata.user) %>" title="View all posts by <%= kata.user.name %>"><%= kata.user.display_name %></a></span>
+    <span>In <b>Category: </b><a href="<%= kata_path(kata) %>" rel="bookmark"><%= kata.category.name %></a></span>
+    <br><br>
+    <% unless kata.rating.nil? %>
+      <div style="float: left"><b> Rating: &nbsp;&nbsp;</b></div>
     <span>
       <% rating = kata.rating.round %>
       <% [1, 2, 3, 4, 5].each do |val| %>
@@ -20,28 +20,29 @@
       <% end %>
       <% end %>
     </span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <% end %>
-  <span><b>Challenge Level: </b><%= kata.challenge_level %> </span>
-</div>
-
-<% unless kata.source.blank? %>
-  <div>
-    <h4><b>Source: </b><%= auto_link_urls kata.source %></h4>
+    <% end %>
+    <span><b>Challenge Level: </b><%= kata.challenge_level %> </span>
   </div>
-<% end %>
-<div class="entry-content">
-  <%= kata.content.html_safe %>
-</div>
-<div class="entry-utility">
+  <br><br>
+  <% unless kata.source.blank? %>
+    <div class="entity-source-url">
+      <h4><b>Source: </b><%= link_to kata.source.truncate(130),"#{kata.source}", {:target => '_blank'} %></h4>
+    </div>
+  <% end %>
+  <div class="entity-content">
+    <%= kata.content.html_safe %>
+  </div>
+  <div class="entity-utility">
   <span class="comments-link"><a href="<%= kata_path(kata) %>" title="Comment on <%= kata.title %>"><%= kata.reviews.size %>
     Reviews</a></span>
 
-  <% if can? :update, kata %>
+    <% if can? :update, kata %>
   <span class="edit-link">
     <%= link_to 'Edit', edit_kata_path(kata), :title => "Edit Kata", :class => "kata-edit-link" %>
   </span>
   <span class="edit-link">
     <%= link_to 'Delete', kata, :confirm => 'Are you sure?', :method => :delete, :title => "Delete Kata", :class => "kata-edit-link" %>
   </span>
-  <% end %>
+    <% end %>
+  </div>
 </div>

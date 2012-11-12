@@ -89,6 +89,7 @@ DESCRIPTION: Two-column fixed layout with one sidebar right of content
 #footer {
 	clear: both;
 	width: 100%;
+    margin-top: 5%;
 }
 
 /*
@@ -114,12 +115,12 @@ DESCRIPTION: Full width content with no sidebar; used for attachment pages
 #search-2{
 
     position: relative;
-    left: 50%;
+    left: 45%;
 }
 
 #user_profile_menu{
     position: relative;
-    left: 50%;
+    left: 45%;
     height: 40px;
     width: 130px;
     text-align: center;
@@ -726,12 +727,18 @@ body.page .edit-link {
 	font-size: 100%;
 	font-weight: bold;
 	margin-bottom: 0;
+
+
+
 }
 .entry-utility {
 	clear: both;
 	color: #888;
 	font-size: 12px;
 	line-height: 18px;
+    height: 20px;
+    /*border: 1px solid #000000;*/
+    width: 650px;
 }
 .entry-meta a,
 .entry-utility a {
@@ -749,10 +756,11 @@ body.page .edit-link {
 
 #main-all-posts-div{
     width: auto;
-    height: 0;
+    height: auto;
     /*border: 1px solid #000000;*/
     padding: 1%;
     background: #e1e1e1;
+    display: block;
 }
 
 .main-post-div{
@@ -790,14 +798,15 @@ body.page .edit-link {
 
 
 div.post-meta{
-    width: 30%;
+    width: 31%;
     height: 150px;
     text-align: right;
     padding-right: 1%;
-    padding-top: 1%;
+    padding-top: 1.25%;
     padding-left: 1%;
+    padding-bottom: 1%;
     float: left;
-    margin-bottom: 1%;
+    /*margin-bottom: 1%;*/
     /*border: 1px solid #000000;*/
 
     /*font-weight: bold;*/
@@ -811,22 +820,267 @@ div.post-detail{
     text-align: left;
     padding-left: 1%;
     padding-top: 1%;
-    padding-right: 2%;
+    padding-right: 1%;
+    padding-bottom: 1%;
     font-size: 1.3em;
     float: right;
     /*border: 1px solid #000000;*/
-    margin-bottom: 1%;
+    /*margin-bottom: 1%;*/
 
 }
 
 .entry-short-content{
     line-height: 150%;
+    height: 120px;
+    /*border: 1px solid #000000;*/
+    margin-bottom: 8px;
     /*word-spacing: 2px;*/
 }
 
+.entry-utility-social{
+    display: inline-block;
+    /*clear: both;*/
+    float: right;
+    height: 20px;
+    width: 125px;
+    /*padding-left: 230px;*/
+    /*border: 1px solid #000000;*/
+}
 
-#second_new_post_link{
+.entry-title{
+    height: 30px;
+    /*border: 1px solid #000000;*/
+}
+.entry-meta{
+    height: 20px;
+    /*border: 1px solid #000000;*/
+}
+
+.entry-tags{
+    height: 20px;
+    /*border: 1px solid #000000;*/
+
+}
+
+
+#source_url_div{
+    height: 20px;
+    /*border: 1px solid #000000;*/
+    margin-bottom: 52px;
+}
+
+/*#second_new_post_link{*/
+    /*clear: both;*/
+/*}*/
+
+.newType{
+    display: block;
+    padding: 3px 6px;
+    border-radius: 6px;
+    /*border: 1px solid black;*/
+    background-color: #dddddd;
+    width: 95px;
+    color: #5e5e5e;
+    font-weight: bold;
+    text-align: center;
+    font-size: 15px;
+    font-family: sans-serif;
+    line-height: 28px;
+    margin-bottom: 1%;
+    margin-top: 1%;
+    margin-left: 90%;
     clear: both;
+    height: 28px;
+    vertical-align: middle;
+
+
+}
+div.newType:hover a{
+    /*background-color: #9b9b9b;*/
+    text-decoration:none;
+    color: #046aad;
+    font-size: 16px;
+}
+div.newType a:link {text-decoration:none; color: #5e5e5e;}
+div.newType a:visited {text-decoration:none;color: #046aad;}
+div.newType a:hover {text-decoration:none; color: #046aad;}
+div.newType a:active {text-decoration:none; color: #046aad;}
+
+
+
+/*Post page styling*/
+
+#main-entities-div {
+    width: 1058px;
+    height: auto;
+    /*border: 1px solid #000000;*/
+    padding: 1%;
+    background: #e1e1e1;
+    margin-bottom: 4%;
+
+}
+
+.entity-div {
+    width: 920px;
+    height: auto;
+    display: block;
+    background: #ffffff;
+    -webkit-box-shadow: 0 10px 6px -3px #777;
+    -moz-box-shadow: 0 10px 6px -3px #777;
+    box-shadow: 0 10px 6px -3px #777;
+    /*border: 1px solid #000000;*/
+    padding: 5%;
+    -moz-border-radius: 15px;
+    border-radius: 15px;
+    margin: 1.5%;
+}
+
+.social-entity-div {
+    width: 1000px;
+    height: auto;
+    display: inline-block;
+    background: #ffffff;
+    -webkit-box-shadow: 0 10px 6px -3px #777;
+    -moz-box-shadow: 0 10px 6px -3px #777;
+    box-shadow: 0 10px 6px -3px #777;
+    /*border: 1px solid #000000;*/
+    padding: 1%;
+    -moz-border-radius: 15px;
+    border-radius: 15px;
+    /*margin: 1.5%;*/
+    margin: 0 1.5% 0 1.5%;
+}
+#social-icons{
+    float: right;
+}
+.entity-title{
+    margin: 1% 1.5% 1% 1.5%;
+    padding: 1% 1% 1% 1%;
+    height: 25px;
+    /*border: 1px solid #000000;*/
+    font-size: 2em;
+    display: block;
+}
+
+.entity-meta{
+    margin: 1% 1.5% 1% 1.5%;
+    padding: 0% 1% 0% 1%;
+    height: 20px;
+    /*border: 1px solid #000000;*/
+    display: block;
+    font-size: 1.1em;
+}
+
+.entity-source-url{
+    margin: 1% 1.5% 1% 1.5%;
+    padding: 0% 1% 0% 1%;
+    height: 20px;
+    /*border: 1px solid #000000;*/
+    display: block;
+    min-height: 0;
+    font-size: 1.1em;
+}
+.entity-tags{
+    margin: 1% 1.5% 1% 1.5%;
+    padding: 0 1% 0 1%;
+    height: 30px;
+    /*border: 1px solid #000000;*/
+    display: block;
+    min-height: 0;
+    font-size: 1.1em;
+
+}
+
+.entity-content{
+    margin: 5% 1.5% 5% 1.5%;
+    padding: 0% 1% 0% 1%;
+    height: auto;
+    /*border: 1px solid #000000;*/
+    display: block;
+    font-size: 1.3em;
+    line-height: 150%;
+
+
+
+}
+
+
+.entity-utility{
+    margin: 1% 1.5% 1% 1.5%;
+    padding: 0% 1% 0% 1%;
+    height: 30px;
+    /*border: 1px solid #000000;*/
+    display: block;
+    min-height: 0;
+    font-size: 1.1em;
+}
+
+.social_button{
+    padding-top: 5px;
+    min-width: 120px;
+    display: inline-block;
+    vertical-align: baseline;
+
+}
+.social_button_twitter{
+    display: inline-block;
+    vertical-align: baseline;
+}
+
+.social_button_facebook{
+    min-width: 165px;
+    vertical-align: text-bottom;
+    display: inline-block;
+}
+
+
+
+.new-entity-div {
+    width: 910px;
+    height: auto;
+    display: inline-block;
+    background: #ffffff;
+    -webkit-box-shadow: 0 10px 6px -3px #777;
+    -moz-box-shadow: 0 10px 6px -3px #777;
+    box-shadow: 0 10px 6px -3px #777;
+    /*border: 1px solid #000000;*/
+    padding: 5%;
+    -moz-border-radius: 15px;
+    border-radius: 15px;
+    margin: 2%;
+
+}
+
+
+.field_label{
+    width: 7em;
+    float: left;
+    font-size: 1.3em;
+    text-align: left;
+    margin-right: 0.5em;
+    vertical-align: bottom;
+
+}
+
+.field_value{
+    font-size: 1.2em;
+    width: 780px;
+    vertical-align: text-bottom;
+    height: 20px;
+
+
+}
+
+.field_value_textbox{
+    font-size: 1.2em;
+    width: 1000px;
+    height: 200px;
+    vertical-align: text-bottom;
+}
+
+.field_value_select{
+    width: 200px;
+    height: 40px;
 }
 
 

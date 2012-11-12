@@ -1,3 +1,5 @@
+<div class="new-entity-div">
+
 <%= form_for(@post) do |f| %>
     <% if @post.errors.any? %>
         <div id="error_explanation">
@@ -13,67 +15,69 @@
 
 
     <% if @type == 'Post' %>
-        <div class="field">
-          <%= f.label :title %>
-          <br/>
-          <%= f.text_field :title, :size => "81" %>
+
+        <div>
+          <%= f.label :title, :class=>"field_label" %>
+          <%= f.text_field :title, :class=>"field_value"%>
         </div>
+          <br>
 
         <div class="field">
-          <%= f.label :source_url %>
-          <br/>
-          <%= f.text_field :source_url, :size => "81" %>
+          <%= f.label :source_url, :class=>"field_label" %>
+          <%= f.text_field :source_url, :class=>"field_value"%>
         </div>
-
+          <br>
         <div class="field">
-          <%= f.label :tempTags, "Tags" %>
-          <br/>
+          <%= f.label :tempTags, "Tags", :class=>"field_label" %>
           <% if @post.tags.any? %>
-              <%= f.text_field :tempTags, :size => "81", :value => @tags %>
+              <%= f.text_field :tempTags, :class=>"field_value", :value => @tags %>
           <% else %>
-              <%= f.text_field :tempTags, :size => "81" %>
+              <%= f.text_field :tempTags, :class=>"field_value" %>
           <% end %>
         </div>
+          <br>
     <% end %>
 
     <% if @type == 'Kata' %>
         <div class="field">
-          <%= f.label :title %>
-          <br/>
-          <%= f.text_field :title, :size => "81" %>
+          <%= f.label :title, :class=>"field_label" %>
+          <%= f.text_field :title, :class=>"field_value" %>
         </div>
+          <br>
 
         <div class="field">
-          <%= f.label :source %>
-          <br/>
-          <%= f.text_field :source, :size => "81" %>
+          <%= f.label :source, :class=>"field_label" %>
+          <%= f.text_field :source, :class=>"field_value" %>
         </div>
-
+         <br>
         <div class='field'>
-          <%= f.label :category %>
+          <%= f.label :category, :class=>"field_label" %>
           <% if @post.category.blank? %>
-              <%= f.collection_select :category, Category.all, :id, :name %>
+              <%= f.collection_select :category, Category.all, :id, :name ,{},  :class=>"field_value_select"%>
           <% else %>
-              <%= f.collection_select :category, Category.all, :id, :name, :selected => @post.category_id %>
+              <%= f.collection_select :category, Category.all, :id, :name, :selected => @post.category_id, :class=>"field_value_select" %>
           <% end %>
         </div>
+          <br>
         <div class='field'>
-          <%= f.label :challenge_level %>
+          <%= f.label :challenge_level, :class=>"field_label" %>
           <% if @post.challenge_level.blank? %>
-              <%= f.select :challenge_level, [['Low', 'Low'], ['Medium', 'Medium'], ['High', 'High']] %>
+              <%= f.select :challenge_level, [['Low', 'Low'], ['Medium', 'Medium'], ['High', 'High']] , {},  :class=>"field_value_select" %>
           <% else %>
-              <%= f.select :challenge_level, [['Low', 'Low'], ['Medium', 'Medium'], ['High', 'High']], :selected => @post.challenge_level %>
+              <%= f.select :challenge_level, [['Low', 'Low'], ['Medium', 'Medium'], ['High', 'High']], :selected => @post.challenge_level, :class=>"field_value_select" %>
           <% end %>
         </div>
     <% end %>
 
     <div class="field">
-      <%= f.label :content %>
-      <br/>
-      <%= f.cktext_area :content, :toolbar => 'CMUSV', :width => 600, :height => 200 %>
+      <br>
+
+      <%= f.cktext_area :content, :toolbar => 'CMUSV', :class=>"field_label_textbox" %>
     </div>
 
     <div class="actions">
+      <br><br>
       <%= f.submit %>
     </div>
 <% end %>
+</div>

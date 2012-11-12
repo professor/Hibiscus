@@ -8,7 +8,9 @@ defaults: &defaults
 
 development:
   <<: *defaults
-  database: craft_wiki_development
+  database: craftsmanship-awesome
+  #database: craft_wiki_development
+
 
 test:
   <<: *defaults

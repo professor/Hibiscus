@@ -1,0 +1,33 @@
+<div id="main-entities-div">
+  <div class="entity-div">
+    <div class="entity-content">
+      <h2>What is a kata? </h2>
+
+      <p>A kata is an exercise in martial arts where you repeat a simple form many, many times, improving it in each.
+        Code kata are programming exercises that follow a principle similar to martial arts kata.
+        Each is a short exercise that can be coded in many different ways, and their intent is to help programmers hone
+        their skills through practice and repetition.</p>
+
+      <h2>Why should I practice kata? </h2>
+
+      <p>Kata are an opportunity to practice programming in a safe setting. Dave Thomas, the inventor of code kata,
+        <%= link_to "explains", "http://codekata.pragprog.com/2007/01/code_kata_backg.html", {:target => '_blank'} %>
+        that the benefit of kata is that they are exercises that you can "try as many times as it takes, and be
+        comfortable making mistakes". In essence kata are the projects you write code for without the pressure to meet
+        a goal on time or to be right, as opposed to all the other projects.</p>
+
+      <h2>How do I start? </h2>
+
+      <p>It is easy to start. This website has a large and growing catalogue of interesting kata for your practicing
+        pleasure. The kata are organized in categories, which makes it easy to find the exercise that matches your
+        interests. Are you ready? Head over to <%= link_to "browse the Kata-logue", katas_path %>, or choose a warm up
+        kata here. </p>
+
+      <h2>Here are some easy kata you can start with: </h2>
+      <% @easy_katas.each do |kata| %>
+        &nbsp;&nbsp;&nbsp;<%= link_to kata.title, kata %>
+        <br>
+      <% end %>
+    </div>
+  </div>
+</div>
