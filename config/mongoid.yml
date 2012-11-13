@@ -8,8 +8,7 @@ defaults: &defaults
 
 development:
   <<: *defaults
-  database: craftsmanship-awesome
-  #database: craft_wiki_development
+  database: craft_wiki_development
 
 
 test:
