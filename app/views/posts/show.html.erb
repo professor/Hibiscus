@@ -28,7 +28,7 @@
 
   <!-- comments bar-->
 <div class="entity-div">
-  <% unless @comments.blank? %>
+  <% if @comments.any? %>
     <h2 id="commentsCount">
       <%= pluralize(@comments.count, @comment.class.to_s) %></h2>
     <%= render @comments %>
