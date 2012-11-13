@@ -1,3 +1,7 @@
+# CommentsController handles model and view for Comment, and Review. It determines the types of
+# of the comment resource (Post or Kata) and the comment (Comment or Review) by parsing the html
+# request path.
+
 class CommentsController < ApplicationController
   before_filter :authenticate_user!, :load_commentable, :load_commentable_collection
   before_filter :select_comment_symbol, :only => [:create, :update]
@@ -12,7 +16,7 @@ class CommentsController < ApplicationController
       redirect_to(@commentable, :notice => "Thank you for your #{@comment.class.to_s.downcase}.")
     else
       if @comment.errors.any?
-        @comment_errors_message = "#{help.pluralize(@comment.errors.count, "error")} prohibited this #{@comment.class.to_s.downcase} from being saved:\n"
+        @comment_errors_message = "#{help_controller.pluralize(@comment.errors.count, "error")} prohibited this #{@comment.class.to_s.downcase} from being saved:\n"
         @comment_errors_message << "\n"
         @comment.errors.full_messages.each do |msg|
           @comment_errors_message << msg << "; "
@@ -86,6 +90,8 @@ class CommentsController < ApplicationController
     @commentable = resource.classify.constantize.find_by_slug(id) # find the right post/kata the comment belongs to
   end
 
+  ##
+  # Retrieve the collection of comments/reviews of the post/kata the current comment belongs to.
   def load_commentable_collection
     if @commentable.is_a?(Kata)
       @commentable_collection = @commentable.reviews
@@ -94,6 +100,8 @@ class CommentsController < ApplicationController
     end
   end
 
+  ##
+  # Helper method to provide the symbol of the current comment's class.
   def select_comment_symbol
     if @commentable.is_a?(Kata)
       @comment_symbol = :review
