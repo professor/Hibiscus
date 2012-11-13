@@ -17,7 +17,7 @@ class Kata
 
   belongs_to :category
 
-  attr_accessor :tempTags
+  attr_accessor :tempTags,:oldSlug
 
   field :title, :type => String
   field :content, :type => String
@@ -48,5 +48,9 @@ class Kata
 
   def survived_reviews
     reviews.where(:deleted_at.exists => false)
+  end
+
+  def oldSlug=(value)
+    @oldSlug = value
   end
 end

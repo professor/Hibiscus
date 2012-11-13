@@ -54,7 +54,7 @@ CraftWiki::Application.routes.draw do
     end
   end
 
-  match '/get_started', to: 'start#show'
+  match '/get_started', to: 'exercise_about_page#show'
   match '/auth/:provider/callback', :to => 'authentications#create'
   match '/auth/failure', :to => 'authentications#failure'
 

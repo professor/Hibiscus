@@ -1,3 +1,5 @@
+# Review the model for reviews of a Kata. Reviews are embedded in the Kata collection.
+
 class Review
   include Mongoid::Document
   include Mongoid::Timestamps
@@ -33,6 +35,8 @@ class Review
   validates :user_id, :presence => true
   validates :rating, :presence => true, :numericality => true
 
+  ##
+  # Calculate the rating of this review's Kata, and save the Kata with the calculated rating.
   def calculate_kata_rating
     reviews_ratings = 0
 
