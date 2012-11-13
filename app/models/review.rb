@@ -56,6 +56,13 @@ class Review
     save
   end
 
+  # Return the float count of the update time. The is used for a workaround for
+  # mongoid time sorting bug: To sort by update time use the return value of this
+  # method.
+  def last_update
+     self.updated_at.to_f
+  end
+
   def update_vote_score
     self.vote_score = self.plusminus
     save
