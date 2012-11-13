@@ -44,7 +44,7 @@ describe "Katas" do
         #there is no way to press the OK button with capybara/selenium
         page.evaluate_script('window.confirm = function() { return true; }')
         click_link('Delete')
-        #sleep 2.seconds
+        sleep 1.seconds
       }.to change(Kata, :count).by(-1)
     end
   end
