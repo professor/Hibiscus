@@ -43,4 +43,11 @@ module Searchify
     index.document(url).delete
   end
 
+
+  def delete_search_index_content
+    api = IndexTank::Client.new(ENV['SEARCHIFY_HIBISCUS_API_URL'] || '<API_URL>')
+    index = api.indexes(ENV['SEARCHIFY_HIBISCUS_INDEX'] || 'hibiscus')
+
+    index.document(url).delete
+  end
 end
