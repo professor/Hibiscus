@@ -1,0 +1,33 @@
+div.entity-div section.comment{
+    overflow: hidden;
+}
+div.entity-div .vote {
+    /*height: 100%;*/
+    width: 7%;
+    float: left;
+}
+div.entity-div .review {
+    float: left;
+    width: 93%;
+    /*height: 100%;*/
+}
+
+div.entity-div .vote a {
+    line-height: 1;
+    display: block;
+    text-align: center;
+}
+
+div.entity-div .vote a img {
+    vertical-align: middle;
+}
+
+div.entity-div .vote span {
+    line-height: 1;
+    height: 35px;
+    display: block;
+    text-align: center;
+    font-weight: bold;
+    font-size: 35px;
+    font-family: Arial, 'Liberation Sans', 'DejaVu Sans', sans-serif;
+}
