@@ -49,4 +49,5 @@ class Kata
   def survived_reviews
     reviews.where(:deleted_at.exists => false)
   end
+
 end

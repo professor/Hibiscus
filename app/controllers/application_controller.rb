@@ -17,11 +17,15 @@ class ApplicationController < ActionController::Base
     @type.constantize
   end
 
-  def help
-    Helper.instance
+  ##
+  # Get the view helpers to use in the controller.
+  def help_controller
+    OptionalViewHelper.instance
   end
 
-  class Helper
+  ##
+  # Singleton instance of view helpers to be used by all controllers.
+  class OptionalViewHelper
     include Singleton
     include ActionView::Helpers::TextHelper
   end

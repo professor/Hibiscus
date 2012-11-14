@@ -7,6 +7,8 @@ tmp/
 config/hibiscus.yml
 config/mongoid.yml
 
+README_personal.md
+
 .idea/*
 .DS_Store
 */.DS_Store

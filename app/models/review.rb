@@ -1,3 +1,5 @@
+# Review the model for reviews of a Kata. Reviews are embedded in the Kata collection.
+
 class Review
   include Mongoid::Document
   include Mongoid::Timestamps
@@ -33,6 +35,8 @@ class Review
   validates :user_id, :presence => true
   validates :rating, :presence => true, :numericality => true
 
+  ##
+  # Calculate the rating of this review's Kata, and save the Kata with the calculated rating.
   def calculate_kata_rating
     reviews_ratings = 0
 
@@ -50,6 +54,13 @@ class Review
   def destroy
     write_attribute :deleted_at, Time.now
     save
+  end
+
+  # Return the float count of the update time. The is used for a workaround for
+  # mongoid time sorting bug: To sort by update time use the return value of this
+  # method.
+  def last_update
+     self.updated_at.to_f
   end
 
   def update_vote_score
