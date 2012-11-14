@@ -46,7 +46,12 @@ CraftWiki::Application.routes.draw do
     resources :comments
   end
   resources :katas, :controller => "posts", :type => "Kata" do
-    resources :reviews, :controller => "comments"
+    resources :reviews, :controller => "comments" do
+      member do
+        post :upvote
+        post :downvote
+      end
+    end
   end
 
   match '/get_started', to: 'start#show'
