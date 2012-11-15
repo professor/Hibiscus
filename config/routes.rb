@@ -13,6 +13,8 @@ CraftWiki::Application.routes.draw do
     match 'logout', :to => 'devise/sessions#destroy', :as => :logout
   end
 
+  match '/users/restore/:id', to: 'users#restore', :as => :users_restore
+
   resources :users do
     resources :plans
   end

@@ -6,7 +6,7 @@ require 'capybara/rspec'
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
-Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
+Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 
 RSpec.configure do |config|
   # == Mock Framework
@@ -47,9 +47,15 @@ RSpec.configure do |config|
   #mock the login into github, so it is possible to test the Delete link
   def login_integration
     OmniAuth.config.test_mode = true
-    OmniAuth.config.add_mock :github, uid: "2266908", info: { nickname: "oscaralvaro", email: "oscaralvaro@gmail.com", name: "Oscar Sandoval" }
+    OmniAuth.config.add_mock :github, uid: "2266908", info: {nickname: "oscaralvaro", email: "oscaralvaro@gmail.com", name: "Oscar Sandoval"}
     #this visit is necessary to "setup" the authentication
     visit '/auth/github'
+  end
+
+  def login_admin
+    @request.env["devise.mapping"] = Devise.mappings[:user]
+    @admin = FactoryGirl.create(:admin)
+    sign_in @admin
   end
 
 end

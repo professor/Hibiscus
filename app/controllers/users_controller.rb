@@ -1,6 +1,11 @@
 class UsersController < ApplicationController
   before_filter :authenticate_user!
 
+  def index
+    @users = User.all
+    @blocked_users = User.deleted
+  end
+
   def show
     @user = User.find_by_slug(params[:id])
     @plan = @user.plan ? @user.plan : Plan.new
@@ -26,6 +31,27 @@ class UsersController < ApplicationController
         format.html { render :action => "edit" }
         format.xml { render :xml => @user.errors, :status => :unprocessable_entity }
       end
+    end
+  end
+
+  def destroy
+    @user = User.find_by_slug(params[:id])
+
+    if @user.destroy
+      redirect_to(User, :notice => "The user has been blocked.")
+    else
+      redirect_to(User, :alert => "The user: #{@user.username} has not been blocked.")
+    end
+  end
+
+
+  def restore
+    @user = User.deleted.where(:slug => params[:id]).first
+
+    if @user.restore
+      redirect_to(User, :notice => "The user has been unblocked.")
+    else
+      redirect_to(User, :alert => "The user: #{@user.username} has not been unblocked.")
     end
   end
 end

@@ -63,10 +63,44 @@ describe UsersController do
 
       end
     end
+
   end
 
+  context 'Authenticated admin' do
+    before(:each) do
+      login_admin
+    end
 
+    describe "GET index" do
+      it "should list all the users" do
+        User.stub(:all) { [mock_user] }
+        get :index
+        assigns(:users).should eq([mock_user])
+        response.should be_success
+      end
+    end
 
+    describe "DELETE destroy" do
+       it "destroys the requested user" do
+         User.stub(:find_by_slug).with("1") {mock_user}
+         mock_user.should_receive(:destroy)
+         delete :destroy, :id => "1"
+         response.should redirect_to (users_path)
+       end
+    end
+
+    describe "GET restore" do
+      it "unblocks the user" do
+        user = FactoryGirl.create(:user)
+        user.deleted_at.should be_nil
+        delete :destroy, :id => user.slug
+        user.deleted_at.should_not be_nil
+        get :restore, :id => user.slug
+        user.deleted_at.should be_nil
+      end
+    end
+
+  end
 
 end
 

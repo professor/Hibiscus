@@ -1,0 +1,14 @@
+<div id="main-all-users-div">
+  <% @users.each do |user| %>
+    <div class="user_container">
+      <%= user.display_name %>
+      <%= link_to 'block', user, confirm: 'Are you sure?', method: :delete %>
+    </div>
+  <% end %>
+  <% @blocked_users.each do |user| %>
+    <div class="blocked_user_container">
+      <%= user.display_name %>
+      <%= link_to 'unblock', users_restore_path(user), confirm: 'Are you sure?' %>
+    </div>
+  <% end %>
+</div>
