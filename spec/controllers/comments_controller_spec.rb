@@ -9,6 +9,7 @@ describe CommentsController do
     @mock_comment ||= mock_model(Comment, stubs).as_null_object
   end
 
+
   def mock_kata(stubs = {})
     @mock_kata ||= mock_model(Kata, stubs).as_null_object
   end
@@ -77,7 +78,7 @@ describe CommentsController do
     end
 
     describe "GET edit" do
-      it "assigns the requested comment as @comment, and it's parent post as @post" do
+      it "assigns the requested comment as @comment, and it's parent post as @commentable" do
         Post.should_receive(:find_by_slug).and_return(mock_post)
         mock_post.should_receive(:comments).and_return(mock_comment)
         mock_comment.stub(:user_id) { controller.current_user.id }
@@ -101,7 +102,7 @@ describe CommentsController do
       end
 
       context "with invalid params" do
-        it "assigns the requested comment as @comment, and it's parent post as @post" do
+        it "assigns the requested comment as @comment, and it's parent post as @commentable" do
           Post.should_receive(:find_by_slug).and_return(mock_post)
           mock_post.should_receive(:comments).and_return(mock_comment({:user_id => controller.current_user.id, :update_attributes => false}))
           put :update, :post_id => mock_post.id, :id => mock_comment.id
@@ -130,7 +131,6 @@ describe CommentsController do
       end
     end
   end
-
 
   context "Unauthenticated user: " do
     it "should not allow access to create a review" do

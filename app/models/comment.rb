@@ -1,3 +1,5 @@
+#Comment is embedded in Post model and it is used to store the comments of the users
+
 class Comment
   include Mongoid::Document
   include Mongoid::Timestamps

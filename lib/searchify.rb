@@ -31,10 +31,23 @@ module Searchify
   def update_search_index
     url = "#{self.class.name.downcase.pluralize}/" + self.slug
     api = IndexTank::Client.new(ENV['SEARCHIFY_HIBISCUS_API_URL'] || '<API_URL>')
+
+    if self.is_a?(Kata)
+      elements = self.survived_reviews
+    else
+      elements = self.survived_comments
+    end
+
+
+    text = self.content.gsub(/<\/?[^>]*>/, "")
+    if elements.size > 0
+      elements.each { |element| text << (" " + element.content.to_s)  }
+    end
+
     tmp = ENV['SEARCHIFY_HIBISCUS_INDEX']
 
     index = api.indexes(ENV['SEARCHIFY_HIBISCUS_INDEX'] || 'hibiscus')
-    index.document(self.id.to_s).add({ :title => self.title, :timestamp => self.created_at.to_i, :text => self.content.gsub(/<\/?[^>]*>/, ""), :url => url, :id => self.id.to_s})
+    index.document(self.id.to_s).add({ :title => self.title, :timestamp => self.created_at.to_i, :text => text , :url => url, :id => self.id.to_s})
   end
 
   def delete_from_search_index
