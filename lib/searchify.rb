@@ -32,6 +32,7 @@ module Searchify
     url = "#{self.class.name.downcase.pluralize}/" + self.slug
     api = IndexTank::Client.new(ENV['SEARCHIFY_HIBISCUS_API_URL'] || '<API_URL>')
     tmp = ENV['SEARCHIFY_HIBISCUS_INDEX']
+
     index = api.indexes(ENV['SEARCHIFY_HIBISCUS_INDEX'] || 'hibiscus')
     index.document(self.id.to_s).add({ :title => self.title, :timestamp => self.created_at.to_i, :text => self.content.gsub(/<\/?[^>]*>/, ""), :url => url, :id => self.id.to_s})
   end
