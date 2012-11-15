@@ -34,10 +34,9 @@ module Searchify
 
     if self.is_a?(Kata)
       elements = self.survived_reviews
-    else
+    elsif self.is_a?(Post)
       elements = self.survived_comments
     end
-
 
     text = self.content.gsub(/<\/?[^>]*>/, "")
     if elements.size > 0

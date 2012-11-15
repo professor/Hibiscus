@@ -17,6 +17,8 @@ class Comment
   validates :user_id, :presence => true
   validates :time_spent, :numericality => true, :allow_blank => true, :allow_nil => true
 
+  after_save {post.save}
+
   def destroy
    write_attribute :deleted_at, Time.now
    save
