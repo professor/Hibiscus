@@ -91,12 +91,12 @@ describe UsersController do
 
     describe "GET restore" do
       it "unblocks the user" do
-        user = FactoryGirl.create(:user)
-        user.deleted_at.should be_nil
-        delete :destroy, :id => user.slug
-        user.deleted_at.should_not be_nil
-        get :restore, :id => user.slug
-        user.deleted_at.should be_nil
+        User.stub(:find_by_slug).with("1") {mock_user}
+        User.stub_chain(:deleted, :where) {[mock_user]}
+        mock_user.should_receive(:destroy).and_return(true)
+        delete :destroy, :id => "1"
+        mock_user.should_receive(:restore).and_return(true)
+        get :restore, :id => "1"
       end
     end
 
