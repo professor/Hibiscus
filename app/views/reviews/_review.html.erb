@@ -58,7 +58,12 @@
     </p>
 
 
-    <p class="commentPoster">Posted by: <%= link_to review.user.display_name, review.user %></p>
+    <%  blocked_user = User.deleted.where(username: review.user_id).first %>
+    <% if blocked_user %>
+      <p class="commentPoster">Posted by: <%= review.user_id %></p>
+    <% else %>
+      <p class="commentPoster">Posted by: <%= link_to review.user.display_name, review.user %></p>
+    <% end %>
 
   </div>
 </section>

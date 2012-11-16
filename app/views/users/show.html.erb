@@ -4,7 +4,9 @@
   <div id="profile_div">
     <p>
       <label id="profile_name"> <%= @user.display_name %> </label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <span class="page_nav_links"> <%= link_to 'Edit', edit_user_path(@user), :title => "Edit Profile", :class => "user-edit-link" %></span>
+      <% if can? :update, @user %>
+        <span class="page_nav_links"> <%= link_to 'Edit', edit_user_path(@user), :title => "Edit Profile", :class => "user-edit-link" %></span>
+      <% end %>
     </p>
     <br><br>
 
@@ -21,7 +23,7 @@
     <section id="authentications">
       <h3>
         <% if can? :update, @user %>
-            <%= link_to 'Authentications', authentications_path %></h3>
+          <%= link_to 'Authentications', authentications_path %></h3>
         <% end %>
         <br><br>
         </section>

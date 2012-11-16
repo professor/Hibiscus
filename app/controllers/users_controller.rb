@@ -4,6 +4,7 @@ class UsersController < ApplicationController
   def index
     @users = User.all
     @blocked_users = User.deleted
+    authorize! :edit, @users.first
   end
 
   def show
@@ -13,11 +14,12 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
-
+    authorize! :update, @user
   end
 
   def update
     @user = User.find(params[:id])
+    authorize! :update, @user
 
     @user.email = params[:user][:email]
     @user.gravatar_email = params[:user][:gravatar_email]
@@ -36,8 +38,9 @@ class UsersController < ApplicationController
 
   def destroy
     @user = User.find_by_slug(params[:id])
+    authorize! :destroy, @user
 
-    if @user.destroy
+    if @user.delete
       redirect_to(User, :notice => "The user has been blocked.")
     else
       redirect_to(User, :alert => "The user: #{@user.username} has not been blocked.")
@@ -47,6 +50,7 @@ class UsersController < ApplicationController
 
   def restore
     @user = User.deleted.where(:slug => params[:id]).first
+    authorize! :destroy, @user
 
     if @user.restore
       redirect_to(User, :notice => "The user has been unblocked.")

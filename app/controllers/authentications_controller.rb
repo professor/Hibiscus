@@ -14,9 +14,16 @@ class AuthenticationsController < ApplicationController
     
     authentication = Authentication.where(:provider => omniauth['provider'], :uid => omniauth['uid']).first
     if authentication
-      # If a user has already signed on with this authentication, just sign the user in.
-      flash[:notice] = "You are now signed in."
-      sign_in_and_redirect(:user, authentication.user)
+      # If a user has already signed on with this authentication,
+      # and he is not blocked, just sign the user in.
+      blocked_user = User.deleted.where(username: authentication.user_id).first
+      if blocked_user
+        flash[:alert] = "Your account has been blocked."
+        redirect_to(root_url)
+      else
+        flash[:notice] = "You are now signed in."
+        sign_in_and_redirect(:user, authentication.user)
+      end
     else
       # User is new, create an authentication and a user.
       user = User.create(:username => omniauth['info']['nickname'], :email => omniauth['info']['email'], :name => omniauth['info']['name'])

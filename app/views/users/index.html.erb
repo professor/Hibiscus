@@ -1,7 +1,7 @@
 <div id="main-all-users-div">
   <% @users.each do |user| %>
     <div class="user_container">
-      <%= user.display_name %>
+      <%= link_to user.display_name, user %>
       <%= link_to 'block', user, confirm: 'Are you sure?', method: :delete %>
     </div>
   <% end %>
