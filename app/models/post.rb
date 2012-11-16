@@ -79,6 +79,4 @@ class Post
   def survived_comments
     comments.where(:deleted_at.exists => false)
   end
-
-
 end

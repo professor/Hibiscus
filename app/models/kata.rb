@@ -1,10 +1,8 @@
 require 'indextank'
 require "searchify"
 
-# Kata is a model inherited from Post model.
-#
-# The reason to do inheritance is because Kata shares most of fields
-# with Post and also has some extra fields.
+# Kata represents the exercises to improve the software craftsmanship.
+# Kata operations are managed by PostController because they share many operations and information in common.
 
 class Kata
   include Mongoid::Document
