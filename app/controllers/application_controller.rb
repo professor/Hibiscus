@@ -1,6 +1,10 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
+  before_filter do
+    cookies['app-referrer-username'] = params[:r] if params[:r]
+  end
+  
   def recent_posts
     @recent_posts ||= Post.desc(:created_at).limit(5)
   end
