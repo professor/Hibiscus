@@ -226,7 +226,7 @@ div.menu,
 }
 #site-generator {
 	float: right;
-	width: 220px;
+	width: 170px;
 }
 
 
@@ -1597,6 +1597,14 @@ img#wpstats {
 	margin: 0 auto 10px;
 }
 
+#rss-icon{
+    width: 25px;
+    height: 25px;
+    display: inline;
+    float: right;
+
+
+}
 
 /* =Mobile Safari ( iPad, iPhone and iPod Touch )
 -------------------------------------------------------------- */
