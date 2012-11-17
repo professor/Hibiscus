@@ -48,9 +48,6 @@
 
   <div class="entry-utility">
 
-      <span class="comments-link"><a href="<%= post_path(post) %>" title="Comment on <%= post.title %>"><%= post.survived_comments.size %>
-        Comments</a></span>
-
     <% if can? :update, post %>
       <span class="edit-link">
         <%= link_to 'Edit', edit_post_path(post), :title => "Edit Post", :class => "post-edit-link" %>
