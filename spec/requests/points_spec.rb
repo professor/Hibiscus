@@ -36,6 +36,12 @@ describe "Points" do
 
       visit user_path(@user)
       page.should have_content("Points: 15")
+
+      visit root_path
+      click_link 'My first post'
+      click_button 'Like this post?'
+      visit user_path(@user)
+      page.should have_content("Points: 16")
     end
   end
 
