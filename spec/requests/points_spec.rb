@@ -12,6 +12,7 @@ describe "Points" do
       page.should have_content("Points: 0")
 
       visit root_path
+      page.should have_content("0")
       page.should have_link("New Post")
       click_link 'New Post'
       fill_in 'Title', :with => 'My first post'
@@ -26,6 +27,7 @@ describe "Points" do
 
       sign_in_as_a_user
       visit root_path
+      page.should have_content("10")
       click_link 'My first post'
 
       fill_in 'Comment', :with => 'My first comment! Show me the points!'
@@ -38,10 +40,13 @@ describe "Points" do
       page.should have_content("Points: 15")
 
       visit root_path
+      page.should have_content("15")
       click_link 'My first post'
       click_button 'Like this post?'
       visit user_path(@user)
       page.should have_content("Points: 16")
+      visit root_path
+      page.should have_content("16")
     end
   end
 
