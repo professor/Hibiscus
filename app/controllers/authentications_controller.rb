@@ -20,7 +20,7 @@ class AuthenticationsController < ApplicationController
     else
       # User is new, create an authentication and a user.
       user = User.create(:username => omniauth['info']['nickname'], :email => omniauth['info']['email'],
-                         :name => omniauth['info']['name'],
+                         :name => omniauth['info']['name'], :digest_frequency => "Weekly",
                          :referrer_username => cookies['app-referrer-username'])
       auth = user.authentications.build(:provider => omniauth['provider'], :uid => omniauth['uid'])
     

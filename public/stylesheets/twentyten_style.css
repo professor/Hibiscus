@@ -115,12 +115,12 @@ DESCRIPTION: Full width content with no sidebar; used for attachment pages
 #search-2{
 
     position: relative;
-    left: 45%;
+    left: 55%;
 }
 
 #user_profile_menu{
     position: relative;
-    left: 45%;
+    left: 55%;
     height: 40px;
     width: 130px;
     text-align: center;
@@ -130,6 +130,11 @@ DESCRIPTION: Full width content with no sidebar; used for attachment pages
 #logout_link{
     width:auto;
 }
+
+#popular_posts{
+    width:auto;
+}
+
 #query,#searchsubmit, #right_menu_search{
     padding-top: 2px;
 
@@ -226,7 +231,7 @@ div.menu,
 }
 #site-generator {
 	float: right;
-	width: 220px;
+	width: 170px;
 }
 
 
@@ -457,8 +462,9 @@ div.menu li {
 	background: #333;
 	line-height: 1em;
 	padding: 10px;
-	width: 50px;
+	width: auto;
 	height: auto;
+    min-width: 70px;
 }
 #access li:hover > a,
 #access ul ul :hover > a {
@@ -866,7 +872,8 @@ div.post-detail{
 #source_url_div{
     height: 20px;
     /*border: 1px solid #000000;*/
-    margin-bottom: 52px;
+    margin-bottom: 47px;
+    margin-top: 5px;
 }
 
 /*#second_new_post_link{*/
@@ -1597,6 +1604,14 @@ img#wpstats {
 	margin: 0 auto 10px;
 }
 
+#rss-icon{
+    width: 25px;
+    height: 25px;
+    display: inline;
+    float: right;
+
+
+}
 
 /* =Mobile Safari ( iPad, iPhone and iPod Touch )
 -------------------------------------------------------------- */

@@ -13,6 +13,7 @@ class CommentsController < ApplicationController
     @comment = @commentable_collection.build(params[@comment_symbol])
     @comment.user = current_user
     if @comment.save
+      current_user.add_points(5)
       redirect_to(@commentable, :notice => "Thank you for your #{@comment.class.to_s.downcase}.")
     else
       if @comment.errors.any?
@@ -66,6 +67,7 @@ class CommentsController < ApplicationController
   def upvote
     @review = @commentable_collection.find(params[:id])
     current_user.vote_for(@review)
+    current_user.add_points(1)
     @review.update_vote_score
     respond_to do |format|
       format.js
@@ -76,6 +78,7 @@ class CommentsController < ApplicationController
   def downvote
     @review = @commentable_collection.find(params[:id])
     current_user.vote_against(@review)
+    current_user.add_points(1)
     @review.update_vote_score
     respond_to do |format|
       format.js
