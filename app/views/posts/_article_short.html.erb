@@ -51,7 +51,7 @@
 
     <% if can? :update, post %>
       <span class="edit-link">
-        <%= link_to 'Edit', edit_post_path(post), :title => "Edit Post", :class => "post-edit-link" %>
+        <%= link_to 'Edit', edit_article_path(post), :title => "Edit Post", :class => "post-edit-link" %>
       </span>
       <span class="edit-link">
         <%= link_to 'Delete', post, :confirm => 'Are you sure?', :method => :delete, :title => "Delete Post", :class => "post-edit-link" %>
