@@ -14,6 +14,7 @@ CraftWiki::Application.routes.draw do
   end
 
   match '/users/restore/:id', to: 'users#restore', :as => :users_restore
+  match '/users/obliterate/:id', to: 'users#obliterate', :as => :users_obliterate
 
   resources :users do
     resources :plans

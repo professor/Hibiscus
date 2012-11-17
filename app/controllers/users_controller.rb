@@ -47,7 +47,6 @@ class UsersController < ApplicationController
     end
   end
 
-
   def restore
     @user = User.deleted.where(:slug => params[:id]).first
     authorize! :destroy, @user
@@ -56,6 +55,17 @@ class UsersController < ApplicationController
       redirect_to(User, :notice => "The user has been unblocked.")
     else
       redirect_to(User, :alert => "The user: #{@user.username} has not been unblocked.")
+    end
+  end
+
+  def obliterate
+    @user = User.deleted.where(:slug => params[:id]).first
+    authorize! :destroy, @user
+
+    if @user.destroy!
+      redirect_to(User, :notice => "The user has been deleted permanently.")
+    else
+      redirect_to(User, :alert => "The user: #{@user.username} has not been deleted permanently.")
     end
   end
 end

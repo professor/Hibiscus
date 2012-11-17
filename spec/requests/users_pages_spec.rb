@@ -40,6 +40,7 @@ describe "User pages" do
         @user1.destroy
         visit users_path
         page.should have_content("unblock")
+        page.should have_content("delete")
       end
 
     end

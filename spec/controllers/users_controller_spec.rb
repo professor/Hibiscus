@@ -91,15 +91,22 @@ describe UsersController do
 
     describe "GET restore" do
       it "unblocks the user" do
-        User.stub(:find_by_slug).with("1") {mock_user}
         User.stub_chain(:deleted, :where) {[mock_user]}
-        mock_user.should_receive(:delete).and_return(true)
-        delete :destroy, :id => "1"
         mock_user.should_receive(:restore).and_return(true)
         get :restore, :id => "1"
+        response.should redirect_to (users_path)
       end
     end
 
+
+    describe "GET obliterate" do
+      it "destroys the user permanently" do
+        User.stub_chain(:deleted, :where) {[mock_user]}
+        mock_user.should_receive(:destroy!).and_return(true)
+        get :obliterate, :id => "1"
+        response.should redirect_to (users_path)
+      end
+    end
   end
 
 end

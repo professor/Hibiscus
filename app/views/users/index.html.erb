@@ -9,6 +9,7 @@
     <div class="blocked_user_container">
       <%= user.display_name %>
       <%= link_to 'unblock', users_restore_path(user), confirm: 'Are you sure?' %>
+      <%= link_to 'delete', users_obliterate_path(user), confirm: 'Are you sure? This will also delete the content that the user created.' %>
     </div>
   <% end %>
 </div>
