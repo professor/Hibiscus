@@ -115,12 +115,12 @@ DESCRIPTION: Full width content with no sidebar; used for attachment pages
 #search-2{
 
     position: relative;
-    left: 45%;
+    left: 55%;
 }
 
 #user_profile_menu{
     position: relative;
-    left: 45%;
+    left: 55%;
     height: 40px;
     width: 130px;
     text-align: center;
@@ -130,6 +130,11 @@ DESCRIPTION: Full width content with no sidebar; used for attachment pages
 #logout_link{
     width:auto;
 }
+
+#popular_posts{
+    width:auto;
+}
+
 #query,#searchsubmit, #right_menu_search{
     padding-top: 2px;
 
@@ -457,8 +462,9 @@ div.menu li {
 	background: #333;
 	line-height: 1em;
 	padding: 10px;
-	width: 50px;
+	width: auto;
 	height: auto;
+    min-width: 70px;
 }
 #access li:hover > a,
 #access ul ul :hover > a {
