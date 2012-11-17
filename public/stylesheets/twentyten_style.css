@@ -872,7 +872,8 @@ div.post-detail{
 #source_url_div{
     height: 20px;
     /*border: 1px solid #000000;*/
-    margin-bottom: 52px;
+    margin-bottom: 47px;
+    margin-top: 5px;
 }
 
 /*#second_new_post_link{*/
