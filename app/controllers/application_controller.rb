@@ -23,6 +23,18 @@ class ApplicationController < ActionController::Base
     OptionalViewHelper.instance
   end
 
+
+=begin
+  # allows redirecting for AJAX calls as well as normal calls
+  def redirect_to(options = {}, response_status = {})
+    if request.xhr?
+      render(:update) {|page| page.redirect_to(options)}
+    else
+      super(options, response_status)
+    end
+  end
+=end
+
   ##
   # Singleton instance of view helpers to be used by all controllers.
   class OptionalViewHelper
