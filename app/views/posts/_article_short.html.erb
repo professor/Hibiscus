@@ -15,7 +15,7 @@
   <div class="entry-meta">
 
     <span class="meta-prep meta-prep-author">Posted on</span>
-    <a href="<%= post_path(post) %>" title="<%= post.created_at.to_date.strftime("%b %d, %Y")%>" rel="bookmark"><span class="entry-date"><%= post.created_at.to_date.strftime("%b %d, %Y") %></span></a>
+    <span class="entry-date"><%= post.created_at.to_date.strftime("%b %d, %Y") %></span>
     <span class="meta-sep">by</span>
     <span class="author vcard"><a class="url fn n" href="<%= user_path(post.user) %>" title="View all posts by <%= post.user.name %>"><%= post.user.display_name %></a>
       <b style="font-size: 1.25em; padding-left: 5px;"><%= post.user.points %></b></span>
