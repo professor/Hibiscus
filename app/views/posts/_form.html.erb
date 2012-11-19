@@ -14,7 +14,7 @@
     <% end %>
 
 
-    <% if @type == 'Post' %>
+    <% if @type == 'Post' || @type == 'Article' %>
 
         <div>
           <%= f.label :title, :class=>"field_label" %>
