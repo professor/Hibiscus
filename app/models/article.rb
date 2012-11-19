@@ -28,6 +28,7 @@ class Article < Post
   # Usage: In Rails Console, Article.update_from_feeds("http://blog.8thlight.com/feed/atom.xml")
   ##
   def self.update_from_feeds(feed_urls)
+    @user = User.find(:first, :conditions => { :slug => ENV['ARTICLE_USER_ID'] })
     @articles = {}
     feeds = Feedzirra::Feed.fetch_and_parse(feed_urls)
     feeds.each do |feed_url, feed|
@@ -35,7 +36,6 @@ class Article < Post
     end
 
     if !@articles.empty?
-      @user = User.find(:first, :conditions => { :_id => ENV['ARTICLE_USER_ID'] })
       UserMailer.deliver_article_email(@user, @articles)
     end
   end
@@ -68,7 +68,7 @@ class Article < Post
             :author         => entry.author,
             :content        => entry.content.blank? ? entry.title : entry.content,
             :site_name      => title,
-            :user_id        => ENV['ARTICLE_USER_ID']
+            :user_id        => @user.id
         )
         #art.tempTags = "article"
         #art.setTags
