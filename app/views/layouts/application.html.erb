@@ -41,10 +41,17 @@
         <div class="menu">
 
           <ul>
-            <li class="current_page_item"><%= link_to "Home", root_url, :title => "Home" %></li>
-            <li class="current_page_item"><%= link_to "#{GlobalConfig.activity_name.pluralize}", "/#{GlobalConfig.activity_type.pluralize}", :title => "#{GlobalConfig.activity_name.pluralize}" %></li>
-            <!--<li class="current_page_item"><%= link_to "Popular", root_url, :title => "Popular" %></li>-->
-            <li class="current_page_item"><%= link_to "Get Started", '/get_started', :title => "Get Started" %></li>
+            <li class="current_page_item"><%= link_to "Posts", root_url, :title => "Posts" %>
+                <ul>
+                  <li id="popular_posts"><%= link_to "Popular", root_url, :title => "Popular" %> </li>
+                </ul>
+            </li>
+            <li class="page_item"><%= link_to "#{GlobalConfig.activity_name.pluralize}", "/#{GlobalConfig.activity_type.pluralize}", :title => "#{GlobalConfig.activity_name.pluralize}" %>
+                  <ul>
+                    <li><%= link_to "Get Started", '/get_started', :title => "Get Started" %></li>
+                  </ul>
+            </li>
+
             <li class="widget-container widget_search" id="search-2">
               <form action="<%= search_index_path %>" id="searchform" method="get" role="search">
                 <div id="right_menu_search">
@@ -116,6 +123,10 @@
 
       </div>
       <!-- #site-info -->
+
+      <div id="rss-icon">
+        <%= link_to image_tag('rss-news.png'), root_url + "posts.rss" , :target => "_blank" %>
+      </div>
 
       <div id="site-generator">
         <a href="https://github.com/hahuang65/Hibiscus" title="Hibiscus" rel="generator">Powered by Hibiscus.</a>

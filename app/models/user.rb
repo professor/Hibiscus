@@ -23,7 +23,8 @@ class User
   field :gravatar_email, :type=> String
   field :points, :type => Integer
   field :digest_frequency, :type => String
-  
+  field :referrer_username, :type => String
+
   slug :username
 
   acts_as_voter
@@ -39,7 +40,7 @@ class User
 
   validates :username, :presence => true
   # validates :email, :email => true
-  
+
   def display_name
     self.name.blank? ? self.username : self.name
   end

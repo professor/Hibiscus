@@ -2,24 +2,19 @@ require 'spec_helper'
 
 describe "User pages" do
 
-  describe "profile page" do
-    let(:user) { FactoryGirl.create(:user) }
-    #before {
-    #  sign_in user
-    #  visit user_path(user)
-    #}
+  before(:each) {login_integration}
 
-    #it { should have_content(user.username) }
-    #it { should have_content("Email:") }
-    #it { should have_content("Gravatar Email:") }
-    #it { should have_content("Points:") }
-    #it { should have_link('Change your avatar at Gravatar.com', href: 'http://gravatar.com/emails', target: '_blank') }
-
+  describe "GET / " do
+    it "displays user" do
+      sign_in_as_a_user
+      visit user_path(@user)
+      page.should have_content(@user.name)
+      page.should have_content("Email:")
+      page.should have_content("Gravatar Email:")
+      page.should have_content("Points: 0")
+      page.should have_content("Digest Frequency: Weekly")
+      page.should have_link('Change your avatar at Gravatar.com', href: 'http://gravatar.com/emails')
+    end
   end
-
-
-
-
-
 
 end
