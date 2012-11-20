@@ -1146,23 +1146,26 @@ div.newType a:active {text-decoration:none; color: #046aad;}
     height: 40px;
     -moz-border-radius: 10px;
     border-radius: 10px;
-    font-size: 1.25em;
+    font-size: 1.45em;
     text-align: center;
-    background-color: #567594;
-    color: #ffffff;
+    background-color: #04C;
+    color: white;
     /*font-weight: bold;*/
-    border-color: #567594;
+    border-color: #04C;
 
+}
+.promptcontroldiv input[type=submit] {
+    color: white;
 }
 .negativebutton{
     min-width: 120px;
     height: 40px;
     -moz-border-radius: 10px;
     border-radius: 10px;
-    font-size: 1.25em;
+    font-size: 1.45em;
     text-align: center;
     background-color: #c2c2c2;
-    color: #ffffff;
+    color: black;
     /*font-weight: bold;*/
     margin-right: 30px;
     border-color: #c2c2c2;

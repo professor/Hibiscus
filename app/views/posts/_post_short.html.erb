@@ -5,6 +5,7 @@
 <script src="jquery.js"></script>
 <script type="text/javascript">
     $(document).ready(function(){
+        $(".promptmaindiv").load();
         $(".promptmaindiv").hide();
     });
     function hidepromptdiv(){
@@ -13,7 +14,7 @@
       }
 
     function showpromptdiv(){
-        $(".promptmaindiv").fadeIn(300);
+        $(".promptmaindiv").show();
 
     }
 
@@ -102,7 +103,7 @@
           </div>
           <div class="promptcontroldiv">
             <button class="negativebutton" type="reset" name="cancel" id="cancelbutton" onclick="hidepromptdiv();">Cancel</button>
-            <%= f.submit "Subscribe", class: "positivebutton" %>
+            <%= f.submit "Subscribe", :class=>'positivebutton'%>
             <!--<button class="positivebutton" type="button" id="submitbutton" onclick="submitupdate();">Subscribe</button>-->
 
           </div>
