@@ -22,9 +22,11 @@ class UsersController < ApplicationController
       if @user.save
         format.html { redirect_to(@user, :notice => "Profile was successfully updated.") }
         format.xml { head :ok }
+        format.js
       else
         format.html { render :action => "edit" }
         format.xml { render :xml => @user.errors, :status => :unprocessable_entity }
+        format.js
       end
     end
   end

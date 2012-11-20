@@ -2,6 +2,23 @@
 <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
 <script type="text/javascript">stLight.options({publisher: "ur-9048546c-df53-fafd-463b-e1d2104fc723"});</script>
 
+<script src="jquery.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $(".promptmaindiv").hide();
+    });
+    function hidepromptdiv(){
+          $(".promptmaindiv").fadeOut(300);
+
+      }
+
+    function showpromptdiv(){
+        $(".promptmaindiv").fadeIn(300);
+
+    }
+
+</script>
+
 <div class="post-meta">
 
   <h2 class="entry-title"><%= link_to post.title.truncate(35), post %></h2>
@@ -51,11 +68,16 @@
       <span class="edit-link">
         <%= link_to 'Delete', post, :confirm => 'Are you sure?', :method => :delete, :title => "Delete Post", :class => "post-edit-link" %>
       </span>
+      <span class="comments-link">
+           <a href="#" title="Subscribe" onclick="javascript:showpromptdiv()"> Subscribe</a>
+      </span>
     <% end %>
 
       <span class="comments-link">
 	    <a href="<%= post_path(post) %>" title="Comment on <%= post.title %>"><%= post.survived_comments.size %>
           Comments</a></span>
+
+
       <div class="entry-utility-social">
 
         <span class='st_facebook' st_url="<%= polymorphic_url(post) %>"></span>
@@ -63,6 +85,32 @@
         <span class='st_linkedin' st_url="<%= polymorphic_url(post) %>"></span>
         <span class='st_googleplus' st_url="<%= polymorphic_url(post) %>"></span>
         <span class='st_email' st_url="<%= polymorphic_url(post) %>"></span>
+      </div>
+
+      <div class="promptmaindiv">
+        <div class="promptinnerdiv">
+          <%= form_for post.user, :remote => true do |f| %>
+          <div class="prompttextdiv">
+            <p class="prompttext">Subscribe to our weekly newsletter</p>
+            <p style="{text-align: center;}">
+            <%= f.text_field :email, :class=>"subscribtionemail", :placeholder =>"Enter your email"%>
+              <%= f.hidden_field :gravatar_email %>
+              <%= f.hidden_field :points %>
+              <%= f.hidden_field :gravatar_email %>
+              <%= f.hidden_field :digest_frequency, :value => "Weekly" %>
+            </p>
+          </div>
+          <div class="promptcontroldiv">
+            <button class="negativebutton" type="reset" name="cancel" id="cancelbutton" onclick="hidepromptdiv();">Cancel</button>
+            <%= f.submit "Subscribe", class: "positivebutton" %>
+            <!--<button class="positivebutton" type="button" id="submitbutton" onclick="submitupdate();">Subscribe</button>-->
+
+          </div>
+          <% end %>
+
+        </div>
+
+
       </div>
   </div>
 

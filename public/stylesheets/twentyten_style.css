@@ -1091,6 +1091,107 @@ div.newType a:active {text-decoration:none; color: #046aad;}
 }
 
 
+.promptmaindiv {
+    width: 500px;
+    height: 350px;
+    background-color: #ffffff;
+    -moz-border-radius: 25px;
+    border-radius: 25px;
+
+    position:absolute;
+    left: 38%;
+    top: 38%;
+    margin-left: -50px;
+    margin-top: -50px;
+    overflow: auto;
+
+    border: 10px solid #b6b6b6;
+    vertical-align: middle;
+}
+
+.promptinnerdiv {
+    display: inline-block;
+    width: 460px;
+    height: 300px;
+    /*background-color: #c2c2c2;*/
+    margin-left: 20px;
+    margin-top: 25px;
+
+
+}
+.prompttextdiv {
+    display: inline-block;
+    width: 420px;
+    height: 150px;
+    background-color: white;
+    margin-left: 20px;
+    margin-top: 25px;
+    /*border: 1px solid #000000;*/
+
+}
+.promptcontroldiv {
+    display: inline-block;
+    width: 420px;
+    height: 60px;
+    background-color: white;
+    margin-left: 20px;
+    margin-bottom: 25px;
+    /*border: 1px solid #000000;*/
+    text-align: center;
+    padding-top: 30px;
+}
+
+.positivebutton{
+    min-width: 120px;
+    height: 40px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    font-size: 1.25em;
+    text-align: center;
+    background-color: #567594;
+    color: #ffffff;
+    /*font-weight: bold;*/
+    border-color: #567594;
+
+}
+.negativebutton{
+    min-width: 120px;
+    height: 40px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    font-size: 1.25em;
+    text-align: center;
+    background-color: #c2c2c2;
+    color: #ffffff;
+    /*font-weight: bold;*/
+    margin-right: 30px;
+    border-color: #c2c2c2;
+}
+
+.subscribtionemail{
+    width: 360px;
+    height: 30px;
+    margin-left: 30px;
+    margin-right: 30px;
+    font-size: large;
+    /*margin-top: 60px;*/
+
+}
+
+.prompttext{
+    text-align: center;
+    font-size: 24px;
+    font-family: Helvetica, Arial, sans-serif;
+    line-height: 42px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: normal;
+    color: #222;
+    margin-top: 50px;
+
+
+}
+
 /* =Asides
 -------------------------------------------------------------- */
 
