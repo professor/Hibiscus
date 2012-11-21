@@ -11,7 +11,9 @@ class Article < Post
   # Usage: In Rails Console, Article.deliver_weekly_digest
   ##
   def self.deliver_weekly_digest
-    UserMailer.deliver_weekly_email("Weekly")
+    User.where(:digest_frequency => "Weekly").each do | u |
+      UserMailer.deliver_weekly_email(u)
+    end
   end
 
   ##
@@ -59,7 +61,6 @@ class Article < Post
   def self.add_entries(entries, title)
     entries.each do |entry|
       if self.unscoped.where(guid: entry.id).empty?
-        #puts(entry.id)
         art = create!(
             :title          => entry.title,
             :source_url     => entry.url,
@@ -70,8 +71,6 @@ class Article < Post
             :site_name      => title,
             :user_id        => @user.id
         )
-        #art.tempTags = "article"
-        #art.setTags
         @articles[art.source_url] = art.title + "##"  + art.content.truncate(350) + "##" + art.slug
       end
     end
