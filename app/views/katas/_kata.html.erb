@@ -24,9 +24,9 @@
     <span><b>Challenge Level: </b><%= kata.challenge_level %> </span>
   </div>
   <br><br>
-  <% unless kata.source.blank? %>
+  <% unless kata.source_url.blank? %>
     <div class="entity-source-url">
-      <h4><b>Source: </b><%= link_to kata.source.truncate(130),"#{kata.source}", {:target => '_blank'} %></h4>
+      <h4><b>Source URL: </b><%= link_to kata.source_url.truncate(130),"#{kata.source_url}", {:target => '_blank'} %></h4>
     </div>
   <% end %>
   <div class="entity-content">
