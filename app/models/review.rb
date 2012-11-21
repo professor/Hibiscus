@@ -67,4 +67,11 @@ class Review
     self.vote_score = self.plusminus
     save
   end
+
+  def updated_at
+    update_time = self[:updated_at]
+    update_time = Time.parse(update_time) if update_time.is_a? String
+    update_time
+  end
+
 end

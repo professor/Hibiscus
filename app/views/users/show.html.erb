@@ -19,14 +19,20 @@
 
     <br><br>
 
-    <br>
-    <section id="authentications">
-      <h3>
-        <% if can? :update, @user %>
+    <% if can? :update, @user %>
+      <br>
+      <section id="authentications">
+        <h3>
           <%= link_to 'Authentications', authentications_path %></h3>
-        <% end %>
-        <br><br>
+      </section>
+      <% if @user.admin? %>
+        <section id="all_users">
+          <h3>
+            <%= link_to 'All users', users_path %></h3>
         </section>
+      <% end %>
+      <br><br>
+    <% end %>
   </div>
 
   <div id="gravatar_div">
@@ -36,6 +42,81 @@
 
   <div id="gravatar_link">
     <a href="http://gravatar.com/emails" target="_blank" class="page_nav_links">Change your avatar at Gravatar.com</a>
+  </div>
+
+  <div id="activity_div">
+    <b>Activity</b>
+
+    <% if @katas.any? %>
+      <br><br><br>
+      <b>Kata posted:</b>
+      <br><br>
+      <table>
+        <% @katas.each do |kata| %>
+          <tr>
+            <td><%= link_to kata.title, kata %></td>
+            <td>&nbsp;&nbsp;&nbsp;<%= kata.updated_at.asctime %></td>
+          </tr>
+          <!-- TODO: Check if time should be "created_at"-->
+        <% end %>
+      </table>
+    <% end %>
+
+    <% if @posts.any? %>
+      <br><br><br>
+      <b>Posts:</b>
+      <br><br>
+      <table>
+        <% @posts.each do |post| %>
+          <tr>
+            <td><%= link_to post.title, post %></td>
+            <td>&nbsp;&nbsp;&nbsp;<%= post.updated_at.asctime %></td>
+          </tr>
+        <% end %>
+      </table>
+    <% end %>
+
+    <% if @articles.any? %>
+      <br><br><br>
+      <b>Articles posted:</b>
+      <br><br>
+      <table>
+        <% @articles.each do |article| %>
+          <tr>
+            <td><%= link_to article.title, article %></td>
+            <td>&nbsp;&nbsp;&nbsp;<%= article.updated_at.asctime %></td>
+          </tr>
+        <% end %>
+      </table>
+    <% end %>
+
+    <% if @comments.any? %>
+      <br><br><br>
+      <b>Posts commented on:</b>
+      <br><br>
+      <table>
+        <% @comments.each do |comment| %>
+          <tr>
+            <td><%= link_to comment.post.title, comment.post %></td>
+            <td>&nbsp;&nbsp;&nbsp;<%= comment.updated_at.asctime %></td>
+          </tr>
+        <% end %>
+      </table>
+    <% end %>
+
+    <% if @reviews.any? %>
+      <br><br><br>
+      <b>Kata reviewed:</b>
+      <br><br>
+      <table>
+        <% @reviews.each do |review| %>
+          <tr>
+            <td><%= link_to review.kata.title, review.kata %></td>
+            <td>&nbsp;&nbsp;&nbsp;<%= review.updated_at.asctime %></td>
+          </tr>
+        <% end %>
+      </table>
+    <% end %>
   </div>
 
 </div>

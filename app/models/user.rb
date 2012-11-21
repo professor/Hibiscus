@@ -44,4 +44,18 @@ class User
   def display_name
     self.name.blank? ? self.username : self.name
   end
+
+  def comments
+    comments = []
+    posts = Post.all
+    posts.each { |p| comments += p.comments.where(user_id: self.id) }
+    return comments
+  end
+
+  def reviews
+    reviews = []
+    katas = Kata.all
+    katas.each { |k| reviews += k.reviews.where(user_id: self.id) }
+    return reviews
+  end
 end

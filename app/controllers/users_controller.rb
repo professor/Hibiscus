@@ -10,6 +10,11 @@ class UsersController < ApplicationController
   def show
     @user = User.find_by_slug(params[:id])
     @plan = @user.plan ? @user.plan : Plan.new
+    @katas = @user.katas
+    @posts = @user.posts
+    @articles = @posts.where(_type: "Article")
+    @comments = @user.comments
+    @reviews = @user.reviews
   end
 
   def edit
