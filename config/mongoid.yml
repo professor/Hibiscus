@@ -11,7 +11,6 @@ development:
   #datebase: craftsmanship-awesome
   database: craft_wiki_development
 
-
 test:
   <<: *defaults
   database: craft_wiki_test
