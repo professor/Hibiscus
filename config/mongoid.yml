@@ -8,7 +8,6 @@ defaults: &defaults
 
 development:
   <<: *defaults
-  #datebase: craftsmanship-awesome
   database: craft_wiki_development
 
 test:
