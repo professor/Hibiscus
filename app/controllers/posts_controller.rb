@@ -23,6 +23,10 @@ class PostsController < ApplicationController
   def show
     @post = post_type.find_by_slug(params[:id])
 
+    if @post.blank?
+      redirect_to(root_path(), :notice => "Sorry, we couldn't find what you were looking for " + params[:id]) and return
+    end
+
     #TODO; refactor
     @commentable = @post
     if @post.is_a?(Kata)
