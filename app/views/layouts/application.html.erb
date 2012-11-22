@@ -30,7 +30,7 @@
         </h1>
 
         <div id="site-description"><%= GlobalConfig.site_tag %></div>
-        <img src="http://2010dev.wordpress.com/wp-content/themes/pub/twentyten/images/headers/forestfloor.jpg" width="100%" height="198" alt=""/>
+        <%= image_tag("shore_198.jpg", :size => "1080x198") %>
 
       </div>
       <!-- #branding -->
@@ -41,7 +41,7 @@
         <div class="menu">
 
           <ul>
-            <li class="current_page_item"><%= link_to "Posts", root_url, :title => "Posts" %>
+            <li class="current_page_item"><%= link_to "Articles", root_url, :title => "Articles" %>
                 <ul>
                   <li id="popular_posts"><%= link_to "Popular", root_url, :title => "Popular" %> </li>
                 </ul>

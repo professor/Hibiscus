@@ -19,7 +19,8 @@ class Kata
 
   field :title, :type => String
   field :content, :type => String
-  field :source, :type => String
+  field :source, :type => String #Remove in next release
+  field :source_url, :type => String
   field :rating, :type => Float, default: 0.0
 
   field :challenge_level, :type => String

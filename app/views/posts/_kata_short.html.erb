@@ -10,11 +10,11 @@
     <span class="meta-sep">by</span>
     <span class="author vcard"><a class="url fn n" href="<%= user_path(post.user) %>" title="View all posts by <%= post.user.name %>"><%= post.user.display_name %></a></span>
   </div>
-  <% unless post.source.blank? %>
+  <% unless post.source_url.blank? %>
     <br>
 
     <div>
-      <h4>Source URL:  <%= auto_link_urls post.source %></h4>
+      Source URL: <%=link_to post.source_url.truncate(35),"#{post.source_url}", {:target => '_blank'}%>
     </div>
 
   <% end %>
