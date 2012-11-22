@@ -102,7 +102,7 @@ class PostsController < ApplicationController
     elsif post_type == Kata
       @post.category = @form[:category]
       @post.challenge_level = @form[:challenge_level]
-      @post.source = params[@type.downcase.to_sym][:source]
+      @post.source_url = params[@type.downcase.to_sym][:source_url]
     end
     @post.title = @form[:title]
     @post.content = params[@type.downcase.to_sym][:content]
