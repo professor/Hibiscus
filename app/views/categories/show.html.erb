@@ -1,2 +1,40 @@
-<h1>Categories#show</h1>
-<p>Find me in app/views/categories/show.html.erb</p>
+<% header = GlobalConfig.activity_page_header || GlobalConfig.activity_name.pluralize  %>
+<%= content_for :page_header, header %>
+
+<%= javascript_include_tag "jquery.dataTables.min" %>
+
+<script>
+  $(document).ready(function() {
+//    alert("haha");
+    $('#example').dataTable();
+  });
+
+</script>
+
+<div class="newType" >
+  <%= link_to "New Kata", new_kata_path() %>
+</div>
+
+
+<div>
+  <table cellpadding="0" cellspacing="0" border="0" class="display" id="example" width="100%">
+    <thead>
+    <tr>
+      <th>Kata Name</th>
+      <th>Rating</th>
+      <th>Challenge Level</th>
+      <th>Author</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @category.katas.each do |kata| %>
+      <tr class="odd gradeX">
+        <td><%= link_to kata.title, kata_path(kata) %></td>
+        <td><%= kata.rating %></td>
+        <td><%= kata.challenge_level %></td>
+        <td class="center"><%= kata.user.display_name %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>
