@@ -7,6 +7,8 @@ FactoryGirl.define do
     name "Clark Kent"
     username
     email "ckent@wiki.com"
+    points "0"
+    digest_frequency "Weekly"
   end
 
   factory :admin, :class => User do

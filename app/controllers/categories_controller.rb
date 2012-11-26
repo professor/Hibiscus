@@ -1,3 +1,5 @@
+#CategoriesController handles the generation of the list of categories.
+
 class CategoriesController < ApplicationController
   before_filter :authenticate_user!
 
@@ -13,21 +15,10 @@ class CategoriesController < ApplicationController
   end
 
   def show
-  end
-
-  def new
-  end
-
-  def edit
-  end
-
-  def create
-  end
-
-  def update
-  end
-
-  def destroy
+    @category = Category.find_by_slug(params[:id])
+    respond_to do |format|
+      format.html # show.html.erb
+    end
   end
 
 end

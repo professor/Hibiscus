@@ -8,7 +8,8 @@ class LikesController < ApplicationController
 
     respond_to do |format|
       if @like.save
-        format.html { redirect_to(@post, :flash => {:notice => params[:like][:is_dislike] ? 'You disliked this post.' : 'You liked this post.'}) }
+        current_user.add_points(1)
+        format.html { redirect_to(@post, :notice => params[:like][:is_dislike] ? 'You disliked this post.' : 'You liked this post.') }
         format.js
       else
         format.html { redirect_to(@post, :flash => { :alert => 'Your like could not be recorded.' }) }

@@ -1,6 +1,10 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
+  before_filter do
+    cookies['app-referrer-username'] = params[:r] if params[:r]
+  end
+  
   def recent_posts
     @recent_posts ||= Post.desc(:created_at).limit(5)
   end
@@ -23,11 +27,28 @@ class ApplicationController < ActionController::Base
     OptionalViewHelper.instance
   end
 
+
+=begin
+  # allows redirecting for AJAX calls as well as normal calls
+  def redirect_to(options = {}, response_status = {})
+    if request.xhr?
+      render(:update) {|page| page.redirect_to(options)}
+    else
+      super(options, response_status)
+    end
+  end
+=end
+
   ##
   # Singleton instance of view helpers to be used by all controllers.
   class OptionalViewHelper
     include Singleton
     include ActionView::Helpers::TextHelper
+  end
+
+
+  def after_sign_in_path_for(resource)
+    request.env['omniauth.origin'] || stored_location_for(resource) || root_path
   end
 
   helper_method :recent_posts, :all_tags, :post_type

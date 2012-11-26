@@ -6,7 +6,7 @@ class PostsController < ApplicationController
   before_filter :post_type
 
   ##
-  # Retrieve all posts of the specified type.
+  # Retrieve all Posts or Katas and displays them
   def index
     @posts = post_type.all
     @categories = Category.order_importance
@@ -14,6 +14,7 @@ class PostsController < ApplicationController
     respond_to do |format|
       format.html # index.html.erb
       format.xml { render :xml => @posts }
+      format.rss { render :layout => false } #index.rss.builder
     end
   end
 
@@ -21,6 +22,10 @@ class PostsController < ApplicationController
   # GET /posts/1.xml
   def show
     @post = post_type.find_by_slug(params[:id])
+
+    if @post.blank?
+      redirect_to(root_path(), :notice => "Sorry, we couldn't find what you were looking for " + params[:id]) and return
+    end
 
     #TODO; refactor
     @commentable = @post
@@ -92,7 +97,6 @@ class PostsController < ApplicationController
   # be saved or retry to edit otherwise.
   def update
     @post = post_type.find_by_slug(params[:id])
-    @post.oldSlug= @post.slug
     authorize! :update, @post
     @form = params[@type.downcase.to_sym]
     if post_type == Post
@@ -102,7 +106,7 @@ class PostsController < ApplicationController
     elsif post_type == Kata
       @post.category = @form[:category]
       @post.challenge_level = @form[:challenge_level]
-      @post.source = params[@type.downcase.to_sym][:source]
+      @post.source_url = params[@type.downcase.to_sym][:source_url]
     end
     @post.title = @form[:title]
     @post.content = params[@type.downcase.to_sym][:content]

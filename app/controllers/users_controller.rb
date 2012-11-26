@@ -73,4 +73,15 @@ class UsersController < ApplicationController
       redirect_to(User, :alert => "The user: #{@user.username} has not been deleted permanently.")
     end
   end
+
+  def unsubscribe
+    puts(params.inspect)
+    User.find_by_slug(params[:id]).update_attributes(:digest_frequency => '')
+
+    @posts = post_type.all
+    respond_to do |format|
+      format.html { redirect_to(root_url, :notice => "You have been unsubscribed.") }
+      format.xml { head :ok }
+    end
+  end
 end

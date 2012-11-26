@@ -1,0 +1,18 @@
+<% category = @categories.at((n * 3) + s - 1) %>
+<h2 class="entry-title" style="margin-bottom: 5px;"><%= link_to category.name.capitalize, category_path(category) %></h2>
+<table width='100%'>
+  <% number_katas = 0 %>
+  <% category.katas.desc(:rating).each do |kata| %>
+      <tr>
+        <td width='70%' style="font-size: 14px;">
+          <%= link_to kata.title, kata, {:style => 'color:#3399CC; text-decoration: none'} %>
+        </td>
+        <td width='30%'>
+          <% if kata.rating > 0 %>
+              <% (1..kata.rating.ceil).each { %> <img src="/images/star_unit.gif" style="height: 14px; width: 14px"> <% } %>
+          <% end %>
+        </td>
+      </tr>
+      <% number_katas < 6 ? number_katas += 1 : break %>
+  <% end %>
+</table>
