@@ -7,6 +7,7 @@
     $(document).ready(function(){
         $(".promptmaindiv").load();
         $(".promptmaindiv").hide();
+        $(".subscriptionerrormessage").hide();
     });
     function hidepromptdiv(){
           $(".promptmaindiv").fadeOut(300);
@@ -16,6 +17,22 @@
     function showpromptdiv(){
         $(".promptmaindiv").show();
 
+    }
+
+    function validateemail(){
+//        var email = document.getElementById('subscriptionemailtxt').value  ;
+        var email = $("input.subscriptionemail").val();
+        alert(email);
+
+        var re = /\S+@\S+\.\S+/;
+        if (!re.test(email)){
+            $(".subscriptionerrormessage").show();
+            $("input.subscriptionemail").css("border", "3px solid #d80000");
+            $("input.subscriptionemail").val('');
+            return false;
+        }
+        alert('true');
+        return true;
     }
 
 </script>
@@ -69,14 +86,16 @@
       <span class="edit-link">
         <%= link_to 'Delete', post, :confirm => 'Are you sure?', :method => :delete, :title => "Delete Post", :class => "post-edit-link" %>
       </span>
-      <span class="comments-link">
-           <a href="#" title="Subscribe" onclick="javascript:showpromptdiv()"> Subscribe</a>
-      </span>
+
     <% end %>
 
       <span class="comments-link">
-	    <a href="<%= post_path(post) %>" title="Comment on <%= post.title %>"><%= post.survived_comments.size %>
-          Comments</a></span>
+           <a href="#" title="Subscribe" onclick="javascript:showpromptdiv()"> Subscribe</a>
+      </span>
+
+      <span class="comments-link">
+	    <a href="<%= post_path(post) %>" title="Comment on <%= post.title %>"><%= post.survived_comments.size %> Comments</a>
+      </span>
 
 
       <div class="entry-utility-social">
@@ -94,15 +113,16 @@
           <div class="prompttextdiv">
             <p class="prompttext">Subscribe to our weekly newsletter</p>
             <p style="{text-align: center;}">
-            <%= f.text_field :email, :class=>"subscribtionemail", :placeholder =>"Enter your email"%>
+            <label class="subscriptionerrormessage">Please enter a valid email id</label>  <br>
+            <%= f.text_field :email, :class=>"subscriptionemail", :placeholder =>"Enter your email"%>
               <%= f.hidden_field :gravatar_email %>
               <%= f.hidden_field :points %>
-              <%= f.hidden_field :gravatar_email %>
               <%= f.hidden_field :digest_frequency, :value => "Weekly" %>
             </p>
           </div>
           <div class="promptcontroldiv">
             <button class="negativebutton" type="reset" name="cancel" id="cancelbutton" onclick="hidepromptdiv();">Cancel</button>
+            <!--%= f.submit "Subscribe", :class=>'positivebutton', :onclick=>"return validateemail();"%-->
             <%= f.submit "Subscribe", :class=>'positivebutton'%>
             <!--<button class="positivebutton" type="button" id="submitbutton" onclick="submitupdate();">Subscribe</button>-->
 
