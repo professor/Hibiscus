@@ -506,7 +506,7 @@ div.menu ul {
     float: left;
     padding-left: 15px;
     padding-right: 5px;
-    vertical-align: middle;
+    vertical-align: top;
     text-align: center;
 
 }
@@ -514,8 +514,12 @@ div.menu ul {
 #subscribe-menu{
     margin-left: 140px;
 }
+#subsignin{
 
-
+}
+#subsignin a{
+    color: #000000;
+}
 
 
 
@@ -1167,6 +1171,46 @@ div.newType a:active {text-decoration:none; color: #046aad;}
     /*border: 1px solid #000000;*/
     text-align: center;
     padding-top: 30px;
+}
+
+
+
+
+
+.prompttextdivsignin {
+    display: block;
+    width: 250px;
+    height: 40px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 40px;
+    padding-top: 20px;
+    /*border: 1px solid #000000;*/
+    background: #d3d3d3;
+
+    text-align: center;
+
+    color: #000000;
+    font-size: 18px;
+    font-weight: bold;
+    -moz-border-radius: 15px;
+    border-radius: 15px;
+}
+.prompttextdivsignin a:hover {
+    text-decoration: none;
+    color: #4183C4;
+}
+.prompttextdivsignin a:active {
+    text-decoration: none;
+    color: #4183C4;
+}
+.prompttextdivsignin a:visited {
+    text-decoration: none;
+    color: #4183C4;
+}
+.prompttextdivsignin a:link {
+    text-decoration: none;
+    color: #4183C4;
 }
 
 .positivebutton{

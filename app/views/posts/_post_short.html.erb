@@ -90,10 +90,6 @@
     <% end %>
 
       <span class="comments-link">
-           <a href="#" title="Subscribe" onclick="javascript:showpromptdiv()"> Subscribe</a>
-      </span>
-
-      <span class="comments-link">
 	    <a href="<%= post_path(post) %>" title="Comment on <%= post.title %>"><%= post.survived_comments.size %> Comments</a>
       </span>
 
@@ -134,10 +130,18 @@
 
        <% else %>
             <div class="promptinnerdiv">
-                  <div class="prompttextdiv">
-                    <h2>Sign in with <%= link_to "GitHub", '/auth/github' %></h2>
+              <div class="prompttextdiv">
 
+                <div class="prompttextdivsignin">
+
+                    <a href="/auth/github">
+                    Sign in with GitHub
+                    </a>
+
+                </div>
                   </div>
+                </div>
+
             </div>
         <% end %>
       </div>
