@@ -1,7 +1,7 @@
 #CategoriesController handles the generation of the list of categories.
 
 class CategoriesController < ApplicationController
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, :only => [:index]
 
   def index
     #@categories = Category.all
