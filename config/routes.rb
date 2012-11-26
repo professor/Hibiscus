@@ -25,6 +25,7 @@ CraftWiki::Application.routes.draw do
   resources :authentications
   resources :likes
   resources :tags
+  resources :flags
 
   match '/posts/mars-rover-kata' => redirect('/exercises/mars-rover-kata')
   match '/posts/unbeatable-tic-dash-tac-dash-toe' => redirect('/exercises/unbeatable-tic-dash-tac-dash-toe')

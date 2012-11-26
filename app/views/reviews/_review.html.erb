@@ -55,6 +55,9 @@
          <%= link_to 'Delete', polymorphic_path([@commentable, review]), confirm: 'Are you sure?', method: :delete %>
     </span>
       <% end %>
+      <span class="edit-link">
+        <%= button_to("Flag", {:controller => "flags", :post_type => @commentable.class, :post_id => @commentable.id, :review_id => review.id}, :confirm => "Are you sure?") %>
+    </span>
     </p>
 
 

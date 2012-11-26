@@ -64,6 +64,9 @@
         <%= link_to 'Delete', post, :confirm => 'Are you sure?', :method => :delete, :title => "Delete Post", :class => "post-edit-link" %>
       </span>
     <% end %>
+    <span class="edit-link">
+        <%= button_to("Flag", {:controller => "flags", :post_type => post.class, :post_id => post.id}, :confirm => "Are you sure?") %>
+    </span>
     <div class="entry-utility-social">
 
       <span class='st_facebook' st_url="<%= post.source_url %>"></span>

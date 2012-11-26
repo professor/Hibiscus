@@ -68,10 +68,12 @@
       <br><br>
       <table>
         <% @posts.each do |post| %>
+          <% unless post.is_a? Article %>
           <tr>
             <td><%= link_to post.title, post %></td>
             <td>&nbsp;&nbsp;&nbsp;<%= post.updated_at.asctime %></td>
           </tr>
+            <% end %>
         <% end %>
       </table>
     <% end %>

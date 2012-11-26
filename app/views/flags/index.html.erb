@@ -1,0 +1,27 @@
+<h1>Listing flags</h1>
+
+<table>
+  <tr>
+    <th>Resource</th>
+    <th>Type</th>
+    <th>Count</th>
+  </tr>
+
+  <% @flags.each do |flag| %>
+    <tr>
+      <% if post = flag.post %>
+        <td><%= post.title %></td>
+        <td>&nbsp;&nbsp;&nbsp;<%= post.class %></td>
+        <td>&nbsp;&nbsp;&nbsp;<%= post.flags.count %></td>
+      <% elsif kata = flag.kata %>
+        <td><%= kata.title %></td>
+        <td>&nbsp;&nbsp;&nbsp;Kata</td>
+        <td>&nbsp;&nbsp;&nbsp;<%= kata.flags.count %></td>
+      <% end %>
+    </tr>
+  <% end %>
+</table>
+
+<br/>
+
+<%= link_to 'New Flag', new_flag_path %>
