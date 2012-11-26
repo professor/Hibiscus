@@ -108,30 +108,38 @@
       </div>
 
       <div class="promptmaindiv">
-        <div class="promptinnerdiv">
-          <%= form_for post.user, :remote => true do |f| %>
-          <div class="prompttextdiv">
-            <p class="prompttext">Subscribe to our weekly newsletter</p>
-            <p style="{text-align: center;}">
-            <label class="subscriptionerrormessage">Please enter a valid email id</label>  <br>
-            <%= f.text_field :email, :class=>"subscriptionemail", :placeholder =>"Enter your email"%>
-              <%= f.hidden_field :gravatar_email %>
-              <%= f.hidden_field :points %>
-              <%= f.hidden_field :digest_frequency, :value => "Weekly" %>
-            </p>
-          </div>
-          <div class="promptcontroldiv">
-            <button class="negativebutton" type="reset" name="cancel" id="cancelbutton" onclick="hidepromptdiv();">Cancel</button>
-            <!--%= f.submit "Subscribe", :class=>'positivebutton', :onclick=>"return validateemail();"%-->
-            <%= f.submit "Subscribe", :class=>'positivebutton'%>
-            <!--<button class="positivebutton" type="button" id="submitbutton" onclick="submitupdate();">Subscribe</button>-->
+        <% if user_signed_in? %>
+            <div class="promptinnerdiv">
+              <%= form_for current_user, :remote => true do |f| %>
+              <div class="prompttextdiv">
+                <p class="prompttext">Subscribe to our weekly newsletter</p>
+                <p style="{text-align: center;}">
+                <label class="subscriptionerrormessage">Please enter a valid email id</label>  <br>
+                <%= f.text_field :email, :class=>"subscriptionemail", :placeholder =>"Enter your email"%>
+                  <%= f.hidden_field :gravatar_email %>
+                  <%= f.hidden_field :points %>
+                  <%= f.hidden_field :digest_frequency, :value => "Weekly" %>
+                </p>
+              </div>
+              <div class="promptcontroldiv">
+                <button class="negativebutton" type="reset" name="cancel" id="cancelbutton" onclick="hidepromptdiv();">Cancel</button>
+                <!--%= f.submit "Subscribe", :class=>'positivebutton', :onclick=>"return validateemail();"%-->
+                <%= f.submit "Subscribe", :class=>'positivebutton'%>
+                <!--<button class="positivebutton" type="button" id="submitbutton" onclick="submitupdate();">Subscribe</button>-->
 
-          </div>
-          <% end %>
+              </div>
+              <% end %>
 
-        </div>
+            </div>
 
+       <% else %>
+            <div class="promptinnerdiv">
+                  <div class="prompttextdiv">
+                    <h2>Sign in with <%= link_to "GitHub", '/auth/github' %></h2>
 
+                  </div>
+            </div>
+        <% end %>
       </div>
   </div>
 

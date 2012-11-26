@@ -118,13 +118,13 @@ DESCRIPTION: Full width content with no sidebar; used for attachment pages
     left: 55%;
 }
 
-#user_profile_menu{
-    position: relative;
-    left: 55%;
-    height: 40px;
-    width: 130px;
-    text-align: center;
-}
+/*#user_profile_menu{*/
+    /*position: relative;*/
+    /*left: 55%;*/
+    /*height: 40px;*/
+    /*width: 130px;*/
+    /*text-align: center;*/
+/*}*/
 
 
 #logout_link{
@@ -193,7 +193,7 @@ code {
 
 /* The main theme structure */
 #access .menu-header,
-div.menu,
+
 #colophon,
 #branding,
 #main,
@@ -203,8 +203,11 @@ div.menu,
 }
 #wrapper {
 	background: #fff;
-	margin-top: 20px;
+	margin-top: 10px;
 	padding: 0 20px;
+
+    /*clear: both;*/
+
     /*margin-left: 15%;*/
     /*margin-right: 15%;*/
     /*position: absolute;*/
@@ -410,83 +413,108 @@ a:hover {
 -------------------------------------------------------------- */
 
 #access {
-	background: #000;
-	display: block;
-	float: left;
-	margin: 0 auto;
-	width: 100%;
+	background: #ffffff;
+	/*float: left;*/
+    clear: both;
+	width: 1080px;
+    padding: 0 20px;
+
+    margin-left: auto;
+    margin-right: auto;
+    height: 35px;
+    border-bottom: 2px solid #666;
+    font-size: 13px;
+    font-weight: bold;
 }
-#access .menu-header,
-div.menu {
-	font-size: 13px;
-	margin-left: 12px;
-	width: 100%;
-}
-#access .menu-header ul,
-div.menu ul {
-	list-style: none;
-	margin: 0;
-}
-#access .menu-header li,
-div.menu li {
-	float: left;
-	position: relative;
-}
-#access a {
-	color: #aaa;
-	display: block;
-	line-height: 38px;
-	padding: 0 10px;
-	text-decoration: none;
-}
+
 #access ul ul {
-	box-shadow: 0px 3px 3px rgba(0,0,0,0.2);
-	-moz-box-shadow: 0px 3px 3px rgba(0,0,0,0.2);
-	-webkit-box-shadow: 0px 3px 3px rgba(0,0,0,0.2);
-	display: none;
-	position: absolute;
-	top: 38px;
-	left: 0;
-	float: left;
-	width: 50px;
-	z-index: 99999;
-}
-#access ul ul li {
-	min-width: 50px;
-}
-#access ul ul ul {
-	left: 100%;
-	top: 0;
-}
-#access ul ul a {
-	background: #333;
-	line-height: 1em;
-	padding: 10px;
-	width: auto;
-	height: auto;
-    min-width: 70px;
-}
-#access li:hover > a,
-#access ul ul :hover > a {
-	background: #333;
-	color: #fff;
+    display: none;
 }
 #access ul li:hover > ul {
-	display: block;
+    display: block;
+    background: #c0c0c0;
+    color: #113794;
+    height: 35px;
+    border-bottom: 2px solid #666;
+
 }
-#access ul li.current_page_item > a,
-#access ul li.current-menu-ancestor > a,
-#access ul li.current-menu-item > a,
-#access ul li.current-menu-parent > a {
-	color: #fff;
+
+#access .menu-header ul,
+div.menu ul {
+    list-style: none;
+    margin: 0;
 }
-* html #access ul li.current_page_item a,
-* html #access ul li.current-menu-ancestor a,
-* html #access ul li.current-menu-item a,
-* html #access ul li.current-menu-parent a,
-* html #access ul li a:hover {
-	color: #fff;
+#access .menu-header li,
+ div.menu li {
+     float: left;
+     position: relative;
+    text-align: center;
+    width: 100px;
+
+ }
+
+
+#access a {
+    color: #000000;
+    display: block;
+    line-height: 38px;
+    padding: 0 10px;
+    text-decoration: none;
+    height: 35px;
+
 }
+
+
+
+#access a:hover {
+    background: #c0c0c0;
+    color: #113794;
+    height: 35px;
+    border-bottom: 2px solid #666;
+}
+#access a:active {
+    background: #c0c0c0;
+    color: #113794;
+    height: 35px;
+    border-bottom: 2px solid #666;;
+}
+
+#signed-in-user{
+    width: 200px;
+    /*padding-left: 3%;*/
+}
+
+#search-menu{
+    width: 400px;
+    /*background: #666;*/
+    text-align: left;
+    vertical-align: bottom;
+    padding-left: 35px;
+}
+#search-box{
+    width: 250px;
+    height: 28px;
+    line-height: 20px;
+    font-size: 14px;
+
+}
+
+#github-image{
+    height: 35px;
+    width: 35px;
+    display: inline-block;
+    float: left;
+    padding-left: 15px;
+    padding-right: 5px;
+    vertical-align: middle;
+    text-align: center;
+
+}
+
+#subscribe-menu{
+    margin-left: 140px;
+}
+
 
 
 
