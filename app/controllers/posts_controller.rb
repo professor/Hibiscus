@@ -23,6 +23,10 @@ class PostsController < ApplicationController
   def show
     @post = post_type.find_by_slug(params[:id])
 
+    if @post.blank?
+      redirect_to(root_path(), :notice => "Sorry, we couldn't find what you were looking for " + params[:id]) and return
+    end
+
     #TODO; refactor
     @commentable = @post
     if @post.is_a?(Kata)
@@ -102,7 +106,7 @@ class PostsController < ApplicationController
     elsif post_type == Kata
       @post.category = @form[:category]
       @post.challenge_level = @form[:challenge_level]
-      @post.source = params[@type.downcase.to_sym][:source]
+      @post.source_url = params[@type.downcase.to_sym][:source_url]
     end
     @post.title = @form[:title]
     @post.content = params[@type.downcase.to_sym][:content]
