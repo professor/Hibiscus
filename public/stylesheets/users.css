@@ -36,6 +36,7 @@
 #gravatar_div{
     float: right;
     width: 200px;
+    height: 200px;
     padding: 1%;
     margin: 2%;
     border: 1px solid #d3d3d3;

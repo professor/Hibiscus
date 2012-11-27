@@ -6,7 +6,7 @@ describe UserMailer do
     @articles = {}
     @posts = {}
     @email = UserMailer.article_email(@user, @articles)
-    @weekly_email = UserMailer.weekly_email("Weekly")
+    @weekly_email = UserMailer.weekly_email(@user)
   end
 
   #ensure that the subject is correct

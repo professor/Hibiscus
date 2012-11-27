@@ -19,20 +19,11 @@ class UserMailer < ActionMailer::Base
   # Send weekly digest to users that agree to notification.
   # Invoked from Article.deliver_weekly_digest
   ##
-  def weekly_email(frequency = "Weekly")
-
+  def weekly_email(user)
     @url  = "http://craftsmanship.sv.cmu.edu"
-    @bcc = ""
-
-    User.where(:digest_frequency => frequency).each do | u |
-      @bcc += u.email + ","
-    end
-
-    @bcc = @bcc[0..-1]
-
-    @message_subject = "CMU Craftsmanship #{frequency.capitalize} Digest"
     @posts = Post.desc(:created_at).limit(8)
+    @id = user.id.to_s
 
-    mail(:bcc => @bcc, :subject => @message_subject)
+    mail(:to => user.email, :subject => "CMU Craftsmanship Weekly Digest")
   end
 end
