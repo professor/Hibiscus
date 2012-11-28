@@ -11,7 +11,7 @@
     </span>
     <% end %>
     <span class="edit-link">
-        <%= button_to("Flag", {:controller => "flags", :post_type => @post.class, :post_id => @post.id, :comment_id => comment.id}, :confirm => "Are you sure?") %>
+        &nbsp;<%= button_to("Report", {:controller => "flags", :post_type => @post.class, :post_id => @post.id, :comment_id => comment.id}, :confirm => "Are you sure?", :class => "reportLink") %>
     </span>
   </p>
 

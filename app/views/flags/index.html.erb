@@ -1,27 +1,94 @@
-<h1>Listing flags</h1>
+<%= javascript_include_tag "jquery.dataTables.min" %>
 
-<table>
-  <tr>
-    <th>Resource</th>
-    <th>Type</th>
-    <th>Count</th>
-  </tr>
+<script>
+  $(document).ready(function () {
+    $('#post_reports_table').dataTable({
+      "bLengthChange":false, // disable the default page length change
+      "bFilter":false, // disable the default table filter
+      "bPaginate":false, // disable the default pagination
+//      "bInfo": false,  // the 'Showing x to y of z entries' text, can be disabled by uncomment this line
+//      "bAutoWidth": false,
+      "aaSorting":[
+        [1, 'desc']
+      ]
+    });
+  });
 
-  <% @flags.each do |flag| %>
+  $(document).ready(function () {
+    $('#comment_reports_table').dataTable({
+      "bLengthChange":false, // disable the default page length change
+      "bFilter":false, // disable the default table filter
+      "bPaginate":false, // disable the default pagination
+//      "bInfo": false,  // the 'Showing x to y of z entries' text, can be disabled by uncomment this line
+//      "bAutoWidth": false,
+      "aaSorting":[
+        [1, 'desc']
+      ]
+    });
+  });
+
+</script>
+
+<h1>Reported Content</h1><br>
+
+<div>
+  <h2>Posts</h2>
+  <table class="reports_table" id="post_reports_table">
+    <thead>
     <tr>
-      <% if post = flag.post %>
-        <td><%= post.title %></td>
-        <td>&nbsp;&nbsp;&nbsp;<%= post.class %></td>
-        <td>&nbsp;&nbsp;&nbsp;<%= post.flags.count %></td>
-      <% elsif kata = flag.kata %>
-        <td><%= kata.title %></td>
-        <td>&nbsp;&nbsp;&nbsp;Kata</td>
-        <td>&nbsp;&nbsp;&nbsp;<%= kata.flags.count %></td>
-      <% end %>
+      <th>Post Name</th>
+      <th>Author</th>
+      <th>Updated At</th>
+      <th>Reported By</th>
+      <th>Report Date</th>
     </tr>
-  <% end %>
-</table>
+    </thead>
+    <tbody>
+    <% @flags.each do |flag| %>
+      <% if post = flag.post %>
+        <tr class="odd gradeX">
+          <td><%= link_to post.title, post %></td>
+          <td><%= post.user.display_name %></td>
+          <td><%= post.updated_at.strftime("%Y-%m-%d") %></td>
+          <td><%= flag.user.display_name %></td>
+          <td><%= flag.created_at.strftime("%Y-%m-%d") %></td>
+        </tr>
+      <% end %>
+    <% end %>
+    </tbody>
+  </table>
+  <br><br>
 
-<br/>
+  <h2>Comments</h2>
+  <table class="reports_table" id="comment_reports_table">
+    <thead>
+    <tr>
+      <th>Comment's Post Name</th>
+      <th>Author</th>
+      <th>Updated At</th>
+      <th>Reported By</th>
+      <th>Report Date</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @flags.each do |flag| %>
+      <% if comment = flag.comment %>
+        <tr class="odd gradeX">
+          <td><%= link_to comment.post.title, comment.post %></td>
+          <td><%= comment.user.display_name %></td>
+          <td><%= comment.updated_at.strftime("%Y-%m-%d") %></td>
+          <td><%= flag.user.display_name %></td>
+          <td><%= flag.created_at.strftime("%Y-%m-%d") %></td>
+        </tr>
+      <% end %>
+    <% end %>
+    </tbody>
+  </table>
+  <br><br>
 
-<%= link_to 'New Flag', new_flag_path %>
+  <h2>Kata</h2>
+  <br><br>
+
+  <h2>Reviews</h2>
+
+</div>

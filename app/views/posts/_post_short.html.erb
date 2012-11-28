@@ -41,11 +41,6 @@
   </div>
 
 	<div class="entry-utility">
-      
-      <span class="comments-link">
-	    <a href="<%= post_path(post) %>" title="Comment on <%= post.title %>"><%= post.survived_comments.size %>
-        Comments</a></span>
-
 
     <% if can? :update, post %>
       <span class="edit-link">
@@ -56,9 +51,10 @@
       </span>
     <% end %>
 
-      <span class="comments-link">
+    <span class="comments-link">
 	    <a href="<%= post_path(post) %>" title="Comment on <%= post.title %>"><%= post.survived_comments.size %>
           Comments</a></span>
+
       <div class="entry-utility-social">
 
         <span class='st_facebook' st_url="<%= polymorphic_url(post) %>"></span>

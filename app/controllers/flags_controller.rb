@@ -24,9 +24,6 @@ class FlagsController < ApplicationController
     elsif  params[:post_type] == "Post"
       @post = Post.find(params[:post_id])
       @flag.post = @post
-    elsif  params[:post_type] == "Article"
-      @post = Post.find(params[:post_id])
-      @flag.post = @post
     elsif params[:post_type] == "Kata"
       @kata = Kata.find(params[:post_id])
       @flag.kata = @kata
@@ -36,10 +33,10 @@ class FlagsController < ApplicationController
 
     respond_to do |format|
       if @flag.save
-        format.html { redirect_to(flags_path, :notice => 'Flag was successfully created.') }
+        format.html { redirect_to(@flag.content, :notice => 'Flag was successfully created.') }
         format.xml { render :xml => @flag, :status => :created, :location => @flag }
       else
-        format.html { redirect_to(flags_path, :alert => 'Flag was not created.') }
+        format.html { redirect_to(root_path, :alert => "Flag was not created. #{@flag.errors}") }
         format.xml { render :xml => @flag.errors, :status => :unprocessable_entity }
       end
     end

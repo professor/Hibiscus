@@ -11,6 +11,7 @@ class Comment
   field :deleted_at, :type => Date
 
   embedded_in :post, :inverse_of => :comments
+  references_many :flags, :dependent => :destroy
   referenced_in :user
 
   validates :content, :presence => true

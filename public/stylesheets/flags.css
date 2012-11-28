@@ -1,0 +1,38 @@
+/* Make button look like a link */
+
+input[type=submit].reportLink {
+    overflow: visible;
+    width: auto;
+    text-align: left;
+    color: #06C;
+    background: none;
+    margin: 0;
+    padding: 0;
+    border: none;
+    cursor: pointer;
+    text-decoration: underline;
+    font-family: Georgia, "Bitstream Charter", serif;
+}
+
+/* Remove the line break before the button */
+
+.button_to {
+    display: inline;
+}
+
+.button_to div {
+    display: inline;
+}
+
+/* Reports Table */
+table.reports_table {
+    font-size: 14px;
+}
+
+table.reports_table a {
+    text-decoration: none;
+}
+
+table.reports_table th {
+    text-align: left;
+}
