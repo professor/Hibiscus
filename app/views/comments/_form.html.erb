@@ -16,13 +16,13 @@
   <% if @commentable.is_a?(Kata) %>
     <div class="field">
       <br/>
-      <%= f.label :title %>
+      <%= f.label :title %> (required)
       <br/>
       <%= f.text_field :title, :size => "81" %>
       <br/><br/>
     </div>
     <div class='field'>
-      <div><%= f.label :rating%></div>
+      <div><%= f.label :rating%> (required)</div>
       <% [1, 2, 3, 4, 5].each do |item| %>
         <% if @comment.rating == item %>
           <%= f.radio_button :rating, item, {:checked => true, :class => "star"} %> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -51,7 +51,7 @@
       <%= f.text_field :category_tokens, "data-pre" => @comment.categories.map { |category| {:id => category._id, :name => category.name}}.to_json %>
       <br/><br/>
     <div class="field">
-      <%= f.label :content, 'Comment' %>
+      <%= f.label :content, 'Comment' %> (required)
       <br/>
       <% @comment.content = strip_tags(@comment.content) %>
       <%= f.text_area :content, :cols => 100, :rows => 10 %>

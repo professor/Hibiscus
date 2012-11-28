@@ -19,7 +19,8 @@ class Kata
 
   field :title, :type => String
   field :content, :type => String
-  field :source, :type => String
+  field :source, :type => String #Remove in next release
+  field :source_url, :type => String
   field :rating, :type => Float, default: 0.0
 
   field :challenge_level, :type => String
@@ -40,6 +41,8 @@ class Kata
   validates :challenge_level, presence: true, inclusion: { in: %w(Low Medium High) }
   # a kata must have one and only one category
   validates :category, presence: true
+  VALID_WEBSITE_REGEX = /^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,6}(:[0-9]{1,5})?(\/.*)?$/ix
+  validates :source_url, format: { with: VALID_WEBSITE_REGEX, :message => "Please enter a URL link, start with http"}, :allow_blank => true
 
   after_save :update_search_index
   before_destroy :delete_from_search_index

@@ -10,9 +10,9 @@
     <br><br>
     <% unless kata.kata_user_categories.empty? %>
         <span>
-            <b> User Category: </b>
+            <b> Suggested Categories: </b>
             <% kata.kata_user_categories.each do |category| %>
-                <a href="<%= kata_path(kata) %>" rel="bookmark"><%= Category.find(category).name %></a>&nbsp;
+                <a href="<%= kata_path(kata) %>" rel="bookmark"><%= Category.find(category).name %></a>&nbsp;&nbsp;
             <% end %>
         </span>
         <br><br>
