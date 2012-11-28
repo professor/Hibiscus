@@ -32,11 +32,13 @@ class UsersController < ApplicationController
   end
 
   def unsubscribe
-    User.find(params[:id]).update_attributes(:digest_frequency => '')
-
-    respond_to do |format|
-      format.html { redirect_to(root_url, :notice => "You have been unsubscribed.") }
-      format.xml { head :ok }
+    @user = User.where(:_id => params[:id]).first
+    if @user.nil?
+      flash[:alert] = "Unsubscribe Process Unsuccessful. User does not exist."
+    else
+      @user.update_attributes(:digest_frequency => '')
+      flash[:notice] = "You have been unsubscribed."
     end
+    redirect_to(root_url)
   end
 end
