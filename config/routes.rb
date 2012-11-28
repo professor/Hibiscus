@@ -1,11 +1,5 @@
 CraftWiki::Application.routes.draw do
   get "categories/index"
-  #get "categories/show"
-  #get "categories/new"
-  #get "categories/edit"
-  #get "categories/create"
-  #get "categories/update"
-  #get "categories/destroy"
 
   devise_for :users do
     match 'users/sign_in', :to => "devise/sessions#new"
@@ -45,6 +39,8 @@ CraftWiki::Application.routes.draw do
   resources :exercises, :controller => "posts", :type => "Kata" do
     resources :comments
   end
+
+  match 'katas/random', :to => 'posts#random', :type => "Kata", :as => :random_kata
   resources :katas, :controller => "posts", :type => "Kata" do
     resources :reviews, :controller => "comments" do
       member do

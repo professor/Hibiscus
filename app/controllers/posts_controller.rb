@@ -2,7 +2,7 @@
 # is specified, handle the specified models (Kata, Article) using the same methods as for Post.
 
 class PostsController < ApplicationController
-  before_filter :authenticate_user!, :except => [:index, :show]
+  before_filter :authenticate_user!, :except => [:index, :show, :random]
   before_filter :post_type
 
   ##
@@ -49,6 +49,17 @@ class PostsController < ApplicationController
       end
     end
   end
+
+  # GET /katas/1
+  # GET /katas/1.xml
+  def random
+    @posts = post_type.all
+    @post = @posts.at(rand(@posts.count))
+    respond_to do |format|
+      format.html { redirect_to(@post, :notice => "Enjoy the challenge!") }
+    end
+  end
+
 
   ##
   # Instantiate a new post, and retrieve all the categories that it might belong to if it is of type 'Kata'

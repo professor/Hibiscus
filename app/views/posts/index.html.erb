@@ -5,9 +5,19 @@
 
 
   <% if @type != "Article" %>
-    <div class="newType" >
-    <%= link_to "New #{@type}", new_polymorphic_path(@type.constantize) %>
-    </div>
+    <table style="width:100%;">
+      <tr>
+        <td style="width:50%;" align="left">
+          <div class="newType" ><%= link_to "New #{@type}", new_polymorphic_path(@type.constantize) %></div>
+        </td>
+        <td style="width:50%;"  align="right">
+          <% if @type == "Kata" %>
+            <div class="randomKata"><%= link_to "Challenge me!", random_kata_path() %></div>
+          <% end %>
+        </td>
+      </tr>
+    </table>
+
   <% end %>
 
 
@@ -46,7 +56,7 @@
       <% end %>
   <% end %>
 
-  <% if @posts.first.is_a?(Kata) %>
+  <% if @type == "Kata" %>
       <table width='100%'>
         <% @cat_count = @categories.count %>
         <% @row_count = (@categories.count / 3.0).ceil %>
