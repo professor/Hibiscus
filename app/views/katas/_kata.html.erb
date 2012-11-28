@@ -8,8 +8,17 @@
     <span class="author vcard"><a class="url fn n" href="<%= user_path(kata.user) %>" title="View all posts by <%= kata.user.name %>"><%= kata.user.display_name %></a> <b><%= kata.user.points %></b></span>
     <span>In <b>Category: </b><a href="<%= kata_path(kata) %>" rel="bookmark"><%= kata.category.name %></a></span>
     <br><br>
+    <% unless kata.kata_user_categories.empty? %>
+        <span>
+            <b> Suggested Categories: </b>
+            <% kata.kata_user_categories.each do |category| %>
+                <a href="<%= kata_path(kata) %>" rel="bookmark"><%= Category.find(category).name %></a>&nbsp;&nbsp;
+            <% end %>
+        </span>
+        <br><br>
+    <% end %>
     <% unless kata.rating.nil? %>
-      <div style="float: left"><b> Rating: &nbsp;&nbsp;</b></div>
+        <div style="float: left"><b> Rating: &nbsp;&nbsp;</b></div>
     <span>
       <% rating = kata.rating.round %>
       <% [1, 2, 3, 4, 5].each do |val| %>
@@ -25,9 +34,9 @@
   </div>
   <br><br>
   <% unless kata.source.blank? %>
-    <div class="entity-source-url">
-      <h4><b>Source: </b><%= link_to kata.source.truncate(130),"#{kata.source}", {:target => '_blank'} %></h4>
-    </div>
+      <div class="entity-source-url">
+        <h4><b>Source: </b><%= link_to kata.source.truncate(130), "#{kata.source}", {:target => '_blank'} %></h4>
+      </div>
   <% end %>
   <div class="entity-content">
     <%= kata.content.html_safe %>

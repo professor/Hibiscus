@@ -1,7 +1,7 @@
 #CategoriesController handles the generation of the list of categories.
 
 class CategoriesController < ApplicationController
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, :only => [:index]
 
   def index
     #@categories = Category.all
@@ -14,5 +14,11 @@ class CategoriesController < ApplicationController
     end
   end
 
+  def show
+    @category = Category.find_by_slug(params[:id])
+    respond_to do |format|
+      format.html # show.html.erb
+    end
+  end
 
 end

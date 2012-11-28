@@ -1,7 +1,9 @@
 <% if @posts.first.is_a?(Kata) %>
   <% header = GlobalConfig.activity_page_header || GlobalConfig.activity_name.pluralize  %>
-  <%= content_for :page_header, header %>
+<% else %>
+  <% header = "Articles on Software Craftsmanship" %>
 <% end %>
+<%= content_for :page_header, header %>
 
 
   <% if @type != "Article" %>

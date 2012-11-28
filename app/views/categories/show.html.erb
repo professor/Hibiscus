@@ -1,2 +1,77 @@
-<h1>Categories#show</h1>
-<p>Find me in app/views/categories/show.html.erb</p>
+<% header = GlobalConfig.activity_page_header || GlobalConfig.activity_name.pluralize %>
+<%= content_for :page_header, header %>
+
+<%= javascript_include_tag "jquery.dataTables.min" %>
+
+<script>
+  $(document).ready(function () {
+    $('#category_table').dataTable({
+      "bLengthChange":false, // disable the default page length change
+      "bFilter":false, // disable the default table filter
+      "bPaginate":false, // disable the default pagination
+//      "bInfo": false,  // the 'Showing x to y of z entries' text, can be disabled by uncomment this line
+//      "bAutoWidth": false,
+      "aaSorting":[
+        [2, 'desc']
+      ],
+      "aoColumns":[
+        null,
+        { "iDataSort":2 }, // Use column 2 (a hidden column) to perform sorting on stars
+        null,
+        { "iDataSort":4 }, // Use column 4 (a hidden column) to perform sorting on challenge level
+        null,
+        null,
+        null
+      ]
+    });
+  });
+
+</script>
+
+<%= content_tag(:h1, @category.name, :class => 'category_title') %>
+
+<div class="newType">
+  <%= link_to "New Kata", new_kata_path() %>
+</div>
+
+<div>
+  <table id="category_table">
+    <thead>
+    <tr>
+      <th>Kata Name</th>
+      <th>Rating</th>
+      <th class='hidden_column'>Digital Rating</th>
+      <th>Challenge Level</th>
+      <th class='hidden_column'>Digital Challenge Level</th>
+      <th>Author</th>
+      <th>Updated At</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @category.katas.each do |kata| %>
+      <tr class="odd gradeX">
+        <td><%= link_to kata.title, kata_path(kata) %></td>
+        <td>
+          <% unless kata.rating.nil? %>
+            <span>
+              <% rating = kata.rating.round %>
+              <% [1, 2, 3, 4, 5].each do |val| %>
+                <% if val == rating %>
+                  <%= radio_button_tag kata.id, val, true, {:disabled => "disabled", :class => "star"} %>
+                <% else %>
+                  <%= radio_button_tag kata.id, val, false, {:disabled => "disabled", :class => "star"} %>
+                <% end %>
+              <% end %>
+            </span>
+          <% end %>
+        </td>
+        <td class='hidden_column'><%= kata.rating.round %></td>
+        <td><%= kata.challenge_level %></td>
+        <td class='hidden_column'><%= kata.digital_challenge_level %></td>
+        <td><%= kata.user.display_name %></td>
+        <td><%= kata.updated_at.strftime("%Y-%m-%d") %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>
