@@ -48,4 +48,12 @@ class Kata
     reviews.where(:deleted_at.exists => false)
   end
 
+  # get user proposal categories for a kata
+  def kata_user_categories
+      kataUserCategories = []
+      survived_reviews.each do |review|
+        review.category_ids.each {|category_id| kataUserCategories << category_id}
+      end
+      kataUserCategories.uniq
+  end
 end
