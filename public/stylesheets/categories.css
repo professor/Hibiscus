@@ -1,0 +1,15 @@
+table#category_table {
+    font-size: 14px;
+}
+
+table#category_table a {
+    text-decoration: none;
+}
+
+table#category_table th {
+    text-align: left;
+}
+
+table#category_table .hidden_column {
+    display: none;
+}

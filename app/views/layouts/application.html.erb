@@ -21,6 +21,51 @@
   </script>
 </head>
 <body class="home blog">
+<div id="access" >
+  <div class="menu">
+
+    <ul>
+      <li ><%= link_to "Articles", root_url, :title => "Articles" %>
+        <ul>
+          <li ><%= link_to "Popular", root_url, :title => "Popular" %> </li>
+        </ul>
+      </li>
+      <li ><%= link_to "#{GlobalConfig.activity_name.pluralize}", "/#{GlobalConfig.activity_type.pluralize}", :title => "#{GlobalConfig.activity_name.pluralize}" %>
+        <ul>
+          <li><%= link_to "Get Started", '/get_started', :title => "Get Started" %></li>
+        </ul>
+      </li>
+
+
+      <li id="search-menu">
+        <form action="<%= search_index_path %>" id="searchform" method="get" role="search">
+            <input id="search-box" type="text" id="query" name="query" value="" placeholder="Search">
+        </form>
+
+      </li>
+      <li id="subscribe-menu"><a href="#" title="Subscribe" onclick="javascript:showpromptdiv()"> Subscribe</a></li>
+
+      <li id="signed-in-user">
+        <% if current_user %>
+            <%= link_to current_user.display_name, current_user %>
+            <ul>
+              <li><%= link_to "Logout", :logout %> </li>
+            </ul>
+        <% else %>
+            <img src="/images/github.png" alt="Github" id="github-image">
+        <%= link_to "Sign in with Github", '/auth/github' %>
+
+
+        <% end %>
+
+      </li>
+    </ul>
+
+
+  </div>
+
+</div>
+
 <div id="wrapper" class="hfeed">
   <div id="header">
     <div id="masthead">
@@ -35,49 +80,7 @@
       </div>
       <!-- #branding -->
 
-      <div id="access" role="navigation">
-        <div class="skip-link screen-reader-text"><a href="#content" title="Skip to content">Skip to content</a></div>
 
-        <div class="menu">
-
-          <ul>
-            <li class="current_page_item"><%= link_to "Articles", root_url, :title => "Articles" %>
-                <ul>
-                  <li id="popular_posts"><%= link_to "Popular", root_url, :title => "Popular" %> </li>
-                </ul>
-            </li>
-            <li class="page_item"><%= link_to "#{GlobalConfig.activity_name.pluralize}", "/#{GlobalConfig.activity_type.pluralize}", :title => "#{GlobalConfig.activity_name.pluralize}" %>
-                  <ul>
-                    <li><%= link_to "Get Started", '/get_started', :title => "Get Started" %></li>
-                  </ul>
-            </li>
-
-            <li class="widget-container widget_search" id="search-2">
-              <form action="<%= search_index_path %>" id="searchform" method="get" role="search">
-                <div id="right_menu_search">
-                  <input type="text" id="query" name="query" value="">
-                  <input type="submit" value="Search" id="searchsubmit">
-                </div>
-              </form>
-
-            </li>
-            <li id="user_profile_menu">
-              <% if current_user %>
-                  <%= link_to current_user.display_name, current_user %>
-                  <ul>
-                    <li id="logout_link"><%= link_to "Logout", :logout %> </li>
-                  </ul>
-              <% else %>
-                  <%= link_to "Login", '/auth/github' %>
-              <% end %>
-
-            </li>
-          </ul>
-
-
-        </div>
-
-      </div>
       <!-- #access -->
     </div>
     <!-- #masthead -->
