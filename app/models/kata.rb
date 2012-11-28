@@ -51,6 +51,18 @@ class Kata
     reviews.where(:deleted_at.exists => false)
   end
 
+  # return challenge level as a number: 1 for low, 2 for medium and 3 for high
+  def digital_challenge_level
+    case self.challenge_level
+      when 'Low'
+        1
+      when 'Medium'
+        2
+      when 'High'
+        3
+    end
+  end
+
   # get user proposal categories for a kata
   def kata_user_categories
       kataUserCategories = []

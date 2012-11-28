@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, :except => :unsubscribe
 
   def show
     @user = User.find_by_slug(params[:id])
@@ -22,21 +22,23 @@ class UsersController < ApplicationController
       if @user.save
         format.html { redirect_to(@user, :notice => "Profile was successfully updated.") }
         format.xml { head :ok }
+        format.js
       else
         format.html { render :action => "edit" }
         format.xml { render :xml => @user.errors, :status => :unprocessable_entity }
+        format.js
       end
     end
   end
 
   def unsubscribe
-    puts(params.inspect)
-    User.find_by_slug(params[:id]).update_attributes(:digest_frequency => '')
-
-    @posts = post_type.all
-    respond_to do |format|
-      format.html { redirect_to(root_url, :notice => "You have been unsubscribed.") }
-      format.xml { head :ok }
+    @user = User.where(:_id => params[:id]).first
+    if @user.nil?
+      flash[:alert] = "Unsubscribe Process Unsuccessful. User does not exist."
+    else
+      @user.update_attributes(:digest_frequency => '')
+      flash[:notice] = "You have been unsubscribed."
     end
+    redirect_to(root_url)
   end
 end

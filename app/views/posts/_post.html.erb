@@ -4,7 +4,8 @@
       <span class="meta-prep meta-prep-author">Posted on</span> <span class="entry-date"><%= post.created_at.to_date.to_formatted_s(:long_ordinal) %></span>
       <span class="meta-sep">by</span>
       <span class="author vcard">
-        <a class="url fn n" href="<%= user_path(post.user) %>" title="View all posts by <%= post.user.name %>"><%= post.user.display_name %></a>  <b><%= post.user.points %></b></span>
+        <a class="url fn n" href="<%= user_path(post.user) %>" title="View all posts by <%= post.user.name %>"><%= post.user.display_name %></a>
+        <b style="font-size: 1.25em; padding-left: 5px;"><%= post.user.points %></b></span>
     </div>
     <% unless post.source_url.blank? %>
         <div class="entity-source-url">
@@ -27,14 +28,14 @@
       </p>
     </div>
     <div class="entity-utility">
-<% if can? :update, post %>
-      <span class="edit-link">
-        <%= link_to 'Edit', edit_post_path(post), :title => "Edit Post", :class => "post-edit-link" %>
-      </span>
-      <span class="edit-link">
-        <%= link_to 'Delete', post, :confirm => 'Are you sure?', :method => :delete, :title => "Delete Post", :class => "post-edit-link" %>
-      </span>
-<% end %>
+    <% if can? :update, post %>
+          <span class="edit-link">
+            <%= link_to 'Edit', edit_post_path(post), :title => "Edit Post", :class => "post-edit-link" %>
+          </span>
+          <span class="edit-link">
+            <%= link_to 'Delete', post, :confirm => 'Are you sure?', :method => :delete, :title => "Delete Post", :class => "post-edit-link" %>
+          </span>
+    <% end %>
     </div>
 
 
