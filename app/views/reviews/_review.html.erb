@@ -1,11 +1,17 @@
 <section class="comment" xmlns="http://www.w3.org/1999/html">
 
-  <div id="vote_<%= review.id %>" class="vote">
-    <%= render :partial => 'votes/vote', :locals => {:review => review} %>
+  <% if review.content.blank? %>
+    <div style="visibility:hidden" id="vote_<%= review.id %>" class="vote">
+  <% else %>
+    <div id="vote_<%= review.id %>" class="vote">
+  <% end %>
+  <%= render :partial => 'votes/vote', :locals => {:review => review} %>
   </div>
 
   <div class="review">
-    <h2 class="entry-title"><%= review.title.html_safe %></h2>
+    <% unless review.title.blank? %>
+      <h2 class="entry-title"><%= review.title.html_safe %></h2>
+    <% end %>
 
     <div>
       <div style="float: left"><b> Rating: &nbsp;&nbsp;</b></div>
@@ -21,17 +27,18 @@
     </div>
     <br/>
 
-    <div>
-      <% if !review.challenge_level.blank? %>
+    <% unless review.challenge_level.blank? %>
+      <div>
         <span><b>Challenge Level: </b><%= review.challenge_level %></span>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <% end %>
-      <% if !review.language.blank? %>
-        <span><b>Programming Language: </b><%= review.language %></span>
-      <% end %>
-    </div>
+    <% end %>
+    <% if !review.language.blank? %>
+      <span><b>Programming Language: </b><%= review.language %></span>
+      </div>
 
-    <% if !review.categories.empty? %>
+    <% end %>
+
+    <% unless review.categories.empty? %>
       <div>
         <b>Suggested Categories: </b>
         <% review.categories.all.collect do |x| %>
@@ -42,9 +49,11 @@
     <% end %>
     <br/>
 
-    <div>
-      <%= review.content.html_safe %>
-    </div>
+    <% unless review.content.blank? %>
+      <div>
+        <%= review.content.html_safe %>
+      </div>
+    <% end %>
 
     <p class="commentEdit">
       <% if can? :update, review %>
@@ -58,7 +67,8 @@
     </p>
 
 
-    <p class="commentPoster">Posted by: <%= link_to review.user.display_name, review.user %> <b><%= review.user.points %></b></p>
+    <p class="commentPoster">Posted by: <%= link_to review.user.display_name, review.user %>
+      <b><%= review.user.points %></b></p>
 
   </div>
 </section>
