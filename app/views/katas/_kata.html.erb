@@ -2,8 +2,13 @@
   <h2 class="entity-title"><%= kata.title.truncate(80) %></h2>
 
   <div class="entity-meta">
-    <span class="meta-prep meta-prep-author">Posted on</span>
-    <span class="entry-date"><%= kata.created_at.to_date.to_formatted_s(:long_ordinal) %></span>
+    <% if kata.updated_at > kata.created_at %>
+        <span class="meta-prep meta-prep-author">Updated on</span>
+        <span class="entry-date"><%= kata.updated_at.to_date.to_formatted_s(:long_ordinal) %></span>
+    <% else %>
+        <span class="meta-prep meta-prep-author">Posted on</span>
+        <span class="entry-date"><%= kata.created_at.to_date.to_formatted_s(:long_ordinal) %></span>
+    <% end %>
     <span class="meta-sep">by</span>
     <span class="author vcard"><a class="url fn n" href="<%= user_path(kata.user) %>" title="View all posts by <%= kata.user.name %>"><%= kata.user.display_name %></a> <b><%= kata.user.points %></b></span>
     <span>In <b>Category: </b><a href="<%= kata_path(kata) %>" rel="bookmark"><%= kata.category.name %></a></span>
