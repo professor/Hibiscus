@@ -134,4 +134,24 @@ class PostsController < ApplicationController
       format.xml { head :ok }
     end
   end
+
+  def upvote
+    @post = post_type.find_by_slug(params[:id])
+    current_user.vote_for(@post)
+    current_user.add_points(1)
+    @post.update_vote_score
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def downvote
+    @post = post_type.find_by_slug(params[:id])
+    current_user.vote_against(@post)
+    current_user.add_points(1)
+    @post.update_vote_score
+    respond_to do |format|
+      format.js
+    end
+  end
 end

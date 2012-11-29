@@ -38,6 +38,15 @@
 </script>
 
 <div class="post-meta">
+    <div id="vote_<%= post.id %>" class="vote" style="
+            line-height: 1;
+            display: block;
+            text-align: left;
+            font-weight: bold;
+            font-size: 35px;
+            font-family: Arial, 'Liberation Sans', 'DejaVu Sans', sans-serif;">
+      <%= render :partial => 'votes/vote_post', :locals => {:post => post} %>
+    </div>
 
   <h2 class="entry-title"><%= link_to post.title.truncate(35), post %></h2>
 <div class="entry-meta">

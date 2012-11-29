@@ -3,7 +3,16 @@
 <script type="text/javascript">stLight.options({publisher: "ur-9048546c-df53-fafd-463b-e1d2104fc723"});</script>
 
 <div class="post-meta">
-
+  <div id="vote_<%= post.id %>" class="vote" style="
+          line-height: 1;
+          height: 35px;
+          display: block;
+          text-align: left;
+          font-weight: bold;
+          font-size: 35px;
+          font-family: Arial, 'Liberation Sans', 'DejaVu Sans', sans-serif;">
+    <%= render :partial => 'votes/vote_post', :locals => {:post => post} %>
+  </div>
   <h2 class="entry-title"><%= link_to h(post.title.truncate(35)), post.source_url, :target => '_blank', :class => 'story-link' %>
 
     <% if post.author %>

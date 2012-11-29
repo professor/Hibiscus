@@ -38,6 +38,10 @@ CraftWiki::Application.routes.draw do
   match '/posts/gilded-rose-kata' => redirect('/exercises/gilded-rose-kata')
 
   resources :posts do
+    member do
+      post :upvote
+      post :downvote
+    end
     resources :comments
   end
   resources :articles, :controller => "posts", :type => "Article" do
