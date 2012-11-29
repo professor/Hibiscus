@@ -30,8 +30,6 @@ class Review
   referenced_in :user
   embedded_in :kata, :inverse_of => :reviews
 
-  validates :title, :presence => true
-  validates :content, :presence => true
   validates :user_id, :presence => true
   validates :rating, :presence => true, :numericality => true
 
