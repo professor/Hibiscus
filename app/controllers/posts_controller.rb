@@ -27,26 +27,24 @@ class PostsController < ApplicationController
       redirect_to(root_path(), :notice => "Sorry, we couldn't find what you were looking for " + params[:id]) and return
     end
 
-    if !@post.nil?
-      #TODO; refactor
-      @commentable = @post
-      if @post.is_a?(Kata)
-        @comments = @post.survived_reviews.desc(:vote_score, :last_update)
-        @comment = Review.new
-      else
-        @comments = @post.survived_comments
-        @comment = Comment.new
-      end
+    #TODO; refactor
+    @commentable = @post
+    if @post.is_a?(Kata)
+      @comments = @post.survived_reviews.desc(:vote_score, :last_update)
+      @comment = Review.new
+    else
+      @comments = @post.survived_comments.desc(:vote_score, :last_update)
+      @comment = Comment.new
+    end
 
-      if post_type != Kata
-        @likes = @post.listLikes
-        @dislikes = @post.listDislikes
-      end
+    if post_type != Kata
+      @likes = @post.listLikes
+      @dislikes = @post.listDislikes
+    end
 
-      respond_to do |format|
-        format.html # show.html.erb
-        format.xml { render :xml => @post }
-      end
+    respond_to do |format|
+      format.html # show.html.erb
+      format.xml { render :xml => @post }
     end
   end
 
