@@ -1,4 +1,9 @@
 <section class="comment">
+
+  <div id="vote_<%= comment.id %>" class="vote">
+    <%= render :partial => 'votes/vote', :locals => {:voteable => comment} %>
+  </div>
+
   <p class="commentContent"><%= comment.content.html_safe %></p>
 
   <p class="commentEdit">

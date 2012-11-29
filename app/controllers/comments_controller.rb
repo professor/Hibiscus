@@ -65,10 +65,10 @@ class CommentsController < ApplicationController
 
   # Now dedicated for kata - review. Can be extended to post - comment.
   def upvote
-    @review = @commentable_collection.find(params[:id])
-    current_user.vote_for(@review)
+    @voteable = @commentable_collection.find(params[:id])
+    current_user.vote_for(@voteable)
     current_user.add_points(1)
-    @review.update_vote_score
+    @voteable.update_vote_score
     respond_to do |format|
       format.js
     end
@@ -76,10 +76,10 @@ class CommentsController < ApplicationController
 
   # Now dedicated for kata - review. Can be extended to post - comment.
   def downvote
-    @review = @commentable_collection.find(params[:id])
-    current_user.vote_against(@review)
+    @voteable = @commentable_collection.find(params[:id])
+    current_user.vote_against(@voteable)
     current_user.add_points(1)
-    @review.update_vote_score
+    @voteable.update_vote_score
     respond_to do |format|
       format.js
     end

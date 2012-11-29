@@ -1,7 +1,7 @@
 <section class="comment" xmlns="http://www.w3.org/1999/html">
 
   <div id="vote_<%= review.id %>" class="vote">
-    <%= render :partial => 'votes/vote', :locals => {:review => review} %>
+    <%= render :partial => 'votes/vote', :locals => {:voteable => review} %>
   </div>
 
   <div class="review">

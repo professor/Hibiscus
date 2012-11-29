@@ -33,7 +33,7 @@ class PostsController < ApplicationController
       @comments = @post.survived_reviews.desc(:vote_score, :last_update)
       @comment = Review.new
     else
-      @comments = @post.survived_comments
+      @comments = @post.survived_comments.desc(:vote_score, :last_update)
       @comment = Comment.new
     end
 
