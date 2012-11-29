@@ -1,4 +1,9 @@
 <section class="comment">
+
+  <div id="vote_<%= comment.id %>" class="vote">
+    <%= render :partial => 'votes/vote', :locals => {:voteable => comment} %>
+  </div>
+
   <p class="commentContent"><%= comment.content.html_safe %></p>
 
   <p class="commentEdit">
@@ -12,5 +17,12 @@
     <% end %>
   </p>
 
-  <p class="commentPoster">Posted by: <%= link_to comment.user.display_name, comment.user %></p>
+  <p class="commentPoster">
+    <% if comment.updated_at > comment.created_at %>
+        Updated on <%= comment.updated_at.to_date.to_formatted_s(:long_ordinal) %>
+    <% else %>
+        Posted on <%= comment.created_at.to_date.to_formatted_s(:long_ordinal) %>
+    <% end %>
+    by <%= link_to comment.user.display_name, comment.user %><b><%= comment.user.points %></b>
+  </p>
 </section>
