@@ -5,7 +5,7 @@
   <% else %>
     <div id="vote_<%= review.id %>" class="vote">
   <% end %>
-  <%= render :partial => 'votes/vote', :locals => {:review => review} %>
+  <%= render :partial => 'votes/vote', :locals => {:voteable => review} %>
   </div>
 
   <div class="review">
