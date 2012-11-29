@@ -42,6 +42,12 @@ describe PostsController do
       response.should be_success
     end
 
+    it "should allow access to show a random kata" do
+      FactoryGirl.create(:kata, :title => "test kata")
+      get :random, :type => 'Kata'
+      response.should redirect_to("/katas/test-kata")
+    end
+
     it "should not allow access to make a new post" do
       get :new
       flash[:alert].should == "You need to sign in before continuing."
