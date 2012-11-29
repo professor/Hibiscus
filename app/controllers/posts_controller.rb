@@ -2,7 +2,7 @@
 # is specified, handle the specified models (Kata, Article) using the same methods as for Post.
 
 class PostsController < ApplicationController
-  before_filter :authenticate_user!, :except => [:index, :show]
+  before_filter :authenticate_user!, :except => [:index, :show, :random]
   before_filter :post_type
 
   ##
@@ -27,24 +27,36 @@ class PostsController < ApplicationController
       redirect_to(root_path(), :notice => "Sorry, we couldn't find what you were looking for " + params[:id]) and return
     end
 
-    #TODO; refactor
-    @commentable = @post
-    if @post.is_a?(Kata)
-      @comments = @post.survived_reviews.desc(:vote_score, :last_update)
-      @comment = Review.new
-    else
-      @comments = @post.survived_comments
-      @comment = Comment.new
-    end
+    if !@post.nil?
+      #TODO; refactor
+      @commentable = @post
+      if @post.is_a?(Kata)
+        @comments = @post.survived_reviews.desc(:vote_score, :last_update)
+        @comment = Review.new
+      else
+        @comments = @post.survived_comments
+        @comment = Comment.new
+      end
 
-    if post_type != Kata
-      @likes = @post.listLikes
-      @dislikes = @post.listDislikes
-    end
+      if post_type != Kata
+        @likes = @post.listLikes
+        @dislikes = @post.listDislikes
+      end
 
+      respond_to do |format|
+        format.html # show.html.erb
+        format.xml { render :xml => @post }
+      end
+    end
+  end
+
+  # GET /katas/1
+  # GET /katas/1.xml
+  def random
+    @posts = post_type.all
+    @post = @posts.at(rand(@posts.count))
     respond_to do |format|
-      format.html # show.html.erb
-      format.xml { render :xml => @post }
+      format.html { redirect_to(@post, :notice => "Enjoy the challenge!") }
     end
   end
 

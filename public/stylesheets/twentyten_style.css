@@ -927,13 +927,11 @@ div.post-detail{
     line-height: 28px;
     margin-bottom: 1%;
     margin-top: 1%;
-    margin-left: 90%;
     clear: both;
     height: 28px;
     vertical-align: middle;
-
-
 }
+
 div.newType:hover a{
     /*background-color: #9b9b9b;*/
     text-decoration:none;
@@ -945,6 +943,25 @@ div.newType a:visited {text-decoration:none;color: #046aad;}
 div.newType a:hover {text-decoration:none; color: #046aad;}
 div.newType a:active {text-decoration:none; color: #046aad;}
 
+.randomKata{
+    display: block;
+    padding: 3px 6px;
+    border-radius: 6px;
+    background-color: #dddddd;
+    width: 145px;
+    color: #5e5e5e;
+    font-weight: bold;
+    text-align: center;
+    font-size: 15px;
+    font-family: sans-serif;
+    line-height: 28px;
+    margin-bottom: 1%;
+    margin-top: 1%;
+    clear: both;
+    height: 28px;
+    vertical-align: middle;
+}
+div.randomKata a:link {text-decoration:none; color: #5e5e5e;}
 
 
 /*Post page styling*/
