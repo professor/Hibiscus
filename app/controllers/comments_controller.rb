@@ -63,7 +63,7 @@ class CommentsController < ApplicationController
     end
   end
 
-  # Now dedicated for kata - review. Can be extended to post - comment.
+  # Vote up for a comment(of posts), or a review(of kata).
   def upvote
     @voteable = @commentable_collection.find(params[:id])
     current_user.vote_for(@voteable)
@@ -74,7 +74,7 @@ class CommentsController < ApplicationController
     end
   end
 
-  # Now dedicated for kata - review. Can be extended to post - comment.
+  # Vote down for a comment(of posts), or a review(of kata).
   def downvote
     @voteable = @commentable_collection.find(params[:id])
     current_user.vote_against(@voteable)
