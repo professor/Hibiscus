@@ -58,5 +58,6 @@ group :development, :test, :production do
   gem "feedzirra"
   gem "gamify"
   gem "cancan"
+  gem 'will_paginate_mongoid'
 end
 
