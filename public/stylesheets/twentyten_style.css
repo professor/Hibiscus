@@ -69,7 +69,7 @@ DESCRIPTION: Two-column fixed layout with one sidebar right of content
 	width: 100%;
 }
 #content {
-	margin: 0 280px 0 20px;
+	margin: 0 280px 18px 0;
 }
 #primary,
 #secondary {
@@ -529,10 +529,10 @@ div.menu ul {
 #main {
 	clear: both;
 	overflow: hidden;
-	padding: 40px 0 0 0;
+	padding: 20px 0 0 0;
 }
 #content {
-	margin-bottom: 36px;
+	margin-bottom: 20px;
 }
 #content,
 #content input,
@@ -920,6 +920,7 @@ div.post-detail{
     width: 270px;
     /*border: 1px solid #000000;*/
     float: right;
+    margin-bottom: 5px;
 }
 .post_short_vote{
     float: left;
@@ -1926,7 +1927,7 @@ code {
 	}
 	#content,
 	.one-column #content {
-		margin: 24pt 0 0;
+		margin-bottom: 18px;
 		width: 100%;
 	}
 	.wp-caption p {
