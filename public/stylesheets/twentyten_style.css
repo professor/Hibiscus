@@ -1014,6 +1014,8 @@ div.randomKata a:link {text-decoration:none; color: #5e5e5e;}
     float: right;
 }
 .entity-title{
+    font-family: "Helvetica Neue", Arial, Helvetica, "Nimbus Sans L", sans-serif;
+    font-weight: bold;
     margin: 1% 1.5% 0% 1.5%;
     padding: 1% 1% 0% 1%;
     /*height: 25px;*/
@@ -1023,6 +1025,7 @@ div.randomKata a:link {text-decoration:none; color: #5e5e5e;}
 }
 
 .entity-meta{
+    font-family: "Helvetica Neue", Arial, Helvetica, "Nimbus Sans L", sans-serif;
     color: #888;
     margin: 1% 1.5% 2% 1.5%;
     padding: 0% 1% 0% 1%;
@@ -1033,7 +1036,7 @@ div.randomKata a:link {text-decoration:none; color: #5e5e5e;}
 }
 
 .entity-attribute{
-    font-family: 'proximanova-regular',"HelveticaNeue-Light","Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
+    font-family: "Helvetica Neue", Arial, Helvetica, "Nimbus Sans L", sans-serif;
     margin: 1% 1.5% 1% 1.5%;
     padding: 0% 1% 0% 1%;
     /*border: 1px solid #000000;*/

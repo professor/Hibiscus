@@ -48,16 +48,17 @@
     <%= kata.content.html_safe %>
   </div>
   <div class="entity-utility">
-  <span class="comments-link"><a href="<%= kata_path(kata) %>" title="Comment on <%= kata.title %>"><%= kata.reviews.size %>
-    Reviews</a></span>
+    <span class="comments-link"><a href="<%= kata_path(kata) %>" title="Comment on <%= kata.title %>"><%= kata.reviews.size %>
+      Reviews</a></span>
 
-    <% if can? :update, kata %>
-  <span class="edit-link">
-    <%= link_to 'Edit', edit_kata_path(kata), :title => "Edit Kata", :class => "kata-edit-link" %>
-  </span>
-  <span class="edit-link">
-    <%= link_to 'Delete', kata, :confirm => 'Are you sure?', :method => :delete, :title => "Delete Kata", :class => "kata-edit-link" %>
-  </span>
-    <% end %>
+      <% if can? :update, kata %>
+    <span class="edit-link">
+      <%= link_to 'Edit', edit_kata_path(kata), :title => "Edit Kata", :class => "kata-edit-link" %>
+    </span>
+    <span class="edit-link">
+      <%= link_to 'Delete', kata, :confirm => 'Are you sure?', :method => :delete, :title => "Delete Kata", :class => "kata-edit-link" %>
+    </span>
+      <% end %>
+    <%= render 'socials/social' %>
   </div>
 </div>
