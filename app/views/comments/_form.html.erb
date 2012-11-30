@@ -16,7 +16,7 @@
   <% if @commentable.is_a?(Kata) %>
     <div class="field">
       <br/>
-      <%= f.label :title %> (required)
+      <%= f.label :title %>
       <br/>
       <%= f.text_field :title, :size => "81" %>
       <br/><br/>
@@ -51,7 +51,7 @@
       <%= f.text_field :category_tokens, "data-pre" => @comment.categories.map { |category| {:id => category._id, :name => category.name}}.to_json %>
       <br/><br/>
     <div class="field">
-      <%= f.label :content, 'Comment' %> (required)
+      <%= f.label :content, 'Comment' %>
       <br/>
       <% @comment.content = strip_tags(@comment.content) %>
       <%= f.text_area :content, :cols => 100, :rows => 10 %>

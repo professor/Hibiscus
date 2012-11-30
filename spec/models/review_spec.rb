@@ -7,15 +7,15 @@ describe Review do
   end
 
   describe "Required fields: " do
-    it "should be invalid without a content" do
+    it "should be valid without a content" do
       @review.content = nil
-      @review.should be_invalid
+      @review.should be_valid
 
       @review.content = ""
-      @review.should be_invalid
+      @review.should be_valid
 
       @review.content = " "
-      @review.should be_invalid
+      @review.should be_valid
     end
 
     it "is valid without a user defined category" do

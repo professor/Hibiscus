@@ -2,7 +2,7 @@
 # is specified, handle the specified models (Kata, Article) using the same methods as for Post.
 
 class PostsController < ApplicationController
-  before_filter :authenticate_user!, :except => [:index, :show]
+  before_filter :authenticate_user!, :except => [:index, :show, :random]
   before_filter :post_type
 
   ##
@@ -30,10 +30,10 @@ class PostsController < ApplicationController
     #TODO; refactor
     @commentable = @post
     if @post.is_a?(Kata)
-      @comments = @post.survived_reviews.desc(:vote_score, :last_update)
+      @comments = @post.survived_reviews.desc(:vote_score, :last_update).paginate(:page => params[:page])
       @comment = Review.new
     else
-      @comments = @post.survived_comments
+      @comments = @post.survived_comments.desc(:vote_score, :last_update).paginate(:page => params[:page])
       @comment = Comment.new
     end
 
@@ -45,6 +45,16 @@ class PostsController < ApplicationController
     respond_to do |format|
       format.html # show.html.erb
       format.xml { render :xml => @post }
+    end
+  end
+
+  # GET /katas/1
+  # GET /katas/1.xml
+  def random
+    @posts = post_type.all
+    @post = @posts.at(rand(@posts.count))
+    respond_to do |format|
+      format.html { redirect_to(@post, :notice => "Enjoy the challenge!") }
     end
   end
 
