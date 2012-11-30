@@ -8,7 +8,12 @@ class PostsController < ApplicationController
   ##
   # Retrieve all Posts or Katas and displays them
   def index
-    @posts = post_type.all
+    if params[:popular].blank?
+      @posts = post_type.all
+    else
+      @posts = post_type.desc(:vote_score)
+    end
+
     @categories = Category.order_importance
 
     respond_to do |format|
@@ -17,6 +22,8 @@ class PostsController < ApplicationController
       format.rss { render :layout => false } #index.rss.builder
     end
   end
+
+
 
   # GET /posts/1
   # GET /posts/1.xml
@@ -33,7 +40,7 @@ class PostsController < ApplicationController
       @comments = @post.survived_reviews.desc(:vote_score, :last_update)
       @comment = Review.new
     else
-      @comments = @post.survived_comments
+      @comments = @post.survived_comments.desc(:vote_score, :last_update)
       @comment = Comment.new
     end
 
