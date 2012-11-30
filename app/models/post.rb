@@ -11,8 +11,11 @@ class Post
   include Mongoid::Paranoia
   include Mongoid::Slug
   include Searchify
+  include ActsAsVoteable
   
   attr_accessor :tempTags
+
+  acts_as_voteable
   
   field :title, :type => String
   field :content, :type => String
@@ -21,6 +24,7 @@ class Post
 
   field :source_url, :type => String
   field :rating, :type => Float
+  field :vote_score, :type => Integer, default: 0
 
   slug :title
 
@@ -78,5 +82,10 @@ class Post
 
   def survived_comments
     comments.where(:deleted_at.exists => false)
+  end
+
+  def update_vote_score
+    self.vote_score = self.plusminus
+    save
   end
 end

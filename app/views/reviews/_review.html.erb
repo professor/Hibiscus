@@ -1,16 +1,19 @@
 <section class="comment" xmlns="http://www.w3.org/1999/html">
 
   <% if review.content.blank? %>
-    <div style="visibility:hidden" id="vote_<%= review.id %>" class="vote">
+      <div style="visibility:hidden" id="vote_<%= review.id %>" class="vote">
+        <%= render :partial => 'votes/vote', :locals => {:voteable => review} %>
+      </div>
   <% else %>
-    <div id="vote_<%= review.id %>" class="vote">
+      <div id="vote_<%= review.id %>" class="vote">
+        <%= render :partial => 'votes/vote', :locals => {:voteable => review} %>
+      </div>
   <% end %>
-  <%= render :partial => 'votes/vote', :locals => {:voteable => review} %>
-  </div>
+
 
   <div class="review">
     <% unless review.title.blank? %>
-      <h2 class="entry-title"><%= review.title.html_safe %></h2>
+        <h2 class="entry-title"><%= review.title.html_safe %></h2>
     <% end %>
 
     <div>
@@ -28,31 +31,31 @@
     <br/>
 
     <% unless review.challenge_level.blank? %>
-      <div>
-        <span><b>Challenge Level: </b><%= review.challenge_level %></span>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <div>
+          <span><b>Challenge Level: </b><%= review.challenge_level %></span>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <% end %>
     <% if !review.language.blank? %>
-      <span><b>Programming Language: </b><%= review.language %></span>
-      </div>
+        <span><b>Programming Language: </b><%= review.language %></span>
+        </div>
 
     <% end %>
 
     <% unless review.categories.empty? %>
-      <div>
-        <b>Suggested Categories: </b>
-        <% review.categories.all.collect do |x| %>
-          <a href="<%= kata_path(@commentable) %>" rel="bookmark"><%= x.name %></a> &nbsp;&nbsp;&nbsp;
-        <% end %>
-        <br/>
-      </div>
+        <div>
+          <b>Suggested Categories: </b>
+          <% review.categories.all.collect do |x| %>
+              <a href="<%= kata_path(@commentable) %>" rel="bookmark"><%= x.name %></a> &nbsp;&nbsp;&nbsp;
+          <% end %>
+          <br/>
+        </div>
     <% end %>
     <br/>
 
     <% unless review.content.blank? %>
-      <div>
-        <%= review.content.html_safe %>
-      </div>
+        <div>
+          <%= review.content.html_safe %>
+        </div>
     <% end %>
 
     <p class="commentEdit">
@@ -68,9 +71,9 @@
 
     <p class="commentPoster">
       <% if review.updated_at > review.created_at %>
-        Updated on <%= review.updated_at.to_date.to_formatted_s(:long_ordinal) %>
+          Updated on <%= review.updated_at.to_date.to_formatted_s(:long_ordinal) %>
       <% else %>
-        Posted on <%= review.created_at.to_date.to_formatted_s(:long_ordinal) %>
+          Posted on <%= review.created_at.to_date.to_formatted_s(:long_ordinal) %>
       <% end %>
       by <%= link_to review.user.display_name, review.user %><b><%= review.user.points %></b>
     </p>

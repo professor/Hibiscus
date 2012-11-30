@@ -19,6 +19,10 @@ CraftWiki::Application.routes.draw do
   resources :categories
 
   resources :posts do
+    member do
+      post :upvote
+      post :downvote
+    end
     resources :comments do
       member do
         post :upvote
@@ -59,6 +63,7 @@ CraftWiki::Application.routes.draw do
   match '/posts/string-calculator' => redirect('/exercises/string-calculator')
   match '/posts/mars-rover-kata' => redirect('/exercises/mars-rover-kata')
   match '/posts/gilded-rose-kata' => redirect('/exercises/gilded-rose-kata')
+  match '/popular', to: 'posts#index' , :popular => true
 
 
   root :to => 'posts#index'
