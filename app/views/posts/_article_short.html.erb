@@ -5,16 +5,20 @@
 <div class="post-meta">
 
   <h2 class="entry-title"><%= link_to h(post.title.truncate(35)), post.source_url, :target => '_blank', :class => 'story-link' %>
+  </h2>
+
 
     <% if post.author %>
-      <h4>by <%= post.author %></h4>
+      <div class="article_author">by <%= post.author %></div>
     <% end %>
+  <div id="vote_<%= post.id %>" class="post_short_vote">
+    <%= render :partial => 'votes/vote_post', :locals => {:post => post} %>
+  </div>
 
-  </h2>
 
   <div class="entry-meta">
     <% if post.updated_at > post.created_at %>
-        <span class="meta-prep meta-prep-author">Updated on</span>
+        <span class="meta-prep meta-prep-author">Edited on</span>
         <span class="entry-date"><%= post.updated_at.to_date.strftime("%b %d, %Y") %></span>
     <% else %>
         <span class="meta-prep meta-prep-author">Posted on</span>
@@ -24,6 +28,7 @@
     <span class="author vcard"><a class="url fn n" href="<%= user_path(post.user) %>" title="View all posts by <%= post.user.name %>"><%= post.user.display_name %></a>
       <b style="font-size: 1.25em; padding-left: 5px;"><%= post.user.points %></b></span>
   </div>
+
 
   <div id="source_url_div">
   <% unless post.source_url.blank? %>

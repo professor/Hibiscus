@@ -1,0 +1,81 @@
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        $(".promptmaindiv").load();
+        $(".promptmaindiv").hide();
+        $(".subscriptionerrormessage").hide();
+    });
+    function hidepromptdiv(){
+        $(".promptmaindiv").fadeOut(300);
+
+    }
+
+    function showpromptdiv(){
+        $(".promptmaindiv").show();
+
+    }
+
+    function validateemail(){
+//        var email = document.getElementById('subscriptionemailtxt').value  ;
+        var email = $("input.subscriptionemail").val();
+        alert(email);
+
+        var re = /\S+@\S+\.\S+/;
+        if (!re.test(email)){
+            $(".subscriptionerrormessage").show();
+            $("input.subscriptionemail").css("border", "3px solid #d80000");
+            $("input.subscriptionemail").val('');
+            return false;
+        }
+        alert('true');
+        return true;
+    }
+
+</script>
+
+<div class="promptmaindiv">
+  <div class="promptclosediv">
+    <button class="closebutton" type="reset" name="close" onclick="hidepromptdiv();">x</button>
+  </div>
+  <% if user_signed_in? %>
+
+      <div class="promptinnerdiv">
+        <%= form_for current_user, :remote => true do |f| %>
+            <div class="prompttextdiv">
+              <p class="prompttext">Subscribe to our weekly newsletter</p>
+              <p style="{text-align: center;}">
+                <label class="subscriptionerrormessage">Please enter a valid email id</label>  <br>
+                <%= f.text_field :email, :class=>"subscriptionemail", :placeholder =>"Enter your email"%>
+                <%= f.hidden_field :gravatar_email %>
+                <%= f.hidden_field :points %>
+                <%= f.hidden_field :digest_frequency, :value => "Weekly" %>
+              </p>
+            </div>
+            <div class="promptcontroldiv">
+              <button class="negativebutton" type="reset" name="cancel" id="cancelbutton" onclick="hidepromptdiv();">Cancel</button>
+              <!--%= f.submit "Subscribe", :class=>'positivebutton', :onclick=>"return validateemail();"%-->
+              <%= f.submit "Subscribe", :class=>'positivebutton'%>
+              <!--<button class="positivebutton" type="button" id="submitbutton" onclick="submitupdate();">Subscribe</button>-->
+
+            </div>
+        <% end %>
+
+      </div>
+
+  <% else %>
+      <div class="promptinnerdiv">
+        <div class="prompttextdiv">
+
+          <div class="prompttextdivsignin">
+
+            <a href="/auth/github">
+              Sign in with Github
+            </a>
+
+          </div>
+        </div>
+
+      </div>
+  <% end %>
+</div>
+
