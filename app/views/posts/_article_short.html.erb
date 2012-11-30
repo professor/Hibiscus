@@ -3,23 +3,16 @@
 <script type="text/javascript">stLight.options({publisher: "ur-9048546c-df53-fafd-463b-e1d2104fc723"});</script>
 
 <div class="post-meta">
-  <div id="vote_<%= post.id %>" class="vote" style="
-          line-height: 1;
-          height: 35px;
-          display: block;
-          text-align: left;
-          font-weight: bold;
-          font-size: 35px;
-          font-family: Arial, 'Liberation Sans', 'DejaVu Sans', sans-serif;">
-    <%= render :partial => 'votes/vote_post', :locals => {:post => post} %>
-  </div>
+
   <h2 class="entry-title"><%= link_to h(post.title.truncate(35)), post.source_url, :target => '_blank', :class => 'story-link' %>
+  </h2>
+
 
     <% if post.author %>
-      <h4>by <%= post.author %></h4>
+      <div class="article_author">by <%= post.author %></div>
     <% end %>
 
-  </h2>
+
 
   <div class="entry-meta">
     <% if post.updated_at > post.created_at %>
@@ -32,6 +25,9 @@
     <span class="meta-sep">by</span>
     <span class="author vcard"><a class="url fn n" href="<%= user_path(post.user) %>" title="View all posts by <%= post.user.name %>"><%= post.user.display_name %></a>
       <b style="font-size: 1.25em; padding-left: 5px;"><%= post.user.points %></b></span>
+  </div>
+  <div id="vote_<%= post.id %>" class="post_short_vote">
+    <%= render :partial => 'votes/vote_post', :locals => {:post => post} %>
   </div>
 
   <div id="source_url_div">

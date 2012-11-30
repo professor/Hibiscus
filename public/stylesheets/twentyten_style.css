@@ -887,15 +887,20 @@ div.post-detail{
 
 .entry-title{
     height: 30px;
+    width: 320px;
     /*border: 1px solid #000000;*/
 }
 .entry-meta{
     height: 20px;
+    width: 275px;
+    float: right;
     /*border: 1px solid #000000;*/
+    text-align: right;
 }
 
 .entry-tags{
     height: 20px;
+    clear: both;
     /*border: 1px solid #000000;*/
 
 }
@@ -903,11 +908,38 @@ div.post-detail{
 
 #source_url_div{
     height: 20px;
+    width: 270px;
+    float: right;
     /*border: 1px solid #000000;*/
     margin-bottom: 15px;
+
     margin-top: 5px;
 }
 
+.article_author{
+    width: 270px;
+    /*border: 1px solid #000000;*/
+    float: right;
+}
+.post_short_vote{
+    float: left;
+
+    width: 35px;
+    /*height: 95px;*/
+    text-align: center;
+    /*border: 1px solid #000000;*/
+
+}
+.post_short_vote_score{
+    font-size: 20px;
+    font-family: Arial, 'Liberation Sans', 'DejaVu Sans', sans-serif;
+    font-weight: bold;
+    display: inline;
+    text-align: center;
+    width: 35px;
+
+
+}
 /*#second_new_post_link{*/
     /*clear: both;*/
 /*}*/

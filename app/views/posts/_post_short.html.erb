@@ -38,35 +38,31 @@
 </script>
 
 <div class="post-meta">
-    <div id="vote_<%= post.id %>" class="vote" style="
-            line-height: 1;
-            display: block;
-            text-align: left;
-            font-weight: bold;
-            font-size: 35px;
-            font-family: Arial, 'Liberation Sans', 'DejaVu Sans', sans-serif;">
-      <%= render :partial => 'votes/vote_post', :locals => {:post => post} %>
-    </div>
+
 
   <h2 class="entry-title"><%= link_to post.title.truncate(35), post %></h2>
-<div class="entry-meta">
 
-  <span class="meta-prep meta-prep-author">Posted on</span>
-  <span class="entry-date"><%= post.created_at.to_date.strftime("%b %d, %Y") %></span>
-  <span class="meta-sep">by</span>
-  <span class="author vcard"><a class="url fn n" href="<%= user_path(post.user) %>" title="View all posts by <%= post.user.name %>"><%= post.user.display_name %></a>
-    <b style="font-size: 1.25em; padding-left: 5px;"><%= post.user.points %></b></span>
-</div>
+    <div class="entry-meta">
 
-<div id="source_url_div">
-  <% unless post.source_url.blank? %>
+      <span class="meta-prep meta-prep-author">Posted on</span>
+      <span class="entry-date"><%= post.created_at.to_date.strftime("%b %d, %Y") %></span>
+      <span class="meta-sep">by</span>
+      <span class="author vcard"><a class="url fn n" href="<%= user_path(post.user) %>" title="View all posts by <%= post.user.name %>"><%= post.user.display_name %></a>
+        <b style="font-size: 1.25em; padding-left: 5px;"><%= post.user.points %></b></span>
+    </div>
+  <div id="vote_<%= post.id %>" class="post_short_vote">
+    <%= render :partial => 'votes/vote_post', :locals => {:post => post} %>
+  </div>
 
-      Source URL: <%=link_to post.source_url.truncate(35),"#{post.source_url}", {:target => '_blank'}%>
-    
+    <div id="source_url_div">
+      <% unless post.source_url.blank? %>
 
-  <% end %>
+          Source URL: <%=link_to post.source_url.truncate(35),"#{post.source_url}", {:target => '_blank'}%>
 
-</div>
+
+      <% end %>
+
+    </div>
 
   <% if post.tags.any? %>
 	<div class="entry-tags">

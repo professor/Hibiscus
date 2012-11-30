@@ -3,7 +3,7 @@
 <% else %>
     <%= link_to image_tag("upvote.png"), upvote_post_path(post), :class => "upvote", :method => :post, :remote => true %>
 <% end %>
-<span><%= post.vote_score %></span>
+    <p class="post_short_vote_score" ><%= post.vote_score %></p>
 
 <% if current_user && current_user.voted_against?(post) %>
     <%= link_to image_tag("downvoted.png"), downvote_post_path(post), :class => "downvoted", :method => :post, :remote => true %>
