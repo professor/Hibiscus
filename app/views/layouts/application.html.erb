@@ -27,7 +27,7 @@
     <ul>
       <li ><%= link_to "Articles", root_url, :title => "Articles" %>
         <ul>
-          <li ><%= link_to "Popular", root_url, :title => "Popular" %> </li>
+          <li ><%= link_to "Popular", '/popular', :title => "Popular" %> </li>
         </ul>
       </li>
       <li ><%= link_to "#{GlobalConfig.activity_name.pluralize}", "/#{GlobalConfig.activity_type.pluralize}", :title => "#{GlobalConfig.activity_name.pluralize}" %>
