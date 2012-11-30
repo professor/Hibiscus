@@ -116,7 +116,7 @@ class PostsController < ApplicationController
       @post.setTags
       @post.source_url = params[@type.downcase.to_sym][:source_url]
     elsif post_type == Kata
-      @post.category = @form[:category]
+      @post.category_ids = @form[:category_tokens].to_s.split(",")
       @post.challenge_level = @form[:challenge_level]
       @post.source = params[@type.downcase.to_sym][:source]
     end

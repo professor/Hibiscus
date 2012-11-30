@@ -6,7 +6,19 @@
     <span class="entry-date"><%= kata.created_at.to_date.to_formatted_s(:long_ordinal) %></span>
     <span class="meta-sep">by</span>
     <span class="author vcard"><a class="url fn n" href="<%= user_path(kata.user) %>" title="View all posts by <%= kata.user.name %>"><%= kata.user.display_name %></a> <b><%= kata.user.points %></b></span>
-    <span>In <b>Category: </b><a href="<%= kata_path(kata) %>" rel="bookmark"><%= kata.category.name %></a></span>
+
+
+    <% if !kata.categories.empty? %>
+        in
+        <span>
+          <b>Categories: </b>
+          <% kata.categories.all.collect do |x| %>
+              <a href="<%= root_path(x) %>" rel="bookmark"><%= x.name %></a> &nbsp;&nbsp;&nbsp;
+          <% end %>
+          <br/>
+        </span>
+    <% end %>
+
     <br><br>
     <% unless kata.rating.nil? %>
       <div style="float: left"><b> Rating: &nbsp;&nbsp;</b></div>

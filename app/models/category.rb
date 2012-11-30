@@ -7,22 +7,9 @@ class Category
   field :name, :type => String
   slug :name
 
-  has_many :katas
+  has_and_belongs_to_many :katas
 
   validates :name, :presence => true, :uniqueness => true
-
-  #def setCategory
-  #  self.tags.nullify
-  #
-  #  unless self.tempTags.blank?
-  #    tempTags = self.tempTags.split(",")
-  #
-  #    tempTags.each do |tag|
-  #      self.tags << Tag.find_or_create_by(:name => tag.strip.downcase)
-  #      # puts "TAGS: " + self.tags.to_s
-  #    end
-  #  end
-  #end
 
   scope :order_importance, order_by(:order => :asc)
 end
