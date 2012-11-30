@@ -6,6 +6,6 @@ class AuditObserver < Mongoid::Observer
   end
 
   def after_create(record)
-    AuditTrail.create(:action => "CREATED" , :element_id => record.slug, :element_type => record)
+    AuditTrail.create(:action => "CREATED" , :element_id => record.slug, :element_class => record.class, :username => record.user.username)
   end
 end

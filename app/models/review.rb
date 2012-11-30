@@ -30,8 +30,6 @@ class Review
   referenced_in :user
   embedded_in :kata, :inverse_of => :reviews
 
-  validates :title, :presence => true
-  validates :content, :presence => true
   validates :user_id, :presence => true
   validates :rating, :presence => true, :numericality => true
 
@@ -66,5 +64,19 @@ class Review
   def update_vote_score
     self.vote_score = self.plusminus
     save
+  end
+
+  # Parse the updated_at field to Time type if it is a String
+  def updated_at
+    update_time = self[:updated_at]
+    update_time = Time.parse(update_time) if update_time.is_a? String
+    update_time
+  end
+
+  # Parse the created_at field to Time type if it is a String
+  def created_at
+    created_time = self[:created_at]
+    created_time = Time.parse(created_time) if created_time.is_a? String
+    created_time
   end
 end

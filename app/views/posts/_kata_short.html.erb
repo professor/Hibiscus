@@ -4,17 +4,21 @@
   <br>
 
   <div class="entry-meta">
-
-    <span class="meta-prep meta-prep-author">Posted on</span>
-    <span class="entry-date"><%= post.created_at.to_date.strftime("%b %d, %Y") %></span>
+    <% if kata.updated_at > kata.created_at %>
+        <span class="meta-prep meta-prep-author">Updated on</span>
+        <span class="entry-date"><%= kata.updated_at.to_date.strftime("%b %d, %Y") %></span>
+    <% else %>
+        <span class="meta-prep meta-prep-author">Posted on</span>
+        <span class="entry-date"><%= kata.created_at.to_date.strftime("%b %d, %Y") %></span>
+    <% end %>
     <span class="meta-sep">by</span>
     <span class="author vcard"><a class="url fn n" href="<%= user_path(post.user) %>" title="View all posts by <%= post.user.name %>"><%= post.user.display_name %></a></span>
   </div>
-  <% unless post.source.blank? %>
+  <% unless post.source_url.blank? %>
     <br>
 
     <div>
-      <h4>Source URL:  <%= auto_link_urls post.source %></h4>
+      Source URL: <%=link_to post.source_url.truncate(35),"#{post.source_url}", {:target => '_blank'}%>
     </div>
 
   <% end %>

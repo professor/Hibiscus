@@ -7,7 +7,8 @@ describe AuditTrail do
 
   it { should respond_to(:action) }
   it { should respond_to(:element_id) }
-  it { should respond_to(:element_type) }
+  it { should respond_to(:element_class) }
+  it { should respond_to(:username) }
 
   describe "Required fields: " do
     it "should be invalid without a action" do
@@ -35,14 +36,27 @@ describe AuditTrail do
     end
 
     describe "Required fields: " do
-      it "should be invalid without a element type" do
-        @audit_trail.element_type = nil
+      it "should be invalid without a element class" do
+        @audit_trail.element_class = nil
         @audit_trail.should be_invalid
 
-        @audit_trail.element_type = ""
+        @audit_trail.element_class = ""
         @audit_trail.should be_invalid
 
-        @audit_trail.element_type = " "
+        @audit_trail.element_class = " "
+        @audit_trail.should be_invalid
+      end
+    end
+
+    describe "Required fields: " do
+      it "should be invalid without a username " do
+        @audit_trail.username = nil
+        @audit_trail.should be_invalid
+
+        @audit_trail.username = ""
+        @audit_trail.should be_invalid
+
+        @audit_trail.username = " "
         @audit_trail.should be_invalid
       end
     end

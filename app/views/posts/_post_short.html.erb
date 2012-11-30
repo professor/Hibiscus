@@ -2,27 +2,33 @@
 <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
 <script type="text/javascript">stLight.options({publisher: "ur-9048546c-df53-fafd-463b-e1d2104fc723"});</script>
 
+
 <div class="post-meta">
 
+
   <h2 class="entry-title"><%= link_to post.title.truncate(35), post %></h2>
-<div class="entry-meta">
 
-  <span class="meta-prep meta-prep-author">Posted on</span>
-  <span class="entry-date"><%= post.created_at.to_date.strftime("%b %d, %Y") %></span>
-  <span class="meta-sep">by</span>
-  <span class="author vcard"><a class="url fn n" href="<%= user_path(post.user) %>" title="View all posts by <%= post.user.name %>"><%= post.user.display_name %></a>
-    <b style="font-size: 1.25em; padding-left: 5px;"><%= post.user.points %></b></span>
-</div>
+    <div class="entry-meta">
 
-<div id="source_url_div">
-  <% unless post.source_url.blank? %>
+      <span class="meta-prep meta-prep-author">Posted on</span>
+      <span class="entry-date"><%= post.created_at.to_date.strftime("%b %d, %Y") %></span>
+      <span class="meta-sep">by</span>
+      <span class="author vcard"><a class="url fn n" href="<%= user_path(post.user) %>" title="View all posts by <%= post.user.name %>"><%= post.user.display_name %></a>
+        <b style="font-size: 1.25em; padding-left: 5px;"><%= post.user.points %></b></span>
+    </div>
+  <div id="vote_<%= post.id %>" class="post_short_vote">
+    <%= render :partial => 'votes/vote_post', :locals => {:post => post} %>
+  </div>
 
-      Source URL: <%=link_to post.source_url.truncate(35),"#{post.source_url}", {:target => '_blank'}%>
-    
+    <div id="source_url_div">
+      <% unless post.source_url.blank? %>
 
-  <% end %>
+          Source URL: <%=link_to post.source_url.truncate(35),"#{post.source_url}", {:target => '_blank'}%>
 
-</div>
+
+      <% end %>
+
+    </div>
 
   <% if post.tags.any? %>
 	<div class="entry-tags">
@@ -51,11 +57,14 @@
       <span class="edit-link">
         <%= link_to 'Delete', post, :confirm => 'Are you sure?', :method => :delete, :title => "Delete Post", :class => "post-edit-link" %>
       </span>
+
     <% end %>
 
       <span class="comments-link">
-	    <a href="<%= post_path(post) %>" title="Comment on <%= post.title %>"><%= post.survived_comments.size %>
-          Comments</a></span>
+	    <a href="<%= post_path(post) %>" title="Comment on <%= post.title %>"><%= post.survived_comments.size %> Comments</a>
+      </span>
+
+
       <div class="entry-utility-social">
 
         <span class='st_facebook' st_url="<%= polymorphic_url(post) %>"></span>
@@ -64,6 +73,7 @@
         <span class='st_googleplus' st_url="<%= polymorphic_url(post) %>"></span>
         <span class='st_email' st_url="<%= polymorphic_url(post) %>"></span>
       </div>
+
   </div>
 
 

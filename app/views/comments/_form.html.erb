@@ -22,7 +22,7 @@
       <br/><br/>
     </div>
     <div class='field'>
-      <div><%= f.label :rating%></div>
+      <div><%= f.label :rating%> (required)</div>
       <% [1, 2, 3, 4, 5].each do |item| %>
         <% if @comment.rating == item %>
           <%= f.radio_button :rating, item, {:checked => true, :class => "star"} %> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

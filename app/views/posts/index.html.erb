@@ -1,7 +1,9 @@
 <% if @posts.first.is_a?(Kata) %>
   <% header = GlobalConfig.activity_page_header || GlobalConfig.activity_name.pluralize  %>
-  <%= content_for :page_header, header %>
+<% else %>
+  <% header = "Articles on Software Craftsmanship" %>
 <% end %>
+<%= content_for :page_header, header %>
 
 
   <% if @type != "Article" %>
@@ -36,11 +38,11 @@
         $('.main-category-div').css('opacity', 0).each(function (i) {
           var height = $('#main-all-posts-div').height();
 
-          $('#main-all-posts-div').animate({ height:height + 75}, 500);
+          $('#main-all-posts-div').animate({ height:height + 75}, 100);
           $('#main-all-posts-div').height("+=70");
           $(this).css('display', 'block');
-          $(this).animate({ opacity:0 }, i * 500);
-          $(this).animate({ opacity:1}, 1000);
+          $(this).animate({ opacity:0 }, 0);
+          $(this).animate({ opacity:1}, 0);
         });
     });
 </script>
