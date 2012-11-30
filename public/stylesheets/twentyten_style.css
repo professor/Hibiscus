@@ -924,12 +924,19 @@ div.post-detail{
 }
 .post_short_vote{
     float: left;
-
     width: 35px;
     /*height: 95px;*/
     text-align: center;
     /*border: 1px solid #000000;*/
-
+}
+.post_vote{
+    margin: 1% .5% 1% 1.5%;
+    float: left;
+    width: 45px;
+    /*height: 95px;*/
+    /*margin-right: 10px;*/
+    text-align: center;
+    /*border: 1px solid #000000;*/
 }
 .post_short_vote_score{
     font-size: 20px;
@@ -938,8 +945,14 @@ div.post-detail{
     display: inline;
     text-align: center;
     width: 35px;
-
-
+}
+.post_short_vote_score{
+    font-size: 24px;
+    font-family: Arial, 'Liberation Sans', 'DejaVu Sans', sans-serif;
+    font-weight: bold;
+    display: inline;
+    text-align: center;
+    width: 45px;
 }
 /*#second_new_post_link{*/
     /*clear: both;*/
@@ -1052,51 +1065,59 @@ div.randomKata a:link {text-decoration:none; color: #5e5e5e;}
 }
 
 .entity-meta{
-    margin: 1% 1.5% 1% 1.5%;
+    margin: 1% 1.5% 0 0;
     padding: 0% 1% 0% 1%;
     height: 20px;
     /*border: 1px solid #000000;*/
     display: block;
     font-size: 1.1em;
+    width: 810px;
+    float: right;
 }
 
 .entity-source-url{
-    margin: 1% 1.5% 1% 1.5%;
+    margin: 1% 1.5% 0 0;
     padding: 0% 1% 0% 1%;
     height: 20px;
     /*border: 1px solid #000000;*/
     display: block;
     min-height: 0;
     font-size: 1.1em;
+    width: 810px;
+    float: right;
 }
 .entity-tags{
-    margin: 1% 1.5% 1% 1.5%;
+    margin: 1% 1.5% 1% 0;
     padding: 0 1% 0 1%;
     height: 30px;
     /*border: 1px solid #000000;*/
     display: block;
     min-height: 0;
     font-size: 1.1em;
+    width: 810px;
+    float: right;
 
 }
 
 .entity-content{
-    margin: 5% 1.5% 5% 1.5%;
-    padding: 0% 1% 0% 1%;
+
+    margin: 15% 2% 3% 2%;
+    padding: 0 1% 0 1%;
+
+    clear: both;
+    /*width: 500px;*/
     height: auto;
     /*border: 1px solid #000000;*/
     display: block;
     font-size: 1.3em;
     line-height: 150%;
-
-
-
 }
 
 
 .entity-utility{
-    margin: 1% 1.5% 1% 1.5%;
-    padding: 0% 1% 0% 1%;
+    margin: 2% 2% 0 2%;
+    padding: 0 1% 0 1%;
+    clear: both;
     height: 30px;
     /*border: 1px solid #000000;*/
     display: block;
@@ -1314,6 +1335,7 @@ div.randomKata a:link {text-decoration:none; color: #5e5e5e;}
     /*border-color: #c2c2c2;*/
 }
 
+
 input.subscriptionemail{
     width: 360px;
     height: 30px;
@@ -1344,6 +1366,11 @@ input.subscriptionemail{
     margin-top: 30px;
 
 
+}
+
+#notifications{
+    margin-right: auto;
+    margin-left: auto;
 }
 
 /* =Asides
