@@ -362,7 +362,7 @@ a:visited {
 }
 a:active,
 a:hover {
-	color: #ff4b33;
+	color: #046aad;
 }
 
 /* Text meant only for screen readers */
@@ -467,14 +467,14 @@ div.menu ul {
 
 
 #access a:hover {
-    background: #c0c0c0;
-    color: #113794;
+    background: #d1d1d1;
+    color: #046aad;
     height: 35px;
     border-bottom: 2px solid #666;
 }
 #access a:active {
-    background: #c0c0c0;
-    color: #113794;
+    background: #d1d1d1;
+    color: #046aad;
     height: 35px;
     border-bottom: 2px solid #666;;
 }
@@ -632,7 +632,7 @@ div.menu ul {
 }
 .page-title a:active,
 .page-title a:hover {
-	color: #ff4b33;
+	color: #046aad;
 }
 #content .entry-title {
 	color: #000;
@@ -732,7 +732,7 @@ div.menu ul {
 }
 .page-link a:active,
 .page-link a:hover {
-	color: #ff4b33;
+	color: #046aad;
 }
 body.page .edit-link {
 	clear: both;
@@ -784,7 +784,7 @@ body.page .edit-link {
 }
 .entry-meta a:hover,
 .entry-utility a:hover {
-	color: #ff4b33;
+	color: #046aad;
 }
 #content .video-player {
 	padding: 0;
@@ -952,7 +952,7 @@ div.post-detail{
     /*border: 1px solid black;*/
     background-color: #dddddd;
     width: 95px;
-    color: #5e5e5e;
+    color: #046aad;
     font-weight: bold;
     text-align: center;
     font-size: 15px;
@@ -965,13 +965,13 @@ div.post-detail{
     vertical-align: middle;
 }
 
-div.newType:hover a{
+div.newType:hover {
     /*background-color: #9b9b9b;*/
     text-decoration:none;
     color: #046aad;
     font-size: 16px;
 }
-div.newType a:link {text-decoration:none; color: #5e5e5e;}
+div.newType a:link {text-decoration:none; color: #046aad;}
 div.newType a:visited {text-decoration:none;color: #046aad;}
 div.newType a:hover {text-decoration:none; color: #046aad;}
 div.newType a:active {text-decoration:none; color: #046aad;}
@@ -1478,7 +1478,7 @@ input.subscriptionemail{
 }
 .navigation a:active,
 .navigation a:hover {
-	color: #ff4b33;
+	color: #046aad;
 }
 .nav-previous {
 	float: left;
@@ -1582,7 +1582,7 @@ h3#comments-title {
 }
 .comment-meta a:active,
 .comment-meta a:hover {
-	color: #ff4b33;
+	color: #046aad;
 }
 .commentlist .even {
 }
@@ -1598,7 +1598,7 @@ a.comment-edit-link {
 }
 .reply a:hover,
 a.comment-edit-link:hover {
-	color: #ff4b33;
+	color: #046aad;
 }
 .commentlist .children {
 	list-style: none;
@@ -1772,7 +1772,7 @@ h3#reply-title {
 	color: #000;
 }
 .widget_rss a.rsswidget:hover {
-	color: #ff4b33;
+	color: #046aad;
 }
 .widget_rss .widget-title img {
 	width: 11px;
