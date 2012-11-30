@@ -30,10 +30,10 @@ class PostsController < ApplicationController
     #TODO; refactor
     @commentable = @post
     if @post.is_a?(Kata)
-      @comments = @post.survived_reviews.desc(:vote_score, :last_update).paginate(:page => params[:page])
+      @comments = @post.survived_reviews.desc(:vote_score, :last_update)
       @comment = Review.new
     else
-      @comments = @post.survived_comments.desc(:vote_score, :last_update).paginate(:page => params[:page])
+      @comments = @post.survived_comments
       @comment = Comment.new
     end
 

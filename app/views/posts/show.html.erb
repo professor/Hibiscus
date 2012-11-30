@@ -31,7 +31,7 @@
   <% if @comments.any? %>
     <h2 id="commentsCount">
       <%= pluralize(@comments.count, @comment.class.to_s) %></h2>
-      <%= render @comments %>
+    <%= render @comments %>
   <% end %>
 
   <% if @type != 'Kata' %>
@@ -54,9 +54,7 @@
     <% end %>
 
   <% end %>
-  <div class="flickr_pagination">
-    <%= will_paginate @comments %>
-  </div>
+
   <br/>
   <% if current_user %>
     <h3>New <%= @comment.class.to_s %></h3>
