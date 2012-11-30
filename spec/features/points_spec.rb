@@ -12,9 +12,7 @@ describe "Points" do
       page.should have_content("Points: 0")
 
       visit root_path
-      sleep 10.seconds
       page.should have_content("0")
-
       page.should have_link("New Post")
       click_link 'New Post'
       fill_in 'Title', :with => 'My first post'
