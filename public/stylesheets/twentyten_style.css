@@ -128,9 +128,7 @@ DESCRIPTION: Full width content with no sidebar; used for attachment pages
 /*}*/
 
 
-#logout_link{
-    width:auto;
-}
+
 
 #popular_posts{
     width:auto;
@@ -433,7 +431,7 @@ a:hover {
 }
 #access ul li:hover > ul {
     display: block;
-    background: #c0c0c0;
+    background: #d1d1d1;
     color: #113794;
     height: 35px;
     border-bottom: 2px solid #666;
@@ -479,12 +477,27 @@ div.menu ul {
     height: 35px;
     border-bottom: 2px solid #666;;
 }
-
-#signed-in-user{
-    width: 200px;
-    /*padding-left: 3%;*/
+#subscribe-menu{
+    margin-left: 140px;
+}
+#subscribe-menu-signedin{
+    margin-left: 190px;
 }
 
+#signed-in-with-github{
+    width: 200px;
+    text-align: center;
+}
+
+#signed-in-user{
+    width: 150px;
+    text-align: center;
+
+}
+li#logout_link{
+    width: 150px;
+    text-align: center;
+}
 #search-menu{
     width: 400px;
     /*background: #666;*/
@@ -500,6 +513,7 @@ div.menu ul {
 
 }
 
+
 #github-image{
     height: 35px;
     width: 35px;
@@ -512,9 +526,7 @@ div.menu ul {
 
 }
 
-#subscribe-menu{
-    margin-left: 140px;
-}
+
 #subsignin{
 
 }

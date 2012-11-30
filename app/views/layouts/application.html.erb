@@ -43,22 +43,27 @@
         </form>
 
       </li>
-      <li id="subscribe-menu"><a href="#" title="Subscribe" onclick="javascript:showpromptdiv()"> Subscribe</a></li>
 
-      <li id="signed-in-user">
+
+
         <% if current_user %>
+          <li id="subscribe-menu-signedin"><a href="#" title="Subscribe" onclick="javascript:showpromptdiv()"> Subscribe</a></li>
+          <li id="signed-in-user">
             <%= link_to current_user.display_name, current_user %>
             <ul>
-              <li><%= link_to "Logout", :logout %> </li>
+              <li id="logout_link"><%= link_to "Logout", :logout %> </li>
             </ul>
+          </li>
         <% else %>
+          <li id="subscribe-menu"><a href="#" title="Subscribe" onclick="javascript:showpromptdiv()"> Subscribe</a></li>
+          <li id="signed-in-with-github">
             <img src="/images/github.png" alt="Github" id="github-image">
-        <%= link_to "Sign in with Github", '/auth/github' %>
-
+            <%= link_to "Sign in with Github", '/auth/github' %>
+          </li>
 
         <% end %>
 
-      </li>
+
     </ul>
 
 
