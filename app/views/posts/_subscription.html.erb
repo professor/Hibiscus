@@ -34,7 +34,11 @@
 </script>
 
 <div class="promptmaindiv">
+  <div class="promptclosediv">
+    <button class="closebutton" type="reset" name="close" onclick="hidepromptdiv();">x</button>
+  </div>
   <% if user_signed_in? %>
+
       <div class="promptinnerdiv">
         <%= form_for current_user, :remote => true do |f| %>
             <div class="prompttextdiv">

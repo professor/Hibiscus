@@ -1191,13 +1191,19 @@ div.randomKata a:link {text-decoration:none; color: #5e5e5e;}
     vertical-align: middle;
 }
 
+.promptclosediv{
+    float: right;
+    /*border: 1px solid #000000;*/
+
+}
 .promptinnerdiv {
     display: inline-block;
     width: 460px;
-    height: 300px;
+    height: 280px;
     /*background-color: #c2c2c2;*/
     margin-left: 20px;
-    margin-top: 25px;
+    margin-top: 5px;
+    /*border: 1px solid #000000;*/
 
 
 }
@@ -1207,7 +1213,7 @@ div.randomKata a:link {text-decoration:none; color: #5e5e5e;}
     height: 150px;
     background-color: white;
     margin-left: 20px;
-    margin-top: 25px;
+    margin-top: 15px;
     /*border: 1px solid #000000;*/
 
 }
@@ -1248,19 +1254,19 @@ div.randomKata a:link {text-decoration:none; color: #5e5e5e;}
 }
 .prompttextdivsignin a:hover {
     text-decoration: none;
-    color: #4183C4;
+    color: #046aad;
 }
 .prompttextdivsignin a:active {
     text-decoration: none;
-    color: #4183C4;
+    color: #046aad;
 }
 .prompttextdivsignin a:visited {
     text-decoration: none;
-    color: #4183C4;
+    color: #046aad;
 }
 .prompttextdivsignin a:link {
     text-decoration: none;
-    color: #4183C4;
+    color: #046aad;
 }
 
 .positivebutton{
@@ -1270,10 +1276,10 @@ div.randomKata a:link {text-decoration:none; color: #5e5e5e;}
     border-radius: 10px;
     font-size: 1.45em;
     text-align: center;
-    background-color: #04C;
+    background-color: #046aad;
     color: white;
     /*font-weight: bold;*/
-    border-color: #04C;
+    border-color: #046aad;
 
 }
 .promptcontroldiv input[type=submit] {
@@ -1291,6 +1297,21 @@ div.randomKata a:link {text-decoration:none; color: #5e5e5e;}
     /*font-weight: bold;*/
     margin-right: 30px;
     border-color: #c2c2c2;
+}
+
+.closebutton{
+    min-width: 30px;
+    height: 30px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    font-size: 1.45em;
+    text-align: center;
+    background-color: #dddddd;
+    color: black;
+    font-weight: bold;
+    margin-right: 10px;
+    margin-top: 10px;
+    /*border-color: #c2c2c2;*/
 }
 
 input.subscriptionemail{
@@ -1927,7 +1948,7 @@ code {
 	}
 	#content,
 	.one-column #content {
-		margin-bottom: 18px;
+		/*margin-bottom: 18px;*/
 		width: 100%;
 	}
 	.wp-caption p {
