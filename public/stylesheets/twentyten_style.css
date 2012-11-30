@@ -478,20 +478,22 @@ div.menu ul {
     border-bottom: 2px solid #666;;
 }
 #subscribe-menu{
-    margin-left: 140px;
+    margin-left: 120px;
 }
 #subscribe-menu-signedin{
-    margin-left: 190px;
+    margin-left: 170px;
 }
 
 #signed-in-with-github{
     width: 200px;
     text-align: center;
+    padding-left: 20px;
 }
 
 #signed-in-user{
     width: 150px;
     text-align: center;
+    padding-left: 20px;
 
 }
 li#logout_link{
