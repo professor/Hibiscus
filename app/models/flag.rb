@@ -37,9 +37,19 @@ class Flag
 
     if self.comment_id
       posts = Post.all
-      posts.each { |p| comment = p.comments.where(_id: self.comment_id.to_s).first }
+      posts.each { |p| comment = p.comments.where(_id: self.comment_id.to_s).first unless comment}
     end
     return comment
+  end
+
+  def review
+    review = nil
+
+    if self.review_id
+      katas = Kata.all
+      katas.each { |k| review = k.reviews.where(_id: self.review_id.to_s).first unless review }
+    end
+    return review
   end
 
 end

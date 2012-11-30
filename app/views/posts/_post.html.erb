@@ -13,31 +13,29 @@
     </div>
   <% end %>
 
-<% if post.tags.any? %>
-  <div class="entity-tags">
-    <% post.tags.each do |tag| %>
-      <p class="tag"><%= link_to tag.name, tag %></p>
-    <% end %>
+  <% if post.tags.any? %>
+    <div class="entity-tags">
+      <% post.tags.each do |tag| %>
+        <p class="tag"><%= link_to tag.name, tag %></p>
+      <% end %>
+    </div>
+  <% end %>
+  <div class="entity-content">
+    <p>
+      <%= raw strip_tags(post.content) %>
+    </p>
   </div>
-<% end %>
-<div class="entity-content">
-  <p>
-    <%= raw strip_tags(post.content) %>
-  </p>
-</div>
-<div class="entity-utility">
-  <% if can? :update, post %>
+  <div class="entity-utility">
+    <% if can? :update, post %>
       <span class="edit-link">
         <%= link_to 'Edit', edit_post_path(post), :title => "Edit Post", :class => "post-edit-link" %>
       </span>
       <span class="edit-link">
         <%= link_to 'Delete', post, :confirm => 'Are you sure?', :method => :delete, :title => "Delete Post", :class => "post-edit-link" %>
       </span>
-  <% end %>
-  <span class="edit-link">
         <%= button_to("Report", {:controller => "flags", :post_type => @post.class, :post_id => @post.id}, :confirm => "Are you sure?", :class => "reportLink") %>
-    </span>
-</div>
+    <% end %>
+  </div>
 
 
 </div>
