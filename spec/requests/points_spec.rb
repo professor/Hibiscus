@@ -42,7 +42,10 @@ describe "Points" do
       visit root_path
       page.should have_content("15")
       click_link 'My first post'
-      click_button 'Like this post?'
+      #removed like button
+      find("img[@alt='Upvote']").click
+
+
       visit user_path(@user)
       page.should have_content("Points: 16")
       visit root_path
