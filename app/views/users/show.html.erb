@@ -30,6 +30,10 @@
           <h3>
             <%= link_to 'All users', users_path %></h3>
         </section>
+        <section id="reported_content">
+          <h3>
+            <%= link_to 'Reported Content', flags_path %></h3>
+        </section>
       <% end %>
       <br><br>
     <% end %>
@@ -45,76 +49,65 @@
   </div>
 
   <div id="activity_div">
-    <b>Activity</b>
-
-    <% if @katas.any? %>
-      <br><br><br>
-      <b>Kata posted:</b>
-      <br><br>
-      <table>
-        <% @katas.each do |kata| %>
-          <tr>
-            <td><%= link_to kata.title, kata %></td>
-            <td>&nbsp;&nbsp;&nbsp;<%= kata.updated_at.asctime %></td>
-          </tr>
-          <!-- TODO: Check if time should be "created_at"-->
-        <% end %>
-      </table>
-    <% end %>
+    <h1>User Activity</h1><br><br>
 
     <% if @posts.any? %>
-      <br><br><br>
-      <b>Posts:</b>
-      <br><br>
+      <h2>Articles posted</h2><br>
       <table>
         <% @posts.each do |post| %>
           <% unless post.is_a? Article %>
-          <tr>
-            <td><%= link_to post.title, post %></td>
-            <td>&nbsp;&nbsp;&nbsp;<%= post.updated_at.asctime %></td>
-          </tr>
-            <% end %>
+            <tr class="activity_row">
+              <td><%= link_to post.title, post %></td>
+              <td>&nbsp;&nbsp;&nbsp;<%= post.updated_at.strftime("%Y-%m-%d") %></td>
+            </tr>
+          <% end %>
         <% end %>
       </table>
     <% end %>
 
     <% if @articles.any? %>
-      <br><br><br>
-      <b>Articles posted:</b>
-      <br><br>
       <table>
         <% @articles.each do |article| %>
-          <tr>
+          <tr class="activity_row">
             <td><%= link_to article.title, article %></td>
-            <td>&nbsp;&nbsp;&nbsp;<%= article.updated_at.asctime %></td>
+            <td>&nbsp;&nbsp;&nbsp;<%= article.updated_at.strftime("%Y-%m-%d") %></td>
           </tr>
         <% end %>
       </table>
     <% end %>
 
     <% if @comments.any? %>
-      <br><br><br>
-      <b>Posts commented on:</b>
-      <br><br>
+      <br><h2>Posts commented on</h2><br>
       <table>
         <% @comments.each do |comment| %>
-          <tr>
+          <tr class="activity_row">
             <td><%= link_to comment.post.title, comment.post %></td>
-            <td>&nbsp;&nbsp;&nbsp;<%= comment.updated_at.asctime %></td>
+            <td>&nbsp;&nbsp;&nbsp;<%= comment.updated_at.strftime("%Y-%m-%d") %></td>
           </tr>
         <% end %>
       </table>
     <% end %>
 
+    <% if @katas.any? %>
+      <br><h2>Kata posted</h2><br>
+      <table>
+        <% @katas.each do |kata| %>
+          <tr class="activity_row">
+            <td><%= link_to kata.title, kata %></td>
+            <td>&nbsp;&nbsp;&nbsp;<%= kata.updated_at.strftime("%Y-%m-%d") %></td>
+          </tr>
+          <!-- TODO: Check if time should be "created_at"-->
+        <% end %>
+      </table>
+    <% end %>
+
     <% if @reviews.any? %>
-      <br><br><br>
-      <b>Kata reviewed:</b>
-      <br><br>
+      <br><h2>Kata reviewed</h2><br>
       <table>
         <% @reviews.each do |review| %>
-          <tr>
+          <tr class="activity_row">
             <td><%= link_to review.kata.title, review.kata %></td>
-            <td>&nbsp;&nbsp;&nbsp;<%= review.updated_at.asctime %></td>
+            <td>&nbsp;&nbsp;&nbsp;<%= review.updated_at.strftime("%Y-%m-%d") %></td>
           </tr>
         <% end %>
       </table>

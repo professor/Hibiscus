@@ -24,7 +24,7 @@ describe FlagsController do
   # Flag. As you add validations to Flag, be sure to
   # update the return value of this method accordingly.
   def valid_attributes
-    {}
+    {:review_id => '1', :user_id => '1'}
   end
 
   # This should return the minimal set of values that should be in the session

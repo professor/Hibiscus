@@ -2,8 +2,8 @@ class UsersController < ApplicationController
   before_filter :authenticate_user!
 
   def index
-    @users = User.all
-    @blocked_users = User.deleted
+    @users = User.all.asc(:display_name)
+    @blocked_users = User.deleted.asc(:display_name)
     authorize! :edit, @users.first
   end
 

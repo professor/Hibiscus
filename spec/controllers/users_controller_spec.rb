@@ -73,7 +73,7 @@ describe UsersController do
 
     describe "GET index" do
       it "should list all the users" do
-        User.stub(:all) { [mock_user] }
+        User.stub_chain(:all, :asc) { [mock_user] }
         get :index
         assigns(:users).should eq([mock_user])
         response.should be_success

@@ -8,14 +8,21 @@
     float: left;
     padding-top: 30px;
     font-size: 1.3em;
-    width: 50%;
+    width: 33%;
 }
 
 #all_users {
     float: left;
     padding-top: 30px;
     font-size: 1.3em;
-    width: 50%;
+    width: 33%;
+}
+
+#reported_content {
+    float: left;
+    padding-top: 30px;
+    font-size: 1.3em;
+    width: 33%;
 }
 
 #activities {
@@ -84,7 +91,7 @@
 }
 
 #activity_div{
-    width: 840px;
+    width: 900px;
     float: left;
     padding: 5%;
     /*border: 1px solid;*/
@@ -158,7 +165,26 @@
     -moz-border-radius: 15px;
     border-radius: 15px;
     margin: 2%;
-
 }
 
+.user_row{
+    width: 200px;
+    height: 30px;
+    font-size: 1.1em;
+    text-align: left;
+}
 
+.user_row td{
+    padding: 0.5em;
+}
+
+.activity_row{
+    width: 200px;
+    height: 30px;
+    font-size: 1.1em;
+    text-align: left;
+}
+
+.activity_row td{
+    padding: 0.5em;
+}

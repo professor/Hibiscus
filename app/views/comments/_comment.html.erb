@@ -9,12 +9,12 @@
     <span class="edit-link">
          <%= link_to 'Delete', polymorphic_path([@post, comment]), confirm: 'Are you sure?', method: :delete %>
     </span>
-      &nbsp;<%= button_to("Report", {:controller => "flags", :post_type => @post.class, :post_id => @post.id, :comment_id => comment.id}, :confirm => "Are you sure?", :class => "reportLink") %>
-  <% end %>
+    <% end %>
+    &nbsp;<%= button_to("Report", {:controller => "flags", :post_type => @post.class, :post_id => @post.id, :comment_id => comment.id}, :confirm => "Are you sure?", :class => "reportLink") %>
   </p>
 
 
-  <%  blocked_user = User.deleted.where(username: comment.user_id).first %>
+  <% blocked_user = User.deleted.where(username: comment.user_id).first %>
   <% if blocked_user %>
     <p class="commentPoster">Posted by: <%= comment.user_id %></p>
   <% else %>

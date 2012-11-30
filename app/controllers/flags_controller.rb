@@ -1,4 +1,6 @@
 class FlagsController < ApplicationController
+  before_filter :authenticate_user!, :except => [:index]
+
   # GET /flags
   # GET /flags.xml
   def index

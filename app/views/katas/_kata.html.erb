@@ -41,7 +41,7 @@
   <span class="edit-link">
     <%= link_to 'Delete', kata, :confirm => 'Are you sure?', :method => :delete, :title => "Delete Kata", :class => "kata-edit-link" %>
   </span>
-      <%= button_to("Report", {:controller => "flags", :post_type => @post.class, :post_id => @post.id}, :confirm => "Are you sure?", :class => "reportLink") %>
     <% end %>
+    <%= button_to("Report", {:controller => "flags", :post_type => @post.class, :post_id => @post.id}, :confirm => "Are you sure?", :class => "reportLink") %>
   </div>
 </div>

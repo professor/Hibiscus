@@ -33,8 +33,8 @@
       <span class="edit-link">
         <%= link_to 'Delete', post, :confirm => 'Are you sure?', :method => :delete, :title => "Delete Post", :class => "post-edit-link" %>
       </span>
-        <%= button_to("Report", {:controller => "flags", :post_type => @post.class, :post_id => @post.id}, :confirm => "Are you sure?", :class => "reportLink") %>
     <% end %>
+    <%= button_to("Report", {:controller => "flags", :post_type => @post.class, :post_id => @post.id}, :confirm => "Are you sure?", :class => "reportLink") %>
   </div>
 
 
