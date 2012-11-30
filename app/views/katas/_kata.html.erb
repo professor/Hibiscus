@@ -17,7 +17,7 @@
         <span>
             <b> Suggested Categories: </b>
             <% kata.kata_user_categories.each do |category| %>
-                <a href="<%= kata_path(kata) %>" rel="bookmark"><%= Category.find(category).name %></a>&nbsp;&nbsp;
+                <a href="<%= kata_path(kata) %>" rel="bookmark"><%= Category.find(category).name %></a>&nbsp;&nbsp;&nbsp;
             <% end %>
         </span>
         <br><br>
