@@ -30,7 +30,7 @@
 <div class="entity-div">
   <% if @comments.any? %>
     <h2 id="commentsCount">
-      <%= pluralize(@post.survived_reviews.count, @comment.class.to_s) %></h2>
+      <%= pluralize(@comments.count, @comment.class.to_s) %></h2>
       <%= render @comments %>
   <% end %>
 
@@ -38,7 +38,7 @@
     <p id="postLikesCount">
       <%= pluralize(@post.listLikes.count, "Like") %>
     </p>
-                                                                   te
+
     <p id="postDislikesCount">
       <%= pluralize(@post.listDislikes.count, "Dislike") %>
     </p>
