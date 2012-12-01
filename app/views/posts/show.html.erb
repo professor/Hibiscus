@@ -3,48 +3,48 @@
 </div>
 
 
-<script type="text/javascript">var switchTo5x=true;</script>
+<script type="text/javascript">var switchTo5x = true;</script>
 <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
-<script type="text/javascript">stLight.options({publisher: "ur-d9349282-e2c2-5e10-173-d95cc709542e"});</script>
+<script type="text/javascript">stLight.options({publisher:"ur-d9349282-e2c2-5e10-173-d95cc709542e"});</script>
 
 <div id="main-entities-div">
-<%= render @post %>
+  <%= render @post %>
 
   <!-- comments bar-->
-<div class="entity-div">
-  <% if @comments.any? %>
-    <h2 id="commentsCount">
-      <%= pluralize(@comments.count, @comment.class.to_s) %></h2>
-    <%= render @comments %>
-  <% end %>
-
-  <% if @type != 'Kata' %>
-    <p id="postLikesCount">
-      <%= pluralize(@post.listLikes.count, "Like") %>
-    </p>
-
-    <p id="postDislikesCount">
-      <%= pluralize(@post.listDislikes.count, "Dislike") %>
-    </p>
-
-    <%= form_for Like.new do |f| %>
-      <%= f.hidden_field :post_id, :value => @post.id %>
-      <p><%= f.submit "Like this post?" %></p>
-    <% end %>
-    <%= form_for Like.new, :html => {:id => "new_dislike"} do |f| %>
-      <%= f.hidden_field :post_id, :value => @post.id %>
-      <%= f.hidden_field :is_dislike, :value => true %>
-      <p><%= f.submit "Dislike this post?" %></p>
+  <div class="entity-div">
+    <% if @comments.any? %>
+      <a name="<%= @comment.class.name.downcase %>"><h2 id="commentsCount">
+        <%= pluralize(@comments.count, @comment.class.to_s) %></h2></a>
+      <%= render @comments %>
     <% end %>
 
-  <% end %>
+    <% if @type != 'Kata' %>
+      <p id="postLikesCount">
+        <%= pluralize(@post.listLikes.count, "Like") %>
+      </p>
 
-  <br/>
-  <% if current_user %>
-    <h3>New <%= @comment.class.to_s %></h3>
-    <%= render 'comments/form' %>
-  <% else %>
-    <h3>Please <%= link_to "sign in", '/auth/github' %> to comment.</h3>
-  <% end %>
+      <p id="postDislikesCount">
+        <%= pluralize(@post.listDislikes.count, "Dislike") %>
+      </p>
+
+      <%= form_for Like.new do |f| %>
+        <%= f.hidden_field :post_id, :value => @post.id %>
+        <p><%= f.submit "Like this post?" %></p>
+      <% end %>
+      <%= form_for Like.new, :html => {:id => "new_dislike"} do |f| %>
+        <%= f.hidden_field :post_id, :value => @post.id %>
+        <%= f.hidden_field :is_dislike, :value => true %>
+        <p><%= f.submit "Dislike this post?" %></p>
+      <% end %>
+
+    <% end %>
+
+    <br/>
+    <% if current_user %>
+      <h3>New <%= @comment.class.to_s %></h3>
+      <%= render 'comments/form' %>
+    <% else %>
+      <h3>Please <%= link_to "sign in", '/auth/github' %> to comment.</h3>
+    <% end %>
+  </div>
 </div>
-    </div>
