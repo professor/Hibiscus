@@ -1,10 +1,18 @@
+##
+# This class is used to verify the format of email field.
 class EmailValidator < ActiveModel::EachValidator
+  ##
+  # Verify if the +value+ of +attribute+ in a +record+ is a valid email address.
+  #
+  # If it is not a valid email, record in the error message.
   def validate_each(record, attribute, value)
     record.errors[attribute] << (options[:message] || "is not an email") unless
       value =~ /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i
   end
 end
 
+##
+# This class represents a actual user of Craftsmanship.
 class User
   include Mongoid::Document
   include Mongoid::Slug
@@ -41,6 +49,8 @@ class User
   validates :username, :presence => true
   # validates :email, :email => true
 
+  ##
+  # Get a user name.
   def display_name
     self.name.blank? ? self.username : self.name
   end
