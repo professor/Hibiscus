@@ -1,7 +1,6 @@
 FactoryGirl.define do
-  factory :post do
-    title "Post Title Factory"
-    content "Post Content Factory"
+  factory :flag do
+    association :post,  strategy: :build
     association :user,  strategy: :build
   end
 end

@@ -25,14 +25,22 @@ input[type=submit].reportLink {
 }
 
 /* Reports Table */
-table.reports_table {
-    font-size: 14px;
-}
 
-table.reports_table a {
-    text-decoration: none;
-}
-
-table.reports_table th {
+.reports_header{
+    width: 200px;
+    height: 30px;
+    font-size: 1.2em;
     text-align: left;
+    font-weight: bold;
+}
+
+.report_row{
+    width: 200px;
+    height: 30px;
+    font-size: 1.1em;
+    text-align: left;
+}
+
+.report_row td{
+    padding: 0.5em;
 }

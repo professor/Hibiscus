@@ -1,79 +1,21 @@
-<%= javascript_include_tag "jquery.dataTables.min" %>
-
-<script>
-  // TODO: Add sorting
-  $(document).ready(function () {
-    $('#post_reports_table').dataTable({
-      "bLengthChange":false, // disable the default page length change
-      "bFilter":false, // disable the default table filter
-      "bPaginate":false, // disable the default pagination
-//      "bInfo": false,  // the 'Showing x to y of z entries' text, can be disabled by uncomment this line
-//      "bAutoWidth": false,
-      "aaSorting":[
-        [1, 'desc']
-      ]
-    });
-  });
-
-  $(document).ready(function () {
-    $('#comment_reports_table').dataTable({
-      "bLengthChange":false, // disable the default page length change
-      "bFilter":false, // disable the default table filter
-      "bPaginate":false, // disable the default pagination
-//      "bInfo": false,  // the 'Showing x to y of z entries' text, can be disabled by uncomment this line
-//      "bAutoWidth": false,
-      "aaSorting":[
-        [1, 'desc']
-      ]
-    });
-  });
-
-  $(document).ready(function () {
-    $('#kata_reports_table').dataTable({
-      "bLengthChange":false, // disable the default page length change
-      "bFilter":false, // disable the default table filter
-      "bPaginate":false, // disable the default pagination
-//      "bInfo": false,  // the 'Showing x to y of z entries' text, can be disabled by uncomment this line
-//      "bAutoWidth": false,
-      "aaSorting":[
-        [1, 'desc']
-      ]
-    });
-  });
-
-  $(document).ready(function () {
-    $('#review_reports_table').dataTable({
-      "bLengthChange":false, // disable the default page length change
-      "bFilter":false, // disable the default table filter
-      "bPaginate":false, // disable the default pagination
-//      "bInfo": false,  // the 'Showing x to y of z entries' text, can be disabled by uncomment this line
-//      "bAutoWidth": false,
-      "aaSorting":[
-        [1, 'desc']
-      ]
-    });
-  });
-
-</script>
-
-<h1>Reported Content</h1><br>
+<h1>Reported Content</h1><br><br>
 
 <div>
-  <h2>Posts</h2>
-  <table class="reports_table" id="post_reports_table">
+  <h2>Posts</h2><br>
+  <table>
     <thead>
     <tr>
-      <th>Post Name</th>
-      <th>Author</th>
-      <th>Updated At</th>
-      <th>Reported By</th>
-      <th>Report Date</th>
+      <th class="reports_header">Post Name</th>
+      <th class="reports_header">Author</th>
+      <th class="reports_header">Updated At</th>
+      <th class="reports_header">Reported By</th>
+      <th class="reports_header">Report Date</th>
     </tr>
     </thead>
     <tbody>
     <% @flags.each do |flag| %>
       <% if post = flag.post %>
-        <tr class="odd gradeX">
+        <tr class="report_row">
           <td><%= link_to post.title, post %></td>
           <td><%= post.user.display_name %></td>
           <td><%= post.updated_at.strftime("%Y-%m-%d") %></td>
@@ -86,21 +28,21 @@
   </table>
   <br><br>
 
-  <h2>Comments</h2>
-  <table class="reports_table" id="comment_reports_table">
+  <h2>Comments</h2><br>
+  <table>
     <thead>
     <tr>
-      <th>Comment's Post Name</th>
-      <th>Author</th>
-      <th>Updated At</th>
-      <th>Reported By</th>
-      <th>Report Date</th>
+      <th class="reports_header">Comment's Post Name</th>
+      <th class="reports_header">Author</th>
+      <th class="reports_header">Updated At</th>
+      <th class="reports_header">Reported By</th>
+      <th class="reports_header">Report Date</th>
     </tr>
     </thead>
     <tbody>
     <% @flags.each do |flag| %>
       <% if comment = flag.comment %>
-        <tr class="odd gradeX">
+        <tr class="report_row">
           <td><%= link_to comment.post.title, comment.post %></td>
           <td><%= comment.user.display_name %></td>
           <td><%= comment.updated_at.strftime("%Y-%m-%d") %></td>
@@ -113,21 +55,21 @@
   </table>
   <br><br>
 
-  <h2>Kata</h2>
-  <table class="reports_table" id="kata_reports_table">
+  <h2>Kata</h2><br>
+  <table>
     <thead>
     <tr>
-      <th>Kata Name</th>
-      <th>Author</th>
-      <th>Updated At</th>
-      <th>Reported By</th>
-      <th>Report Date</th>
+      <th class="reports_header">Kata Name</th>
+      <th class="reports_header">Author</th>
+      <th class="reports_header">Updated At</th>
+      <th class="reports_header">Reported By</th>
+      <th class="reports_header">Report Date</th>
     </tr>
     </thead>
     <tbody>
     <% @flags.each do |flag| %>
       <% if kata = flag.kata %>
-        <tr class="odd gradeX">
+        <tr class="report_row">
           <td><%= link_to kata.title, kata %></td>
           <td><%= kata.user.display_name %></td>
           <td><%= kata.updated_at.strftime("%Y-%m-%d") %></td>
@@ -140,21 +82,21 @@
   </table>
   <br><br>
 
-  <h2>Reviews</h2>
-  <table class="reports_table" id="review_reports_table">
+  <h2>Reviews</h2><br>
+  <table>
     <thead>
     <tr>
-      <th>Review's Kata Name</th>
-      <th>Author</th>
-      <th>Updated At</th>
-      <th>Reported By</th>
-      <th>Report Date</th>
+      <th class="reports_header">Review's Kata Name</th>
+      <th class="reports_header">Author</th>
+      <th class="reports_header">Updated At</th>
+      <th class="reports_header">Reported By</th>
+      <th class="reports_header">Report Date</th>
     </tr>
     </thead>
     <tbody>
     <% @flags.each do |flag| %>
       <% if review = flag.review %>
-        <tr class="odd gradeX">
+        <tr class="report_row">
           <td><%= link_to review.kata.title, review.kata %></td>
           <td><%= review.user.display_name %></td>
           <td><%= review.updated_at.strftime("%Y-%m-%d") %></td>
