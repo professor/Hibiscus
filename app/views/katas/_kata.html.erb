@@ -5,7 +5,12 @@
     <span class="meta-prep meta-prep-author">Posted on</span>
     <span class="entry-date"><%= kata.created_at.to_date.to_formatted_s(:long_ordinal) %></span>
     <span class="meta-sep">by</span>
-    <span class="author vcard"><a class="url fn n" href="<%= user_path(kata.user) %>" title="View all posts by <%= kata.user.name %>"><%= kata.user.display_name %></a> <b><%= kata.user.points %></b></span>
+    <% blocked_user = User.deleted.where(username: kata.user_id).first %>
+    <% if blocked_user %>
+      <span class="author vcard"><%= kata.user_id %></span>
+    <% else %>
+      <span class="author vcard"><a class="url fn n" href="<%= user_path(kata.user) %>" title="View all posts by <%= kata.user.name %>"><%= kata.user.display_name %></a> <b><%= kata.user.points %></b></span>
+    <% end %>
     <span>In <b>Category: </b><a href="<%= kata_path(kata) %>" rel="bookmark"><%= kata.category.name %></a></span>
     <br><br>
     <% unless kata.rating.nil? %>

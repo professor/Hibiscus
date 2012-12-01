@@ -5,7 +5,12 @@
     <span class="meta-prep meta-prep-author">Posted on</span>
     <a href="<%= post_path(post) %>" title="<%= post.created_at.to_date.to_formatted_s(:long_ordinal) %>" rel="bookmark"><span class="entry-date"><%= post.created_at.to_date.to_formatted_s(:long_ordinal) %></span></a>
     <span class="meta-sep">by</span>
-    <span class="author vcard"><a class="url fn n" href="<%= user_path(post.user) %>" title="View all posts by <%= post.user.name %>"><%= post.user.display_name %></a></span>
+    <% blocked_user = User.deleted.where(username: post.user_id).first %>
+    <% if blocked_user %>
+      <span class="author vcard"><%= post.user_id %></span>
+    <% else %>
+      <span class="author vcard"><a class="url fn n" href="<%= user_path(post.user) %>" title="View all posts by <%= post.user.name %>"><%= post.user.display_name %></a></span>
+    <% end %>
   </div>
   <% unless post.source_url.blank? %>
     <div class="entity-source-url">
