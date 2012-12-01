@@ -46,7 +46,8 @@ class Kata
   validates :user_id, :presence => true
   # challenge_level can be "low", "medium", "high"
   validates :challenge_level, presence: true, inclusion: { in: %w(Low Medium High) }
-  # a kata must have one and only one category
+  # a kata must have one or more categories
+  validates :category_ids, :presence => true
 
   VALID_WEBSITE_REGEX = /^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,6}(:[0-9]{1,5})?(\/.*)?$/ix
   validates :source_url, format: { with: VALID_WEBSITE_REGEX, :message => "Please enter a URL link, start with http"}, :allow_blank => true
@@ -59,6 +60,8 @@ class Kata
     reviews.where(:deleted_at.exists => false)
   end
 
+  #TODO: We are doing the update of the foreign keys manually because rails wasn't updating
+  #if update to an newer version of mongoid, this might not be necessary
   def update_fk_in_category
     #check if there are categories for the kata
     return if !self.category_ids.is_a?(Array) || self.category_ids.empty?
