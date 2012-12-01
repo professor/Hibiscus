@@ -8,7 +8,12 @@ class PostsController < ApplicationController
   ##
   # Retrieve all Posts or Katas and displays them
   def index
-    @posts = post_type.all
+    if params[:popular].blank?
+      @posts = post_type.all
+    else
+      @posts = post_type.desc(:vote_score)
+    end
+
     @categories = Category.order_importance
 
     respond_to do |format|
@@ -17,6 +22,8 @@ class PostsController < ApplicationController
       format.rss { render :layout => false } #index.rss.builder
     end
   end
+
+
 
   # GET /posts/1
   # GET /posts/1.xml
@@ -142,6 +149,26 @@ class PostsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to(post_type, :notice => "The #{@type} has been deleted.") }
       format.xml { head :ok }
+    end
+  end
+
+  def upvote
+    @post = post_type.find_by_slug(params[:id])
+    current_user.vote_for(@post)
+    current_user.add_points(1)
+    @post.update_vote_score
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def downvote
+    @post = post_type.find_by_slug(params[:id])
+    current_user.vote_against(@post)
+    current_user.add_points(1)
+    @post.update_vote_score
+    respond_to do |format|
+      format.js
     end
   end
 end

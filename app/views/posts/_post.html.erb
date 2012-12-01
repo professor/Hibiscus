@@ -1,38 +1,48 @@
 <div class="entity-div">
   <h2 class="entity-title"><%= post.title.truncate(80) %></h2>
+
+  <div id="vote_<%= post.id %>" class="post_vote">
+    <%= render :partial => 'votes/vote_post', :locals => {:post => post} %>
+  </div>
   <div class="entity-meta">
-    <span class="meta-prep meta-prep-author">Posted on</span> <span class="entry-date"><%= post.created_at.to_date.to_formatted_s(:long_ordinal) %></span>
+    <span class="meta-prep meta-prep-author">Posted on</span>
+    <span class="entry-date"><%= post.created_at.to_date.to_formatted_s(:long_ordinal) %></span>
     <span class="meta-sep">by</span>
-    <span class="author vcard">
-      <a class="url fn n" href="<%= user_path(post.user) %>" title="View all posts by <%= post.user.name %>"><%= post.user.display_name %></a>
-      <b style="font-size: 1.25em; padding-left: 5px;"><%= post.user.points %></b></span>
+      <span class="author vcard">
+        <a class="url fn n" href="<%= user_path(post.user) %>" title="View all posts by <%= post.user.name %>"><%= post.user.display_name %></a>
+        <b style="font-size: 1.25em; padding-left: 5px;"><%= post.user.points %></b></span>
   </div>
   <% unless post.source_url.blank? %>
-      <div class="entity-source-url">
-        <h4>Source URL: <%=link_to post.source_url.truncate(130),"#{post.source_url}", {:target => '_blank'}%></h4>
-      </div>
+    <div class="entity-source-url">
+      <h4>Source URL: <%= link_to post.source_url.truncate(130), "#{post.source_url}", {:target => '_blank'} %></h4>
+    </div>
   <% end %>
 
+
+
   <% if post.tags.any? %>
-      <div class="entity-tags">
-        <% post.tags.each do |tag| %>
-            <p class="tag"><%= link_to tag.name, tag %></p>
-        <% end %>
-      </div>
+    <div class="entity-tags">
+      <% post.tags.each do |tag| %>
+        <p class="tag"><%= link_to tag.name, tag %></p>
+      <% end %>
+    </div>
   <% end %>
   <div class="entity-content">
     <p>
-    <%= raw strip_tags(post.content) %>
+      <%= raw strip_tags(post.content) %>
     </p>
   </div>
   <div class="entity-utility">
-  <% if can? :update, post %>
-        <span class="edit-link">
-          <%= link_to 'Edit', edit_post_path(post), :title => "Edit Post", :class => "post-edit-link" %>
-        </span>
-        <span class="edit-link">
-          <%= link_to 'Delete', post, :confirm => 'Are you sure?', :method => :delete, :title => "Delete Post", :class => "post-edit-link" %>
-        </span>
-  <% end %>
+    <% if can? :update, post %>
+          <span class="edit-link">
+            <%= link_to 'Edit', edit_post_path(post), :title => "Edit Post", :class => "post-edit-link" %>
+          </span>
+          <span class="edit-link">
+            <%= link_to 'Delete', post, :confirm => 'Are you sure?', :method => :delete, :title => "Delete Post", :class => "post-edit-link" %>
+          </span>
+    <% end %>
+    <%= render 'socials/social' %>
   </div>
+
+
 </div>

@@ -13,33 +13,14 @@
   <!-- comments bar-->
   <div class="entity-div">
     <% if @comments.any? %>
-      <a name="<%= @comment.class.name.downcase %>"><h2 id="commentsCount">
-        <%= pluralize(@comments.count, @comment.class.to_s) %></h2></a>
+      <a name="<%= @comment.class.name.downcase %>">
+        <h2 id="commentsCount">
+          <%= pluralize(@comments.count, @comment.class.to_s) %>
+        </h2>
+      </a>
       <%= render @comments %>
     <% end %>
 
-    <% if @type != 'Kata' %>
-      <p id="postLikesCount">
-        <%= pluralize(@post.listLikes.count, "Like") %>
-      </p>
-
-      <p id="postDislikesCount">
-        <%= pluralize(@post.listDislikes.count, "Dislike") %>
-      </p>
-
-      <%= form_for Like.new do |f| %>
-        <%= f.hidden_field :post_id, :value => @post.id %>
-        <p><%= f.submit "Like this post?" %></p>
-      <% end %>
-      <%= form_for Like.new, :html => {:id => "new_dislike"} do |f| %>
-        <%= f.hidden_field :post_id, :value => @post.id %>
-        <%= f.hidden_field :is_dislike, :value => true %>
-        <p><%= f.submit "Dislike this post?" %></p>
-      <% end %>
-
-    <% end %>
-
-    <br/>
     <% if current_user %>
       <h3>New <%= @comment.class.to_s %></h3>
       <%= render 'comments/form' %>

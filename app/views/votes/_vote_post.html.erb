@@ -1,0 +1,12 @@
+<% if current_user && current_user.voted_for?(post) %>
+    <%= link_to image_tag("upvoted.png"), upvote_post_path(post), :class => "upvoted", :method => :post, :remote => true %>
+<% else %>
+    <%= link_to image_tag("upvote.png"), upvote_post_path(post), :class => "upvote", :method => :post, :remote => true %>
+<% end %>
+    <p class="post_short_vote_score" ><%= post.vote_score %></p>
+
+<% if current_user && current_user.voted_against?(post) %>
+    <%= link_to image_tag("downvoted.png"), downvote_post_path(post), :class => "downvoted", :method => :post, :remote => true %>
+<% else %>
+    <%= link_to image_tag("downvote.png"), downvote_post_path(post), :class => "downvote", :method => :post, :remote => true %>
+<% end %>
