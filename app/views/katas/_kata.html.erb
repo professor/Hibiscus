@@ -28,8 +28,13 @@
     <% end %>
     <br>
     <div class="attribute"><b>Challenge Level: </b><%= content_tag(:span, kata.challenge_level, :class => "level_#{kata.challenge_level}") %></div>
-    <!--<div class="attribute"><b>Category: </b><a href="<%= category_path(kata.category) %>" rel="bookmark"><%= kata.category.name %></a></div>-->
-    <div class="attribute"><b>Category: </b><span class="category"><%= link_to kata.category.name, kata.category, :rel => 'bookmark' %></span></div>
+    <div class="attribute"><b>Category: </b>
+      <span class="category">
+        <% kata.categories.all.collect do |x| %>
+          <%= link_to x.name, x, :rel => 'bookmark' %>
+        <% end %>
+      </span>
+    </div>
     <% unless kata.kata_user_categories.empty? %>
       <div class="attribute">
         <b> Suggested Categories: </b>
