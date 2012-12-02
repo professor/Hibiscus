@@ -7,6 +7,12 @@ module RequestMacros
     @user ||= FactoryGirl.create :user
     login_as @user
   end
+
+  # Login for use in request specs
+  def sign_in_as_an_admin
+    @admin ||= FactoryGirl.create :admin
+    login_as @admin
+  end
 end
 
 RSpec.configure do |config|

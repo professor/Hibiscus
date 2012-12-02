@@ -24,8 +24,10 @@
     <% if current_user %>
       <h3>New <%= @comment.class.to_s %></h3>
       <%= render 'comments/form' %>
-    <% else %>
+    <% elsif @type != 'Kata' %>
       <h3>Please <%= link_to "sign in", '/auth/github' %> to comment.</h3>
+    <% else %>
+      <h3>Please <%= link_to "sign in", '/auth/github' %> to review.</h3>
     <% end %>
   </div>
 </div>

@@ -36,8 +36,7 @@ class Kata
   slug :title
 
   embeds_many :reviews
-  #both teams decide to remove it
-  #references_many :likes, :dependent => :destroy
+  references_many :flags, :dependent => :destroy
   has_and_belongs_to_many :tags
   referenced_in :user
 

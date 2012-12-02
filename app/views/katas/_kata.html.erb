@@ -67,6 +67,7 @@
       <%= link_to 'Delete', kata, :confirm => 'Are you sure?', :method => :delete, :title => "Delete Kata", :class => "kata-edit-link" %>
     </span>
       <% end %>
+    <%= button_to("Report", {:controller => "flags", :post_type => @post.class, :post_id => @post.id}, :confirm => "Are you sure?", :class => "reportLink") %>
     <%= render 'socials/social' %>
   </div>
 </div>

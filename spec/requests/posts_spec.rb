@@ -26,5 +26,4 @@ describe "Posts" do
     end
   end
 
-
 end

@@ -30,6 +30,7 @@ class Post
 
   embeds_many :comments
   references_many :likes, :dependent => :destroy
+  references_many :flags, :dependent => :destroy
   has_and_belongs_to_many :tags
   referenced_in :user
 

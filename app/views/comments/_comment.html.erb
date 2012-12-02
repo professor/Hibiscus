@@ -23,6 +23,12 @@
     <% else %>
         Posted on <%= comment.created_at.to_date.to_formatted_s(:long_ordinal) %>
     <% end %>
-    by <%= link_to comment.user.display_name, comment.user %><b style="font-size: 1.25em; padding-left: 5px;"><%= comment.user.points %></b>
+    by
+    <% blocked_user = User.deleted.where(username: comment.user_id) %>
+    <% if blocked_user.any? %>
+      <p class="commentPoster">Posted by: <%= comment.user_id %></p>
+    <% else %>
+    <%= link_to comment.user.display_name, comment.user %><b style="font-size: 1.25em; padding-left: 5px;"><%= comment.user.points %></b>
+    <% end %>
   </p>
 </section>
