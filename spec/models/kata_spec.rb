@@ -21,8 +21,8 @@ describe Kata do
       @kata.should be_invalid
     end
 
-    it "is invalid without a category" do
-      @kata.category = nil
+    it "is invalid without at least one category" do
+      @kata.category_ids = nil
       @kata.should be_invalid
     end
 

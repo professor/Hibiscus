@@ -1,8 +1,8 @@
 require 'indextank'
 require "searchify"
 
+##
 # Post is the model for posted articles (Post), and the base model for article feeds(Article).
-
 class Post
   include Mongoid::Document
   include Mongoid::Timestamps
@@ -40,6 +40,8 @@ class Post
   after_save :update_search_index
   before_destroy :delete_from_search_index
 
+  ##
+  # Get user likes array for a post
   def listLikes
     likes = []
     self.likes.each do |l|
@@ -48,7 +50,9 @@ class Post
     
     return likes
   end
-  
+
+  ##
+  # Get user dislikes array for a post
   def listDislikes
     dislikes = []
     self.likes.each do |l|
@@ -57,7 +61,9 @@ class Post
     
     return dislikes
   end
-  
+
+  ##
+  # Get tags name array for a post
   def joinTags
     tags = []
     self.tags.each do |tag|
@@ -66,7 +72,9 @@ class Post
     
     return tags.join(", ")
   end
-  
+
+  ##
+  # Set post tags from a tag name string. The post tags are included in an array of Tag objects.
   def setTags
     self.tags.nullify
     
@@ -80,10 +88,14 @@ class Post
     end
   end
 
+  ##
+  # Get all comments that are not deleted for a post
   def survived_comments
     comments.where(:deleted_at.exists => false)
   end
 
+  ##
+  # Update the vote score for a post
   def update_vote_score
     self.vote_score = self.plusminus
     save
