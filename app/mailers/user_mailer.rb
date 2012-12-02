@@ -1,3 +1,5 @@
+# User Mailer extends ActionMailer for sending email notifications.
+
 class UserMailer < ActionMailer::Base
   default :from => "noreply@sv.cmu.edu"
 

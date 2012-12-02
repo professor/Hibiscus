@@ -1,3 +1,6 @@
+# Article extends Post model, adding author, site name, and guid fields. Used to store external sourced posts.
+
+
 class Article < Post
   field :author, :type => String
   field :site_name, :type => String

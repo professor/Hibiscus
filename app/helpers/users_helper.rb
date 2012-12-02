@@ -1,3 +1,5 @@
+# Helper class for User Model.
+
 module UsersHelper
 
   # Returns the Gravatar (http://gravatar.com/) for the given user.
