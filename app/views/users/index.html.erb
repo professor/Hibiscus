@@ -1,0 +1,19 @@
+<h1>All Users</h1><br>
+
+<div id="main-all-users-div">
+  <table>
+    <% @users.each do |user| %>
+      <tr class="user_row">
+        <td><%= link_to user.display_name, user %></td>
+        <td><%= link_to 'Block', user, confirm: 'Are you sure?', method: :delete %></td>
+      </tr>
+    <% end %>
+    <% @blocked_users.each do |user| %>
+      <tr class="user_row">
+        <td><%= user.display_name %></td>
+        <td><%= link_to 'Unblock', users_restore_path(user), confirm: 'Are you sure?' %></td>
+        <td><%= link_to 'Delete', users_obliterate_path(user), confirm: 'Are you sure? This will also delete the content that the user created.' %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>
