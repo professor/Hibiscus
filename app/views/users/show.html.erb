@@ -4,7 +4,9 @@
   <div id="profile_div">
     <p>
       <label id="profile_name"> <%= @user.display_name %> </label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <span class="page_nav_links"> <%= link_to 'Edit', edit_user_path(@user), :title => "Edit Profile", :class => "user-edit-link" %></span>
+      <% if can? :update, @user %>
+        <span class="page_nav_links"> <%= link_to 'Edit', edit_user_path(@user), :title => "Edit Profile", :class => "user-edit-link" %></span>
+      <% end %>
     </p>
     <br><br>
 
@@ -17,14 +19,24 @@
 
     <br><br>
 
-    <br>
-    <section id="authentications">
-      <h3>
-        <% if can? :update, @user %>
-            <%= link_to 'Authentications', authentications_path %></h3>
-        <% end %>
-        <br><br>
+    <% if can? :update, @user %>
+      <br>
+      <section id="authentications">
+        <h3>
+          <%= link_to 'Authentications', authentications_path %></h3>
+      </section>
+      <% if @user.admin? %>
+        <section id="all_users">
+          <h3>
+            <%= link_to 'All users', users_path %></h3>
         </section>
+        <section id="reported_content">
+          <h3>
+            <%= link_to 'Reported Content', flags_path %></h3>
+        </section>
+      <% end %>
+      <br><br>
+    <% end %>
   </div>
 
   <div id="gravatar_div">
@@ -34,6 +46,72 @@
 
   <div id="gravatar_link">
     <a href="http://gravatar.com/emails" target="_blank" class="page_nav_links">Change your avatar at Gravatar.com</a>
+  </div>
+
+  <div id="activity_div">
+    <h1>User Activity</h1><br><br>
+
+    <% if @posts.any? %>
+      <h2>Articles posted</h2><br>
+      <table>
+        <% @posts.each do |post| %>
+          <% unless post.is_a? Article %>
+            <tr class="activity_row">
+              <td><%= link_to post.title, post %></td>
+              <td>&nbsp;&nbsp;&nbsp;<%= post.updated_at.strftime("%Y-%m-%d") %></td>
+            </tr>
+          <% end %>
+        <% end %>
+      </table>
+    <% end %>
+
+    <% if @articles.any? %>
+      <table>
+        <% @articles.each do |article| %>
+          <tr class="activity_row">
+            <td><%= link_to article.title, article %></td>
+            <td>&nbsp;&nbsp;&nbsp;<%= article.updated_at.strftime("%Y-%m-%d") %></td>
+          </tr>
+        <% end %>
+      </table>
+    <% end %>
+
+    <% if @comments.any? %>
+      <br><h2>Posts commented on</h2><br>
+      <table>
+        <% @comments.each do |comment| %>
+          <tr class="activity_row">
+            <td><%= link_to comment.post.title, comment.post %></td>
+            <td>&nbsp;&nbsp;&nbsp;<%= comment.updated_at.strftime("%Y-%m-%d") %></td>
+          </tr>
+        <% end %>
+      </table>
+    <% end %>
+
+    <% if @katas.any? %>
+      <br><h2>Kata posted</h2><br>
+      <table>
+        <% @katas.each do |kata| %>
+          <tr class="activity_row">
+            <td><%= link_to kata.title, kata %></td>
+            <td>&nbsp;&nbsp;&nbsp;<%= kata.updated_at.strftime("%Y-%m-%d") %></td>
+          </tr>
+          <!-- TODO: Check if time should be "created_at"-->
+        <% end %>
+      </table>
+    <% end %>
+
+    <% if @reviews.any? %>
+      <br><h2>Kata reviewed</h2><br>
+      <table>
+        <% @reviews.each do |review| %>
+          <tr class="activity_row">
+            <td><%= link_to review.kata.title, review.kata %></td>
+            <td>&nbsp;&nbsp;&nbsp;<%= review.updated_at.strftime("%Y-%m-%d") %></td>
+          </tr>
+        <% end %>
+      </table>
+    <% end %>
   </div>
 
 </div>

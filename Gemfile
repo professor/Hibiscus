@@ -24,7 +24,7 @@ end
 
 group :production do
 #  gem 'exception_notification', :require => 'exception_notifier'
-  gem 'exception_notification', git: 'git://github.com/alanjds/exception_notification.git'
+  gem 'exception_notification', :git => 'git://github.com/alanjds/exception_notification.git'
 end
 
 group :development, :test do

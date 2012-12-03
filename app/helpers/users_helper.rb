@@ -12,4 +12,9 @@ module UsersHelper
     gravatar_url = "https://secure.gravatar.com/avatar/#{gravatar_id}?s=#{size}"
     image_tag(gravatar_url, alt: user.name, class: "gravatar")
   end
+
+  # Returns true if the user with the provided ID has been blocked
+  def user_blocked(user_id)
+    User.deleted.where(_id: user_id).any?
+  end
 end

@@ -7,6 +7,9 @@ CraftWiki::Application.routes.draw do
     match 'logout', :to => 'devise/sessions#destroy', :as => :logout
   end
 
+  match '/users/restore/:id', to: 'users#restore', :as => :users_restore
+  match '/users/obliterate/:id', to: 'users#obliterate', :as => :users_obliterate
+
   resources :users do
     resources :plans
   end
@@ -17,6 +20,7 @@ CraftWiki::Application.routes.draw do
   resources :likes
   resources :tags
   resources :categories
+  resources :flags
 
   resources :posts do
     member do

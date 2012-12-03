@@ -10,7 +10,13 @@
         <span class="entry-date"><%= kata.created_at.strftime("%b %d, %Y") %></span>
     <% end %>
     <span class="meta-sep">by</span>
-    <span class="author vcard"><a class="url fn n" href="<%= user_path(kata.user) %>" title="View all posts by <%= kata.user.name %>"><%= kata.user.display_name %></a> <b><%= kata.user.points %></b></span>
+    <% if user_blocked(kata.user_id) %>
+      <span class="author vcard"><%= kata.user_id %></span>
+    <% else %>
+      <span class="author vcard">
+        <a class="url fn n" href="<%= user_path(kata.user) %>" title="View all posts by <%= kata.user.name %>"><%= kata.user.display_name %></a>
+        <b><%= kata.user.points %></b></span>
+    <% end %>
   </div>
   <div class="entity-attribute">
     <% unless kata.rating.nil? %>
@@ -67,6 +73,7 @@
       <%= link_to 'Delete', kata, :confirm => 'Are you sure?', :method => :delete, :title => "Delete Kata", :class => "kata-edit-link" %>
     </span>
       <% end %>
+    <%= button_to("Report", {:controller => "flags", :post_type => @post.class, :post_id => @post.id}, :confirm => "Are you sure?", :class => "reportLink") %>
     <%= render 'socials/social' %>
   </div>
 </div>
