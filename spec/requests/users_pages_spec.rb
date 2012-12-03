@@ -45,14 +45,14 @@ describe "User pages" do
 
         it "should display regular (not blocked) users" do
           visit users_path
-          page.should have_content("block")
+          page.should have_content("Block")
         end
 
         it "should display blocked users" do
           @user1.destroy
           visit users_path
-          page.should have_content("unblock")
-          page.should have_content("delete")
+          page.should have_content("Unblock")
+          page.should have_content("Delete")
         end
 
       end

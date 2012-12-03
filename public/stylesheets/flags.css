@@ -10,7 +10,7 @@ input[type=submit].reportLink {
     padding: 0;
     border: none;
     cursor: pointer;
-    text-decoration: underline;
+    /*text-decoration: underline;*/
     font-family: Georgia, "Bitstream Charter", serif;
 }
 
