@@ -21,6 +21,7 @@ class Kata
 
   attr_reader :category_tokens
 
+  # Setter method for the categories that a Kata instance has and belongs to.
   def category_tokens=(ids)
     self.category_ids = ids.split(",")
   end

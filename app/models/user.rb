@@ -56,6 +56,9 @@ class User
     self.name.blank? ? self.username : self.name
   end
 
+  # Getter method for the comments referenced by a User instance. It is declared explicitly
+  # because since Comment is an embedded model, the belongs_to relation does not create
+  # a comments getter method automatically.
   def comments
     comments = []
     posts = Post.all
@@ -63,6 +66,9 @@ class User
     return comments
   end
 
+  # Getter method for the reviews referenced by a User instance. It is declared explicitly
+  # because since Review is an embedded model, the belongs_to relation does not create
+  # a reviews getter method automatically.
   def reviews
     reviews = []
     katas = Kata.all

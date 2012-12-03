@@ -1,4 +1,14 @@
-This application offers information and practices for software craftsmanship.
+This application offers articles and practice exercises for software craftsmanship.
 
  For information regarding the installation check README.md on the root directory.
 
+=Important Design Information
+
+==Why to have Kata, Post and Article in separate models?
+See explanations in {PostsController}[link:app/PostsController.html].
+
+==Why to have comments and reviews in separate models?
+Even when comments and reviews share some attributes, the logic related (rating calculation) and the meaning of each one is significantly different. In addition, to have two models makes easier the separation of concerns between the two teams participating in this release. Therefore, we decided to have two separated models. Comment is associated (embedded) with Post. Review is associated (embedded) with Kata. The review is a fundamental part in the "offer of value" of our application because it allow us to order the katas by its relevance.
+
+==Multiple categories per kata
+Categorization is other key element in the "offer of value" of our application, because it allows to the user focus on the Katas that are most relevant for his specific needs. A Category express the intent of a Kata. A Kata could be useful for more than one purpose, therefore the Kata model and Category model have a many-to-many relationship allowing that a Kata belongs to more than one category.

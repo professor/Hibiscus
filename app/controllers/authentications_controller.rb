@@ -1,8 +1,11 @@
-# modified by Norman Xin Oct.4, 2012
+# AuthenticationsController handles the creation, authentication, and listing of users.
+# Creation and authentication of users is triggered by an omniauth callback, and user
+# sessions are enforced using devise.
+
 class AuthenticationsController < ApplicationController
   before_filter :authenticate_user!, :except => [:create]
 
-  # Load user's authentications (Twitter, Facebook, ....)
+  # Load user's authentications (Github).
   def index
     @authentications = current_user.authentications if current_user
   end
@@ -24,6 +27,7 @@ class AuthenticationsController < ApplicationController
         flash[:alert] = "Your account has been blocked."
         redirect_to(root_url)
       else
+        # User is obliterated
         flash[:alert] = "You are not allowed to sign in."
         redirect_to(root_url)
       end

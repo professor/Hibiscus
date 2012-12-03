@@ -1,8 +1,9 @@
+# FlagsController handles creation, and listing of content flags.
+
 class FlagsController < ApplicationController
   before_filter :authenticate_user!, :except => [:index]
 
-  # GET /flags
-  # GET /flags.xml
+  # List all existing flags.
   def index
     @flags = Flag.all.desc(:updated_at)
 
@@ -12,8 +13,7 @@ class FlagsController < ApplicationController
     end
   end
 
-  # POST /flags
-  # POST /flags.xml
+  # Create a new flag. Record the content ID, and the ID of the user that reports the content.
   def create
     @flag = Flag.new
 
@@ -47,18 +47,6 @@ class FlagsController < ApplicationController
         format.html { redirect_to(root_path, :alert => "Your report could not be recorded. Errors: #{@flag.errors}") }
         format.xml { render :xml => @flag.errors, :status => :unprocessable_entity }
       end
-    end
-  end
-
-  # DELETE /flags/1
-  # DELETE /flags/1.xml
-  def destroy
-    @flag = Flag.find(params[:id])
-    @flag.destroy
-
-    respond_to do |format|
-      format.html { redirect_to(flags_url) }
-      format.xml { head :ok }
     end
   end
 end
