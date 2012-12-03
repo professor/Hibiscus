@@ -1,6 +1,8 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
+  helper :all
+
   before_filter do
     cookies['app-referrer-username'] = params[:r] if params[:r]
   end

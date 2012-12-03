@@ -8,8 +8,7 @@
     <span class="meta-prep meta-prep-author">Posted on</span>
     <span class="entry-date"><%= post.created_at.to_date.to_formatted_s(:long_ordinal) %></span>
     <span class="meta-sep">by</span>
-    <% blocked_user = User.deleted.where(username: post.user_id).first %>
-    <% if blocked_user %>
+    <% if user_blocked(post.user_id) %>
       <span class="author vcard"><%= post.user_id %></span>
     <% else %>
       <span class="author vcard">
