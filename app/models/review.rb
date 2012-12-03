@@ -23,12 +23,14 @@ class Review
 
   attr_reader :category_tokens
 
+  #method needed to process the string coming from tokenized input
   def category_tokens=(ids)
     self.category_ids = ids.split(",")
   end
 
-  referenced_in :user
   embedded_in :kata, :inverse_of => :reviews
+  references_many :flags, :dependent => :destroy
+  referenced_in :user
 
   validates :user_id, :presence => true
   validates :rating, :presence => true, :numericality => true
@@ -61,6 +63,7 @@ class Review
      self.updated_at.to_f
   end
 
+  #adds or substract the vote to the review
   def update_vote_score
     self.vote_score = self.plusminus
     save

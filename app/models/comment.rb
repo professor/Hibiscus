@@ -4,8 +4,6 @@ class Comment
   include Mongoid::Document
   include Mongoid::Timestamps
   include ActsAsVoteable
-  #paranoia module allows to implement "soft deletion"
-  #include Mongoid::Paranoia
 
   acts_as_voteable
 
@@ -15,6 +13,7 @@ class Comment
   field :vote_score, :type => Integer, default: 0
 
   embedded_in :post, :inverse_of => :comments
+  references_many :flags, :dependent => :destroy
   referenced_in :user
 
   validates :content, :presence => true
@@ -26,6 +25,7 @@ class Comment
    save
   end
 
+  #adds or substract the vote to the review
   def update_vote_score
     self.vote_score = self.plusminus
     save

@@ -63,10 +63,51 @@ describe UsersController do
 
       end
     end
+
   end
 
+  context 'Authenticated admin' do
+    before(:each) do
+      login_admin
+    end
+
+    describe "GET index" do
+      it "should list all the users" do
+        User.stub_chain(:all, :asc) { [mock_user] }
+        get :index
+        assigns(:users).should eq([mock_user])
+        response.should be_success
+      end
+    end
+
+    describe "DELETE destroy" do
+       it "destroys the requested user" do
+         User.stub(:find_by_slug).with("1") {mock_user}
+         mock_user.should_receive(:delete).and_return(true)
+         delete :destroy, :id => "1"
+         response.should redirect_to (users_path)
+       end
+    end
+
+    describe "GET restore" do
+      it "unblocks the user" do
+        User.stub_chain(:deleted, :where) {[mock_user]}
+        mock_user.should_receive(:restore).and_return(true)
+        get :restore, :id => "1"
+        response.should redirect_to (users_path)
+      end
+    end
 
 
+    describe "GET obliterate" do
+      it "destroys the user permanently" do
+        User.stub_chain(:deleted, :where) {[mock_user]}
+        mock_user.should_receive(:destroy!).and_return(true)
+        get :obliterate, :id => "1"
+        response.should redirect_to (users_path)
+      end
+    end
+  end
 
 end
 

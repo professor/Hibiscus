@@ -3,42 +3,31 @@
 </div>
 
 
-<script type="text/javascript">var switchTo5x=true;</script>
+<script type="text/javascript">var switchTo5x = true;</script>
 <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
-<script type="text/javascript">stLight.options({publisher: "ur-d9349282-e2c2-5e10-173-d95cc709542e"});</script>
+<script type="text/javascript">stLight.options({publisher:"ur-d9349282-e2c2-5e10-173-d95cc709542e"});</script>
 
 <div id="main-entities-div">
-<%= render @post %>
-
-  <!-- social bar-->
-<div class="social-entity-div">
-  <div id="social-icons">
-  <span class='st_facebook_large' displayText='Facebook'></span>
-  <span class='st_twitter_large' displayText='Tweet'></span>
-  <span class='st_linkedin_large' displayText='LinkedIn'></span>
-  <span class='st_googleplus_large' displayText='Google +'></span>
-  <span class='st_wordpress_large' displayText='WordPress'></span>
-  <span class='st_tumblr_large' displayText='Tumblr'></span>
-  <span class='st_blogger_large' displayText='Blogger'></span>
-  <span class='st_reddit_large' displayText='Reddit'></span>
-  <span class='st_digg_large' displayText='Digg'></span>
-  <span class='st_email_large' displayText='Email'></span>
-   </div>
-</div>
+  <%= render @post %>
 
   <!-- comments bar-->
-<div class="entity-div">
-  <% if @comments.any? %>
-    <h2 id="commentsCount">
-      <%= pluralize(@comments.count, @comment.class.to_s) %></h2>
-    <%= render @comments %>
-  <% end %>
+  <div class="entity-div">
+    <% if @comments.any? %>
+      <a name="<%= @comment.class.name.downcase %>">
+        <h2 id="commentsCount">
+          <%= pluralize(@comments.count, @comment.class.to_s) %>
+        </h2>
+      </a>
+      <%= render @comments %>
+    <% end %>
 
-  <% if current_user %>
-    <h3>New <%= @comment.class.to_s %></h3>
-    <%= render 'comments/form' %>
-  <% else %>
-    <h3>Please <%= link_to "sign in", '/auth/github' %> to comment.</h3>
-  <% end %>
+    <% if current_user %>
+      <h3>New <%= @comment.class.to_s %></h3>
+      <%= render 'comments/form' %>
+    <% elsif @type != 'Kata' %>
+      <h3>Please <%= link_to "sign in", '/auth/github' %> to comment.</h3>
+    <% else %>
+      <h3>Please <%= link_to "sign in", '/auth/github' %> to review.</h3>
+    <% end %>
+  </div>
 </div>
-    </div>
