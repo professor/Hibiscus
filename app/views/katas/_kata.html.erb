@@ -62,7 +62,7 @@
     <%= kata.content.html_safe %>
   </div>
   <div class="entity-utility">
-    <span class="comments-link"><a href="#review" title="Comment on <%= kata.title %>"><%= kata.reviews.size %>
+    <span class="comments-link"><a href="#review" title="Comment on <%= kata.title %>"><%= kata.survived_reviews.size %>
       Reviews</a></span>
 
       <% if can? :update, kata %>
