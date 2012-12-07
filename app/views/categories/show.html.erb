@@ -66,7 +66,7 @@
           <% end %>
         </td>
         <td class='hidden_column'><%= kata.rating.round %></td>
-        <td><%= kata.challenge_level %></td>
+        <td><%= content_tag(:span, kata.challenge_level, :class => "level_#{kata.challenge_level}") %></td>
         <td class='hidden_column'><%= kata.digital_challenge_level %></td>
         <td><%= kata.user.display_name %></td>
         <td><%= kata.updated_at.strftime("%Y-%m-%d") %></td>

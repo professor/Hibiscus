@@ -1,4 +1,4 @@
-<script type="text/javascript">var switchTo5x=true;</script>
+ <script type="text/javascript">var switchTo5x=true;</script>
 <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
 <script type="text/javascript">stLight.options({publisher: "ur-9048546c-df53-fafd-463b-e1d2104fc723"});</script>
 
@@ -25,8 +25,13 @@
         <span class="entry-date"><%= post.created_at.to_date.strftime("%b %d, %Y") %></span>
     <% end %>
     <span class="meta-sep">by</span>
-    <span class="author vcard"><a class="url fn n" href="<%= user_path(post.user) %>" title="View all posts by <%= post.user.name %>"><%= post.user.display_name %></a>
+    <% blocked_user = User.deleted.where(username: post.user_id).first %>
+    <% if blocked_user %>
+      <span class="author vcard"><%= post.user_id %></span>
+    <% else %>
+      <span class="author vcard"><a class="url fn n" href="<%= user_path(post.user) %>" title="View all posts by <%= post.user.name %>"><%= post.user.display_name %></a></span>
       <b style="font-size: 1.25em; padding-left: 5px;"><%= post.user.points %></b></span>
+  <% end %>
   </div>
 
 

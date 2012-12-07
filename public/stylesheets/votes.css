@@ -7,7 +7,7 @@ div.entity-div .vote {
     float: left;
 }
 div.entity-div .review {
-    float: left;
+    float: right;
     width: 93%;
     /*height: 100%;*/
 }

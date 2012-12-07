@@ -1,9 +1,10 @@
+# This model declares permissions for managing resources.
+
 class Ability
   include CanCan::Ability
 
+  # Initialize the different permissions with respect to the attributes of the user parameter.
   def initialize(user)
-
-
     # Define abilities for the passed in user here. For example:
     #
     #   user ||= User.new # guest user (not logged in)
@@ -27,15 +28,21 @@ class Ability
     #
     # See the wiki for details: https://github.com/ryanb/cancan/wiki/Defining-Abilities
 
-    user ||= User.new # guest user (not logged in)
+    # Create a placeholder User instance to allow access by users who are not logged in.
+    user ||= User.new
+
     if user.admin?
+      # A user who is an admin can perform any action on all the resources.
       can :manage, :all
     else
+      # All other users can perform show and index actions unless otherwise restricted.
       can :read, :all
     end
 
+    # A logged in user can perform update and destroy actions on resources that he created.
     can [:update, :destroy], [Kata, Post, Article, Comment, Review], :user_id => user.id
 
+    # A logged in user can perform any action on his own profile.
     can :manage, User, :id => user.id
   end
 end
