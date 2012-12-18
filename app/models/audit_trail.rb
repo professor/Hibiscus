@@ -1,3 +1,5 @@
+# Audit Trail is the model that logs documents which are created, updated, etc.
+
 class AuditTrail
   include Mongoid::Document
   include Mongoid::Timestamps

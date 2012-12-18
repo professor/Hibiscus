@@ -1,4 +1,4 @@
-# Review the model for reviews of a Kata. Reviews are embedded in the Kata collection.
+#The Review model contains the evaluation a user do about a Kata. Reviews are embedded in the Kata collection.
 
 class Review
   include Mongoid::Document
@@ -23,6 +23,7 @@ class Review
 
   attr_reader :category_tokens
 
+  #method needed to process the string coming from tokenized input
   def category_tokens=(ids)
     self.category_ids = ids.split(",")
   end
@@ -58,9 +59,10 @@ class Review
   # mongoid time sorting bug: To sort by update time use the return value of this
   # method.
   def last_update
-     self.updated_at.to_f
+    self.updated_at.to_f
   end
 
+  #adds or substract the vote to the review
   def update_vote_score
     self.vote_score = self.plusminus
     save
