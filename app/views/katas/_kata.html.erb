@@ -1,74 +1,72 @@
-<div class="entity-div">
+<div class="entity-div kata">
   <h2 class="entity-title"><%= kata.title.truncate(80) %></h2>
 
   <div class="entity-meta">
     <% if kata.updated_at > kata.created_at %>
         <span class="meta-prep meta-prep-author">Updated on</span>
-        <span class="entry-date"><%= kata.updated_at.to_date.to_formatted_s(:long_ordinal) %></span>
+        <span class="entry-date"><%= kata.updated_at.strftime("%b %d, %Y") %></span>
     <% else %>
         <span class="meta-prep meta-prep-author">Posted on</span>
-        <span class="entry-date"><%= kata.created_at.to_date.to_formatted_s(:long_ordinal) %></span>
+        <span class="entry-date"><%= kata.created_at.strftime("%b %d, %Y") %></span>
     <% end %>
     <span class="meta-sep">by</span>
     <span class="author vcard"><a class="url fn n" href="<%= user_path(kata.user) %>" title="View all posts by <%= kata.user.name %>"><%= kata.user.display_name %></a> <b><%= kata.user.points %></b></span>
-
-
-    <% if !kata.categories.empty? %>
-        in
-        <span>
-          <b>Categories: </b>
-          <% kata.categories.all.collect do |x| %>
-              <a href="<%= root_path(x) %>" rel="bookmark"><%= x.name %></a> &nbsp;&nbsp;&nbsp;
-          <% end %>
-          <br/>
-        </span>
-    <% end %>
-
-    <br><br>
-    <% unless kata.kata_user_categories.empty? %>
-        <span>
-            <b> Suggested Categories: </b>
-            <% kata.kata_user_categories.each do |category| %>
-                <a href="<%= kata_path(kata) %>" rel="bookmark"><%= Category.find(category).name %></a>&nbsp;&nbsp;&nbsp;
-            <% end %>
-        </span>
-        <br><br>
-    <% end %>
-    <% unless kata.rating.nil? %>
-        <div style="float: left"><b> Rating: &nbsp;&nbsp;</b></div>
-    <span>
-      <% rating = kata.rating.round %>
-      <% [1, 2, 3, 4, 5].each do |val| %>
-        <% if val == rating %>
-        <%= radio_button_tag kata.id, val, true, {:disabled => "disabled", :class => "star"} %>
-        <% else %>
-        <%= radio_button_tag kata.id, val, false, {:disabled => "disabled", :class => "star"} %>
-      <% end %>
-      <% end %>
-    </span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <% end %>
-    <span><b>Challenge Level: </b><%= kata.challenge_level %> </span>
   </div>
-  <br><br>
-  <% unless kata.source.blank? %>
-      <div class="entity-source-url">
+  <div class="entity-attribute">
+    <% unless kata.rating.nil? %>
+      <div class="attribute">
+        <span style="float: left"><b> Rating: &nbsp;&nbsp;</b></span>
+        <% rating = kata.rating.round %>
+        <% [1, 2, 3, 4, 5].each do |val| %>
+          <% if val == rating %>
+            <%= radio_button_tag kata.id, val, true, {:disabled => "disabled", :class => "star"} %>
+          <% else %>
+            <%= radio_button_tag kata.id, val, false, {:disabled => "disabled", :class => "star"} %>
+          <% end %>
+        <% end %>
+    </div>
+    <% end %>
+    <br>
+    <div class="attribute"><b>Challenge Level: </b><%= content_tag(:span, kata.challenge_level, :class => "level_#{kata.challenge_level}") %></div>
+    <% unless kata.categories.empty? %>
+      <div class="attribute"><b>Category: </b>
+        <span class="category">
+          <% kata.categories.all.collect do |x| %>
+            <%= link_to x.name, x, :rel => 'bookmark' %>
+          <% end %>
+        </span>
+      </div>
+    <% end %>
+    <% unless kata.kata_user_categories.empty? %>
+      <div class="attribute">
+        <b> Suggested Categories: </b>
+        <% kata.kata_user_categories.each do |category| %>
+          <span class="category"><%= link_to Category.find(category).name, Category.find(category), :rel => 'bookmark' %></span>
+        <% end %>
+      </div>
+    <% end %>
+    <% unless kata.source.blank? %>
+      <div class="attribute">
         <h4><b>Source: </b><%= link_to kata.source.truncate(130), "#{kata.source}", {:target => '_blank'} %></h4>
       </div>
-  <% end %>
+    <% end %>
+  </div>
+
   <div class="entity-content">
     <%= kata.content.html_safe %>
   </div>
   <div class="entity-utility">
-  <span class="comments-link"><a href="<%= kata_path(kata) %>" title="Comment on <%= kata.title %>"><%= kata.reviews.size %>
-    Reviews</a></span>
+    <span class="comments-link"><a href="#review" title="Comment on <%= kata.title %>"><%= kata.reviews.size %>
+      Reviews</a></span>
 
-    <% if can? :update, kata %>
-  <span class="edit-link">
-    <%= link_to 'Edit', edit_kata_path(kata), :title => "Edit Kata", :class => "kata-edit-link" %>
-  </span>
-  <span class="edit-link">
-    <%= link_to 'Delete', kata, :confirm => 'Are you sure?', :method => :delete, :title => "Delete Kata", :class => "kata-edit-link" %>
-  </span>
-    <% end %>
+      <% if can? :update, kata %>
+    <span class="edit-link">
+      <%= link_to 'Edit', edit_kata_path(kata), :title => "Edit Kata", :class => "kata-edit-link" %>
+    </span>
+    <span class="edit-link">
+      <%= link_to 'Delete', kata, :confirm => 'Are you sure?', :method => :delete, :title => "Delete Kata", :class => "kata-edit-link" %>
+    </span>
+      <% end %>
+    <%= render 'socials/social' %>
   </div>
 </div>
