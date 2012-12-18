@@ -4,7 +4,7 @@ FactoryGirl.define do
     content "Kata Content Factory"
     challenge_level "Medium"
     rating 4
+    categories {[FactoryGirl.create(:category)]}
     association :user
-    association :category
   end
 end
