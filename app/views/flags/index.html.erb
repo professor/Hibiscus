@@ -1,0 +1,159 @@
+<h1>Reported Content</h1><br><br>
+
+<div>
+  <h2>Posts</h2><br>
+  <table>
+    <thead>
+    <tr>
+      <th class="reports_header">Post Name</th>
+      <th class="reports_header">Author</th>
+      <th class="reports_header">Updated At</th>
+      <th class="reports_header">Reported By</th>
+      <th class="reports_header">Report Date</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @flags.each do |flag| %>
+      <% if post = flag.post %>
+        <tr class="report_row">
+          <td><%= link_to post.title, post %></td>
+          <td>
+            <% if user_blocked(post.user_id) %>
+              <%= post.user_id %>
+            <% else %>
+              <%= link_to post.user.display_name, post.user %>
+            <% end %>
+          </td>
+          <td><%= post.updated_at.strftime("%Y-%m-%d") %></td>
+          <td>
+            <% if user_blocked(flag.user_id) %>
+              <%= flag.user_id %>
+            <% else %>
+              <%= link_to flag.user.display_name, flag.user %>
+              <% end %>
+          </td>
+          <td><%= flag.created_at.strftime("%Y-%m-%d") %></td>
+        </tr>
+      <% end %>
+    <% end %>
+    </tbody>
+  </table>
+  <br><br>
+
+  <h2>Comments</h2><br>
+  <table>
+    <thead>
+    <tr>
+      <th class="reports_header">Comment's Post Name</th>
+      <th class="reports_header">Author</th>
+      <th class="reports_header">Updated At</th>
+      <th class="reports_header">Reported By</th>
+      <th class="reports_header">Report Date</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @flags.each do |flag| %>
+      <% if comment = flag.comment %>
+        <tr class="report_row">
+          <td><%= link_to comment.post.title, comment.post %></td>
+          <td>
+            <% if user_blocked(comment.user_id) %>
+              <%= comment.user_id %>
+            <% else %>
+              <%= link_to comment.user.display_name, comment.user %>
+            <% end %>
+          </td>
+          <td><%= comment.updated_at.strftime("%Y-%m-%d") %></td>
+          <td>
+            <% if user_blocked(flag.user_id) %>
+              <%= flag.user_id %>
+            <% else %>
+              <%= link_to flag.user.display_name, flag.user %>
+            <% end %>
+          </td>
+          <td><%= flag.created_at.strftime("%Y-%m-%d") %></td>
+        </tr>
+      <% end %>
+    <% end %>
+    </tbody>
+  </table>
+  <br><br>
+
+  <h2>Kata</h2><br>
+  <table>
+    <thead>
+    <tr>
+      <th class="reports_header">Kata Name</th>
+      <th class="reports_header">Author</th>
+      <th class="reports_header">Updated At</th>
+      <th class="reports_header">Reported By</th>
+      <th class="reports_header">Report Date</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @flags.each do |flag| %>
+      <% if kata = flag.kata %>
+        <tr class="report_row">
+          <td><%= link_to kata.title, kata %></td>
+          <td>
+            <% if user_blocked(kata.user_id) %>
+              <%= kata.user_id %>
+            <% else %>
+              <%= link_to kata.user.display_name, kata.user %>
+            <% end %>
+          </td>
+          <td><%= kata.updated_at.strftime("%Y-%m-%d") %></td>
+          <td>
+            <% if user_blocked(flag.user_id) %>
+              <%= flag.user_id %>
+            <% else %>
+              <%= link_to flag.user.display_name, flag.user %>
+            <% end %>
+          </td>
+          <td><%= flag.created_at.strftime("%Y-%m-%d") %></td>
+        </tr>
+      <% end %>
+    <% end %>
+    </tbody>
+  </table>
+  <br><br>
+
+  <h2>Reviews</h2><br>
+  <table>
+    <thead>
+    <tr>
+      <th class="reports_header">Review's Kata Name</th>
+      <th class="reports_header">Author</th>
+      <th class="reports_header">Updated At</th>
+      <th class="reports_header">Reported By</th>
+      <th class="reports_header">Report Date</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @flags.each do |flag| %>
+      <% if review = flag.review %>
+        <tr class="report_row">
+          <td><%= link_to review.kata.title, review.kata %></td>
+          <td>
+            <% if user_blocked(review.user_id) %>
+              <%= review.user_id %>
+            <% else %>
+              <%= link_to review.user.display_name, review.user %>
+            <% end %>
+          </td>
+          <td><%= review.updated_at.strftime("%Y-%m-%d") %></td>
+          <td>
+            <% if user_blocked(flag.user_id) %>
+              <%= flag.user_id %>
+            <% else %>
+              <%= link_to flag.user.display_name, flag.user %>
+            <% end %>
+          </td>
+          <td><%= flag.created_at.strftime("%Y-%m-%d") %></td>
+        </tr>
+      <% end %>
+    <% end %>
+    </tbody>
+  </table>
+
+</div>

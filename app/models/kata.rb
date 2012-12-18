@@ -2,6 +2,9 @@ require 'indextank'
 require "searchify"
 
 # Kata represents the exercises to improve the software craftsmanship.
+# The word 'kata' and 'exercise' refers to the same thing and they are interchangeable.
+# Kata used to be an inherited class of Post. But now they are separate models as it's preferred
+# to store them in different collections.
 # Kata operations are managed by PostController because they share many operations and information in common.
 
 class Kata
@@ -18,6 +21,7 @@ class Kata
 
   attr_reader :category_tokens
 
+  # Setter method for the categories that a Kata instance has and belongs to.
   def category_tokens=(ids)
     self.category_ids = ids.split(",")
   end
@@ -36,8 +40,7 @@ class Kata
   slug :title
 
   embeds_many :reviews
-  #both teams decide to remove it
-  #references_many :likes, :dependent => :destroy
+  references_many :flags, :dependent => :destroy
   has_and_belongs_to_many :tags
   referenced_in :user
 
@@ -56,6 +59,13 @@ class Kata
   after_save :update_fk_in_category
   before_destroy :delete_from_search_index
 
+  ##
+  # This method is to retrieve all reviews that are not deleted.
+  # Thanks to Mongoid's extra Paranoia, deletion becomes soft delete so all deleted reviews are
+  # still in database. However, Mongoid 2 is only able to retrieve all items (normal and deleted) if
+  # items are in a sub-collection (reviews) under one collection (katas).
+  # To retrieve only the normal items (non-deleted), this method is used. If update to Mongoid 3, this
+  # method might not be necessary.
   def survived_reviews
     reviews.where(:deleted_at.exists => false)
   end
@@ -77,6 +87,7 @@ class Kata
     end
   end
 
+  ##
   # return challenge level as a number: 1 for low, 2 for medium and 3 for high
   def digital_challenge_level
     case self.challenge_level
@@ -89,7 +100,8 @@ class Kata
     end
   end
 
-  # get user proposal categories for a kata
+  ##
+  # get user-proposed categories for a kata
   def kata_user_categories
       kataUserCategories = []
       survived_reviews.each do |review|

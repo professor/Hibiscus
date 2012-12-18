@@ -1029,7 +1029,7 @@ div.newType a:active {text-decoration:none; color: #046aad;}
     height: 28px;
     vertical-align: middle;
 }
-div.randomKata a:link {text-decoration:none; color: #5e5e5e;}
+div.randomKata a:link {text-decoration:none}
 
 
 /*Post page styling*/

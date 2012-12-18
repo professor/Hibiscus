@@ -1,4 +1,5 @@
-# Category is only related to Kata model, representing the category a kata belongs to.
+#The Category model represents the intent of a Kata (what a kata is good for).
+#Category is only related to Kata model. Kata model and Category have a many-to-many relationship
 
 class Category
   include Mongoid::Document

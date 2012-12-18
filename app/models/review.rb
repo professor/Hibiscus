@@ -28,8 +28,9 @@ class Review
     self.category_ids = ids.split(",")
   end
 
-  referenced_in :user
   embedded_in :kata, :inverse_of => :reviews
+  references_many :flags, :dependent => :destroy
+  referenced_in :user
 
   validates :user_id, :presence => true
   validates :rating, :presence => true, :numericality => true

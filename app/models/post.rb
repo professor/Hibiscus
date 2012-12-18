@@ -1,8 +1,8 @@
 require 'indextank'
 require "searchify"
 
+##
 # Post is the model for posted articles (Post), and the base model for article feeds(Article).
-
 class Post
   include Mongoid::Document
   include Mongoid::Timestamps
@@ -30,6 +30,7 @@ class Post
 
   embeds_many :comments
   references_many :likes, :dependent => :destroy
+  references_many :flags, :dependent => :destroy
   has_and_belongs_to_many :tags
   referenced_in :user
 
@@ -74,7 +75,7 @@ class Post
   end
 
   ##
-  # Set post tags from a tag name string. The post tags are included in an array of Tag objects
+  # Set post tags from a tag name string. The post tags are included in an array of Tag objects.
   def setTags
     self.tags.nullify
     
