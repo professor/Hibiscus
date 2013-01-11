@@ -1,6 +1,6 @@
 source "http://rubygems.org"
 
-gem "rails", "3.0.17"
+gem "rails", "3.0.19"
 
 group :development do
 	gem "rdoc"
@@ -29,7 +29,7 @@ end
 
 group :development, :test do
 	gem "rspec-rails"
-	gem "capybara"
+	gem "capybara", "1.1.3"
 	gem "launchy"
 end
 
