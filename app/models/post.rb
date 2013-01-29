@@ -41,6 +41,8 @@ class Post
   after_save :update_search_index
   before_destroy :delete_from_search_index
 
+  max_versions 5
+
   ##
   # Get user likes array for a post
   def listLikes

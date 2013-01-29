@@ -59,6 +59,8 @@ class Kata
   after_save :update_fk_in_category
   before_destroy :delete_from_search_index
 
+  max_versions 5
+
   ##
   # This method is to retrieve all reviews that are not deleted.
   # Thanks to Mongoid's extra Paranoia, deletion becomes soft delete so all deleted reviews are
