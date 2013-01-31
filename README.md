@@ -13,8 +13,12 @@ Permission granted to use this image from Mahesh "Vyoma" Bhat | KalaaLog.com
    1. Callback url: http://localhost:3000/auth/github/callback
    1. add the following to .bash_profile
 
+<!-- code -->
+
     export GITHUB_ID="d8a90randomjunk1dasdsa"<br/>
+    # should match "Client Id" from the Github applications page
     export GITHUB_SECRET="a89309adsrandomjunk1j9fajsJ"
+    # should match "Client Secret" from the Github applications page
 
 1. Setup your environment variable for SEARCHIFY_HIBISCUS_API_URL from http://searchify.com/
    1. add the following to .bash_profile
@@ -36,7 +40,27 @@ Permission granted to use this image from Mahesh "Vyoma" Bhat | KalaaLog.com
    2. restart your terminal
    3. in terminal run "rake db:seed" to create default article user
 
+
+## Troubleshooting
+
+### OpenSSL error
+
+> OpenSSL::SSL::SSLError: SSL_connect returned=1 errno=0 state=SSLv3 read server certificate B: certificate verify failed
+
+While trying to sign in through github, if you run into an error that resembles the above, follow below steps:
+
+    # Get hold of a ssl certificate file
+    sudo curl -O http://curl.haxx.se/ca/cacert.pem
+
+    # Rename the certificate
+    mv cacert.pem cert.pem
+
+    # add the SSL_CERT_FILE environment variable
+    export SSL_CERT_FILE=/path/to/cert.pem
+
+
 ##Local mongo database
+
 1. install mongo (See http://www.mongodb.org/display/DOCS/Quickstart+OS+X )
 
 
