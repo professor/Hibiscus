@@ -42,7 +42,7 @@ Permission granted to use this image from Mahesh "Vyoma" Bhat | KalaaLog.com
 
 <!-- code -->
 
-          export ARTICLE_USER_ID="scotty"
+    export ARTICLE_USER_ID="scotty"
 
    2. restart your terminal
    3. in terminal run "rake db:seed" to create default article user
