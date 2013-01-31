@@ -25,7 +25,7 @@ Permission granted to use this image from Mahesh "Vyoma" Bhat | KalaaLog.com
 
 <!-- code -->
 
-    export SEARCHIFY_HIBISCUS_API_URL="http://something"<br/>
+    export SEARCHIFY_HIBISCUS_API_URL="http://something"
     export SEARCHIFY_HIBISCUS_INDEX="hibiscus"
 
    1. restart your terminal
