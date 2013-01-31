@@ -1,6 +1,6 @@
 source "http://rubygems.org"
 
-gem "rails", "3.0.19"
+gem "rails", "3.0.20"
 
 group :development do
 	gem "rdoc"
@@ -43,14 +43,14 @@ end
 
 # Modified by Norman Xin on Oct. 4, 2012
 group :development, :test, :production do
-	gem "mongoid", ">= 2.0.0.rc.7"
+	gem "mongoid", ">= 2.2.6" #the latest to support rails 3.0.x
   gem "mongoid_slug", "~> 0.10.0"
 	gem "bson_ext"
 	gem "devise", "1.1.8"
 	gem 'omniauth','1.0'
   gem 'omniauth-github'
   gem "indextank"
-	gem "faraday-stack", '= 0.1.5' #it appears that indextank needs this?
+	gem "faraday-stack" #,  '= 0.1.5' #it appears that indextank needs this?
   gem "ckeditor", "3.6.3"
   gem 'mongoid-paperclip', :require => 'mongoid_paperclip'
   gem "jquery-rails"
