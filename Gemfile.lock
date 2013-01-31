@@ -304,14 +304,14 @@ DEPENDENCIES
   devise (= 1.1.8)
   exception_notification!
   factory_girl_rails
-  faraday-stack (= 0.1.5)
+  faraday-stack
   feedzirra
   gamify
   indextank
   jquery-rails
   launchy
   metrical
-  mongoid (>= 2.0.0.rc.7)
+  mongoid (>= 2.2.6)
   mongoid-paperclip
   mongoid-rspec
   mongoid_slug (~> 0.10.0)

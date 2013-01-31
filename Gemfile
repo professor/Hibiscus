@@ -1,6 +1,6 @@
 source "http://rubygems.org"
 
-gem "rails", "3.0.20"
+gem "rails", "3.0.19"
 
 group :development do
 	gem "rdoc"
