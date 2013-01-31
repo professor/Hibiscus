@@ -39,11 +39,9 @@ module Searchify
     end
 
     text = self.content.gsub(/<\/?[^>]*>/, "")
-    if elements.size > 0
-      elements.each { |element| text << (" " + element.content.to_s)  }
-    end
-
-    tmp = ENV['SEARCHIFY_HIBISCUS_INDEX']
+    #if elements.size > 0
+    #  elements.each { |element| text << (" " + element.content.to_s)  }
+    #end
 
     index = api.indexes(ENV['SEARCHIFY_HIBISCUS_INDEX'] || 'hibiscus')
     index.document(self.id.to_s).add({ :title => self.title, :timestamp => self.created_at.to_i, :text => text , :url => url, :id => self.id.to_s})
