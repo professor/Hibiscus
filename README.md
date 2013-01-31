@@ -23,23 +23,29 @@ Permission granted to use this image from Mahesh "Vyoma" Bhat | KalaaLog.com
 1. Setup your environment variable for SEARCHIFY_HIBISCUS_API_URL from http://searchify.com/
    1. add the following to .bash_profile
 
+<!-- code -->
+
     export SEARCHIFY_HIBISCUS_API_URL="http://something"<br/>
     export SEARCHIFY_HIBISCUS_INDEX="hibiscus"
 
    1. restart your terminal
 
 1. If you enable sending of emails in development environment, then setup your environment variable for emails. Currently this is only needed for testing article feed importer
-   export SMTP_SERVER_USERNAME=
-   SMTP_SERVER_PASSWORD=
+
+<!-- code -->
+
+    export SMTP_SERVER_USERNAME=
+    SMTP_SERVER_PASSWORD=
 
 1. Setup your environment variable for ARTICLE_USER_ID. This is used by the Article Generator.
    1. add the following to .bash_profile
+
+<!-- code -->
 
           export ARTICLE_USER_ID="scotty"
 
    2. restart your terminal
    3. in terminal run "rake db:seed" to create default article user
-
 
 ## Troubleshooting
 
@@ -53,10 +59,10 @@ While trying to sign in through github, if you run into an error that resembles 
     sudo curl -O http://curl.haxx.se/ca/cacert.pem
 
     # Rename the certificate
-    mv cacert.pem cert.pem
+    mv cacert.pem ~/cert.pem
 
     # add the SSL_CERT_FILE environment variable
-    export SSL_CERT_FILE=/path/to/cert.pem
+    export SSL_CERT_FILE=~/cert.pem
 
 
 ##Local mongo database
