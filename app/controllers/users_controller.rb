@@ -18,12 +18,12 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])
+    @user = User.find_by_slug(params[:id])
     authorize! :update, @user
   end
 
   def update
-    @user = User.find(params[:id])
+    @user = User.find_by_slug(params[:id])
     authorize! :update, @user
 
     @user.email = params[:user][:email]
@@ -77,7 +77,8 @@ class UsersController < ApplicationController
   end
 
   def unsubscribe
-    @user = User.where(:_id => params[:id]).first
+    @user = User.where(:slug => params[:id]).first
+
     if @user.nil?
       flash[:alert] = "Unsubscribe Process Unsuccessful. User does not exist."
     else
