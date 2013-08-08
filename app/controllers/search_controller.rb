@@ -16,7 +16,7 @@ class SearchController < ApplicationController
   def self.search(query)
     query = query.gsub(/\W+/,' ').strip
 
-    if query.length > 0
+    if query.present?
       query << "*"
       index_tank.search("#{query} OR title:#{query}", :fetch => 'timestamp,url,text,title', :snippet => 'text')
     end
